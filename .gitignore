@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+dist/
+npm-debug.log
+.idea
+*.iml
+build/
+package-lock.json
+gitbook/_book
+server/config/config.js
+.vscode
