@@ -1,0 +1,21 @@
+<view>
+<!-- <view wx:for="{{books}}">
+<view class="title">
+{{item.title}}
+</view>
+<image src="{{item.image}}"></image>
+
+<view>
+  {{item.summary}}
+</view>
+</view> -->
+
+
+<view>
+  <button type="primary" bindtap="callLogin">调用云函数</button>
+</view>
+<view>
+  {{imgurl}}
+</view>
+<image src="{{imgurl}}"></image>
+</view>

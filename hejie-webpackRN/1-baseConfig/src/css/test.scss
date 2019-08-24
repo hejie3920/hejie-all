@@ -1,0 +1,12 @@
+body {
+  background: blue;
+  div {
+    width: 200px;
+    height: 200px;
+    background: gold;
+    display: flex;
+    transform: translate(100px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

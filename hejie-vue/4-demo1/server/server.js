@@ -12,11 +12,11 @@ router.get("/api/login", async ctx => {
   const { username, password } = ctx.query;
   console.log(username, password);
 
-  if (username == "kaikeba" && password == "123") {
+  if (username == "hejieba" && password == "123") {
     // 生成令牌
     const token = jwt.sign(
       {
-        data: { name: "kaikeba" }, // 用户信息数据
+        data: { name: "hejieba" }, // 用户信息数据
         exp: Math.floor(Date.now() / 1000) + 60 * 60 // 过期时间
       },
       secret

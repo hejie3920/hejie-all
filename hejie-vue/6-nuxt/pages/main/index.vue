@@ -17,7 +17,7 @@
 export default {
   head() { // head里面项目
     return {
-      title: "课程列表",
+      title: "物品列表",
       meta: [{ name: "description", hid: "description", content: "set page meta" }],
       link: [{ rel: "favicon", href: "favicon.ico" }],
       script: [{ src: "https://cdn.jsdelivr.net/npm/jquery/dist/jquery.js" }]

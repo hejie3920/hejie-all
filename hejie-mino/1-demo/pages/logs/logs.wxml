@@ -1,0 +1,12 @@
+<!--logs.wxml-->
+
+
+<view class="user-container">
+  <button 
+    open-type="getUserInfo"
+    bindgetuserinfo="onGetUserInfo"
+    >
+  
+  </button>
+</view>
+  

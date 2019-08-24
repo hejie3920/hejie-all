@@ -44,7 +44,7 @@ export default {
   },
   created(){
     setTimeout(() => {
-      this.title = '开课吧购物车'
+      this.title = '和杰购物车'
     }, 1000);
   },
   methods: {

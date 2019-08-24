@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="logo">
-      <img src="https://img.kaikeba.com/logo-new.png" alt>
+      <img src="https://img.hejieba.com/logo-new.png" alt>
     </div>
     <!-- <cube-button>登录</cube-button> -->
     <cube-form

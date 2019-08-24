@@ -4,7 +4,7 @@
     <thead>
       <tr>
         <th></th>
-        <th>课程名</th>
+        <th>物品名</th>
         <th>单价</th>
         <th>数量</th>
         <th>价格</th>

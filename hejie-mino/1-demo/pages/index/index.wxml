@@ -1,0 +1,15 @@
+
+<view class='k-container'>
+  <view>你好啊 {{name}}</view>
+
+
+<input value="{{val}}" bindinput='input' placeholder="请输入想做的事"/>
+
+<button bindtap="addTodo">添加</button>
+  <view  wx:for="{{todos}}">
+    <view>{{index}}: {{item}}</view>
+  </view>
+
+
+  <image src="../../assets/default.png"></image>
+</view>

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <k-header title="开课吧">
+    <k-header title="和杰">
       <i class="cubeic-tag"></i>
     </k-header>
     

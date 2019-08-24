@@ -1,0 +1,5 @@
+/**index.wxss**/
+.k-container{
+  color:red;
+  
+}

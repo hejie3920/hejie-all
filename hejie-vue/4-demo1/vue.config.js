@@ -24,7 +24,7 @@ module.exports = {
       // before(app) {
       //   app.get("/api/login", (req, res) => {
       //     const { username, password } = req.query;
-      //     if (username === "kaikeba" && password === "123") {
+      //     if (username === "hejieba" && password === "123") {
       //       res.json({ code: 1, token: "jilei" });
       //     } else {
       //       res.status(401).json({ code: 0, message: "用户名或密码错误" });

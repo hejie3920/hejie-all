@@ -6,8 +6,8 @@ app.get('/',function(req,res){
         <html>
             <div>
                 <div id="app">
-                    <h1>开课吧</h1>
-                    <p class="demo">开课吧还不错</p>
+                    <h1>和杰</h1>
+                    <p class="demo">和杰还不错</p>
                 </div>
             </body>
         </html> 

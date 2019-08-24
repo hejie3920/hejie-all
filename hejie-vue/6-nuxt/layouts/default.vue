@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>开课吧购物车</h1>
+    <h1>和杰购物车</h1>
     <nuxt />
   </div>
 </template>
