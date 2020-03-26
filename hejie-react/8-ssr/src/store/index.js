@@ -1,25 +1,20 @@
-import axios from 'axios'
-import config from '../../config'
-
+// import axios from 'axios'
 //首页的逻辑
 //indexReducer
 
-const GET_LIST = 'INDEX/GET_LIST'
+const GET_LIST = "INDEX/GET_LIST"
 const changeList = list => ({
   type: GET_LIST,
   list
 })
 
 export const getIndexList = server => {
-  return (dispatch) => {
-    return axios.get(`${config.host}/api/course/list`)
-      .then(res => {
-        const {
-          list
-        } = res.data
-        console.log("TCL: list", list)
-        dispatch(changeList(list))
-      })
+  return (dispatch, getState, $axios) => {
+    return $axios.get(`/api/course/list`).then(res => {
+      const { list } = res.data
+      console.log("TCL: list", list)
+      dispatch(changeList(list))
+    })
   }
 }
 const defaultState = {

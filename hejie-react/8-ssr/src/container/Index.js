@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import { getIndexList } from "../store/index"
+import styles from "./Index.css"
+import withStyle from "../withStyle.js"
+// 服务端特有的
+// console.log(styles._getCss())
 
 function Index(props) {
+  // 服务端渲染的时候直接涂上css，这里封装成hoc高阶组件了，在withStyle里
+  // if (props.staticContext) {
+  //   props.staticContext.css.push(styles._getCss())
+  // }
+
   const [count, setCount] = useState(0)
   useEffect(() => {
     if (!props.list.length) {
@@ -11,8 +20,8 @@ function Index(props) {
   }, [])
 
   return (
-    <div>
-      <h1>{count}</h1>
+    <div className={styles.bg}>
+      <h1 className={styles.title}>{count}</h1>
       <button onClick={() => setCount(count + 1)}>click on me</button>
       <hr />
       <ul>
@@ -32,4 +41,4 @@ export default connect(
     list: state.index.list
   }),
   { getIndexList }
-)(Index)
+)(withStyle(Index, styles))

@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
-import { Route } from 'react-router-dom'
-import Index from './container/Index.js'
-import User from './container/User.js'
-import About from './container/About.js'
+import React, { useState } from "react"
+import { Route } from "react-router-dom"
+import Index from "./container/Index.js"
+import User from "./container/User.js"
+import NotFound from "./container/NotFound.js"
+import About from "./container/About.js"
+// import "./App.css"
 
 // export default (
 //   <div>
@@ -14,22 +16,26 @@ import About from './container/About.js'
 // 改造成js的配置，才能获取组件
 export default [
   {
-    path: '/',
+    path: "/",
     component: Index,
     // loadData: Index.loadData
-    // exact: true,
-    key: 'index'
+    exact: true,
+    key: "index"
   },
   {
-    path: '/about',
+    path: "/about",
     component: About,
     exact: true,
-    key: 'about'
+    key: "about"
   },
   {
-    path: '/user',
+    path: "/user",
     component: User,
     exact: true,
-    key: 'user'
+    key: "user"
   },
-];
+  {
+    component: NotFound,
+    key: "404"
+  }
+]
