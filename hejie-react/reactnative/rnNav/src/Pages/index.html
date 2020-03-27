@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body,
+      h1 {
+        margin: 0;
+      }
+      div {
+        height: 100vh;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>原生网页</h1>
+    </div>
+  </body>
+  <script>
+    // window.onmessage = e => {
+    //   alert(e.data);
+    // };
+    window.ReactNativeWebView.postMessage("来自网页的信息");
+  </script>
+</html>
