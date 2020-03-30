@@ -41,10 +41,10 @@ export const rcphoc = key => WrappedComponent => {
   }
 }
 
+@rfphoc("挥洒后端返回")
 @rfhoc
 @rcphoc("人沙发")
 @rchoc
-@rfphoc("挥洒后端返回")
 class func extends React.PureComponent {
   componentDidMount() {
     console.log("func组件componentDidMount")
