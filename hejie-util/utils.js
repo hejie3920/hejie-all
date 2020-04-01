@@ -1307,3 +1307,6 @@ ref="input"
 // console.log(it.next({ value: "我是第二步的初始值" }))
 // // 输出 { value:'我是第二步的初始值' }
 // // 输出{ value: undefined, done: true }
+
+// pwa原理
+// https://blog.csdn.net/weixin_33692284/article/details/88027509

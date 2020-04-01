@@ -69,6 +69,8 @@ return InputComp => (
   除了了 shouldComponentUpdate，其他在 render 函数之前的所有函数(componentWillMount，componentWillReceiveProps， componentWillUpdate)都被 getDerivedStateFromProps 替代。
 - 错误边界，componentDidCatch，配合 getDerivedStateFromError 可以降级渲染
 - ReactDOM.createPortal，传送门，挂载节点在任意位置，节点还是可以继续冒泡到 react 根
+- 返回新增 react 元素数组和字符串
+  ![返回新增类型](markdown/2020-03-31-16-47-15.png)
 
 ## 代码分割，路由懒加载
 

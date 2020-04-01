@@ -12,6 +12,8 @@
 
 # Next
 
+- 内置组件，Head, Link,
+- 类似微服务的 zone
 - [demo](https://segmentfault.com/a/1190000015578803)
 - next 官网比较简洁，其实没什么特别好记录的，和各种技术的配合项目直接看它的开源项目 demo 踩坑食用即可
   [所有技术配合合集](https://github.com/zeit/next.js/tree/7.0.0-canary.8/examples/with-redux)
