@@ -4,7 +4,6 @@ dist/
 npm-debug.log
 .idea
 *.iml
-build/
 package-lock.json
 gitbook/_book
 server/config/config.js
