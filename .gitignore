@@ -6,5 +6,4 @@ npm-debug.log
 *.iml
 package-lock.json
 gitbook/_book
-server/config/config.js
 .vscode
