@@ -31,33 +31,6 @@ console.log = (...args) => {
 //   console.log("TCL: ", "nihao")
 // }, 200)
 
-function isCyclic(o) {
-  /* 代码实现 */
-  for (let i in o) {
-    let tmp = o[i]
-    if (o === tmp) return true
-    else if (Object.keys(tmp).length > 0) {
-      isCyclic(tmp)
-    }
-  }
-  return false
-}
-
-function isCyclic(obj, parent) {
-  var parentArr = parent || [obj]
-  for (var i in obj) {
-    if (typeof obj[i] === "object") {
-      //判断是否有循环引用
-      parentArr.forEach(pObj => {
-        if (pObj === obj[i]) {
-          obj[i] = "[cycle]"
-        }
-      })
-      isCyclic(obj[i], [...parentArr, obj[i]])
-    }
-  }
-  return obj
-}
 /**
  * 编码题二：实现一个检验对象是否循环指向的方法
  * 说明：当一个对象存在对自身引用时，称之为循环指向
@@ -65,11 +38,11 @@ function isCyclic(obj, parent) {
  *   o -> a -> o，就形成循环指向
  * 示例：
  */
-isCyclic(window) // true
-isCyclic({}) // false
-var o = {}
-o.o = o
-isCyclic(o) // true
-var obj = { foo: { bar: { baz: { qux: {} } } } }
-obj.foo.bar.baz.qux = obj.foo
-isCyclic(obj) // true
+// isCyclic(window) // true
+// isCyclic({}) // false
+// var o = {}
+// o.o = o
+// isCyclic(o) // true
+// var obj = { foo: { bar: { baz: { qux: {} } } } }
+// obj.foo.bar.baz.qux = obj.foo
+// isCyclic(obj) // true

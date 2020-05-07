@@ -1,22 +1,27 @@
+// 判断对象是对象还是数组
+// if (typeof obj === 'object' && Array.isArray(obj)) else
+
+// 直接判断是对象还是数组
+// {}.toString.call( obj ) === "[object Object]"
+// {}.toString.call( obj ) === "[object Array]"
+// Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()区别
+// 1. Object.prototype.toString适用于任何变量，instanceof，isArray 只能判断对象类型，原始类型不可，isArray性能会稍微高点
+
 let utils = {
   // 深拷贝
-  deepClone(obj) {
-    if (obj === null) return null //null 的情况
-    if (obj instanceof RegExp) return new RegExp(obj) //正则表达式的情况
-    if (obj instanceof Date) return new Date(obj) //日期对象的情况
-    if (typeof obj == "function") return new (function(obj) {})() //函数的情况
-    if (typeof obj != "object") {
-      //非复杂类型,直接返回 也是结束递归的条件
-      return obj
+  deepCopy(obj) {
+    //判断是否是简单数据类型，
+    if (typeof obj == "object") {
+      //复杂数据类型
+      var result = obj.constructor == Array ? [] : {}
+      for (let i in obj) {
+        result[i] = typeof obj[i] == "object" ? deepCopy(obj[i]) : obj[i]
+      }
+    } else {
+      //简单数据类型 直接 == 赋值
+      var result = obj
     }
-    //[].__proto__.constructor=Array()
-    //{}.__proto__.constructor=Object()
-    //因此处理数组的情况时,可以取巧用这个办法来new新对象
-    var newObj = new obj.__proto__.constructor()
-    for (var key in obj) {
-      newObj[key] = deepClone(obj[key])
-    }
-    return newObj
+    return result
   },
 
   // 正则解码
@@ -68,10 +73,7 @@ let utils = {
 
   // 判断类型，获取类型
   getType(val) {
-    return Object.prototype.toString
-      .call(val)
-      .slice(8, -1)
-      .toLowerCase()
+    return Object.prototype.toString.call(val).slice(8, -1).toLowerCase()
   },
   // 实现new，new做了什么
   // 1.肯定要返回一个新对象的啦，所以第一步先创建个新的空对象，
@@ -84,11 +86,57 @@ let utils = {
     const ret = fn.apply(obj, args)
     return ret instanceof Object ? ret : obj
   },
-  // 节流教科书
-  throttle(fn, interval) {
+  // 分时函数,把1秒渲染1000个分成每200毫秒渲染8个
+  timeThunk(ary, fn, count) {
+    let timer
+    let start = function () {
+      for (let i = 0; i < Math.min(count || 1, ary.length); i++) {
+        let obj = ary.shift()
+        fn(obj)
+      }
+    }
+    return function () {
+      timer = setInterval(() => {
+        if (ary.length === 0) {
+          return clearInterval(timer)
+        }
+        start()
+      }, 200)
+    }
+  },
+  // 大量节点渲染优化，分时渲染，验证后发现直接用innerHTML性能比createDocumentFragment文档碎片好
+  // var ary = []
+  // for (var i = 1; i <= 1000; i++) {
+  //   ary.push(i)
+  // }
+  // var renderFriendList = timeChunk(
+  //   ary,
+  //   function (n) {
+  //     var div = document.createElement("div")
+  //     div.innerHTML = n
+  //     document.body.appendChild(div)
+  //   },
+  //   8
+  // )
+  // renderFriendList()
+
+  // 防抖
+  debounce(func, wait = 200) {
+    // 缓存一个定时器id
+    let timer = 0
+    // 这里返回的函数是每次用户实际调用的防抖函数 // 如果已经设定过定时器了就清空上一次的定时器 // 开始一个新的定时器，延迟执行用户传入的方法
+    return function () {
+      let _this = this
+      if (timer) clearTimeout(timer)
+      timer = setTimeout(() => {
+        func.apply(_this, arguments)
+      }, wait)
+    }
+  },
+  throttle(fn, interval = 200) {
     let timer, // 定时器
       firstTime = true // 是否是第一次调用
-    return function() {
+    return function () {
       let _this = this
       if (firstTime) {
         // 如果是第一次调用，不需延迟执行
@@ -98,63 +146,84 @@ let utils = {
       if (timer) {
         return false
       }
-      timer = setTimeout(function() {
+      timer = setTimeout(function () {
         clearTimeout(timer)
         timer = null
         fn.apply(_this, arguments)
-      }, interval || 500)
+      }, interval)
     }
   },
-  // 分时函数,把1秒渲染1000个分成每200毫秒渲染8个
-  timeThunk(ary, fn, count) {
-    let obj, timer
-    let len = ary.length
-    let start = function() {
-      for (let i = 0; i < Math.min(count || 1, ary.length); i++) {
-        let obj = ary.shift()
-        fn(obj)
-      }
-    }
-    return function() {
-      timer = setInterval(() => {
-        if (ary.length === 0) {
-          return clearInterval(timer)
-        }
-        start()
-      }, 200)
-    }
+  debounceExec(func, delay = 200) {
+    closure.debounceTimer && clearTimeout(closure.debounceTimer)
+    closure.debounceTimer = setTimeout(() => {
+      func && func()
+    }, delay)
   },
-  // 节流
-  throttle(func, wait = 50) {
-    // 上一次执行该函数的时间
-    let lastTime = 0
-    return (...args) => {
-      // 当前时间
-      let now = +new Date()
-      // 将当前时间和上一次执行函数时间对比 // 如果差值大于设置的等待时间就执行函数
-      if (now - lastTime > wait) {
-        lastTime = now
-        func.apply(this, args)
-      }
-    }
-  },
-  // 防抖
-  debounce(func, wait = 50) {
-    // 缓存一个定时器id
-    let timer = 0
-    // 这里返回的函数是每次用户实际调用的防抖函数 // 如果已经设定过定时器了就清空上一次的定时器 // 开始一个新的定时器，延迟执行用户传入的方法
-    return (...args) => {
-      if (timer) clearTimeout(timer)
-      timer = setTimeout(() => {
-        func.apply(this, args)
-      }, wait)
+  throttleExec(func, wait = 200) {
+    // 当前时间
+    let now = +new Date()
+    // 将当前时间和上一次执行函数时间对比 // 如果差值大于设置的等待时间就执行函数
+    if (now - closure.throttleLastTime > wait) {
+      closure.throttleLastTime = now
+      func && func()
     }
   }
 }
+// react实现防抖输入框
+// 防抖函数
+// function debounce(fn, wait, immediate) {
+//   let timer = null
+
+//   return function(...args) {
+//     let context = this
+
+//     if (immediate && !timer) {
+//       fn.apply(context, args)
+//     }
+
+//     if (timer) clearTimeout(timer)
+//     timer = setTimeout(() => {
+//       fn.apply(context, args)
+//     }, wait)
+//   }
+// }
+
+// class SearchInput extends React.Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//       value: ""
+//     }
+//     this.handleChange = this.handleChange.bind(this)
+//     this.callAjax = debounce(this.callAjax, 500, true)
+//   }
+
+//   handleChange(e) {
+//     this.setState({
+//       value: e.target.value
+//     })
+//     this.callAjax()
+//   }
+
+//   callAjax() {
+//     // 此处根据输入值调用服务端接口
+//     console.log(this.state.value)
+//   }
+
+//   render() {
+//     return <input type='text' value={this.state.value} onChange={this.handleChange} />
+//   }
+// }
 
 // 正则相关
 // reg: test,exec,exec(eval(动态模板正则))
 // str: match
+
+// 常用
+// 1. str.replace(reg, (最终匹配的结果，结果里面的$1, $2分组之类) => { return $1 + ' ' + $2})
+// 2. str.match(reg)  返回一个结果数组['aaa','bbb','cc']，接下来就是数组的操作了
+// 3. 匹配连续相同的字符，(\w)\1,()和\1配合使用可以筛选连续的重复字符，
+// 然后(\w) \1 + 代表贪婪尽可能多匹配，不加代表非贪婪，只匹配两个，还可以(\w)\1{2,},匹配2次以上（不含2次）
 
 // let reg = /(\/\.*[\w]+)|(\/\.\.+)/g
 // let str = "///a/./b///../../c/"
@@ -177,6 +246,28 @@ let utils = {
 // let reg=`/\\?${arg}=([^&]*)/gi`;
 // if(url.match(eval(reg))){
 // tmp=url.replace(eval(reg),"要替换的文本");
+
+// 字符串中连续出现最多的字符和个数
+// let str = "abbkejsbccc78wqaaaa"
+
+// function test() {
+//   let reg = /(\w)\1+/g
+//   let match = str.match(reg)
+//   if (!match || match.length < 1) {
+//     console.log("TCL: 并没有找到连续相同的字符")
+//     return
+//   }
+//   let res = match.reduce((pre, next) => {
+//     if (next.length > pre.length) {
+//       return next
+//     } else {
+//       return pre
+//     }
+//   }, match[0])
+//   console.log("TCL: ", res[0])
+//   return res[0]
+// }
+// test()
 
 /*
 this指向问题
@@ -309,6 +400,37 @@ this指向问题
 //   return function() {
 //     return self.apply(ctx, arguments)
 //   }
+// }
+// 实现call
+// Function.prototype.call = function(context) {
+//   var context = context || window; //因为传进来的context有可能是null
+//   context.fn = this;
+//   var args = [];
+//   for (var i = 1; i < arguments.length; i++) {
+//       args.push("arguments[" + i + "]"); //不这么做的话 字符串的引号会被自动去掉 变成了变量 导致报错
+//   }
+//   args = args.join(",");
+
+//   var result = eval("context.fn(" + args + ")"); //相当于执行了context.fn(arguments[1], arguments[2]);
+
+//   delete context.fn;
+//   return result; //因为有可能this函数会有返回值return
+// }
+// 实现apply
+// Function.prototype.apply2 = function(context, arr) {
+//   var context = context || window; //因为传进来的context有可能是null
+//   context.fn = this;
+//   var args = [];
+//   var params = arr || [];
+//   for (var i = 0; i < params.length; i++) {
+//       args.push("params[" + i + "]"); //不这么做的话 字符串的引号会被自动去掉 变成了变量 导致报错
+//   }
+//   args = args.join(",");
+
+//   var result = eval("context.fn(" + args + ")"); //相当于执行了context.fn(arguments[1], arguments[2]);
+
+//   delete context.fn;
+//   return result; //因为有可能this函数会有返回值return
 // }
 
 // function Foo() {
@@ -731,7 +853,9 @@ this指向问题
 // }
 // inherit(Son, Father)
 
-// 微任务
+// 微任务和宏任务，先微再宏，只不过一开始的script块也可以算是宏任务
+// 宏任务：script中代码、setTimeout、setInterval、I/O、UI render。
+// 微任务: promise、nexttick, Object.observe、MutationObserver。
 // async function async1() {
 //   console.log("async1 start")
 //   await async2()
@@ -761,6 +885,54 @@ this指向问题
 // async1 end
 // promise2
 // setTimeout
+
+// 2.
+// function sleep(time) {
+//   let startTime = new Date()
+//   while (new Date() - startTime < time) {}
+//   console.log("1s over")
+// }
+// setTimeout(() => {
+//   console.log("setTimeout - 1")
+//   setTimeout(() => {
+//     console.log("setTimeout - 1 - 1")
+//     sleep(1000)
+//   })
+//   new Promise((resolve) => resolve()).then(() => {
+//     console.log("setTimeout - 1 - then")
+//     new Promise((resolve) => resolve()).then(() => {
+//       console.log("setTimeout - 1 - then - then")
+//     })
+//   })
+//   sleep(1000)
+// })
+
+// setTimeout(() => {
+//   console.log("setTimeout - 2")
+//   setTimeout(() => {
+//     console.log("setTimeout - 2 - 1")
+//     sleep(1000)
+//   })
+//   new Promise((resolve) => resolve()).then(() => {
+//     console.log("setTimeout - 2 - then")
+//     new Promise((resolve) => resolve()).then(() => {
+//       console.log("setTimeout - 2 - then - then")
+//     })
+//   })
+//   sleep(1000)
+// })
+// setTimeout - 1
+// 1s over
+// setTimeout - 1 - then
+// setTimeout - 1 - then - then
+// setTimeout - 2
+// 1s over
+// setTimeout - 2 - then
+// setTimeout - 2 - then - then
+// setTimeout - 1 - 1
+// 1s over
+// setTimeout - 2 - 1
+// 1s over
 
 // 实现flatten
 // function flatten(arr) {
@@ -934,6 +1106,14 @@ this指向问题
 //   console.log("333333333333333333333333333333")
 // }
 // exec()
+
+// 类型转换
+// 如果是+号的话，如果是直接跟一个值，就会先转为数字，如果是两值相加，就会先toString尽量转为字符串
+// 如果是其他运算符的话，就尽量转为数字运算
+// 1 + "1"   ==》 11
+// 2 * "2"  ==》 4
+// [1, 2] + [2, 1]  ==》 1，2，2，1
+// "a" + + "b"  ==》 等于a +  (+ b) ==> a + NaN ==> aNaN
 
 // 隐式转换，// 这题考察的应该是类型的隐式转换,考引用类型在比较运算符时候,隐式转换会调用本类型toString或valueOf方法.
 // valueOf优于toString,有valueOf就不会执行toString
@@ -1240,7 +1420,7 @@ this指向问题
 //www.baidu.com
 
 // input框中文输入问题
-// 防抖就不说了，主要是这里提到的中文输入问题，其实看过elementui框架源码的童鞋都应该知道，elementui是通过compositionstart & compositionend做的中文输入处理：
+// 其实看过elementui框架源码的童鞋都应该知道，elementui是通过compositionstart & compositionend做的中文输入处理：
 // 相关代码：
 {
   /* <input
@@ -1310,3 +1490,242 @@ ref="input"
 
 // pwa原理
 // https://blog.csdn.net/weixin_33692284/article/details/88027509
+
+// 对象数组去重
+// const responseList = [
+//   { id: 1, a: 1 },
+//   { id: 2, a: 2 },
+//   { id: 3, a: 3 },
+//   { id: 1, a: 4 },
+// ];
+// const result = responseList.reduce((acc, cur) => {
+//     const ids = acc.map(item => item.id);
+//     return ids.includes(cur.id) ? acc : [...acc, cur];
+// }, []);
+// console.log(result); // -> [ { id: 1, a: 1}, {id: 2, a: 2}, {id: 3, a: 3} ]
+// 4.2 手动封装一个请求函数，可以设置最大请求次数，请求成功则不再请求，请求失败则继续请求直到超过最大次数
+// function request(url, body, successCallback, errorCallback, maxCount = 3) {
+//   return fetch(url, body)
+//     .then(response => successCallback(response))
+//     .catch(err => {
+//       if (maxCount <= 0) return errorCallback("请求超时")
+//       return request(url, body, successCallback, errorCallback, --maxCount)
+//     })
+// }
+
+// // 调用
+// request(
+//   "https://some/path",
+//   { method: "GET", headers: {} },
+//   response => {
+//     console.log(response.json())
+//   },
+//   err => console.error(err)
+// )
+
+// map(parseInt)问题
+// 解惑["1", "2", "3"].map(parseInt) 为何返回[1, NaN, NaN]
+// map(parseInt) 相当于map((item,index) => parseInt(item,index))
+// parseInt函数的第二个参数，
+// 如果是0或者没设置，则parseInt正常解析，
+// 如果 < 2 或者 >36，则NaN
+// 其他，则第一个参数减10加上第二个基数，比如parseInt('17',8) = 15 (因为7 + 8)
+
+// 手动实现filter
+// Array.prototype.filter = function(fn, context) {
+//   if (typeof fn != "function") {
+//     throw new TypeError(`${fn} is not a function`)
+//   }
+//   let arr = this
+//   let reuslt = []
+//   for (var i = 0; i < arr.length; i++) {
+//     let temp = fn.call(context, arr[i], i, arr)
+//     if (temp) {
+//       result.push(arr[i])
+//     }
+//   }
+//   return result
+// }
+
+// 数组乱序
+// 取巧的一种算法，但是每个位置乱序的概率不同
+// function mixArr(arr) {
+//   return arr.sort(() => {
+//     return Math.random() - 0.5
+//   })
+// }
+
+// 遍历树结构
+// 样例数据
+// let data = {
+//   name: "jack",
+//   child: [
+//     { name: "jack1" },
+//     {
+//       name: "jack2",
+//       child: [
+//         {
+//           name: "jack2-1",
+//           child: { name: "jack2-1-1" }
+//         },
+//         {
+//           name: "jack2-2"
+//         }
+//       ]
+//     },
+//     {
+//       name: "jack3",
+//       child: { name: "jack3-1" }
+//     }
+//   ]
+// }
+
+// function findMultiChildPerson(data) {
+//   let nameList = []
+
+//   function tmp(data) {
+//     if (data.hasOwnProperty("child")) {
+//       if (Array.isArray(data.child)) {
+//         nameList.push(data.name)
+//         data.child.forEach(child => tmp(child))
+//       } else {
+//         tmp(data.child)
+//       }
+//     }
+//   }
+//   tmp(data)
+//   return nameList
+// }
+
+// 驼峰命名
+// var s1 = "get-element-by-id"
+
+// // 转化为 getElementById
+// var f = function(s) {
+//   return s.replace(/-\w/g, function(x) {
+//     return x.slice(1).toUpperCase()
+//   })
+// }
+
+// 解析urlquery为对象
+// function parseParam(url) {
+//   const paramsStr = /.+\?(.+)$/.exec(url)[1] // 将 ? 后面的字符串取出来
+//   const paramsArr = paramsStr.split("&") // 将字符串以 & 分割后存到数组中
+//   let paramsObj = {}
+//   // 将 params 存到对象中
+//   paramsArr.forEach(param => {
+//     if (/=/.test(param)) {
+//       // 处理有 value 的参数
+//       let [key, val] = param.split("=") // 分割 key 和 value
+//       val = decodeURIComponent(val) // 解码
+//       val = /^\d+$/.test(val) ? parseFloat(val) : val // 判断是否转为数字
+
+//       if (paramsObj.hasOwnProperty(key)) {
+//         // 如果对象有 key，则添加一个值
+//         paramsObj[key] = [].concat(paramsObj[key], val)
+//       } else {
+//         // 如果对象没有这个 key，创建 key 并设置值
+//         paramsObj[key] = val
+//       }
+//     } else {
+//       // 处理没有 value 的参数
+//       paramsObj[param] = true
+//     }
+//   })
+
+//   return paramsObj
+// }
+
+// 实现eventListener
+
+// 触发名为type的事件
+// class EventEmeitter {
+//   constructor() {
+//     this._events = this._events || new Map(); // 储存事件/回调键值对
+//     this._maxListeners = this._maxListeners || 10; // 设立监听上限
+//   }
+// }
+
+// EventEmeitter.prototype.emit = function(type, ...args) {
+//   let handler
+//   handler = this._events.get(type)
+//   if (Array.isArray(handler)) {
+//     // 如果是一个数组说明有多个监听者,需要依次此触发里面的函数
+//     for (let i = 0; i < handler.length; i++) {
+//       if (args.length > 0) {
+//         handler[i].apply(this, args)
+//       } else {
+//         handler[i].call(this)
+//       }
+//     }
+//   } else {
+//     // 单个函数的情况我们直接触发即可
+//     if (args.length > 0) {
+//       handler.apply(this, args)
+//     } else {
+//       handler.call(this)
+//     }
+//   }
+
+//   return true
+// }
+
+// // 监听名为type的事件
+// EventEmeitter.prototype.addListener = function(type, fn) {
+//   const handler = this._events.get(type) // 获取对应事件名称的函数清单
+//   if (!handler) {
+//     this._events.set(type, fn)
+//   } else if (handler && typeof handler === "function") {
+//     // 如果handler是函数说明只有一个监听者
+//     this._events.set(type, [handler, fn]) // 多个监听者我们需要用数组储存
+//   } else {
+//     handler.push(fn) // 已经有多个监听者,那么直接往数组里push函数即可
+//   }
+// }
+
+// 统计字符出现最多次的字符
+// let str = "abcabcabcbbccccc"
+// let num = 0
+// let char = ""
+
+// // 使其按照一定的次序排列
+// str = str
+//   .split("")
+//   .sort()
+//   .join("")
+// // "aaabbbbbcccccccc"
+
+// // 定义正则表达式
+// let re = /(\w)\1+/g
+// str.replace(re, ($0, $1) => {
+//   if (num < $0.length) {
+//     num = $0.length
+//     char = $1
+//   }
+// })
+// console.log(`字符最多的是${char}，出现了${num}次`)
+
+// 多行文本溢出
+// @mixin ellipsis($rowCount: 1) {
+//   @if $rowCount <=1 {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//   }
+
+//   @else {
+//     min-width: 0;
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     display: -webkit-box;
+//     -webkit-line-clamp: $rowCount;
+//     /* autoprefixer: off */
+//     -webkit-box-orient: vertical;
+//   }
+// }
+
+// 千位符分割
+// let str = '1475893475324234'
+// console.log( str.replace(/\d{1,3}(?=(\d{3})+$)/g,function(s){
+//   return s+','
+// }) )
