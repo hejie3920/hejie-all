@@ -14,7 +14,7 @@ var spinner = ora("正在打包...")
 // 开始 loading 动画
 spinner.start()
 
-rm(resolve("dist"), (err) => {
+rm(resolve("public/dist"), (err) => {
   if (err) throw err
 
   // 开始 webpack 的编译

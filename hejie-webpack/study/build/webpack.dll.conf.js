@@ -13,14 +13,14 @@ module.exports = {
     ]
   },
   output: {
-    path: resolve("dll"),
+    path: resolve("public/dll"),
     filename: "[name].js",
     library: "[name]_library"
   },
   plugins: [
     new webpack.DllPlugin({
-      path: resolve("dll/bundle.manifest.json"),
+      path: resolve("public/dll/bundle.manifest.json"),
       name: "[name]_library"
-    })
+    }),
   ]
 }

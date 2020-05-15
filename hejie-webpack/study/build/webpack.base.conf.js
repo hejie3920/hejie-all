@@ -1,8 +1,12 @@
-// 使用 NodeJS 自带的文件路径插件
 var path = require("path")
 var webpack = require("webpack")
+const VueLoaderPlugin = require("vue-loader/lib/plugin")
+// 一个可以插入 html 并且创建新的 .html 文件的插件
+var HtmlWebpackPlugin = require("html-webpack-plugin")
+const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin")
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
-// 拼接我们的工作区路径为一个绝对路径
+const myCopy = require("../myPlugins/copy")
+
 function resolve(dir) {
   return path.join(__dirname, "..", dir)
 }
@@ -13,7 +17,7 @@ module.exports = {
   },
   output: {
     // 编译输出的根路径
-    path: resolve("dist"),
+    path: resolve("public/dist"),
     // 编译输出的文件名
     filename: "[name].bundle.js"
   },
@@ -31,6 +35,21 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve('src')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+      },
+      {
+        test: /\.vue$/,
+        use: ["vue-loader"]
+      },
+      {
+        // 这一项是为了安全起见，去检查部分源文件而已
+        // enforce: 'pre',
         test: /\.js$/,
         use: [
           // 缓存的第一种
@@ -47,10 +66,10 @@ module.exports = {
         ],
         include: resolve("src")
       },
+
       {
         test: /\.css/,
-        use: ["style-loader", "css-loader"],
-        include: [resolve("src")]
+        use: ["style-loader", "css-loader"]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -112,10 +131,25 @@ module.exports = {
   // 分析
   plugins: [
     // new BundleAnalyzerPlugin(),
+    // make sure to include the plugin for the magic
+    new VueLoaderPlugin(),
     // DLL
     new webpack.DllReferencePlugin({
       context: ".",
-      manifest: require("../dll/bundle.manifest.json")
-    })
+      manifest: require("../public/dll/bundle.manifest.json")
+    }),
+    // 将 index.html 作为入口，注入 html 代码后生成 index.html文件
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "src/index.html",
+      inject: true
+    }),
+    // new myCopy({
+    //   from: "public",
+    //   to: "public2"
+    // }),
+    // 用dll分出包后，包不能被HTMLWebpackPlugin自动插入到html里面，
+    // 这时候需要用add-asset-html-webpack-plugin将这些包加入bundle里面
+    new AddAssetHtmlPlugin({ filepath: resolve("public/dll/bundle.js") })
   ]
 }
