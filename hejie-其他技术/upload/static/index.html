@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>传输相关</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/spark-md5/3.0.0/spark-md5.js"></script>
+  </head>
+  <body>
+    <div>
+      选择文件:
+      <input type="file" multiple name="f1" id="upload" style="width: 500px; height: 200px; background: aliceblue;" />
+      input 必须设置 name 属性，否则数据无法发送
+      <br />
+      <p id="progress"></p>
+      标题：<input type="text" name="title" value="默认" />
+      <button onclick="upload()" id="btn-0" style="width: 500px; height: 200px; background: red;">上 传</button>
+      <img id="imgDom" />
+      <audio id="audio"></video>
+    </div>
+  </body>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./index.js"></script>
+</html>
