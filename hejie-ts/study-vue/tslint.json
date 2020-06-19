@@ -10,6 +10,12 @@
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-consecutive-blank-lines": false
+    "no-consecutive-blank-lines": false,
+    // 允许console
+    "no-console": false,
+    // 允许用数组泛型，Array<类型>
+    "array-type": false,
+    // 允许使用断言
+    "no-angle-bracket-type-assertion": false
   }
 }
