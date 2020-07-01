@@ -28,6 +28,11 @@
   resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha1-HBJhu+qhCoBVu8XYq4S3sq/IRqA=
 
+"@types/node@^14.0.13":
+  version "14.0.13"
+  resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/@types/node/-/node-14.0.13.tgz#ee1128e881b874c371374c1f72201893616417c9"
+  integrity sha1-7hEo6IG4dMNxN0wfciAYk2FkF8k=
+
 "@types/parse-json@^4.0.0":
   version "4.0.0"
   resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
@@ -59,6 +64,13 @@ argparse@^1.0.7:
   integrity sha1-vNZ5HqWuCXJeF+WtmIE0zUCz2RE=
   dependencies:
     sprintf-js "~1.0.2"
+
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha1-PqNsXYgY0NX4qKl6bTa4bNwAyyc=
+  dependencies:
+    follow-redirects "1.5.10"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -134,10 +146,20 @@ color-name@~1.1.4:
   resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha1-wqCah6y95pVD3m9j+jmVyCbFNqI=
 
+colors@^1.4.0:
+  version "1.4.0"
+  resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/colors/-/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
+  integrity sha1-xQSRR51MG9rtLJztMs98fcI2D3g=
+
 commander@^2.12.1:
   version "2.20.3"
   resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
+
+commander@^5.1.0:
+  version "5.1.0"
+  resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
+  integrity sha1-Rqu9FlL44Fm92u+Zu9yyrZzxea4=
 
 compare-versions@^3.6.0:
   version "3.6.0"
@@ -159,6 +181,13 @@ cosmiconfig@^6.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.7.2"
+
+debug@=3.1.0:
+  version "3.1.0"
+  resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  integrity sha1-W7WgZyYotkFJVmuhaBnmFRjGcmE=
+  dependencies:
+    ms "2.0.0"
 
 diff@^4.0.1:
   version "4.0.2"
@@ -196,6 +225,13 @@ find-versions@^3.2.0:
   integrity sha1-ECl/mAMKeGgpaBaQVF72We0dJU4=
   dependencies:
     semver-regex "^2.0.0"
+
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  integrity sha1-e3qfmuov3/NnhqlP9kPtB/T/Xio=
+  dependencies:
+    debug "=3.1.0"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -319,6 +355,11 @@ mkdirp@^0.5.3:
   integrity sha1-2Rzv1i0UNsoPQWIOJRKI1CAJne8=
   dependencies:
     minimist "^1.2.5"
+
+ms@2.0.0:
+  version "2.0.0"
+  resolved "http://ms-nexus.oola.cn:8991/repository/oola-npm-proxy/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+  integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
 
 once@^1.3.0:
   version "1.4.0"

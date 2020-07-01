@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-          home: MyHomePage(title: '这是第一个flutter'),
+      home: MyHomePage(title: '这是第一个flutter'),
     );
   }
 }
@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '和杰的第一个app',
+              '和杰asdffsdf的第哈哈',
             ),
             Text(
               '$_counter',

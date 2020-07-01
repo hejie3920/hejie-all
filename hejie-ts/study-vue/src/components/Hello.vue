@@ -131,7 +131,8 @@ function getPerson(): Teacher | Student {
 const haha = getPerson();
 
 function isTeacher(person: Teacher | Student): person is Teacher {
-  return (person as Teacher).teach !== undefined;
+  return (<Teacher>person).teach !== undefined;
+  // 或者return (person as Teacher).teach !== undefined;
 }
 console.warn("TCL: 是不是teacher", !!isTeacher(haha));
 // -------------------------------------------------------------------
