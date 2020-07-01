@@ -14,13 +14,46 @@
 <script lang='ts'>
 import { Component, Prop, Vue, Emit, Watch } from "vue-property-decorator";
 
+// 声明模块 d.ts
+declare namespace myInterface {
+  interface obj {
+    [key: string]: any;
+  }
+}
+
+// 简单声明一个第三方模块以便可以直接使用
+// declare module 'oola-mini-fbi'
+
 // 接口中只需定义结构，不需要初始化
 interface Feature {
   id: number;
   name: string;
   version: string;
+  // 添加额外的可扩展的属性
+  [extraPorp: string]: any;
 }
 
+// ts自带工具partial
+// const testObj: Feature = {};// 报错
+const testObj: Feature = { id: 23, name: "hejie", version: "123", desc: "23" };
+const testPartial: Partial<Feature> = {}; // 不会报错
+// -------------------------------------------------------------------
+
+// 接口表示函数类型
+type TestFunc = (s1: string, s2: string) => string;
+const myFunc: TestFunc = (p1: string, p2: string) => {
+  return p1 + p2;
+};
+// -------------------------------------------------------------------
+
+// 接口类型,接口继承
+interface FeatureB extends Feature {
+  propB: (p1: string) => string;
+}
+const tmpB = <FeatureB>{};
+tmpB.name = "aha";
+
+// 定义接口
 interface TestPerson {
   name: string;
   age: number;
@@ -54,13 +87,13 @@ const testper: TestList = {
     },
   ],
 };
+// -------------------------------------------------------------------
 
 // 使用泛型
 interface Result<T> {
   ok: 0 | 1;
   data: T[];
 }
-
 const name: string = "abc";
 
 function getData<T>(): Result<T> {
@@ -70,6 +103,7 @@ function getData<T>(): Result<T> {
   ];
   return { ok: 1, data };
 }
+// -------------------------------------------------------------------
 
 // is判断类型
 interface Teacher {
@@ -100,12 +134,14 @@ function isTeacher(person: Teacher | Student): person is Teacher {
   return (person as Teacher).teach !== undefined;
 }
 console.warn("TCL: 是不是teacher", !!isTeacher(haha));
+// -------------------------------------------------------------------
 
 // 类型数组
 function hellow<T>(arg: T[]): T[] {
   console.warn("TCL:", arg.length);
   return arg;
 }
+// -------------------------------------------------------------------
 @Component({
   props: {
     // 属性也可以在这里配置
@@ -143,9 +179,6 @@ export default class Hello extends Vue {
     this.$forceUpdate();
     // return event.target.value;
   }
-  // 如果要让继承的类访问 protected
-  // 如果都能访问public
-
   // 相当于计算属性
   get count() {
     return this.features.length;

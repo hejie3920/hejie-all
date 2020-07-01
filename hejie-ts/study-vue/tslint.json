@@ -16,6 +16,16 @@
     // 允许用数组泛型，Array<类型>
     "array-type": false,
     // 允许使用断言
-    "no-angle-bracket-type-assertion": false
+    "no-angle-bracket-type-assertion": false,
+    // 类型断言时不需要空格
+    // <Feature>（这里不需要空格）{};
+    "whitespace": [
+      false,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ]
   }
 }
