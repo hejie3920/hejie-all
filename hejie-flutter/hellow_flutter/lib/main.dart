@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:english_words/english_words.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,25 +9,93 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Future.delayed,catchError,whenComplete,wait
+    // Future.delayed(new Duration(seconds: 2), () {
+    //   return "hi worlddfs!";
+    // }).then((data) {
+    //   print(data);
+    // });
+    // // promise.all
+    // Future.wait([
+    //   // 2秒后返回结果
+    //   Future.delayed(new Duration(seconds: 2), () {
+    //     return "hello";
+    //   }),
+    //   // 4秒后返回结果
+    //   Future.delayed(new Duration(seconds: 4), () {
+    //     return " world";
+    //   })
+    // ]).then((results) {
+    //   print(results[0] + results[1]);
+    // }).catchError((e) {
+    //   print(e);
+    // });
+
+    // Future<int> login(int val) {
+    //   return Future.delayed(new Duration(seconds: 2), () {
+    //     return val;
+    //   });
+    // }
+
+    // // async,await
+    // task() async {
+    //   try {
+    //     int id = await login(666);
+    //     print(id);
+    //     //执行接下来的操作
+    //   } catch (e) {
+    //     //错误处理
+    //     print(e);
+    //   }
+    // }
+
+    // task();
+
+    // Stream
+    // Stream.fromFutures([
+    //   // 1秒后返回结果
+    //   Future.delayed(new Duration(seconds: 1), () {
+    //     return "hello 1";
+    //   }),
+    //   // 抛出一个异常
+    //   Future.delayed(new Duration(seconds: 2), () {
+    //     throw AssertionError("Error");
+    //   }),
+    //   // 3秒后返回结果
+    //   Future.delayed(new Duration(seconds: 3), () {
+    //     return "hello 3";
+    //   })
+    // ]).listen((data) {
+    //   print(data);
+    // }, onError: (e) {
+    //   print(e.message);
+    // }, onDone: () {});
+
     return MaterialApp(
+      // 注册路由表
+      routes: {
+        // 'new_page': (context) =>
+        //     TipRoute(text: ModalRoute.of(context).settings.arguments)
+        'new_page': (context) => NewRoute()
+      },
+      // // 路由守卫
+      // onGenerateRoute: (RouteSettings settings) {
+      //   return MaterialPageRoute(builder: (context) {
+      //     var routeName = settings;
+      //     print(routeName);
+      //     // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
+      //     // 引导用户登录；其它情况则正常打开路由。
+      //   });
+      // },
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.cyan,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: '这是第一个flutter'),
+      home: MyHomePage(title: '这是第一个flutteredse'),
     );
   }
 }
@@ -65,12 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final testStr = new WordPair.random();
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -97,12 +161,24 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '和杰asdffsdf的第哈哈',
-            ),
+            Text(testStr.toString()),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
+            ),
+            FlatButton(
+              child: Text("打开新路由"),
+              textColor: Colors.blue,
+              onPressed: () {
+                //导航到新路由
+                // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //   return RouterTestRoute();
+                // }));
+                // 打开命名路由
+                Navigator.of(context)
+                    .pushNamed('new_page', arguments: '命名路由带过来的参数');
+                // Navigator.pushNamed(context, 'new_page');
+              },
             ),
           ],
         ),
@@ -112,6 +188,79 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class NewRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var args = ModalRoute.of(context).settings.arguments;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("New route"),
+      ),
+      body: Center(
+        child: Text(args),
+      ),
+    );
+  }
+}
+
+class RouterTestRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(title: Text('asdfsdf')),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () async {
+            // 打开`TipRoute`，并等待返回结果
+            var result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return TipRoute(
+                    // 路由参数
+                    text: "我是提示xxxx",
+                  );
+                },
+              ),
+            );
+            //输出`TipRoute`路由返回结果
+            print("路由返回值: $result");
+          },
+          child: Text("打开提示页"),
+        ),
+      ));
+}
+
+class TipRoute extends StatelessWidget {
+  TipRoute({
+    Key key,
+    @required this.text, // 接收一个text参数
+  }) : super(key: key);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("提示"),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(18),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text(text),
+              RaisedButton(
+                onPressed: () => Navigator.pop(context, "我是返回值"),
+                child: Text("返���"),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
