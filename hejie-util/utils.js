@@ -11,11 +11,11 @@ let utils = {
   // 深拷贝
   deepCopy(obj) {
     //判断是否是简单数据类型，
-    if (typeof obj == "object") {
+    if (typeof obj == 'object') {
       //复杂数据类型
       var result = obj.constructor == Array ? [] : {}
       for (let i in obj) {
-        result[i] = typeof obj[i] == "object" ? deepCopy(obj[i]) : obj[i]
+        result[i] = typeof obj[i] == 'object' ? deepCopy(obj[i]) : obj[i]
       }
     } else {
       //简单数据类型 直接 == 赋值
@@ -23,14 +23,33 @@ let utils = {
     }
     return result
   },
-
+  // https://juejin.im/post/5e92eb5b6fb9a03c8966dc88
+  // 1.字符串隐藏
+  // 2. 找出最少需要的硬币数
+  // 3. 转换成可读性好的文本
+  // 测试
+  // coinChange([1, 2, 5], 11); //3
+  // coinChange([2, 4], -1) // -1
+  // coinChange([1, 2, 4, 5, 10], 100) //10
+  coinChange(coins, amount) {
+    let ans = new Array(amount + 1).fill(Infinity)
+    ans[0] = 0
+    for (let i = 1; i <= amount; i++) {
+      for (let coin of coins) {
+        if (i >= coin) {
+          ans[i] = Math.min(ans[i], ans[i - coin] + 1)
+        }
+      }
+    }
+    return ans[amount] === Infinity ? -1 : ans[amount]
+  },
   // 正则解码
   decode() {
     let sindex = (eindex = -1)
     let count = -1
-    let substr = ""
+    let substr = ''
     for (let i = 0; i < str.length; i++) {
-      if (str[i] == "[") {
+      if (str[i] == '[') {
         sindex = i
         if (!isNaN(parseInt(str[i - 1]))) {
           let reg = /(\d)+$/g
@@ -41,13 +60,16 @@ let utils = {
           count = -1
         }
       }
-      if (str[i] == "]") {
+      if (str[i] == ']') {
         eindex = i
       }
       if (![sindex, eindex].includes(-1)) {
         substr = str.slice(sindex + 1, eindex)
         if (count != -1) {
-          str = str.slice(0, sindex - count.length) + substr.repeat(count) + str.slice(eindex + 1)
+          str =
+            str.slice(0, sindex - count.length) +
+            substr.repeat(count) +
+            str.slice(eindex + 1)
         }
         sindex = eindex = count = i = -1
       }
@@ -66,7 +88,10 @@ let utils = {
     if (index === 0) res = arr[index + 1]
     else if (index === arr.length - 1) res = arr[index - 1]
     else {
-      res = target - arr[index - 1] > arr[index + 1] - target ? arr[index + 1] : arr[index - 1]
+      res =
+        target - arr[index - 1] > arr[index + 1] - target
+          ? arr[index + 1]
+          : arr[index - 1]
     }
     return res
   },
@@ -813,45 +838,40 @@ this指向问题
 //   return nodes
 // }
 
-// es5继承
+// es5继承相关
 // 1. 最主要认识三点，每个构造函数都有prototype（孩子）,孩子有老爸所有的方法遗产
-// 孩子（prototype）还有constructor属性指向它的构造函数名Father，用来告诉孩子爸爸是谁
-// 比如：Father函数，Father.prototype上面有所有的技能，
+// 2. 所有实例出来的对象都有一个_proto（即Father.prototype，里面有constructor标明它的构造函数是Father）
 // Father.prototype.constructor ==> Father 用来指明爸爸是谁
 
-// 2. Father.prototype 其实中文过来是实例对象，
-// 其实可以看做就是new Father出来之后的一个对象，这个对象可以用来复制做副本
-
-// 3. 那么寄生组合继承其实就是
-// 复制一个别人家的孩子，告诉孩子它的爸爸是它自己，变成自己的孩子
-
-// 4.继承函数封装完毕，最后一步，Son函数的孩子就正确变成了父亲的孩子，但父亲本身的东西也要拿过来的，
-// 所以在Son函数里面还得用一句Father.call(this)来正确夺取father函数的属性
+// 3. 寄生组合继承本质就是将目标类的prototype设置成父类.prototype,这个prototype的constructor要改为目标类
+// 然后子类在用Father.call（this）来初始化
 
 // 综上
 // 寄生组合继承
 // function inherit(son, father) {
-// let obj = Object.create(father.prototype)
-// obj.constructor = son
-// son.prototype = obj
+//   let obj = Object.create(father.prototype)
+//   obj.constructor = son
+//   son.prototype = obj
 // }
-
 // function Father(name) {
 //   this.name = name
 //   this.age = 44
 // }
-/* 定义原型链上的方法babaMethod */
-/* 为什么要将方法定义在原型上，定义在原型上的方法，所有的实例对象都共享 
- 不会出现没实列一个对象都重新创建一个这个方法 */
-// Father.prototype.babaMethod = function() {
-//   console.log("TCL: 爸爸的函数")
+// // 定义原型链上的方法babaMethod
+// // 为什么要将方法定义在原型上，定义在原型上的方法，所有的实例对象都共享
+// // 不会出现没实列一个对象都重新创建一个这个方法
+// Father.prototype.babaMethod = function () {
+//   console.log(this.name)
 // }
-
+// let haha = new Father('爸爸')
 // function Son() {
-//   Father.call(this, "儿子")
-//   this.age = "20"
+//   Father.call(this, '儿子')
+//   this.age = '20'
 // }
 // inherit(Son, Father)
+
+// let test = new Son()
+// test.babaMethod()
 
 // 微任务和宏任务，先微再宏，只不过一开始的script块也可以算是宏任务
 // 宏任务：script中代码、setTimeout、setInterval、I/O、UI render。
@@ -1253,6 +1273,7 @@ this指向问题
 // }
 
 // 手动实现promise
+// 简易版
 // const PENDING = 1
 // const FULFILLED = 2
 // const REJECTED = 3
@@ -1342,6 +1363,233 @@ this指向问题
 //       )
 //     }
 //   })
+// }
+// 实现promise.catch,promise.finally
+// catch方法其实就是执行一下then的第二个回调
+// catch(rejectFn) {
+//   return this.then(undefined, rejectFn)
+// }
+// finally方法
+// finally(callback) {
+//   return this.then(
+//     value => MyPromise.resolve(callback()).then(() => value),             // MyPromise.resolve执行回调,并在then中return结果传递给后面的Promise
+//     reason => MyPromise.resolve(callback()).then(() => { throw reason })  // reject同理
+//   )
+// }
+//静态的resolve方法
+// static resolve(value) {
+//   if(value instanceof MyPromise) return value // 根据规范, 如果参数是Promise实例, 直接return这个实例
+//   return new MyPromise(resolve => resolve(value))
+// }
+// //静态的reject方法
+// static reject(reason) {
+//   return new MyPromise((resolve, reject) => reject(reason))
+// }
+
+// 手动实现async/await
+// function run(gen) {
+//   var g = gen() //由于每次gen()获取到的都是最新的迭代器,因此获取迭代器操作要放在_next()之前,否则会进入死循环
+
+//   function _next(val) {
+//     //封装一个方法, 递归执行g.next()
+//     var res = g.next(val) //获取迭代器对象，并返回resolve的值
+//     if (res.done) return res.value //递归终止条件
+//     res.value.then((val) => {
+//       //Promise的then方法是实现自动迭代的前提
+//       _next(val) //等待Promise完成就自动执行下一个next，并传入resolve的值
+//     })
+//   }
+//   _next() //第一次执行
+// }
+// function run(gen) {
+//   //把返回值包装成promise
+//   return new Promise((resolve, reject) => {
+//     var g = gen()
+
+//     function _next(val) {
+//       //错误处理
+//       try {
+//         var res = g.next(val)
+//       } catch (err) {
+//         return reject(err)
+//       }
+//       if (res.done) {
+//         return resolve(res.value)
+//       }
+//       //res.value包装为promise，以兼容yield后面跟基本类型的情况
+//       Promise.resolve(res.value).then(
+//         (val) => {
+//           _next(val)
+//         },
+//         (err) => {
+//           //抛出错误
+//           g.throw(err)
+//         }
+//       )
+//     }
+//     _next()
+//   })
+// }
+
+// 豪华版实现promise
+//Promise/A+规定的三种状态
+// const PENDING = 'pending'
+// const FULFILLED = 'fulfilled'
+// const REJECTED = 'rejected'
+
+// class MyPromise {
+//   // 构造方法接收一个回调
+//   constructor(executor) {
+//     this._status = PENDING // Promise状态
+//     this._value = undefined // 储存then回调return的值
+//     this._resolveQueue = [] // 成功队列, resolve时触发
+//     this._rejectQueue = [] // 失败队列, reject时触发
+
+//     // 由于resolve/reject是在executor内部被调用, 因此需要使用箭头函数固定this指向, 否则找不到this._resolveQueue
+//     let _resolve = (val) => {
+//       //把resolve执行回调的操作封装成一个函数,放进setTimeout里,以兼容executor是同步代码的情况
+//       const run = () => {
+//         if (this._status !== PENDING) return // 对应规范中的"状态只能由pending到fulfilled或rejected"
+//         this._status = FULFILLED // 变更状态
+//         this._value = val // 储存当前value
+
+//         // 这里之所以使用一个队列来储存回调,是为了实现规范要求的 "then 方法可以被同一个 promise 调用多次"
+//         // 如果使用一个变量而非队列来储存回调,那么即使多次p1.then()也只会执行一次回调
+//         while (this._resolveQueue.length) {
+//           const callback = this._resolveQueue.shift()
+//           callback(val)
+//         }
+//       }
+//       setTimeout(run)
+//     }
+//     // 实现同resolve
+//     let _reject = (val) => {
+//       const run = () => {
+//         if (this._status !== PENDING) return // 对应规范中的"状态只能由pending到fulfilled或rejected"
+//         this._status = REJECTED // 变更状态
+//         this._value = val // 储存当前value
+//         while (this._rejectQueue.length) {
+//           const callback = this._rejectQueue.shift()
+//           callback(val)
+//         }
+//       }
+//       setTimeout(run)
+//     }
+//     // new Promise()时立即执行executor,并传入resolve和reject
+//     executor(_resolve, _reject)
+//   }
+
+//   // then方法,接收一个成功的回调和一个失败的回调
+//   then(resolveFn, rejectFn) {
+//     // 根据规范，如果then的参数不是function，则我们需要忽略它, 让链式调用继续往下执行
+//     typeof resolveFn !== 'function' ? (resolveFn = (value) => value) : null
+//     typeof rejectFn !== 'function'
+//       ? (rejectFn = (reason) => {
+//           throw new Error(reason instanceof Error ? reason.message : reason)
+//         })
+//       : null
+
+//     // return一个新的promise
+//     return new MyPromise((resolve, reject) => {
+//       // 把resolveFn重新包装一下,再push进resolve执行队列,这是为了能够获取回调的返回值进行分类讨论
+//       const fulfilledFn = (value) => {
+//         try {
+//           // 执行第一个(当前的)Promise的成功回调,并获取返回值
+//           let x = resolveFn(value)
+//           // 分类讨论返回值,如果是Promise,那么等待Promise状态变更,否则直接resolve
+//           x instanceof MyPromise ? x.then(resolve, reject) : resolve(x)
+//         } catch (error) {
+//           reject(error)
+//         }
+//       }
+
+//       // reject同理
+//       const rejectedFn = (error) => {
+//         try {
+//           let x = rejectFn(error)
+//           x instanceof MyPromise ? x.then(resolve, reject) : resolve(x)
+//         } catch (error) {
+//           reject(error)
+//         }
+//       }
+
+//       switch (this._status) {
+//         // 当状态为pending时,把then回调push进resolve/reject执行队列,等待执行
+//         case PENDING:
+//           this._resolveQueue.push(fulfilledFn)
+//           this._rejectQueue.push(rejectedFn)
+//           break
+//         // 当状态已经变为resolve/reject时,直接执行then回调
+//         case FULFILLED:
+//           fulfilledFn(this._value) // this._value是上一个then回调return的值(见完整版代码)
+//           break
+//         case REJECTED:
+//           rejectedFn(this._value)
+//           break
+//       }
+//     })
+//   }
+// }
+
+// 手动实现generator,
+// 原理是yield会将代码大概转换成下面三个步骤，用switch来执行不同步骤的函数，核心点在于每次运行
+// 后对上下文的保存，下次再使用时直接根据上下文执行下一步的函数，所以yield看起来想挂载了，其实并没有，只是保存了上下文
+// 从而知道该执行哪一块的函数而已
+
+// 1. 我们定义的function*生成器函数被转化为以上代码
+// 2. 转化后的代码分为三大块：
+// gen$(_context)由yield分割生成器函数代码而来
+// context对象用于储存函数执行上下文
+// invoke()方法定义next()，用于执行gen$(_context)来跳到下一步
+
+// 3. 当我们调用g.next()，就相当于调用invoke()方法，执行gen$(_context)，进入switch语句，switch根据context的标识，执行对应的case块，return对应结果
+// 当生成器函数运行到末尾（没有下一个yield或已经return），switch匹配不到对应代码块，就会return空值，这时g.next()返回{value: undefined, done: true}
+
+// 生成器函数根据yield语句将代码分割为switch-case块，后续通过切换_context.prev和_context.next来分别执行各个case
+// function gen$(_context) {
+//   while (1) {
+//     switch (_context.prev = _context.next) {
+//       case 0:
+//         _context.next = 2;
+//         return 'result1';
+
+//       case 2:
+//         _context.next = 4;
+//         return 'result2';
+
+//       case 4:
+//         _context.next = 6;
+//         return 'result3';
+
+//       case 6:
+//       case "end":
+//         return _context.stop();
+//     }
+//   }
+// }
+
+// // 低配版context
+// var context = {
+//   next:0,
+//   prev: 0,
+//   done: false,
+//   stop: function stop () {
+//     this.done = true
+//   }
+// }
+
+// // 低配版invoke
+// let gen = function() {
+//   return {
+//     next: function() {
+//       value = context.done ? undefined: gen$(context)
+//       done = context.done
+//       return {
+//         value,
+//         done
+//       }
+//     }
+//   }
 // }
 
 // 取中间数

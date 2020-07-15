@@ -1,27 +1,27 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 // import { Input } from "antd"
 
-export const rfhoc = Component => {
-  let NewComponent = props => {
-    console.log("TCL: rfhoc")
+export const rfhoc = (Component) => {
+  let NewComponent = (props) => {
+    console.log('TCL: rfhoc')
     return <Component {...props} />
   }
   return NewComponent
 }
-export const rfphoc = params => {
-  return Component => {
-    console.log("TCL: rfphoc", params)
-    const NewComponent = props => {
+export const rfphoc = (params) => {
+  return (Component) => {
+    console.log('TCL: rfphoc', params)
+    const NewComponent = (props) => {
       return <Component {...props} />
     }
     return NewComponent
   }
 }
 
-export const rchoc = WrappedComponent => {
+export const rchoc = (WrappedComponent) => {
   class NewComponent extends Component {
     componentDidMount() {
-      console.log("TCL: rchoc")
+      console.log('TCL: rchoc')
     }
     render() {
       return <WrappedComponent />
@@ -30,10 +30,10 @@ export const rchoc = WrappedComponent => {
   return NewComponent
 }
 
-export const rcphoc = key => WrappedComponent => {
+export const rcphoc = (key) => (WrappedComponent) => {
   return class extends Component {
     componentDidMount() {
-      console.log("TCL: rcphoc", key)
+      console.log('TCL: rcphoc', key)
     }
     render() {
       return <WrappedComponent {...this.props} />
@@ -41,27 +41,27 @@ export const rcphoc = key => WrappedComponent => {
   }
 }
 
-@rfphoc("挥洒后端返回")
+// @rfphoc("挥洒后端返回")
 @rfhoc
-@rcphoc("人沙发")
+@rcphoc('人沙发')
 @rchoc
 class func extends React.PureComponent {
   componentDidMount() {
-    console.log("func组件componentDidMount")
+    console.log('func组件componentDidMount')
   }
 
   render() {
-    console.log("TCL: ", "渲染")
+    console.log('TCL: ', '渲染')
     return (
       <div>
-        <a href='/'>我是func组件</a>
+        <a href="/">我是func组件</a>
         <h1>{this.props.name}</h1>
         {/* <div>
           {this.props.arr.map((item, index) => (
             <div key={index}>{item}</div>
           ))}
         </div> */}
-        <Composition color='red'>{params => <b>{params}</b>}</Composition>
+        <Composition color="red">{(params) => <b>{params}</b>}</Composition>
       </div>
     )
   }
@@ -70,7 +70,7 @@ function Composition(props) {
   return (
     <div style={{ background: props.color }}>
       <h2>asfdl</h2>
-      {props.children("测试")}
+      {props.children('测试')}
     </div>
   )
 }
