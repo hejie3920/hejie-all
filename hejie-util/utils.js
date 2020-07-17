@@ -298,7 +298,7 @@ let utils = {
 this指向问题
 
 1. 普通函数
-  a. 直接看有没有new或者call绑定this，没有的话下一步
+  a. 直接看有没有new或挥洒后端返者call绑定this，没有的话下一步
   b. 直接看执行的时候前面是谁点调用的，默认就是window
 2. 箭头函数
   直接向上一层找，直接找到外面有一层是 "普通函数" (如果只是单纯的对象包着就算作平级的就要继续往上找)包着的，
@@ -875,7 +875,7 @@ this指向问题
 
 // 微任务和宏任务，先微再宏，只不过一开始的script块也可以算是宏任务
 // 宏任务：script中代码、setTimeout、setInterval、I/O、UI render。
-// 微任务: promise、nexttick, Object.observe、MutationObserver。
+// 微任务: promise.then、nexttick, Object.observe、MutationObserver。
 // async function async1() {
 //   console.log("async1 start")
 //   await async2()

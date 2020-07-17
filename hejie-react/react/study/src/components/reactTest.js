@@ -24,7 +24,7 @@ class Test extends Component {
           b: Math.random()
         },
         () => {
-          console.log('2222')
+          console.log('22222')
         }
       )
       console.log('3333')
