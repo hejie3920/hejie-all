@@ -1977,3 +1977,50 @@ ref="input"
 // console.log( str.replace(/\d{1,3}(?=(\d{3})+$)/g,function(s){
 //   return s+','
 // }) )
+
+
+// Eatman 连续调用 闭包
+// function EatMan(name) {
+//   return new _eatman(name)
+// }
+// let _eatman = function (name) {
+//   let queue = []
+//   let init = function () {
+//     console.log(`Hi! This is ${name}!`)
+//     self.next()
+//   }
+//   queue.push(init)
+//   setTimeout(function () {
+//     self.next()
+//   }, 0)
+//   let self = {
+//     next: function () {
+//       if (queue.length) {
+//         var fn = queue.shift()
+//         if (typeof fn === 'function') {
+//           fn()
+//         }
+//       }
+//     },
+//     eat: function (item) {
+//       queue.push(function () {
+//         console.log(`Eat ${item}~`)
+//         self.next()
+//       })
+//       return this
+//     },
+//     eatFirst: function (item) {
+//       queue.unshift(function () {
+//         console.log(`Eat ${item}~`)
+//         self.next()
+//       })
+//       return this
+//     }
+//   }
+//   return self
+// }
+// EatMan('hank').eat('dinner').eatFirst('lanunch')
+
+/*
+
+*/

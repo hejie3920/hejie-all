@@ -6,7 +6,9 @@
 # 我的日常
 
 - 我买过很多书，现在放在这里的只有这几本，也阅读收藏过的各种笔记和技术贴，以及我自己的各种心得什么的，就不贴出来了，小菜鸡一个
-- ![书籍列表1](./markdown/WechatIMG370.jpeg)
+- ![书籍列表1](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/alt.png)
 - ![书籍列表2](./markdown/WechatIMG371.jpeg)
 - ![笔记](markdown/2020-07-10-12-47-41.png)
 - ![智推云脉络图](markdown/2020-07-10-14-31-53.png)
+
+command + alt + V截图粘贴
