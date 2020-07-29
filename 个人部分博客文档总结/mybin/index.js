@@ -10,10 +10,10 @@ const filePath = resolve('../all.md')
 String.prototype.replaceAll = function (s1, s2) {
   return this.replace(new RegExp(s1, 'gm'), s2)
 }
-execCmd(`doctoc ${filePath}`,formatMd)
+execCmd(`doctoc ${filePath}`, formatMd)
 
-function execCmd(cmdStr,cb){
-  if(!cmdStr) return
+function execCmd(cmdStr, cb) {
+  if (!cmdStr) return
   process.exec(cmdStr, (error, stdout, stderr) => {
     if (error) {
       console.log(`执行命令${cmdStr}失败：` + error)
@@ -30,6 +30,11 @@ function formatMd() {
       console.error(err)
     } else {
       let str = data.toString()
+
+      let imgReg = /!\[.*\]\((.*)\)/gm
+      str = str.replace(imgReg, (res, $1) => {
+        return `![${$1}](${$1})`
+      })
       let reg = /- \[.*\]/g
       let arr = []
       let res = []
@@ -42,6 +47,7 @@ function formatMd() {
           str = str.replaceAll(item, item.replace(/\s*/g, ''))
         }
       })
+
       fs.writeFile(filePath, str, 'utf8', function (err, data) {
         if (err) {
           console.error(err)

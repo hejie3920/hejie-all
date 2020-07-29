@@ -629,7 +629,7 @@ Function.prototype.apply2 = function(context, arr) {
 3. 寄生组合继承本质就是将目标类的 prototype 设置成父类.prototype,这个 prototype 的 constructor 要改为目标类
    然后子类在用 Father.call（this）来初始化
 
-![原型链](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png)
+![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png)
 
 ```
 综上
@@ -1416,7 +1416,7 @@ console.log("TCL: ", proxyMult(1, 2, 3, 4))
 
 ## 算法复杂度
 
-![算法复杂度](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png)
+![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png)
 
 ## 归并排序
 
@@ -2175,7 +2175,7 @@ React 用 三大策略 将 O(n^3)复杂度 转化为 O(n)复杂度
 3. 策略三（element diff）：
    加上 key 的话对性能是翻天覆地的优化，对于同一层级的一组子节点，通过唯一 id 区分。同级比较，节点的比较有五种情况
 
-   ![domdiff](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png)
+   ![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png)
 
 # 网络安全，http相关
 
@@ -2754,11 +2754,11 @@ actions: {
 ## JSONP
 
 可以解决跨域，用 script src 去发请求，然后在 query 加上一个 callback 回调函数（也可以不叫 callback，只是约定），这样请求后端就会最后运行 callback 函数
-![jsonp](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/jsonp.png)
+![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/jsonp.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/jsonp.png)
 
 ## 模块化发展amd,cmd,commonjs,esmodule
 
-![模块化发展](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png)
+![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png)
 
 ## 缓存相关，浏览器缓存，缓存机制
 
@@ -2777,7 +2777,7 @@ https://juejin.im/post/5c22ee806fb9a049fb43b2c5?utm_source=gold_browser_extensio
 Memory cache，即时的，几乎所有请求都会进来，不过一关即消，
 Disk cache,持久的，请求进来后，如果以后再次请求的话会从 disk cache 里面拿
 
-![缓存](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-cache.png)
+![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-cache.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-cache.png)
 
 选择合适的缓存策略,对于大部分的场景都可以使用强缓存配合协商缓存解决，但是在一些特殊的地方可能需要选择特殊的缓存策略
 
@@ -2960,7 +2960,7 @@ https://juejin.im/post/5cc26dfef265da037b611738#heading-7
 
 ## 1px问题
 
-![1px](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.png)
+![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.png)
 box-shadow: 0 -1px 1px -1px #e5e5e5, //上边线
 1px 0 1px -1px #e5e5e5, //右边线
 0 1px 1px -1px #e5e5e5, //下边线
@@ -3089,7 +3089,7 @@ componentDidUpdate() {
 
 所以，如果是那种传进来的属性是一个数据对象的话还是要自己用 shouldComponentUpdate 来自己判断
 
-![pure](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png)
+![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png)
 
 # webpack相关
 
