@@ -197,7 +197,7 @@
   - [redux原理,react-redux原理，redux-thunk原理](#redux%E5%8E%9F%E7%90%86react-redux%E5%8E%9F%E7%90%86redux-thunk%E5%8E%9F%E7%90%86)
   - [redux中间件机制，middleware](#redux%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9C%BA%E5%88%B6middleware)
   - [redux相关](#redux%E7%9B%B8%E5%85%B3)
-  - [redux与mobx的区别??](#redux%E4%B8%8Emobx%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [redux与mobx的区别??别??别??别??](#redux%E4%B8%8Emobx%E7%9A%84%E5%8C%BA%E5%88%AB%E5%88%AB%E5%88%AB%E5%88%AB)
   - [react-redux](#react-redux)
   - [redux-thunk](#redux-thunk)
   - [redux-saga](#redux-saga)
@@ -716,8 +716,7 @@ Function.prototype.apply2 = function(context, arr) {
 3. 寄生组合继承本质就是将目标类的 prototype 设置成父类.prototype,这个 prototype 的 constructor 要改为目标类
    然后子类在用 Father.call（this）来初始化
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png
 ```
 综上
 寄生组合继承
@@ -1589,8 +1588,7 @@ console.log("TCL: ", proxyMult(1, 2, 3, 4))
 
 ## 算法复杂度
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png
 ## 归并排序
 
 ```
@@ -2348,8 +2346,7 @@ React 用 三大策略 将 O(n^3)复杂度 转化为 O(n)复杂度
 3. 策略三（element diff）：
    加上 key 的话对性能是翻天覆地的优化，对于同一层级的一组子节点，通过唯一 id 区分。同级比较，节点的比较有五种情况
 
-   ![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png)
-
+   ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png
 ## 观察者和发布订阅模式的区别
 
 总体来说很相似，但观察者模式更是我直接观察你，做出响应，而发布订阅模式多需要一个中间代理，我发布事件，代理记录下来，别人订阅触发事件，代理做触发
@@ -2367,8 +2364,7 @@ TCP 拥塞控制
 
 HTTP 是应用层协议，定义的是传输数据的内容的规范，
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/http-modal.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/http-modal.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/http-modal.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/http-modal.png
 ## 三次握手，HTTPS握手过程中，客户端如何验证证书的合法性
 
 1. 【你好，我要连接了】客户端使用 https 的 url 访问 web 服务器,要求与服务器建立 ssl 连接
@@ -3205,12 +3201,10 @@ actions: {
 ## JSONP
 
 可以解决跨域，用 script src 去发请求，然后在 query 加上一个 callback 回调函数（也可以不叫 callback，只是约定），这样请求后端就会最后运行 callback 函数
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/jsonp.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/jsonp.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/jsonp.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/jsonp.png
 ## 模块化发展amd,cmd,commonjs,esmodule
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png
 ## 缓存相关，浏览器缓存，缓存机制
 
 https://juejin.im/post/5c22ee806fb9a049fb43b2c5?utm_source=gold_browser_extension
@@ -3228,8 +3222,7 @@ https://juejin.im/post/5c22ee806fb9a049fb43b2c5?utm_source=gold_browser_extensio
 Memory cache，即时的，几乎所有请求都会进来，不过一关即消，
 Disk cache,持久的，请求进来后，如果以后再次请求的话会从 disk cache 里面拿
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-cache.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-cache.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-cache.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-cache.png
 选择合适的缓存策略,对于大部分的场景都可以使用强缓存配合协商缓存解决，但是在一些特殊的地方可能需要选择特殊的缓存策略
 
 - 对于某些不需要缓存的资源，可以使用 Cache-control: no-store ，表示该资源不需要缓存
@@ -3420,8 +3413,7 @@ https://juejin.im/post/5cc26dfef265da037b611738#heading-7
 
 ## 1px问题
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.png)
-box-shadow: 0 -1px 1px -1px #e5e5e5, //上边线
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.pngbox-shadow: 0 -1px 1px -1px #e5e5e5, //上边线
 1px 0 1px -1px #e5e5e5, //右边线
 0 1px 1px -1px #e5e5e5, //下边线
 -1px 0 1px -1px #e5e5e5; //左边线
@@ -3503,8 +3495,7 @@ Href 只是代表文件内关联关系，src 则是加载目标资源，会卡�
 
 ## webpack原理，实现webpack
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 ## 自定义插件，自定义plugin
 
 插件系统是 Webpack 成功的一个关键性因素。在编译的整个生命周期中，Webpack 会触发许多事件钩子，Plugin 可以监听这些事件，根据需求在相应的时间点对打包内容进行定向的修改。
@@ -3832,20 +3823,17 @@ console.log(imagePrefix + imageBase64);
 
 # Eggjs
 
-思维导图 ![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/node-egg.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/node-egg.png)
-
+思维导图 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/node-egg.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/node-egg.png
 # 微信开发
 
 ## 鉴权
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/wx-token.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/wx-token.png)
-单点登录
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/wx-token.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/wx-token.png单点登录
 服务器有个 session，如果用户一旦登录成功了，服务器便会记录这个用户在一定时间内可以不需要在登录，那么用户在别的平台再登录的时候，服务器发现已经登陆过了就可以自动登录
 
 ## 微信开发流程
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-wechat.jpg](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-wechat.jpg)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-wechat.jpg):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-wechat.jpg
 # React相关
 
 [思维导图](https://www.processon.com/mindmap/5d593b3fe4b06e4919173d3b)
@@ -3975,8 +3963,7 @@ componentDidUpdate() {
 
 所以，如果是那种传进来的属性是一个数据对象的话还是要自己用 shouldComponentUpdate 来自己判断
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png
 ## react性能优化
 
 - 浅比较
@@ -4138,8 +4125,7 @@ export const search = () => (dispatch) => {
 
 ## react生命周期
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-life.jpg](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-life.jpg)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-life.jpg):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-life.jpg
 ```
 export default class Lifecycle extends Component {
   constructor(props) {
@@ -4317,17 +4303,15 @@ static contextType = ThemeContext
 
 ## redux原理,react-redux原理，redux-thunk原理
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-all.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-all.png)
-
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-all.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-all.png
 <!-- todo -->
 
 ## redux中间件机制，middleware
 
 ## redux相关
 
-![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-redux.jpg](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-redux.jpg)
-
-## redux与mobx的区别??
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-redux.jpg):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-redux.jpg
+## redux与mobx的区别??别??别??别??
 
 两者对比:
 
@@ -4387,8 +4371,7 @@ return (dispatch,$axios) => {
 
 ## redux-saga
 
-原理：![https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-saga.png](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-saga.png)
-
+原理：![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-saga.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-saga.png
 1. 创建任务清单
 
 ```

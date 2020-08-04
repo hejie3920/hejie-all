@@ -31,9 +31,10 @@ function formatMd() {
     } else {
       let str = data.toString()
 
-      let imgReg = /!\[.*\]\((.*)\)/gm
+      // let imgReg = /!\[.*\]\((.*)\)/gm
+      let imgReg = /!\[.*\]\((.*)\)[^:]/gm
       str = str.replace(imgReg, (res, $1) => {
-        return `![${$1}](${$1})`
+        return `![image](${$1}):${$1}`
       })
       let reg = /- \[.*\]/g
       let arr = []
