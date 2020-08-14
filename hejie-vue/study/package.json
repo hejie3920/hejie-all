@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "element-ui": "^2.4.5",
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "vue-router": "^3.4.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
@@ -26,6 +27,8 @@
     "babel-plugin-component": "^1.1.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.3",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-template-compiler": "^2.5.21"
   }

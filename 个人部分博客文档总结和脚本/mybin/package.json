@@ -1,0 +1,24 @@
+{
+  "name": "mybin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "bin": {
+    "tiny": "./tiny/index.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^6.0.0",
+    "figures": "^3.2.0",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "ora": "^5.0.0",
+    "url": "^0.11.0"
+  }
+}
