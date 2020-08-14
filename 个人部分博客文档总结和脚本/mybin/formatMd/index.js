@@ -5,7 +5,7 @@ const process = require('child_process')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
-const filePath = resolve('../all.md')
+const filePath = resolve('../../all.md')
 
 String.prototype.replaceAll = function (s1, s2) {
   return this.replace(new RegExp(s1, 'gm'), s2)
