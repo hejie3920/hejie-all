@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <baseModal></baseModal>
+    <baseBtn></baseBtn>
     <router-view></router-view>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- <FormTest></FormTest> -->

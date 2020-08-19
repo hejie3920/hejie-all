@@ -9,6 +9,7 @@
 <script>
 import router from "../router/index"
 export default {
+  name: "baseModal",
   data() {
     return {
       routes: []

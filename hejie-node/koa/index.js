@@ -28,7 +28,7 @@ const app = new Koa()
 app.use(async (ctx,next) => {
     const start = new Date().getTime()
     console.log(`start: ${ctx.url}`);
-    await next();s
+    await next();
     const end = new Date().getTime()
     console.log(`请求${ctx.url}, 耗时${parseInt(end-start)}ms`)
 })
@@ -46,4 +46,6 @@ router.get('/json',async (ctx,next) => {
 app.use(router.routes())
 
 
-app.listen(3000)
+app.listen(3000, () => {
+    console.log('server is running at http://localhost:3000')
+  })

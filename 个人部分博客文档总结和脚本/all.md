@@ -160,6 +160,7 @@
   - [babel-pollyfill和babel-transform-runtime区别](#babel-pollyfill%E5%92%8Cbabel-transform-runtime%E5%8C%BA%E5%88%AB)
   - [import和require的区别](#import%E5%92%8Crequire%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [webpack优化](#webpack%E4%BC%98%E5%8C%96)
+  - [Webpack5和webpack4的区别](#webpack5%E5%92%8Cwebpack4%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [Node相关](#node%E7%9B%B8%E5%85%B3)
   - [V8的垃圾回收机制](#v8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6-1)
   - [node单线程，node特性，事件驱动，非阻塞I/O](#node%E5%8D%95%E7%BA%BF%E7%A8%8Bnode%E7%89%B9%E6%80%A7%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E9%9D%9E%E9%98%BB%E5%A1%9Eio)
@@ -176,6 +177,7 @@
   - [node的问题](#node%E7%9A%84%E9%97%AE%E9%A2%98)
   - [用nodejs，将base64转化成png文件](#%E7%94%A8nodejs%E5%B0%86base64%E8%BD%AC%E5%8C%96%E6%88%90png%E6%96%87%E4%BB%B6)
   - [node开发脚手架](#node%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6)
+  - [基于vue-cli3创建自己的UI组件库，开发npm包，开发脚手架](#%E5%9F%BA%E4%BA%8Evue-cli3%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84ui%E7%BB%84%E4%BB%B6%E5%BA%93%E5%BC%80%E5%8F%91npm%E5%8C%85%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6)
   - [开发Node脚手架](#%E5%BC%80%E5%8F%91node%E8%84%9A%E6%89%8B%E6%9E%B6)
   - [移除脚手架，脚手架删除，脚手架查找](#%E7%A7%BB%E9%99%A4%E8%84%9A%E6%89%8B%E6%9E%B6%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%A0%E9%99%A4%E8%84%9A%E6%89%8B%E6%9E%B6%E6%9F%A5%E6%89%BE)
 - [Eggjs](#eggjs)
@@ -229,6 +231,14 @@
   - [vue在v-for时给每项元素绑定事件需要用事件代理吗？为什么？](#vue%E5%9C%A8v-for%E6%97%B6%E7%BB%99%E6%AF%8F%E9%A1%B9%E5%85%83%E7%B4%A0%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E9%9C%80%E8%A6%81%E7%94%A8%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%90%97%E4%B8%BA%E4%BB%80%E4%B9%88)
   - [vue技巧](#vue%E6%8A%80%E5%B7%A7)
   - [Vue.use和Vue.mixin开发插件](#vueuse%E5%92%8Cvuemixin%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6)
+  - [封装插件](#%E5%B0%81%E8%A3%85%E6%8F%92%E4%BB%B6)
+  - [实现Vue-router](#%E5%AE%9E%E7%8E%B0vue-router)
+  - [封装插件异步按需引入](#%E5%B0%81%E8%A3%85%E6%8F%92%E4%BB%B6%E5%BC%82%E6%AD%A5%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5)
+- [一些源码包的架构设计](#%E4%B8%80%E4%BA%9B%E6%BA%90%E7%A0%81%E5%8C%85%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1)
+  - [jquery的架构](#jquery%E7%9A%84%E6%9E%B6%E6%9E%84)
+- [数据库](#%E6%95%B0%E6%8D%AE%E5%BA%93)
+  - [mongoDB](#mongodb)
+  - [mongoose](#mongoose)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1048,7 +1058,7 @@ class MyPromise {
 
   then方法,接收一个成功的回调和一个失败的回调
   then(resolveFn, rejectFn) {
-    根据规范，如果then的参数不是function，则我们需要忽略它, 让链式调用继续往下执行
+    <!-- 根据规范，如果then的参数不是function，则我们需要忽略它, 让链式调用继续往下执行 -->
     typeof resolveFn !== 'function' ? (resolveFn = (value) => value) : null
     typeof rejectFn !== 'function'
       ? (rejectFn = (reason) => {
@@ -1056,7 +1066,7 @@ class MyPromise {
         })
       : null
 
-    return一个新的promise
+    <!-- return一个新的promise -->
     return new MyPromise((resolve, reject) => {
       把resolveFn重新包装一下,再push进resolve执行队列,这是为了能够获取回调的返回值进行分类讨论
       const fulfilledFn = (value) => {
@@ -1070,7 +1080,7 @@ class MyPromise {
         }
       }
 
-      reject同理
+      <!-- reject同理 -->
       const rejectedFn = (error) => {
         try {
           let x = rejectFn(error)
@@ -1250,12 +1260,12 @@ new Promise(function(resolve) {
   console.log("promise2")
 })
 console.log("script end")
-
 script start
 async1 start
 async2
 promise1
 script end
+
 async1 end
 promise2
 setTimeout
@@ -3798,6 +3808,38 @@ transform-runtime 使用：
 https://webpack.js.org/configuration/optimization/#optimizationusedexports
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-optimize.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-optimize.png
 
+## Webpack5和webpack4的区别
+
+webpack5 做了哪些事情？
+
+- 使用长期缓存提升编译速度
+- 使用更好的算法和默认值来改善长期缓存
+- 通过更好的 Tree Shaking 和 Code Generation 来改善 bundle 大小
+- 重构内部结构，在不引入任何重大更改的情况下实现 v4 的功能
+- 通过引入重大更改来为将来的功能做准备，以使我们能够尽可能长时间地使用 v5
+
+1. 不再需要 cache-loader,使用持久性缓存，持久性缓存用法和 cacheDirectory 相同
+
+```
+const path = require('path');
+
+module.exports = {
+  //...
+  cache: {
+    type: 'filesystem',
+    cacheDirectory: path.resolve(__dirname, '.temp_cache')
+  }
+};
+
+```
+
+2. 动态加载的文件有名字而不再是一串 id
+3. 自动 tree-shaking
+4. 模块内部也会 tree-shaking
+5. 可以根据不同文件分别设置 splitChunks 打包的大小，默认情况下值针对 js 包进行打包分离
+6. webpack5 提供了两种缓存方式，一种是持久缓存将文件缓存在文件系统，另一种是缓存在内存里
+7. 还有很多，具体看https://github.com/webpack/changelog-v5/blob/master/README.md7
+
 # Node相关
 
 ## V8的垃圾回收机制
@@ -4081,8 +4123,85 @@ console.log(imagePrefix + imageBase64);
 4. 直接运行 cli 这期间如果提示 env: node\r: No such file or directory 错误的话，这个是文件的问题，文件在 windows 上面建的，空格是用 dos 风格的，在 unix 上面会出错，直接新建一个文件即可，或者上谷歌
    https://stackoverflow.com/questions/30344858/node-script-executable-not-working-on-mac-env-node-r-no-such-file-or-directo
 5. Npm login 登录
-   Npm login 时一定要切换成源 npm 源，不能用淘宝镜像之类，账号：hejie3920,密码常规
+   nrm use npm 源，然后账号 hejie3920，密码常规，
 6. Npm publish
+
+## 基于vue-cli3创建自己的UI组件库，开发npm包，开发脚手架
+
+用 vue-cli3 创建一个空壳项目
+
+1. yarn add @vue/cli -D 安装 vuecli3 最新的脚手架
+2. npx vue create mycli
+3. 创建完项目后，我们改一下目录结构
+
+- 将 src 改为 examples，
+- 新建一个 packages 存放组件代码
+- lib 文件夹存放打包出来的文件
+
+4. 在 packags 里面开始写自己的代码和入口文件
+   自动引入注册 Vue 组件
+
+```
+./myplugin
+index.js
+const requireComponent = require.context('./', true, /\.vue$/)
+const install = (Vue) => {
+  if (install.installed) return
+  install.installed = true
+  requireComponent.keys().map((component) => {
+    const config = requireComponent(component)
+    new RegExp(/\.\/(.*)\.vue$/g).test(component)
+    const componentName = RegExp.$1
+    Vue.component(componentName, config.default || config)
+  })
+}
+export default {
+  install
+}
+
+```
+
+5. package.json 编写打包命令,打出 lib 文件夹
+
+```
+
+"scripts": {
+ "serve": "vue-cli-service serve",
+ ...
+ "lib": "vue-cli-service build --target lib --name 包名 --dest lib src/myplugins/index.js",
+},
+
+--mode 指定环境模式 (default: production)
+--dest 指定输出目录 (default: dist)
+--modern 构建两个版本的 js 包：一个面向支持现代浏览器的原生 ES2015+ 包，以及一个针对其他旧浏览器的包。
+--target 允许您以项目库或Web组件的形式在项目内部构建任何组件 app | lib | wc | wc-async (default: app) ???
+--name lib或者web组件库的名称 (default: "name" in package.json or entry filename)
+--no-clean 在构建项目之前不要删除输出目录(dist)
+--report 生成report.html以帮助分析包内容
+--report-json 生成report.json来帮助分析包内容
+--watch 监听 - 当有改变时 自动重新打包~
+```
+
+6. 复制一份 package.json 到 lib 文件夹里面，然后在 package.json 里面配置入口和证书
+
+```
+"name": "hejie-plugins",
+"version": "0.1.0",
+"private": false,  // 要设置成非私有化的
+"license": "MIT",  // license协议
+"main": "lib/hejie-plugin-demo.umd.js", // 入口
+```
+
+7. 然后 npm login,login 前先 nrm use npm，然后账号 hejie3920，密码常规不用大写
+8. npm publish
+9. 别人可以愉快使用
+
+```
+npm install hejie-plugin-demo
+import hejie from hejie-plugin-demo
+有样式的话也要分开引入，import './lib/hejie-plugin-demo.css'
+Vue.use(hejie)
+```
 
 ## 开发Node脚手架
 
@@ -5020,78 +5139,6 @@ import {connect} from 'dva';
 
 vue 并没有自动做事件代理，也是每个节点绑一个，同时事件代理在节点非常多的情况下才会看到优势，不然平常的话其实没什么大影响
 
-````
-
-## Webpack5 和 webpack4 的区别
-
-webpack5 做了哪些事情？
-
-- 使用长期缓存提升编译速度
-- 使用更好的算法和默认值来改善长期缓存
-- 通过更好的 Tree Shaking 和 Code Generation 来改善 bundle 大小
-- 重构内部结构，在不引入任何重大更改的情况下实现 v4 的功能
-- 通过引入重大更改来为将来的功能做准备，以使我们能够尽可能长时间地使用 v5
-
-1. 不再需要 cache-loader,使用持久性缓存，持久性缓存用法和 cacheDirectory 相同
-
-```
-const path = require('path');
-
-module.exports = {
-  //...
-  cache: {
-    type: 'filesystem',
-    cacheDirectory: path.resolve(__dirname, '.temp_cache')
-  }
-};
-
-```
-
-2. 动态加载的文件有名字而不再是一串 id
-3. 自动 tree-shaking
-4. 模块内部也会 tree-shaking
-5. 可以根据不同文件分别设置 splitChunks 打包的大小，默认情况下值针对 js 包进行打包分离
-6. webpack5 提供了两种缓存方式，一种是持久缓存将文件缓存在文件系统，另一种是缓存在内存里
-7. 还有很多，具体看https://github.com/webpack/changelog-v5/blob/master/README.md7
-
-# 一些源码包的架构设计
-
-## jquery 的架构
-
-```
-@1
-(function(window,undefined){
-  @2 工厂模式
-  function jquery(selector){
-    return new jquery.fn.init()
-  }
-  jquery.prototype = {
-    init():function(){
-
-    }
-
-  }
-  @3
-  jquery.prototype = jquery.prototype.init.prototype=jquery.fn
-
-  @4
-  jquery.extends = function(){}
-  jquery.extends({
-    css:function(){}
-  })
-
-  window.jquery = jquery
-  window.$ = jquery
-
-})(window,undefined)
-```
-
-1. 以前的架构喜欢把 window，undefined 传进去可以提高性能原因：可以直接将 window 和 undefined 传进去，避免 js 在逐级向上查找时耗费的时间，传 undefined 也同理，undefined 是一个变量，传进去可以避免诸暨查找的时间，而 null 不需要传是因为 null 是关键字
-2. 工厂模式
-3. 共享原型，可以直接操作操作 fn 就能同步到其他的原型对象上`jquery.prototype = jquery.prototype.init.prototype=jquery.fn`
-4. 模块划分
-````
-
 ## vue技巧
 
 1.  vue watch 设置 imediate 可以立刻触发
@@ -5199,7 +5246,7 @@ export default new Router({
 
 ```
 
-6.
+6. Vue.prototype 在原型上添加属性，v-directive 添加自定义指令
 
 ## Vue.use和Vue.mixin开发插件
 
@@ -5224,3 +5271,222 @@ Vue.mixin({
 })
 代码1会被混入到mounted钩子里，所有mounted都会触发
 ```
+
+## 封装插件
+
+1. 常规封装
+
+```
+plugins/
+test.vue
+
+index.js
+import test from './test.vue'
+let plugins = {}
+plugins.install = function(Vue){
+  Vue.component(test.name,test)
+}
+export default plugins
+
+main.js
+import plugins from './plugins'
+Vue.use(plugins)
+
+```
+
+2. 同上面全局组件引用，require
+
+## 实现Vue-router
+
+```
+class HistoryRouter {
+  constructor() {
+    this.current = null
+  }
+}
+
+class vueRouter {
+  constructor() {
+    this.history = new HistoryRouter()
+    this.mode = options.mode || 'hash'
+    this.routes = options.routes || []
+    this.routesMap = this.createMap(this.routes)
+    this.init()
+  }
+  init() {
+    if (this.mode === 'hash') {
+      location.hash ? '' : (location.hash = '/')
+      window.addEventListener('load', () => {
+        this.history.current = location.hash.slice(1)
+      })
+      window.addEventListener('hashchange', () => {
+        this.history.current = location.hash.slice(1)
+      })
+    } else {
+      location.hash ? '' : (location.hash = '/')
+      window.addEventListener('load', () => {
+        this.history.current = location.pathname
+      })
+      window.addEventListener('popstate', () => {
+        this.history.current = location.pathname
+      })
+    }
+  }
+  createMap(routes) {
+    return routes.reduce((memo, current) => {
+      memo[current.path] = current.components
+      return memo
+    })
+  }
+}
+
+vueRouter.install = function (Vue) {
+  Vue.mixin({
+    beforeCreate() {
+      // 首页实例化Vue时所传过来的options
+      if (this.$options && this.$options.router) {
+        // 把当前实例挂载
+        this._root = this
+        this._router = this.$options.router
+        // 第一个参数this,指向当前组件的实例，监听类的current属性
+        Vue.util.definReactive(this, 'current', this._router.history)
+      }
+      // 设置一个只可读的引用，只设置get，实现this.$router只能读
+      Object.defineProperty(this,'$router',{
+        get(){
+          return this._root._router
+        }
+      })
+      Object.defineProperty(this,'$route',{
+        get(){
+          return this._root._router.history.current
+        }
+      })
+    }
+  })
+  Vue.components('router-view', {
+    render(r, context) {
+      let current = this._self._root._router.history.current
+      let routeMap = this._self._root._router.routeMap
+      return r(routeMap[current])
+    }
+  })
+}
+
+module.exports = vueRouter
+```
+
+## 封装插件异步按需引入
+
+运用 import 异步加载需要的模块
+
+```
+module.exports = {
+    install:function(){
+        Vue.mixin({
+            created () {
+                if(this.$options.isVuex){
+                    import('../store/modules/'+this.$options.name).then(res => {
+                        this.$store.registerModule(this.$options.name, res.default)
+                    })
+                }
+            },
+        })
+    }
+};
+
+```
+
+# 一些源码包的架构设计
+
+## jquery的架构
+
+```
+@1
+(function(window,undefined){
+  @2 工厂模式
+  function jquery(selector){
+    return new jquery.fn.init()
+  }
+  jquery.prototype = {
+    init():function(){
+
+    }
+
+  }
+  @3
+  jquery.prototype = jquery.prototype.init.prototype=jquery.fn
+
+  @4
+  jquery.extends = function(){}
+  jquery.extends({
+    css:function(){}
+  })
+
+  window.jquery = jquery
+  window.$ = jquery
+
+})(window,undefined)
+```
+
+1. 以前的架构喜欢把 window，undefined 传进去可以提高性能原因：可以直接将 window 和 undefined 传进去，避免 js 在逐级向上查找时耗费的时间，传 undefined 也同理，undefined 是一个变量，传进去可以避免诸暨查找的时间，而 null 不需要传是因为 null 是关键字
+2. 工厂模式
+3. 共享原型，可以直接操作操作 fn 就能同步到其他的原型对象上`jquery.prototype = jquery.prototype.init.prototype=jquery.fn`
+4. 模块划分
+
+```
+
+```
+
+# 数据库
+
+## mongoDB
+
+```
+mongo
+show dbs
+库 -> 集合 -> 文档
+use test（集合名）
+增：
+db.test.insert({name:"hejie"}) // 很可能被废弃
+db.test.insertOne({name:"hejie",age:12})
+db.test.insertMany([{name:"hejie",age:17},{name:"haha",age:12},{name:"xixi",age:20}])
+db.test.find({name:'hejie'})
+常用操作符
+$lt小于, <
+$lte小于等于, <
+$rt大于, >
+$rte大于等于, >
+$ne不等于
+$in 逻辑或|
+$nin 逻辑非
+
+查：
+db.test.find({age:{$lte:16}})
+
+逻辑或,17或者20
+db.test.find({age:{$in:[17,20]}})
+db.test.find({ $or:[{age:17},{age:20}] })
+逻辑非
+db.test.find({age:{$nin:[17,20]}})
+正则
+db.test.find({$where:function(){
+  return this.name === '李四' || this.name === 'hejie'
+} })
+
+
+改：update
+db.test.update({name:"hejie"},{$set:{age:28}})
+db.test.update({name:"hejie"},{$set:{age:28}},{multi:true})
+
+删：remove
+db.test.remove({age:{$lte:19}})
+
+删除集合
+db.test.drop()
+
+```
+
+## mongoose
+
+对于 mongoDB 的进一步封装，将其封装成方便异步操作 async await 风格的

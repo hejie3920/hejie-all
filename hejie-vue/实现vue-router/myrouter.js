@@ -50,6 +50,17 @@ vueRouter.install = function (Vue) {
         // 第一个参数this,指向当前组件的实例，监听类的current属性
         Vue.util.definReactive(this, 'current', this._router.history)
       }
+      // 设置一个只可读的引用，只设置get，实现this.$router只能读
+      Object.defineProperty(this,'$router',{
+        get(){
+          return this._root._router
+        }
+      })
+      Object.defineProperty(this,'$route',{
+        get(){
+          return this._root._router.history.current
+        }
+      })
     }
   })
   Vue.components('router-view', {
