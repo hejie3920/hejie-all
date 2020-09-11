@@ -146,16 +146,21 @@ let utils = {
   // renderFriendList()
 
   // 防抖
-  debounce(func, wait = 200) {
-    // 缓存一个定时器id
+  debounce(func, wait = 200, needRunAtFirst = true) {
     let timer = 0
-    // 这里返回的函数是每次用户实际调用的防抖函数 // 如果已经设定过定时器了就清空上一次的定时器 // 开始一个新的定时器，延迟执行用户传入的方法
+    let firstTime = needRunAtFirst
     return function () {
       let _this = this
-      if (timer) clearTimeout(timer)
-      timer = setTimeout(() => {
+      if (firstTime) {
         func.apply(_this, arguments)
-      }, wait)
+        firstTime = false
+      } else {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          func.apply(_this, arguments)
+          firstTime = needRunAtFirst
+        }, wait)
+      }
     }
   },
   throttle(fn, interval = 200) {
@@ -505,8 +510,8 @@ this指向问题
 //     return ret
 //   }
 // }
-
 // let func = function() {
+
 //   console.log("TCL: ", 2)
 // }
 // func = func
@@ -1977,7 +1982,6 @@ ref="input"
 // console.log( str.replace(/\d{1,3}(?=(\d{3})+$)/g,function(s){
 //   return s+','
 // }) )
-
 
 // Eatman 连续调用 闭包
 // function EatMan(name) {

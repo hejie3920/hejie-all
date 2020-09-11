@@ -39,6 +39,7 @@ export default {
         {id:1, text:'Web全栈架构师',price:8999},
         {id:2, text:'Python全栈架构师',price:8999},
       ],
+      msg:'new message'
       
     }
   },

@@ -1,20 +1,90 @@
+const uglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const path = require('path')
+const isProduction = process.env.NODE_ENV === 'production'
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
-  // css: {
-  //   loaderOptions: {
-  //     stylus: {
-  //       'resolve url': true,
-  //       import: ['./src/theme']
-  //     }
-  //   }
-  // },
+  // 基本路径
+  publicPath: './',
+  outputDir: 'dist',
+  // 关闭eslint
+  lintOnSave: false,
+  devServer: {
+    // 压缩代码
+    compress: false,
+    // 自动打开浏览器
+    open: true,
+    proxy: {
+      '/api': {
+        // target: 'http://192.168.1.144:8080/oola/', // api 的代理的实际路径
+        target: 'http://api-tt.oola.cn:8081/oola/',
+        // 开启websocket
+        // ws:true,
+        changeOrigin: true,
+        pathRewrite: {
+          '/api': '/'
+        }
+      }
+    }
+  },
+  css: {
+    // 是否使用分离插件
+    extract: true,
+    sourceMap: false,
+    // loaderOptions: {
+    //   sass: {
+    //     data: `@import "@/assets/common/index.scss"`
+    //   }
+    //   // stylus: {
+    //   //   'resolve url': true,
+    //   //   import: ['./src/theme']
+    //   // }
+    // },
+    // 是否启用css
+    modules: false
+  },
+  configureWebpack: config => {
+    console.log('config', config)
+    config.resolve.alias['@img'] = resolve('src/assets/img')
+    config.resolve.alias['@scss'] = resolve('src/assets/common')
+
+    // 生产环境的配置
+    if (isProduction) {
+      // 删除预加载
+      // config.plugins.delete('preload')
+      config.optimization.minimize = true
+      // 分割代码
+      // config.optimization.splitChunks({
+      //   chunks: all
+      // })
+      // config.plugins.push(
+      //   new uglifyJsPlugin({
+      //     // compress: {
+      //     //   drop_debugger: true,
+      //     //   drop_console: true
+      //     // },
+      //     sourceMap: false,
+      //     // 使用多进程
+      //     parallel: true
+      //   })
+      // )
+    }
+  },
+  // 生产环境
+  productionSourceMap: false,
+  // 默认并发数：os.cpus().length - 1
+  // 启用并行
+  parallel: require('os').cpus().length > 1
+
   // pluginOptions: {
   //   'cube-ui': {
   //     postCompile: true,
   //     theme: false
   //   }
   // },
-  // 关闭eslint
-  lintOnSave: false
+
   // configureWebpack: {
   //   devServer: {
   //     // proxy: {

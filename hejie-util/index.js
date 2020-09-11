@@ -1,9 +1,9 @@
-let log = console.log
-console.log = (...args) => {
-  log.apply(null, args)
-  let res = args.join(' ')
-  document.write(`${res}<br/>`)
-}
+// let log = console.log
+// console.log = (...args) => {
+//   log.apply(null, args)
+//   let res = args.join(' ')
+//   document.write(`${res}<br/>`)
+// }
 
 // 深拷贝
 // let a = {
@@ -28,9 +28,13 @@ console.log = (...args) => {
 // console.log("TCL: ", utils.getType(arr))
 
 // 节流
-// window.onresize = utils.debounce(val => {
-//   console.log("TCL: ", "nihao")
-// }, 200)
+window.onresize = utils.throttle(
+  () => {
+    console.warn('TCL: ', 'nihao')
+  },
+  1000,
+  true
+)
 
 /**
  * 编码题二：实现一个检验对象是否循环指向的方法

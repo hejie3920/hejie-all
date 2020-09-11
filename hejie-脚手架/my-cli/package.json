@@ -24,5 +24,8 @@
     "json-format": "^1.0.1",
     "ora": "^3.4.0",
     "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "inquirer": "^7.3.3"
   }
 }
