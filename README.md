@@ -6,8 +6,8 @@
 # 我的日常
 
 - ![书籍列表1](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/alt.png)
-- ![书籍列表2](./markdown/WechatIMG371.jpeg)
-- ![笔记](markdown/2020-07-10-12-47-41.png)
-- ![智推云脉络图](markdown/2020-07-10-14-31-53.png)
+- ![书籍列表2](/markdown/WechatIMG371.jpeg)
+- ![笔记](/markdown/2020-07-10-12-47-41.png)
+- ![智推云脉络图](/markdown/2020-07-10-14-31-53.png)
 
 command + alt + V截图粘贴
