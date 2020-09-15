@@ -1,0 +1,15 @@
+{
+  "name": "mybin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ./mybin/formatMd/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "bin": {
+    "tiny": "./mybin/tiny/index.js"
+  },
+  "license": "ISC"
+}
