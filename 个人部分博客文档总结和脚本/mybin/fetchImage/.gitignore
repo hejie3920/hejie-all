@@ -1,0 +1,8 @@
+.idea/
+node_modules/
+备份/
+*.log
+*.zip
+# Ignore unused  files
+component/
+images/*
