@@ -3884,6 +3884,13 @@ methods: {}
 this._phoneLoginModalDom = new Modal({ el, store, router })
 ```
 
+## resolvepath
+```
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
+```
 <!-- endhejie -->
 
 # webpack相关
@@ -5706,8 +5713,8 @@ module.exports = {
 ```
 
 # 自动化测试
-
-TDD 测试驱动开发，BDD 行为驱动开发
+BDD 行为驱动开发 => 先开发，然后写测试案例来测试
+TDD 测试驱动开发 => 先写测试案例，然后写预期测试结果然后来驱动开发
 
 - 测试框架
   主流：mocha，适合 node，没有浏览器环境，而且需要自己装 mock 库

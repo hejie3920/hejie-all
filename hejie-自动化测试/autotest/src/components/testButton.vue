@@ -3,7 +3,8 @@
     <p>{{msg}}</p>
     <p>{{data1}}</p>
     <p>ahsdfhsahdf</p>
-    <button @click="m2">点我</button>
+    <div>{{title}}</div>
+    <button @click="m1">{{data1}}</button>
   </div>
 </template>
 
@@ -15,12 +16,12 @@ export default {
       data1: "123"
     }
   },
+  props: {
+    title: String
+  },
   methods: {
     m1() {
-      return this.data1 + 456
-    },
-    m2() {
-      this.data1 = "我已经被点击了"
+      this.data1 = this.title + "点击事件1"
     }
   }
 }
