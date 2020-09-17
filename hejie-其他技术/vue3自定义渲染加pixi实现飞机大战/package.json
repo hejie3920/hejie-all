@@ -1,31 +1,35 @@
 {
-  "name": "vue-pixijs",
+  "name": "play-plane",
   "version": "1.0.0",
-  "description": "使用 vue3 的语法来开发 pixijs ",
-  "main": "webpack.config.js",
-  "directories": {
-    "example": "example"
-  },
+  "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "NODE_ENV=production webpack --mode=production",
+    "build:dev": "NODE_ENV=development webpack --mode=development",
+    "start": "webpack-dev-server --mode=development",
+    "dev": "npm-run-all build:dev start",
+    "test": "jest"
   },
-  "keywords": [
-    "vue",
-    "vue3",
-    "vue-next",
-    "canvas",
-    "pixijs",
-    "pixi",
-    "game"
-  ],
+  "keywords": [],
   "author": "hejie",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-jest": "^26.0.1",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^26.0.1",
+    "npm-run-all": "^4.1.5",
+    "serve": "^11.3.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@vue/runtime-core": "^3.0.0-beta.14",
+    "@tweenjs/tween.js": "^18.5.0",
+    "@vue/runtime-core": "^3.0.0-rc.12",
+    "concurrently": "^5.3.0",
     "pixi.js": "^5.2.4"
-  }
+  },
+  "description": ""
 }
