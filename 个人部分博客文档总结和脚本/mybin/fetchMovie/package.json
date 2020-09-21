@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "jsdom": "^11.11.0"
+  },
+  "name": "fetch_film",
+  "description": "爬取电影网站，生成免费电影url",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuixiaorui/cReptile.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cuixiaorui/cReptile/issues"
+  },
+  "homepage": "https://github.com/cuixiaorui/cReptile#readme"
+}
