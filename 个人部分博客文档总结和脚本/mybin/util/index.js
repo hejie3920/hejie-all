@@ -27,5 +27,12 @@ module.exports = {
     var size = srcsize / Math.pow(1024, index)
     size = size.toFixed(2) //保留的小数位数
     return size + unitArr[index]
+  },
+  isEmpty(val) {
+    if (!val) {
+      return true
+    } else {
+      return Object.keys(val).length === 0
+    }
   }
 }
