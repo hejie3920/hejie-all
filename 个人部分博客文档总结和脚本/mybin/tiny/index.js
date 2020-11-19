@@ -9,7 +9,7 @@ const Figures = require('figures')
 const Ora = require('ora')
 const { RandomNum, resolve, byteSize } = require('../util')
 const program = require('commander')
-const packageConfig = require('../package.json')
+const packageConfig = require('./package.json')
 program
   .version(packageConfig.version, '-v,--version')
   .usage('<command> [options]')
