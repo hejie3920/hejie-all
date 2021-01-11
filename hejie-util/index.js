@@ -28,14 +28,6 @@
 // console.log("TCL: ", utils.getType(arr))
 
 // 节流
-window.onresize = utils.throttle(
-  () => {
-    console.warn('TCL: ', 'nihao')
-  },
-  1000,
-  true
-)
-
 /**
  * 编码题二：实现一个检验对象是否循环指向的方法
  * 说明：当一个对象存在对自身引用时，称之为循环指向
@@ -69,3 +61,4 @@ window.onresize = utils.throttle(
 // }
 // let arrtmp = [1, 2, 4, 4, 3, 5]
 // console.warn('TCL: ', findTopSum(arrtmp, 2, 4))
+

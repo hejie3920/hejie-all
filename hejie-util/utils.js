@@ -1,3 +1,5 @@
+
+
 // 判断对象是对象还是数组
 // if (typeof obj === 'object' && Array.isArray(obj)) else
 
@@ -1983,7 +1985,7 @@ ref="input"
 //   return s+','
 // }) )
 
-// Eatman 连续调用 闭包
+// Eatman 连续调用 闭包，链式调用
 // function EatMan(name) {
 //   return new _eatman(name)
 // }

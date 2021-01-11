@@ -1,0 +1,7 @@
+// 这个文件只用来当入口，不要再这里写样式
+// 这两个文件不能在这里引入，因为他们是scss特有的语法，需在config文件styleResources里面处理
+// mixins.scss这个文件是特殊语法，不能直接引入，需要在vue.config里面引入，否则会有重复引入的问题
+// @import './mixins.scss';
+@import './variables.scss';
+@import './reset.scss';
+@import './global.scss';

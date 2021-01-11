@@ -35,11 +35,14 @@
   - [手动实现generator](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0generator)
   - [微任务，宏任务，先微再宏，只不过一开始的script块也可以算是宏任务](#%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%85%88%E5%BE%AE%E5%86%8D%E5%AE%8F%E5%8F%AA%E4%B8%8D%E8%BF%87%E4%B8%80%E5%BC%80%E5%A7%8B%E7%9A%84script%E5%9D%97%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%AE%97%E6%98%AF%E5%AE%8F%E4%BB%BB%E5%8A%A1)
   - [node的事件循环机制，浏览器的循环机制和区别](#node%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%92%8C%E5%8C%BA%E5%88%AB)
-  - [实现flatten，打平数组](#%E5%AE%9E%E7%8E%B0flatten%E6%89%93%E5%B9%B3%E6%95%B0%E7%BB%84)
+  - [实现flatten，打平数组,数组扁平化](#%E5%AE%9E%E7%8E%B0flatten%E6%89%93%E5%B9%B3%E6%95%B0%E7%BB%84%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96)
   - [数组去重，扩展将数组打平并且去重升序](#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E6%89%A9%E5%B1%95%E5%B0%86%E6%95%B0%E7%BB%84%E6%89%93%E5%B9%B3%E5%B9%B6%E4%B8%94%E5%8E%BB%E9%87%8D%E5%8D%87%E5%BA%8F)
+  - [如何求数组的最大值和最小值？](#%E5%A6%82%E4%BD%95%E6%B1%82%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC)
+  - [求最大公约数和最小公倍数](#%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0)
+  - [常见算法题](#%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E9%A2%98)
   - [js内置对象](#js%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1)
   - [js中整数的安全范围是多少？](#js%E4%B8%AD%E6%95%B4%E6%95%B0%E7%9A%84%E5%AE%89%E5%85%A8%E8%8C%83%E5%9B%B4%E6%98%AF%E5%A4%9A%E5%B0%91)
-  - [Object.is()()](#objectis)
+  - [Object.is()()()()](#objectis)
   - [escape,encodeURI,encodeURIComponent有什么区别？](#escapeencodeuriencodeuricomponent%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [set和weakset，map和weakmap](#set%E5%92%8Cweaksetmap%E5%92%8Cweakmap)
   - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
@@ -1465,7 +1468,7 @@ return a - b （降序是 b - a）
 - 如何查找一篇英文文章中出现频率最高的单词？
 - 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序 排序。请完成一个函数，输入这样的
 一个二维数组和一个整数，判断数组中是否含有该整数。
-- 
+- 顺时针打印二维矩阵
 
 
 
@@ -1479,11 +1482,11 @@ return a - b （降序是 b - a）
 
 安全整数指的是，在这个范围内的整数转化为二进制存储的时候不会出现精度丢失，能够被 “安全”呈现的最大整数是 2^53 - 1，即 9007199254740991，在 ES6 中被定义为 Number.MAX_SAFE_INTEGER。最小整数是-9007199254740991，在 ES6 中被定义为 Number.MIN_SAFE_INTEGER。 如果某次计算的结果得到了一个超过 JavaScript 数值范围的值，那么这个值会被自动转 换为特殊的 Infinity 值。如果某次计算返回了正或负的 Infinity 值，那么该值将无法参与 下一次的计算。判断一个数是不是有穷的，可以使用 isFinite 函数来判断。
 
-## Object.is()()
+## Object.is()()()()
 
 1. 两等号判等，会在比较时进行类型转换。
 2. 三等号判等（判断严格），比较时不进行隐式类型转换，（类型不同则会返回 false）。
-3. Object.is() 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同， 但 Object.is()(NaN, NaN) 会返回 true. Object.is() 应被认为有其特殊的用途，而不能用它认为它比其它的相等对比更宽松或严格。
+3. Object.is()()() 在三等号判等的基础上特别处理了 NaN 、-0 和 +0 ，保证 -0 和 +0 不再相同， 但 Object.is()()()(NaN, NaN) 会返回 true. Object.is()()() 应被认为有其特殊的用途，而不能用它认为它比其它的相等对比更宽松或严格。
 
 ## escape,encodeURI,encodeURIComponent有什么区别？
 
