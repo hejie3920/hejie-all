@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.scss'
 import Life from './components/lifeCpm'
+import Optimize from './components/Optimize'
 import Hoc from './components/hocCpm'
 import Redux from './components/Redux'
 import Composition from './components/Composition'
@@ -46,7 +47,7 @@ class Clock extends Component {
       counter: this.state.counter + 2
     })
   }
-  test = (p) => {
+  test = p => {
     console.log('TCL: ', this.name, p)
   }
   componentWillUnmount() {
@@ -55,68 +56,53 @@ class Clock extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className='App'>
         <BrowserRouter>
-          <div className="tab">
-            <Link to="/">首页 /</Link>
-            <Link to="/state">面试 /</Link>
-            <Link to="/test">测试 /</Link>
-            <Link to="/learn">learn /</Link>
-            <Link to="/hoc">hoc /</Link>
-            <Link to="/mobx">mobx /</Link>
-            <Link to="/redux">redux /</Link>
-            <Link to="/PropType">PropType /</Link>
-            <Link to="/hook">hook /</Link>
-            <Link to="/composition">复合组件 /</Link>
-            <Link to="/life">生命周期 /</Link>
-            <Link to="/antDesign">antDesign /</Link>
+          <div className='tab'>
+            <Link to='/'>首页 /</Link>
+            <Link to='/state'>面试 /</Link>
+            <Link to='/optimize'>优化 /</Link>
+            <Link to='/state'>面试 /</Link>
+            <Link to='/test'>测试 /</Link>
+            <Link to='/learn'>learn /</Link>
+            <Link to='/hoc'>hoc /</Link>
+            <Link to='/mobx'>mobx /</Link>
+            <Link to='/redux'>redux /</Link>
+            <Link to='/PropType'>PropType /</Link>
+            <Link to='/hook'>hook /</Link>
+            <Link to='/composition'>复合组件 /</Link>
+            <Link to='/life'>生命周期 /</Link>
+            <Link to='/antDesign'>antDesign /</Link>
             <Link
               to={{
                 pathname: `/nihao/${this.state.counter}`,
                 query: { log: '666' }
-              }}
-            >
+              }}>
               传参
             </Link>
           </div>
           <Provider store={store}>
             <Switch>
-              <Route exact path="/" component={Test}></Route>
+              <Route exact path='/' component={Test}></Route>
+              <Route path='/learn' render={() => <Learn name='hejie'></Learn>}></Route>
+              <Route path='/optimize' component={Optimize}></Route>
+              <Route path='/state' component={StateCop}></Route>
+              <Route path='/PropType' component={PropType}></Route>
+              <Route path='/mobx' component={Mobx}></Route>
+              <Route path='/test' component={Test}></Route>
+              <Route path='/redux' render={() => <Redux></Redux>}></Route>
+              <Route path='/hook' component={Hook}></Route>
+              <Route path='/composition' component={Composition}></Route>
+              <Route path='/life' render={() => <Life title={this.state.counter} arr={this.state.arr}></Life>}></Route>
+              <Route path='/hoc' render={() => <Hoc arr={this.state.arr} name={this.state.date.getDate()}></Hoc>}></Route>
               <Route
-                path="/learn"
-                render={() => <Learn name="hejie"></Learn>}
-              ></Route>
-              <Route path="/state" component={StateCop}></Route>
-              <Route path="/PropType" component={PropType}></Route>
-              <Route path="/mobx" component={Mobx}></Route>
-              <Route path="/test" component={Test}></Route>
-              <Route path="/redux" render={() => <Redux></Redux>}></Route>
-              <Route path="/hook" component={Hook}></Route>
-              <Route path="/composition" component={Composition}></Route>
-              <Route
-                path="/life"
+                path='/antDesign'
                 render={() => (
-                  <Life title={this.state.counter} arr={this.state.arr}></Life>
-                )}
-              ></Route>
-              <Route
-                path="/hoc"
-                render={() => (
-                  <Hoc
-                    arr={this.state.arr}
-                    name={this.state.date.getDate()}
-                  ></Hoc>
-                )}
-              ></Route>
-              <Route
-                path="/antDesign"
-                render={() => (
-                  <Button type="primary" onClick={this.changeCounter}>
+                  <Button type='primary' onClick={this.changeCounter}>
                     和杰按钮
                   </Button>
-                )}
-              ></Route>
-              <Route path="/nihao/:counter" component={Path}></Route>
+                )}></Route>
+              <Route path='/nihao/:counter' component={Path}></Route>
             </Switch>
           </Provider>
         </BrowserRouter>

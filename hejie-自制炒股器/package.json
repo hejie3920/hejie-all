@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "dev": "vue-cli-service serve && nodemon /server/index.js",
+    "start": "nodemon ./server/app.js",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "ui": "vue ui"
   },
@@ -13,8 +14,15 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.14.1",
     "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-compose": "^4.1.0",
+    "koa-multer": "^1.0.2",
     "koa-router": "^10.0.0",
+    "koa-session": "^6.1.0",
     "koa-static": "^5.0.0",
+    "log4js": "^6.3.0",
+    "mongoose": "^5.11.11",
+    "redis": "^3.0.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
   },

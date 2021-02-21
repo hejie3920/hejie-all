@@ -7,7 +7,6 @@ const codeMessage = {
   404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
   500: '服务器发生错误，请检查服务器。',
 };
-console.log('iasjfd');
 // 仅拦截异常状态响应
 axios.interceptors.response.use(null, ({ response }) => {
   console.log('TCL: response', 'nihao');

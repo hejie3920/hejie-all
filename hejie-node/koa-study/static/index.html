@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/upload" method="POST">
+      用户：
+      <input type="text" name="name" />
+      密码：
+      <input type="password" name="password" />
+      <button type="submit">提交</button>
+    </form>
+    <br />
+    <form action="/addUser" method="GET">
+      用户名
+      <input type="text" name="name" />
+      年龄
+      <input type="number" name="age" />
+      性别
+      <label for="sex">
+        <input type="radio" name="sex" value="0" />男<br />
+        <input type="radio" name="sex" value="1" />女
+      </label>
+      <button type="submit">提交</button>
+    </form>
+    <!-- <form action="/profile" enctype="multipart/form-data" method="post">
+      选择图片：<input type="file" name="avatar" id="upfile" />
+      <button type="submit">提交</button>
+    </form> -->
+  </body>
+</html>

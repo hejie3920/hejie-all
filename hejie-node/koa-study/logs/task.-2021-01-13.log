@@ -1,0 +1,4 @@
+[2021-01-13T09:53:50.298] [INFO] cheese - {"projectName":"koa2","serverIp":"0.0.0.0","message":"响应时间0.032s"}
+[2021-01-13T09:53:50.661] [INFO] cheese - {"projectName":"koa2","serverIp":"0.0.0.0","message":"响应时间0.004s"}
+[2021-01-13T11:14:50.323] [WARN] cheese - {"projectName":"koa2","serverIp":"0.0.0.0","message":"warnning"}
+[2021-01-13T11:14:50.325] [INFO] cheese - {"projectName":"koa2","serverIp":"0.0.0.0","message":"响应时间0.858s"}

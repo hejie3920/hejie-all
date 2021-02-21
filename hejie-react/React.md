@@ -1,5 +1,34 @@
 # React
 
+## 渲染优化
+
+把渲染比较费时，不需要关心状态的子组件提升到有状态的组件外面，作为 childen 或者 props 传进去使用，防止一起被渲染
+聚合 provider
+
+```
+function composeProviders(...providers) {
+return ({ children }) =>
+  providers.reduce(
+    (prev, Provider) => <Provider>{prev}</Provider>,
+    children,
+  )
+}
+const StateProviders = composeProviders(
+  LogProvider,
+  UserProvider,
+  MenuProvider,
+  AppProvider,
+)
+
+function App() {
+  return (
+    <StateProvider>
+      <Main />
+    </StateProvider>
+  )
+}
+```
+
 ## setState 注意
 
 - 批量，一次性更新，相同 key 合并
@@ -115,6 +144,19 @@ const OtherComponent = React.lazy(() =## import("./OtherComponent"))
 1. 第二个参数，如果想执行只运行一次的 effect（仅在组件挂载和卸载时执行），可以传递一个空数组（[]），注意：这时候在这里的 state 的值一直是固定的，只会初始化一次，在 effct 里怎么 set 都只会从初始值开始 set
 2. 第二个参数如果不设置，代表有变化就会触发，也可设置依赖数组
 3. 模拟 didmount 之类的消除工作：可以 return 一个函数来清除一些副作用
+
+```
+useEffect(() => {
+ const timer = setInterval(() => {
+   console.log("应用启动了");
+ }, 1000);
+
+ // 返回清除函数
+ return function() {
+   clearInterval(timer);
+ };
+}, []);
+```
 
 - useContext
 

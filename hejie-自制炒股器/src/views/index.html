@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <iframe
+      style="width: 100%; height: 90vh"
+      src="https://mobile.yangkeduo.com/hub_free_trial_task.html?trial_id=2101080042188&_pdd_fs=1&refer_page_name=hub_free_trial_goods&refer_page_id=17794_1610331471927_4tjptlnrva&refer_page_sn=17794&_x_share_id=zp6rh4zidsn3xzu44hkckee9h0cpcz0l#back"
+      frameborder="0"
+    ></iframe>
+  </body>
+  <script>
+    let n = 0
+    let timer = function() {
+      n++
+      console.warn(`TCL: 第${n}次`, new Date())
+      let dom = document.querySelector(
+        '#ssr-wrapper > div > div.hub-ftt-tw.person-one-h5 > div.hub-ftt-mb-v2 > div > div.hub-ftt-mb-integer.task-shark > div'
+      )
+      if (dom && dom.innerText.includes('领取')) {
+        dom.click()
+        setTimeout(() => {
+          let rewardDom = document.querySelector(
+            'body > div:nth-child(18) > div > div.modal-popup-content.show-act > div > div.hub-ftt-integer-step-one-content > div.hub-ftt-integer-step-one-btn'
+          )
+          rewardDom.click()
+        }, 1000)
+      }
+    }
+    timer()
+    let timerId = setInterval(() => {
+      timer()
+    }, 30 * 60 * 1000)
+    setInterval(() => {
+      console.warn('测试', timerId)
+    }, 60 * 1000)
+  </script>
+</html>
