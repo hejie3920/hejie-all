@@ -6,7 +6,7 @@ import Hoc from './components/hocCpm'
 import Redux from './components/Redux'
 import Composition from './components/Composition'
 import Hook from './components/Hook'
-import Test from './components/reactTest'
+import Hejie from './components/Hejie'
 import Learn from './components/Learn'
 import store from './store/index'
 import { Button } from 'antd'
@@ -60,10 +60,9 @@ class Clock extends Component {
         <BrowserRouter>
           <div className='tab'>
             <Link to='/'>首页 /</Link>
-            <Link to='/state'>面试 /</Link>
+            <Link to='/hejie'>面试 /</Link>
+            <Link to='/state'>state /</Link>
             <Link to='/optimize'>优化 /</Link>
-            <Link to='/state'>面试 /</Link>
-            <Link to='/test'>测试 /</Link>
             <Link to='/learn'>learn /</Link>
             <Link to='/hoc'>hoc /</Link>
             <Link to='/mobx'>mobx /</Link>
@@ -83,13 +82,13 @@ class Clock extends Component {
           </div>
           <Provider store={store}>
             <Switch>
-              <Route exact path='/' component={Test}></Route>
+              <Route exact path='/' component={Hejie}></Route>
               <Route path='/learn' render={() => <Learn name='hejie'></Learn>}></Route>
               <Route path='/optimize' component={Optimize}></Route>
               <Route path='/state' component={StateCop}></Route>
               <Route path='/PropType' component={PropType}></Route>
               <Route path='/mobx' component={Mobx}></Route>
-              <Route path='/test' component={Test}></Route>
+              <Route path='/hejie' component={Hejie}></Route>
               <Route path='/redux' render={() => <Redux></Redux>}></Route>
               <Route path='/hook' component={Hook}></Route>
               <Route path='/composition' component={Composition}></Route>
