@@ -45,9 +45,21 @@
   - [set和weakset，map和weakmap](#set%E5%92%8Cweaksetmap%E5%92%8Cweakmap)
   - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
   - [使用闭包实现每隔一秒打印1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
-- [亮点优化，性能优化/代码优化化，webpack优化](#%E4%BA%AE%E7%82%B9%E4%BC%98%E5%8C%96%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%8C%96webpack%E4%BC%98%E5%8C%96)
-- [前端日志监控，异常上报，性能监控](#%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7%E5%BC%82%E5%B8%B8%E4%B8%8A%E6%8A%A5%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7)
-  - [日志监控](#%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7)
+- [亮点to](#%E4%BA%AE%E7%82%B9to)
+  - [实现webpack](#%E5%AE%9E%E7%8E%B0webpack)
+  - [开发插件，开发plugin](#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91plugin)
+  - [自定义loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader)
+  - [开发脚手架](#%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6)
+  - [开发npm包，组件库](#%E5%BC%80%E5%8F%91npm%E5%8C%85%E7%BB%84%E4%BB%B6%E5%BA%93)
+  - [webpack 工作流程 (加载 - 编译 - 输出)](#webpack-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B-%E5%8A%A0%E8%BD%BD---%E7%BC%96%E8%AF%91---%E8%BE%93%E5%87%BA)
+  - [传输to，断点传输，分片传输](#%E4%BC%A0%E8%BE%93to%E6%96%AD%E7%82%B9%E4%BC%A0%E8%BE%93%E5%88%86%E7%89%87%E4%BC%A0%E8%BE%93)
+  - [webpack优化，性能优化/代码优化化，webpack优化](#webpack%E4%BC%98%E5%8C%96%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%8C%96webpack%E4%BC%98%E5%8C%96)
+  - [微前端to，乾坤](#%E5%BE%AE%E5%89%8D%E7%AB%AFto%E4%B9%BE%E5%9D%A4)
+  - [vite](#vite)
+  - [自动化测试BDD风格](#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95bdd%E9%A3%8E%E6%A0%BC)
+  - [编辑器](#%E7%BC%96%E8%BE%91%E5%99%A8)
+  - [node处理高并发](#node%E5%A4%84%E7%90%86%E9%AB%98%E5%B9%B6%E5%8F%91)
+  - [前端日志监控，异常上报，性能监控](#%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7%E5%BC%82%E5%B8%B8%E4%B8%8A%E6%8A%A5%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7)
   - [性能监控](#%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7)
   - [日志上报](#%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5)
 - [设计模式to，](#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8Fto)
@@ -168,8 +180,8 @@
   - [offsetWidth/offsetHeight,clientWidth/clientHeight与scrollWidth/scrollHeight的区别？](#offsetwidthoffsetheightclientwidthclientheight%E4%B8%8Escrollwidthscrollheight%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [webpackto，](#webpackto)
   - [常用插件](#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6)
-  - [自定义loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader)
-  - [webpack原理，实现webpack](#webpack%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
+  - [自定义loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader-1)
+  - [webpack 原理，实现webpack](#webpack-%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
   - [自定义插件，自定义plugin](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89plugin)
   - [webpack如何工作，工作流程](#webpack%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
   - [匹配文件夹下所有特定后缀的文件，webpackCopy复制前先压缩所有的js](#%E5%8C%B9%E9%85%8D%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6webpackcopy%E5%A4%8D%E5%88%B6%E5%89%8D%E5%85%88%E5%8E%8B%E7%BC%A9%E6%89%80%E6%9C%89%E7%9A%84js)
@@ -1551,10 +1563,188 @@ for (let i = 0; i < 5; i++) {
 
 <!-- endjs -->
 
-# 亮点优化，性能优化/代码优化化，webpack优化
+# 亮点to
 
-1. webpack：
+## 实现webpack
 
+1. 先实现一个解析器单独分析一个模块，读取配置，找入口依赖文件，babel-parser 解析成 ast 抽语法树，然后用 babel-traverse 遍历所有的依赖，生成该模块的依赖数组，然后用 babel-core 和 babel-preset-env 把 ast 转为 code，至此一个模块就解析完成了，返回{filename, code, dependiences}
+2. 开始递归分析依赖数组并递归解析，解析所有模块
+3. 开始输出代码，按照 webpack 的最终 IIFE 的输出格式，将生成的对象直接 JSON.stringify 字符串然后拼接上去，eval 执行即可
+
+## 开发插件，开发plugin
+
+hint: 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tiny 发起请求，下载图片后直接上传到 oss 即可
+
+一个类，apply 入口，可以拿到 compiler 参数，compiler.plugin('done', (compilation 编译结果) => {}),常用的钩子有 emit 即将打包，compile 编译中，done 打包完成，
+
+<!-- {
+ headers: {
+   'Cache-Control': 'no-cache',
+   'Content-Type': 'application/x-www-form-urlencoded',
+   'Postman-Token': Date.now(),
+   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+   'X-Forwarded-For': ip
+ },
+ hostname: TINYIMG_URL[index],
+ method: 'POST',
+ path: '/web/shrink',
+ rejectUnauthorized: false
+} -->
+
+## 自定义loader
+
+hint: 用来检查判断 addEventlistner 后有没 removeEventListener 以及其他的一些规则
+
+就是一个函数，可以解析到 source 对象，然后对 source 进行操作后 return 出去就是了，
+
+## 开发脚手架
+
+https://mp.weixin.qq.com/s/TFP6bKADnY5zPDX5bqQqEA
+hint: 前期用 handlebars 模板引擎生成 vue 文件并刷新路由，后面直接工程自动化后 require.context 自动化引入后就不需要手动刷新路由了
+
+npm init,package.json 里面 bin 指向脚本文件，npm link 进行关联，本地联调没问题后，直接 npm publish 即可
+
+1. commander.js 提示用户输入内容，Inquirer.js 让用户单选多选或回答 n 或 y，最终生成用户的一个项目配置对象后（inquirer.prompt）
+2. 接下来就是动态生成 package.json 文件，定义一个 pck 对象，各选项的模板放在 lib/generator 下，比如 lib/generator/vuex 文件夹，vuex 目录：模板文件 template/src/store，入口文件，
+   入口文件功能差不多，接受一个 generator 参数，generator.injectImports/injectRootOptions 针对 main.js 注入 import store from './store'语句， generator.extendPackage 向 pck 对象写入该功能模块需要的依赖包, generator.render 渲染模板,在该功能模块文件夹下的 template 目录下的东西全都用 ejs 渲染出来，ejs 可以条件渲染
+3. 提取独立配置文件，比如 babel.config.js,可以用 generator.extractConfigFiles()提取
+4. 生成文件，这时的 package.json 和模板文件还是在内存中要用 writeFileSync 生成写入
+5. 下载依赖，用 execa 调用子进程
+
+## 开发npm包，组件库
+
+hint: 封装组件库和各种工具包，husky 在发布前执行 linter，跑完测试才能发布
+
+1. yarn add @vue/cli -D 安装 vuecli3 最新的脚手架
+2. npx vue create mycli
+3. 创建完项目后，我们改一下目录结构
+
+- 将 src 改为 examples，
+- 新建一个 packages 存放组件代码
+- lib 文件夹存放打包出来的文件
+
+4. 写入口文件，用 require.context 自动引入注册 Vue 组件
+5. package.json 编写打包命令,script 添加 lib 命令，打包出 dist
+6. 复制一份 package.json 到 dist 文件夹里面，然后在 package.json 里面配置 main 入口和证书
+
+```
+"name": "hejie-plugins",
+"version": "0.1.0",
+"private": false,  // 要设置成非私有化的
+"license": "MIT",  // license协议
+"main": "dist/hejie-plugin-demo.umd.js", // 入口
+```
+
+## webpack 工作流程 (加载 - 编译 - 输出)
+
+- 1、读取配置文件，按命令 初始化 配置参数，创建 Compiler 对象；
+- 2、调用 plugin 的 apply 方法 挂载插件 监听，然后从入口文件开始执行编译；
+- 3、按文件类型，调用相应的 Loader 对模块进行 编译，并在合适的时机点触发对应的事件，调用 Plugin 执行，最后再根据模块 依赖查找 到所依赖的模块，递归执行第三步；
+- 4、将编译后的所有代码包装成一个个代码块 (Chuck)， 并按依赖和配置确定 输出内容。这个步骤，仍然可以通过 Plugin 进行文件的修改;
+- 5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；
+
+打包风格
+commonJs 的 require 风格
+
+## 传输to，断点传输，分片传输
+
+- 普通上传 ctx.request.files，ranameSync 进行上传
+- 多文件，input 标签 multiple，ctx.request.files.forEach
+- 多文件，进度
+  js 内处理增加进度处理的监听函数 xhr.upload.onprogress
+  event.lengthComputable 这是一个状态，表示发送的长度有了变化，可计算
+  event.loaded 表示发送了多少字节
+  event.total 表示文件总大小
+  根据 event.loaded 和 event.total 计算进度，渲染 div.progress
+- 分片上传
+
+1. file.size.slice 进行切割,切割成多个 blob 二进制数据块，放到 chunks 数组里面
+2. 针对每个 blob 发起请求,new formData 对象，最后发起一个 merge 的请求进行合并
+
+```
+for(var i=0;i< chunkCount;i++){
+   var fd = new FormData();   //构造FormData对象
+   fd.append('token', token);
+   fd.append('f1', chunks[i]);
+   fd.append('index', i);
+   xhrSend(fd,function () {
+       sendChunkCount+=1;
+       if(sendChunkCount===chunkCount){//上传完成，发送合并请求
+           console.log('上传完成，发送合并请求');
+           var formD = new FormData();
+           formD.append('type','merge');
+           formD.append('token',token);
+           formD.append('chunkCount',chunkCount);
+           formD.append('filename',name);
+           xhrSend(formD);
+       }
+   });
+}
+
+```
+
+3. 服务端直接监听后用读写流直接合并，占用空间更小效率越快
+
+- 断点传输
+  第一种，将 hash 值存在客户端，客户端通过 localStorage 判断哪个 blob 已经上传过了
+  为每个分段生成 hash 值，使用 spark-md5 库
+  将上传成功的分段信息保存到本地
+  重新上传时，进行和本地分段 hash 值的对比，如果相同的话则跳过，继续下一个分段的上传
+
+第二种，将 hash 存在服务端，每次上传前从服务端获取分片传输信息，将 hash 信息存在服务端
+
+- 文件取消上传
+  为取消按钮绑定事件，调用 xhr.abort();终止上传
+  使用 window.URL.createObjectURL 预览图片，在图片加载成功后需要清除使用的内存 window.URL.revokeObjectURL(this.src);
+  请求的状态，取消请求
+  XHR.readyState == 状态（0，1，2，3，4），而且状态也是不可逆的：
+  0：请求未初始化，还没有调用 open()。
+  1：请求已经建立，但是还没有发送，还没有调用 send()。
+  2：请求已发送，正在处理中（通常现在可以从响应中获取内容头）。
+  3：请求在处理中；通常响应中已有部分数据可用了，没有全部完成。
+  4：响应已完成；您可以获取并使用服务器的响应了。
+
+```
+var abortFn=function(){
+      if(xhr && xhr.readyState!==4){
+       //取消上传
+       xhr.abort();
+   }
+}
+xhr.onreadystatechange = function () {
+    //调用 abort 后，state 立即变成了4,并不会变成0
+    //增加自定义属性  xhr.uploaded
+    if (xhr.readyState == 4 &&  xhr.uploaded) {
+        var obj = JSON.parse(xhr.responseText);   //返回值
+        console.log(obj);
+        if(obj.fileUrl.length){
+            //alert('上传成功');
+        }
+    }
+}
+
+```
+
+- 拖拽上传
+  document.addEventListener('drop',(e)=>{
+  e.preventDefault() // 取消默认的浏览器行为
+  e.dataTransfer.files; // 获取拖拽列表
+  })
+- 剪切板上传
+  页面内增加一个可编辑的编辑区域 div.editor-box,开启 contenteditable
+  为 div.editor-box 绑定 paste 事件
+  处理 paste 事件，从 event.clipboardData || window.clipboardData 获得数据
+  将数据转换为文件 items[i].getAsFile()
+  实现在编辑区域的光标处插入内容 insertNodeToEditor 方法
+
+- node 上传图片
+  读取文件 buffer fs
+  构建 form-data form-data
+  上传文件 node-fetch
+
+## webpack优化，性能优化/代码优化化，webpack优化
+
+- babelrc 里面配置开发环境 dynamic-import-node 动态引入
 - alias: 缓存目录，避免重复寻址；
 - **UglifyJsPlugin**: 压缩、混淆代码；**optimize-css-assets-webpack-plugin**: CSS 代码去重；
 - 打包分割(Bundle Splitting)：使用 **webpack-bundle-analyzer**: 代码分析，**打包分析**，结合 optimization 里面进行 splitChunks 代码分割；此外，optimization 官网上还有其他优化项，具体项目具体决定 https://webpack.js.org/plugins/split-chunks-plugin/
@@ -1599,9 +1789,108 @@ for (let i = 0; i < 5; i++) {
 - 减少重绘与回流，减少回流:
 - 使用事件委托，避免大量的事件绑定；
 
-# 前端日志监控，异常上报，性能监控
+## 微前端to，乾坤
 
-## 日志监控
+- registerMicroApps,start
+- 加载应用（html-loader）
+- css 污染
+  1. 每个子应用用不同的 css 前缀
+  2. 动态样式表
+  3. shadow dom
+  4. css in js
+  5. scoped css
+- js 沙箱
+  1. eval()内部执行 js，完成封装
+  2. window.\*\* = 123 proxy window
+  3. window 快照，每次应用加载前记录一下，应用卸载的时候恢复一下
+- 路由切换
+  1. addEventlistener,拦截一下 hashchange,popstate(history)记录
+- 公共依赖的加载
+- 预加载
+- 父子通信
+- 子应用并行
+
+使用：
+
+1. registerMicroApps 注册微应用（beforeLoad，afterMount 钩子）
+2. 各子应用按要求在入口文件导出 bootstrap,mount,unmount 三个生命周期钩子函数
+3. 子应用 webpack 配置输出文件
+
+```
+output: {
+   // 微应用的包名，这里与主应用中注册的微应用名称一致
+   library: "VueMicroApp",
+   // 将你的 library 暴露为所有的模块定义下都可运行的方式
+   libraryTarget: "umd",
+   // 按需加载相关，设置为 webpackJsonp_VueMicroApp 即可
+   jsonpFunction: `webpackJsonp_VueMicroApp`,
+ },
+```
+
+4. 接入完成
+
+## vite
+
+主要区别在于，对于 Vite，在开发过程中没有捆绑。源代码中的 ES Import 语法直接提供给浏览器，浏览器通过原生的<script module>支持解析这些语法，并为每次导入发起 HTTP 请求。dev 服务器拦截请求，并在必要时执行代码转换。例如，导入到\*.vue 文件的内容在发送回浏览器之前被即时编译。
+这种方法有几个优点：
+因为没有打包工作要做，所以服务器冷启动非常快。
+代码是按需编译的，因此只有在当前页面上实际导入的代码才会编译。我们不必等到整个应用程序打包后才开始开发，这对于有几十个页面的应用程序来说是一个巨大的不同。
+热模块更新（HMR）的性能与模块总数解耦。这使得无论应用程序有多大，HMR 都能保持快速。
+
+## 自动化测试BDD风格
+
+- 测试框架 mocha + 断言库 chai（expect-toBe) + sinon(mock 库) + karma（模拟运行环境）+ istanbul(覆盖率)
+
+## 编辑器
+
+- 虚拟长列表优化，官方推荐 react-virtualized 比较全   和  react-tiny-virtual-list 比较轻巧
+  实现：先给定头和尾的预估高度，撑开容器，用绝对定位可以减少页面回流抖动带来的不好的体验，当滚动到对应的分页时，先 setState（prev => {设置当前页为可见}）加载相应的数据，然后动态更新这一页的高度，将这一页设置 isComputed 计算过了
+
+  除了这几个基础组件外，react-virtualized 还提供了几个高阶组件，比如 ArrowKeyStepper
+  、AutoSizer、CellMeasurer、InfiniteLoader 等，本文具体介绍常用的 AutoSizer、CellMeasurer 和 InfiniteLoader。
+  AutoSizer：使用于一个子元素的情况，通过 AutoSizer 包含的子元素会根据父元素 Resize 的变化，自动调节该子元素的可视区的宽度和高度，同时调节的还有该子元素可视区真实渲染的 dom 元素的数目。
+  CellMeasurer：这个高阶组件可以动态的改变子元素的高度，适用于提前不知道长列表中每一个子元素高度的情况。
+  InfiniteLoader：这个高阶组件用于 Table 或者 List 的无限滚动，适用于滚动时异步请求等情况
+
+- 懒加载，滑动到特定的地方才加载
+- 抽奖，ctx.globalCompositeOperation = 'destination-out',设置画笔路径经过的地方变透明，ctx.beginPath();ctx.moveTo(event.offsetX,event.offsetY)绘制
+- 视差滚动
+- 九宫格，预先算出衰减因子和步骤
+- 定义弹幕池，不断轮询推送弹幕，用 transition 加 transform 实现
+- 3D transform-style: preserve-3d,perspective: 500 定义视角
+- 爬虫，cheerio，node-fetch,正则，轮询 onLoad 判定图片高度
+- canvas.arc 绘制圆形扇形,
+  浏览器可以优化并行的动画动作，更合理的重新排列动作序列，并把能够合并的动作放在一个渲染周期内完成，从而呈现出更流畅的动画效果。
+  requestAnimationFrame 可以循环递归调用，生成的动画经过浏览器优化，动画更流畅；
+  窗口没激活时，动画将停止，省计算资源;
+  可以调节重新渲染，大幅提高网页性能。其中最重要的，它可以将某些代码放到下一次重新渲染时执行。避免短时间内触发大量 reflow
+- 图片处理，用 canvas,drawImage，绘制水印，操作然后 toDataUrl 转为 base64，canvas.drawImage,然后 getImageData 可以获得一个二维矩阵，矩阵有四个数组，代表 RGBA 四个通道的数组，对像素点的通道进行处理, background-blend-mode
+
+## node处理高并发
+
+- 原理：java 多线程是每个请求开个线程连接，开关连接都需要开销，一个人干一件事，node 单线程，所有的请求都是在一条线程上发起，只不过 node 通过事件轮询机制，将异步操作放在一个单独的线程去轮询，且 V8 提供的接口可以很高效地同时处理多个异步操作，其他同步的代码同步执行，等到哪个异步操作完成后立刻执行对应的回调，以此达到无缝镶接类似多线程，一个人干全部的事
+- 单线程的好处就是：
+  无需像多线程那样去关注线程之间的状态同步问题
+  没有线程切换所带来的开销
+  没有死锁存在
+
+- 当然单线程也有许多坏处：
+  无法充分利用多核 CPU（最直白解决方案就是使用 child_process 核心模块或者 cluster：child_process）
+  大量计算占用 CPU 会导致应用阻塞(即不适用 CPU 密集型)
+  错误会引起整个应用的退出（nginx 负载均衡，错误捕捉，崩溃重启,pm2）
+
+- 高并发架构
+  nginx 负载均衡，多个 node 服务，然后数据先到 redis 上取（在内存池里面操作，开销比较高），没有的话再去 sql 里面取
+- 处理高并发
+
+1. let ep = new EventProxy(),发送完成后 ep.emit('ok'),然后 ep.after('ok'，()=>{派发下一个})
+2. async.mapLimit(fetchUrlArr, 5,执行函数，回调函数)
+3. let q = async.queue(执行函数，最大并发数)，q.push(执行函数（参数上下文）)，q.drain = ()=> {全部执行完成}
+
+- 做中间层
+  用 dubbo 远程进程共享，对数据进行进一层封装，解决跨域，处理高并发
+
+## 前端日志监控，异常上报，性能监控
 
 1. window.onError
 2. 跨端脚本无法准确捕获异常
@@ -3733,7 +4022,7 @@ test: /[\\/]node_modules[\\/]/,
 // 当 webpack 处理文件路径时，它们始终包含/在 Unix 系统和\Windows 上。这就是为什么[\\/]在{cacheGroup}
 // .test 字段中使用 in 来表示路径分隔符的原因。/ 或\in { cacheGroup }.test 会在跨平台使用时引起问题。
 
-## webpack原理，实现webpack
+## webpack 原理，实现webpack
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
