@@ -84,7 +84,6 @@
   - [GET和POST有什么区别？](#get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [前端加密的常见场景和方法](#%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E5%92%8C%E6%96%B9%E6%B3%95)
   - [https用哪些端口进行通信，这些端口分别有什么用](#https%E7%94%A8%E5%93%AA%E4%BA%9B%E7%AB%AF%E5%8F%A3%E8%BF%9B%E8%A1%8C%E9%80%9A%E4%BF%A1%E8%BF%99%E4%BA%9B%E7%AB%AF%E5%8F%A3%E5%88%86%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8)
-- [文件上传，断点上传，分片上传，断点传输](#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%96%AD%E7%82%B9%E4%B8%8A%E4%BC%A0%E5%88%86%E7%89%87%E4%B8%8A%E4%BC%A0%E6%96%AD%E7%82%B9%E4%BC%A0%E8%BE%93)
 - [老码农的心得](#%E8%80%81%E7%A0%81%E5%86%9C%E7%9A%84%E5%BF%83%E5%BE%97)
   - [如何终止请求](#%E5%A6%82%E4%BD%95%E7%BB%88%E6%AD%A2%E8%AF%B7%E6%B1%82)
   - [格式化金额](#%E6%A0%BC%E5%BC%8F%E5%8C%96%E9%87%91%E9%A2%9D)
@@ -1656,12 +1655,14 @@ commonJs 的 require 风格
   event.loaded 表示发送了多少字节
   event.total 表示文件总大小
   根据 event.loaded 和 event.total 计算进度，渲染 div.progress
-- 分片上传
+- 大文件分片上传
 
-1. file.size.slice 进行切割,切割成多个 blob 二进制数据块，放到 chunks 数组里面
-2. 针对每个 blob 发起请求,new formData 对象，最后发起一个 merge 的请求进行合并
+1. file.slice 进行切割,切割成多个 blob 二进制数据块，放到 chunks 数组里面
+2. 针对每个 blob 发起请求,new formData 对象，new formDara.append()可以添加自定义的字段，最后一个添加个 type= merge 的字段请求合并
+3. node 端接收到 body.type === merge 时，设置一条读的流，设置不结束，对文件分片进行合并，合并完成后 fs.unlink 掉即可，服务端直接监听后用读写流直接合并，占用空间更小效率越快
 
 ```
+<!-- 分片 -->
 for(var i=0;i< chunkCount;i++){
    var fd = new FormData();   //构造FormData对象
    fd.append('token', token);
@@ -1680,18 +1681,30 @@ for(var i=0;i< chunkCount;i++){
        }
    });
 }
-
+//合并文件
+function fnMergeFile(){
+   var fname = `${folder}${cindex}-${fileToken}`;
+   var readStream = fs.createReadStream(fname);
+   readStream.pipe(writeStream, { end: false });
+   readStream.on("end", function () {
+       fs.unlink(fname, function (err) {
+           if (err) {
+               throw err;
+           }
+       });
+       if (cindex+1 < chunkCount){
+           cindex += 1;
+           fnMergeFile();
+       }
+   });
+}
 ```
 
-3. 服务端直接监听后用读写流直接合并，占用空间更小效率越快
-
 - 断点传输
-  第一种，将 hash 值存在客户端，客户端通过 localStorage 判断哪个 blob 已经上传过了
-  为每个分段生成 hash 值，使用 spark-md5 库
-  将上传成功的分段信息保存到本地
-  重新上传时，进行和本地分段 hash 值的对比，如果相同的话则跳过，继续下一个分段的上传
-
-第二种，将 hash 存在服务端，每次上传前从服务端获取分片传输信息，将 hash 信息存在服务端
+  localstorage：文件名和大小唯一确定一个文件，记录该文件已经上传成功的分片索引数组
+  上传记录可以存在客户端或者服务端
+  第一种：id 是文件名加大小，通过分片索引数组确定文件已经上传成功的分片部分，已经上传过直接跳过
+  第二种：id 用 spark-md5 生成
 
 - 文件取消上传
   为取消按钮绑定事件，调用 xhr.abort();终止上传
@@ -2431,26 +2444,6 @@ http 状态码 301 永久重定向，302 临时重定向
 
 - 443 端口用来验证服务器端和客户端的身份，比如验证证书的合法性
 - 80 端口用来传输数据（在验证身份合法的情况下，用来数据传输）
-
-# 文件上传，断点上传，分片上传，断点传输
-
-https://juejin.im/post/5da14778f265da5bb628e590
-
-- 文件上传原理
-- 最原始的文件上传
-- 使用 koa2 作为服务端写一个文件上传接口
-- 单文件上传和上传进度
-- 多文件上传和上传进度
-- 拖拽上传
-- 剪贴板上传
-- 大文件上传之分片上传
-- 大文件上传之断点续传
-- node 端文件上传
-
-1. 分片+stream 传输，维护一个分片列表
-2. 断点续传+文件秒传
-3. 抽样计算整个文件 hash，防止文件重复，为了文件秒传做基础
-4. 分片都传输成功后，以追加方式合并流文件
 
 # 老码农的心得
 
