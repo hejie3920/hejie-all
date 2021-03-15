@@ -1,32 +1,3 @@
-// let log = console.log
-// console.log = (...args) => {
-//   log.apply(null, args)
-//   let res = args.join(' ')
-//   document.write(`${res}<br/>`)
-// }
-
-// 深拷贝
-// let a = {
-//   name: "haha",
-//   age: 24
-// }
-// let b = utils.deepClone(a)
-// b.birth = 724
-// console.log("TCL: ", a, b)
-
-// 正则解码
-// let str = "20[a3[b]]"
-// // let str = "2[ac]2[bc]"
-// console.log(utils.decode(str))
-
-// 找数组中最接近指定值的值
-// let arr = [2, 4, 8, 9, 34, 2, 76, 34, 12, 4, 56, 7, 23, 12]
-// console.log("TCL: ", utils.findNearest(arr, 42))
-// console.log(arr)
-
-// 获取类型
-// console.log("TCL: ", utils.getType(arr))
-
 // 节流
 /**
  * 编码题二：实现一个检验对象是否循环指向的方法
@@ -62,3 +33,23 @@
 // let arrtmp = [1, 2, 4, 4, 3, 5]
 // console.warn('TCL: ', findTopSum(arrtmp, 2, 4))
 
+// // 考察的点，class的使用，new 对象
+
+// // // for i in [1..N]
+// //       for w in [1..W]
+// //         dp[i][w] = Math.max(
+// //           dp[i - 1][w],
+// //           dp[i-1][w-wt[i-1]] + <val i-1=""></val>
+// //         )
+
+// // 0-1背包问题
+// // function knapsack(W, N, wt = [], val = []) {
+// //   const dp = Array.from(new Array(N+1),() => new Array(W+1).fill(0))
+// //   for
+
+// // }
+
+// const W = 4
+// const N = 3
+// const wt = [2, 1, 3]
+// const val = [4, 2, 3]

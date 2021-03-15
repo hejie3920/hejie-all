@@ -5,6 +5,7 @@ import { createVNode } from "./createVNode";
 // 在 vue3 里面 createApp 是属于 renderer 对象的
 // 而 renderer 对象需要创建
 // 这里我们暂时不实现
+// 在PIXI飞机大战会用到
 
 export const createApp = (rootComponent) => {
   const app = {

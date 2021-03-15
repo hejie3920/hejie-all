@@ -27,8 +27,7 @@
   - [继承的几种方式](#%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F)
   - [ES5的继承和ES6的继承有什么区别](#es5%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8Ces6%E7%9A%84%E7%BB%A7%E6%89%BF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [实现promise,promiseto，](#%E5%AE%9E%E7%8E%B0promisepromiseto)
-  - [手动实现promise.race,promise.all](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0promiseracepromiseall)
-  - [实现promise.catch,promise.finally](#%E5%AE%9E%E7%8E%B0promisecatchpromisefinally)
+  - [手动实现promise.race,promise.all,promise.catch,promise.finally,promise.allSettled](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0promiseracepromiseallpromisecatchpromisefinallypromiseallsettled)
   - [实现async/await](#%E5%AE%9E%E7%8E%B0asyncawait)
   - [豪华版实现promise](#%E8%B1%AA%E5%8D%8E%E7%89%88%E5%AE%9E%E7%8E%B0promise)
   - [yieldto，](#yieldto)
@@ -46,6 +45,7 @@
   - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
   - [使用闭包实现每隔一秒打印1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
 - [亮点to](#%E4%BA%AE%E7%82%B9to)
+  - [优化](#%E4%BC%98%E5%8C%96)
   - [实现webpack](#%E5%AE%9E%E7%8E%B0webpack)
   - [开发插件，开发plugin](#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91plugin)
   - [自定义loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader)
@@ -59,6 +59,12 @@
   - [自动化测试BDD风格](#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95bdd%E9%A3%8E%E6%A0%BC)
   - [编辑器](#%E7%BC%96%E8%BE%91%E5%99%A8)
   - [node处理高并发](#node%E5%A4%84%E7%90%86%E9%AB%98%E5%B9%B6%E5%8F%91)
+  - [PIXIJS，游戏，飞机大战](#pixijs%E6%B8%B8%E6%88%8F%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98)
+  - [domdiff](#domdiff)
+  - [reactto](#reactto)
+  - [hook](#hook)
+  - [Vue原理，Vueto](#vue%E5%8E%9F%E7%90%86vueto)
+  - [Vue3to](#vue3to)
   - [前端日志监控，异常上报，性能监控](#%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7%E5%BC%82%E5%B8%B8%E4%B8%8A%E6%8A%A5%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7)
   - [性能监控](#%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7)
   - [日志上报](#%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5)
@@ -277,6 +283,8 @@
   - [快速排序（快排）](#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%BF%AB%E6%8E%92)
   - [原地快排](#%E5%8E%9F%E5%9C%B0%E5%BF%AB%E6%8E%92)
   - [选择排序](#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
+  - [最长递增子序列，稳定子序列](#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%A8%B3%E5%AE%9A%E5%AD%90%E5%BA%8F%E5%88%97)
+  - [最长回文字符串](#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2)
   - [插入排序](#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)
   - [二分查找（递归）](#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E9%80%92%E5%BD%92)
   - [二分补齐](#%E4%BA%8C%E5%88%86%E8%A1%A5%E9%BD%90)
@@ -293,10 +301,10 @@
   - [驼峰命名](#%E9%A9%BC%E5%B3%B0%E5%91%BD%E5%90%8D)
   - [解析urlquery为对象](#%E8%A7%A3%E6%9E%90urlquery%E4%B8%BA%E5%AF%B9%E8%B1%A1)
   - [实现eventListener,实现emitter,实现eventEmitter](#%E5%AE%9E%E7%8E%B0eventlistener%E5%AE%9E%E7%8E%B0emitter%E5%AE%9E%E7%8E%B0eventemitter)
+  - [判断占字节大小，字节大小](#%E5%88%A4%E6%96%AD%E5%8D%A0%E5%AD%97%E8%8A%82%E5%A4%A7%E5%B0%8F%E5%AD%97%E8%8A%82%E5%A4%A7%E5%B0%8F)
   - [统计字符出现最多次的字符](#%E7%BB%9F%E8%AE%A1%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6)
   - [统计出现最多的单词](#%E7%BB%9F%E8%AE%A1%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E5%8D%95%E8%AF%8D)
   - [多行文本溢出](#%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA)
-  - [Domdiff算法](#domdiff%E7%AE%97%E6%B3%95)
 - [数据结构to，](#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84to)
   - [遍历树](#%E9%81%8D%E5%8E%86%E6%A0%91)
   - [遍历树结构](#%E9%81%8D%E5%8E%86%E6%A0%91%E7%BB%93%E6%9E%84)
@@ -390,9 +398,10 @@
   - [统计字符出现最多次的字符](#%E7%BB%9F%E8%AE%A1%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6-1)
   - [统计出现最多的单词](#%E7%BB%9F%E8%AE%A1%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E5%8D%95%E8%AF%8D-1)
   - [多行文本溢出](#%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA-1)
-  - [Domdiff算法](#domdiff%E7%AE%97%E6%B3%95-1)
   - [遍历树](#%E9%81%8D%E5%8E%86%E6%A0%91-1)
+  - [接雨水问题](#%E6%8E%A5%E9%9B%A8%E6%B0%B4%E9%97%AE%E9%A2%98)
   - [遍历树结构](#%E9%81%8D%E5%8E%86%E6%A0%91%E7%BB%93%E6%9E%84-1)
+  - [实现http拦截器](#%E5%AE%9E%E7%8E%B0http%E6%8B%A6%E6%88%AA%E5%99%A8)
   - [二叉树相关性质](#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9B%B8%E5%85%B3%E6%80%A7%E8%B4%A8-1)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -1085,61 +1094,54 @@ let promise = new KPromise((resolve, reject) => {
 
 ```
 
-## 手动实现promise.race,promise.all
+## 手动实现promise.race,promise.all,promise.catch,promise.finally,promise.allSettled
 
 这些方法接受一个数组作为参数，p1、p2、p3 都是 Promise 实例，如果不是，
 就会先调用下面讲到的 Promise.resolve 方法，将参数转为 Promise 实例，再进一步处理。
 
 ```
-Promise._race = arr =>
+Promise.prototype.race = arr =>
   new Promise((resolve, reject) => {
     arr.forEach(item => {
       item.then(resolve, reject)
     })
   })
-Promise._all(list) {
+Promise.prototype.all = function (promiseArr) {
+  let results = [];
   return new Promise((resolve, reject) => {
-    let resValues = []
-    let counts = 0
-    for (let [i, p] of list) {
-      resolve(p).then(
-        res => {
-          counts++
-          resValues[i] = res
-          if (counts === list.length) {
-            resolve(resValues)
-          }
-        },
-        err => {
-          reject(err)
+    let i = 0, n = 0;
+    // 执行所有的 Promise 对象
+    while (n < promiseArr.length) {
+      promiseArr[n].then(res => {
+        results[n] = res;
+        i++;
+        if (i === promiseArr.length) {
+          resolve(results);
         }
-      )
+      }).catch(err => {
+        reject(err);
+      });
+      n++;
     }
   })
 }
-
-```
-
-## 实现promise.catch,promise.finally
-
-catch 方法其实就是执行一下 then 的第二个回调
-
-```
-catch(rejectFn) {
-  return this.then(undefined, rejectFn)
+Promise.prototype.catch = function(onRejected) {
+  return this.then(null, onRejected)
 }
-finally方法
-finally(callback) {
-  return this.then(
-    value => MyPromise.resolve(callback()).then(() => value),
-    // MyPromise.resolve执行回调,并在then中return结果传递给后面的Promise
-    reason => MyPromise.resolve(callback()).then(() => { throw reason })
-    // reject同理
-  )
+Promise.prototype.finally = function (cb) {
+  return this.then(val => {
+    cb()
+    return val
+  }).catch(err => {
+    cb()
+    return err
+  })
 }
+
 静态的resolve方法
 static resolve(value) {
-  if(value instanceof MyPromise) return value // 根据规范, 如果参数是Promise实例, 直接return这个实例
+  if(value instanceof MyPromise) return value
+  // 根据规范, 如果参数是Promise实例, 直接return这个实例
   return new MyPromise(resolve => resolve(value))
 }
 //静态的reject方法
@@ -1147,6 +1149,29 @@ static reject(reason) {
   return new MyPromise((resolve, reject) => reject(reason))
 }
 
+Promise.prototype.allSettled = (funcArr) => {
+  return new Promise((resolve) => {
+    let sttled = 0
+    let result = []
+    for(let index = 0;index<funcArr.length;index++){
+      const element = funcArr[index]
+      element
+      .then(res => {
+        result[index] = {
+          status: 'fulfilled',
+          value: res
+        }
+      })
+      .catch(err => {
+        result[index] = {
+          status: 'rejected',
+          reason: err
+        }
+      })
+      .finally(() => { ++sttled === funcArr.length && resolve(result) })
+    }
+  })
+}
 ```
 
 ## 实现async/await
@@ -1564,6 +1589,89 @@ for (let i = 0; i < 5; i++) {
 
 # 亮点to
 
+## 优化
+
+- 大小
+  资源体积和按需请求：caniuse 网站查询 webp 在 safari 里面不支持
+  webp 的处理，图像 OSS 处理（指数级增长，只对超 20k 以上阈值的图片进行处理），dynamic-import-node 动态引入，lighthouse 进行排查修复，tiny(自动 tiny 压缩上传)，前端 gzip 打包，polyfill（体积很大），moment 本地化，异步加载，预加载，懒加载，打包压缩 webpack4，控制 cookie 大小
+- 时序优化，白屏
+  ssr,自制骨架屏组件，防抖节流，promise.all，ssr，abort 终止请求，prefect，
+  link rel=‘dns-prefetch’ href=‘\*\*\*.com’预解析
+  link rel=preload as='imgs' href=
+- 图片并发请求限制
+- measure 高阶组件
+- 合理利用缓存
+  cdn,cdn 预热，cdn 刷新
+
+```
+高并发控制，promise.race结合链式调用
+
+function limitLoad(urls, handler, limit) {
+  const sequence = [].concat(urls)
+  let promises = []
+  promises = sequence.splice(0, limit).map((url, index) => {
+    return handler(url).then(() => {
+      return index
+    })
+  })
+  let p = Promise.race(promises)
+  for (let i = 0; i < sequence.length; i++) {
+    p = p.then(res => {
+      promises[res] = handler(sequence[i]).then(() => {
+        return res
+      })
+      return Promise.race(promises)
+    })
+  }
+}
+
+function loadImg(url) {
+  return new Promise((resolve, reject) => {
+    let time = Math.random() * 1000
+    setTimeout(() => {
+      console.warn(`${url}加载完成`)
+      resolve(`${url}加载完成`)
+    }, time)
+  })
+}
+let tmp = new Array(19).fill(0).map((i, d) => d)
+limitLoad(tmp, loadImg, 3)
+
+// 检测是否支持webp
+function checkWebp() {
+  try {
+    return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0
+  } catch (e) {
+    return false
+    //TODO handle the exception
+  }
+}
+
+function getWebpImageUrl(url) {
+  if (!url) {
+    throw Error('url不能为空')
+  }
+  if (url.startsWith('data:')) return url
+  if (!checkWebp) return url
+  return (url = '?x-oss-process****')
+}
+
+<!-- measure -->
+装饰器
+export function measure(target,name,descriptor){
+  const oldValue = descriptor.value
+  descriptor.value = async function(){
+    console.time(name)
+    const res = await oldValue.apply(this,arguments)
+    console.timeEnd(name)
+    return res
+  }
+  return descriptor
+}
+```
+
+promise 的缓存
+
 ## 实现webpack
 
 1. 先实现一个解析器单独分析一个模块，读取配置，找入口依赖文件，babel-parser 解析成 ast 抽语法树，然后用 babel-traverse 遍历所有的依赖，生成该模块的依赖数组，然后用 babel-core 和 babel-preset-env 把 ast 转为 code，至此一个模块就解析完成了，返回{filename, code, dependiences}
@@ -1844,11 +1952,28 @@ output: {
 
 ## vite
 
-主要区别在于，对于 Vite，在开发过程中没有捆绑。源代码中的 ES Import 语法直接提供给浏览器，浏览器通过原生的<script module>支持解析这些语法，并为每次导入发起 HTTP 请求。dev 服务器拦截请求，并在必要时执行代码转换。例如，导入到\*.vue 文件的内容在发送回浏览器之前被即时编译。
+内核：esbuild
+
+- go 语言编写，语言可以编译为本地代码
+- 解析，和生成文件和 sourcemap 全部完全并行化
+- 无需昂贵的数据转换和处理，只需很少几步可完成所有操作
+- 以提高编译速度为编写代码时的第一原则，避免不必要的内存分配和配置
+  优点：本质上就是启动一台静态页面服务器，文件代码不打包，直接拦截请求加载不同的模块，即时的模块热更新，快速的冷启动，真正的按需编译
+  缺点：
+
+1. 生产环境下，还是需要打包才能运行的（因为 vue-cli 脚手架基于 webpack 的热更新，所以必须打包才能在生产环境上运行，而 vite 基于缓存的热更新，立即编译当前修改文件，还会使用 http 缓存机制来加载内容）
+2. ES Modules 模块系统本身就存在环境兼容问题，兼容问题
+3. 零碎的模块化划分太颗粒化，js 和 css 的模块化也会被划分，请求数太多
+
+主要区别在于，对于 Vite，在开发过程中没有捆绑。源代码中的 ES Import 语法直接提供给浏览器，浏览器通过原生的<script module>支持解析这些语法，并为每次导入发起 HTTP 请求。dev 服务器拦截请求，并在必要时执行代码转换。例如，导入到\*.vue 文件的内容在发送回浏览器之前被即时编译。省略打包的不走
 这种方法有几个优点：
 因为没有打包工作要做，所以服务器冷启动非常快。
 代码是按需编译的，因此只有在当前页面上实际导入的代码才会编译。我们不必等到整个应用程序打包后才开始开发，这对于有几十个页面的应用程序来说是一个巨大的不同。
 热模块更新（HMR）的性能与模块总数解耦。这使得无论应用程序有多大，HMR 都能保持快速。
+
+原理：
+
+1. plugin,大致分为自定义 plugin，hmr,htmlRewrite,moduleRewrite,vue,esbuild,assetPath,serveState,cssPlugin 这些，利用 koa 中间件的机制，进行处理
 
 ## 自动化测试BDD风格
 
@@ -1902,6 +2027,224 @@ output: {
 
 - 做中间层
   用 dubbo 远程进程共享，对数据进行进一层封装，解决跨域，处理高并发
+
+## PIXIJS，游戏，飞机大战
+
+1. 创建 canvas 场景，用到 vue/runtime-core 的 createRenderer 创建渲染器
+2. root = renderer.createApp(gameComponent)，root.mount(game.stage 游戏舞台)
+
+```
+stage: PIXI.Application({
+ width: stage.width,
+ height: stage.height
+})
+```
+
+3. 调用 vue/runtime-core 的 h 函数进行绘制，其实就是 createElement，页面里面调用 vue3 的各种复合式 api，
+   h, ref, defineComponent, watch，onMounted，onUnmounted，setup 进行开发
+
+## domdiff
+
+1. 同级比较
+2. 组件类型比较
+3. 元素比较，domdiff
+
+- react15
+  https://blog.csdn.net/qq_36407875/article/details/84965311
+  游标，新旧两个数组，遍历新数组，默认游标是 0，如果发现有同样可以复用的元素则直接移动老元素到新的位置，并且将游标记录标志位老元素的索引，游标名为 LastIndex（结果数组里面最后一个节点在老数组里面的索引），顾名思义，如果后续看到可以复用的节点，且节点在老数组里面索引小于 lastIndex 的（代表这节点在旧数组里面是排在前面的，但我们是按顺序遍历新数组的，所以必然应该是排在后面的，所以需要进行移动操作），直到全部遍历完成，将多出的或者欠缺的补上或者删除
+  同样有 key 问题
+
+key 的作用是用在 sameNode 里面，type 和 key 相同才是可复用的节点
+
+结论：三句箴言
+所以经过这么一分析 react diff 的三大策略，我们能够在开发中更加进一步的提高 react 的渲染效率。
+箴言一：在开发组件时，保持稳定的 DOM 结构会有助于性能的提升；
+箴言二：使用 shouldComponentUpdate()方法节省 diff 的开销
+箴言三：在开发过程中，尽量减少类似将最后一个节点移动到列表首部的操作，当节点数量过大或更新操作过于频繁时，在一定程度上会影响 React 的渲染性能。
+
+- react16
+  16 的算法和 vue3 的一样，对于 children 也是直接从头开始比对消消乐，两个树同时开始移动，多退少补，只是采用的数据结构不同，16 加多了一点，如果判断节点不可复用（key 不同），fiber 会从 chidren 和 sibling 里面去尽量寻找同 key 的，以达到最大化的复用
+
+- vue2
+  每个循环都是：新旧两个数组头尾四种匹配相互消消乐，能消就消，不能的话进入 planB，直接找新数组第一个是不是在老数组有可复用的，有的话进行相应的移动操作，没有的话新建插入即可，进行下一个循环，直到新老有一条全部遍历完成，将多出的或者欠缺的补上或者删除
+  key 除了用在 sameVnode 里面外，key 和 sel（标签选择器）相同时才认为是否可复用
+  还可以用在头尾相消无果进入 planB 后，可以直接按索引来找而不用再遍历寻找
+
+- vue3
+  https://www.jb51.net/article/189862.htm
+  vue3 的 diff 做了些优化，做法不一样了，直接头头相消，尾尾相消，开始向中间靠拢而不再头尾比较，先消掉头尾公共的部分，然后多退少补，如果中间有不确定的部分，直接进入核心 diff，首先建立 weakMap 索引映射新节点列表的 key 和 index,定义一个 newIndexToOldIndexMap 数组用来在正确的定位放老 dom，遍历老节点列表，如果有 key，直接可以通过 key 找到新的定位，如果没有，就遍历找最新的定位，然后针对 newIndexToOldIndexMap 求一个最长稳定递增子序列，用来做为基础的参照序列，其他新增或者发生移动的节点都参照这个序列进行移动
+
+## reactto
+
+- fiber 为什么要用双向链表
+  双向链表：有两个指针，一个指向前一个节点，一个后一个节点。
+  优点：可以找到前驱和后继，可进可退；
+  缺点：增加删除节点复杂，需要多分配一个指针存储空间。
+- 为什么按深度遍历
+  深度遍历可以减少回溯的步骤，假设按广度遍历，我从左到右之后还要返回最左右再进行下一层，比较耗时
+- 数据结构
+  16 之前：基于树的深度遍历实现的 Reconciler: 一旦进入调用栈便无法暂停;
+  fiber:基于链表实现的 Reconciler: 在 while(true) {} 的循环中, 可以通过 currentNode 保存需要操作的开始节点，等下一次协调时从断点开始，赋值重新得到需要操作的节点，而在赋值之前便可以'暂停'来执行其它逻辑, 这也是 requestIdleCallback 能得以在 Fiber Reconciler 的原因。
+  同层节点，sibling 是单向链表，父子节点间是双向链表
+
+-
+
+1. react,react-dom,scheduler,react-conciler
+2. 增量渲染
+3. window.requestIdleCallback(callback,)
+
+fiber {
+child 而不是 children,采用链表，指向第一个子节点，下一个节点通过 sibling 里面去找
+}
+
+## hook
+
+不编写 class 就能用 state 以及其他特性，
+
+- 为什么 hook 只能写在最顶层最外层，不能写在条件语句里面
+  ：index 会乱，因为 hook 是存到数组上面去的
+
+- 多个 hook 怎么保证有序
+  react 是根据 useState 出现的顺序来定的。wipFiber.hooks 是一个数组，每次 updateFunctionComponent 函数的时候都会初始化或更新 state，并推入 hooks 数组，至于是哪个 state 是通过数组下标 index 来取对应的
+
+- useMemo 和 useCallback: 判断是不是除此，是初次的话执行函数吧结果放在 hook.memorizeState 上面，下次查看依赖项是否有改变，没改变的话直接返回缓存值
+  useMemo 和 useCallback 比较类似，都是优化手段，useMemo 是用来存储函数运行得到的值，useCallback 是为了存储某个函数的引用，依赖没改变，函数关联的组件不会重新改变
+
+```
+useMemo((n)=>{
+  return n * 2
+},[count])
+
+```
+
+## Vue原理，Vueto
+
+1. new Vue 的时候对 data 的对象进行遍历，将 data 代理给虚拟机，在 Vue 类里面的 observe 方法里面进行观察每个可变数据都进行监听响应，响应函数如下
+   对每个数据新建一个依赖类对象,总观察者用来通知 dep，dep 再去通知所有订阅的 watch 进行更新
+
+```
+obeserve函数：
+// 遍历对象
+Object.keys(value).forEach(key => {
+    this.defineReactive(value, key, value[key])
+    // 同时代理到vm上，作用是相当于this.showFlag会相当于this.$data.showFlag
+    this.proxyData(key);
+
+})
+proxyData(key) {
+ Object.defineProperty(this, key, {
+     get(){
+         return this.$data[key];
+     },
+     set(newVal){
+       this.$data[key] = newVal;
+     }
+ })
+}
+
+
+defineReactive(obj, key, val) {
+  <!-- 这一句比较重要，每个数据里面定义个管家，管家相当于数组，后面手动this.showFlag这样调用时，会触发下面的get，然后将相应的watcher的回调更新器推进去 -->
+   const dep = new Dep();
+   Object.defineProperty(obj, key, {
+       get(){
+           // 将Dep.target添加到dep中
+           Dep.target && dep.addDep(Dep.target)
+           return val;
+       },
+       set(newVal){
+         if (newVal !== val) {
+             val = newVal;
+             // console.log(`${key}更新了：${newVal}`);
+             dep.notify();
+         }
+       }
+   })
+   // 递归
+   this.observe(val);
+}
+```
+
+2. 执行 compile 方法对节点进行递归遍历，对 nodeType 进行判断，区分文本节点，对节点上的语法进行解析进行逻辑的处理，
+   利用正则表达式，解析出相应的指令，然后收集依赖调用 this.update()去订阅,每个更新器 new 一个 watcher,watcher 记录一下相应的 updater 推入回调数组
+
+```
+ Array.from(childNodes).forEach(node => {
+   // 判断节点类型
+   if (node.nodeType === 1) {
+     // element节点
+     // console.log('编译元素节点'+node.nodeName);
+     this.compileElement(node);
+   }
+   <!-- 如果是文本节点，比如节点与节点间的空格也是 -->
+   else if (this.isInterpolation(node)) {
+     // 插值表达式
+     this.compileText(node);
+   }
+   // 递归子节点
+   if (node.childNodes && node.childNodes.length > 0) {
+     this.compile(node);
+   }
+ });
+```
+
+3. 由于 data 的某个 key 在⼀个视图中可能出现多次，所以每个 key 都需要⼀个管家 Dep 来管理多个
+   Watcher
+4. 将来 data 中数据⼀旦发⽣变化，会⾸先找到对应的 Dep，通知所有 Watcher 执⾏更新函数
+
+## Vue3to
+
+原理：
+实现三个函数：
+effect：将回调函数保存起来备用，立即执行一次回调函数触发它里面一些响应数据的 getter
+track：getter 中调用 track，把前面存储的回调函数和当前 target,key 之间建立映射关系
+trigger：setter 中调用 trigger，把 target,key 对应的响应函数都执行一遍
+
+用 proxy 进行结合 reflect 进行开发
+
+```
+<!-- 这下面两句是用来解决重复代理的问题 -->
+const toProxy = new WeakMap() // 形如obj:observed
+const toRaw = new WeakMap() // 形如observed:obj
+
+// 嵌套对象不能响应，用递归来添加响应
+const isObject = val => val !== null && typeof val === 'object'
+
+function reactive(obj) {
+  if (!isObject(obj)) { return obj }
+  // 查找缓存，避免重复代理
+  if (toProxy.has(obj)) {
+    return toProxy.get(obj)
+  }
+  if (toRaw.has(obj)) {
+    return obj
+  }
+  // Proxy相当于在对象外层加拦截 // http://es6.ruanyifeng.com/#docs/proxy
+  const observed = new Proxy(obj, {
+    get(target, key, receiver) {
+      const res = Reflect.get(target, key, receiver)
+      console.log(`获取${key}:${res}`)
+      return isObject(res) ? reactive(res) : res // 如果是对象需要递归
+    },
+    set(target, key, value, receiver) {
+      const res = Reflect.set(target, key, value, receiver)
+      console.log(`设置${key}:${value}`)
+      return res
+    },
+    deleteProperty(target, key) {
+      const res = Reflect.deleteProperty(target, key)
+      console.log(`删除${key}:${res}`)
+      return res
+    }
+  })
+  // 缓存代理结果
+  toProxy.set(obj, observed)
+  toRaw.set(observed, obj)
+
+  return observed
+}
+
+```
 
 ## 前端日志监控，异常上报，性能监控
 
@@ -2021,7 +2364,7 @@ console.log("TCL: ", add(1)(2)(3)(4)) 10
 function curry(fn) {
   return function curried() {
     var args = [].slice.call(arguments)
-    arguments ==> [传入参数，length:长度]  例如：【1，2，3，length:0]
+    // arguments ==> [传入参数，length:长度]  例如：【1，2，3，length:0]
     之所以写上面那句是为了把长度去掉，变成纯传入参数的数组
     结果： 【1，2，3】
 
@@ -6072,6 +6415,121 @@ function selectionSort(arr) {
 }
 ```
 
+## 最长递增子序列，稳定子序列
+
+给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
+
+子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
+
+```
+<!-- 动态规划 -->
+var lengthOfLIS = function(nums, dp = [1]) {
+    for (let i = 1; i < nums.length; i++){
+        dp[i] = 1
+        for (let j = 0; j < i; j++) {
+            nums[i] > nums[j] && (dp[i] = Math.max(dp[i], dp[j] + 1))
+        }
+    }
+    return Math.max(...dp)
+}
+};
+
+<!-- 贪心加二分法 -->
+var lengthOfLIS = function(nums) {
+    let len = 1, n = nums.length
+    if (n === 0) return 0
+    let d = []
+    d[len] = nums[0]
+    for (let i = 1; i < n; ++i) {
+        if (nums[i] > d[len]) {
+            d[++len] = nums[i];
+        } else {
+            let l = 1, r = len, pos = 0; // 如果找不到说明所有的数都比 nums[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0
+            while (l <= r) {
+                let mid = (l + r) >> 1;
+                if (d[mid] < nums[i]) {
+                    pos = mid;
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
+            }
+            d[pos + 1] = nums[i];
+        }
+    }
+    return len;
+};
+```
+
+## 最长回文字符串
+
+```
+动态规划/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindrome = function(s) {
+    let n = s.length;
+    let res = '';
+    let dp = Array.from(new Array(n),() => new Array(n).fill(0));
+    for(let i = n-1;i >= 0;i--){
+        for(let j = i;j < n;j++){
+            dp[i][j] = s[i] == s[j] && (j - i < 2 || dp[i+1][j-1]);
+            if(dp[i][j] && j - i +1 > res.length){
+                res = s.substring(i,j+1);
+            }
+        }
+    }
+    return res;
+};
+
+中心扩展算法
+回文串一定是对称的
+每次选择一个中心，进行中心向两边扩展比较左右字符是否相等
+中心点的选取有两种
+aba，中心点是b
+aa，中心点是两个a之间
+所以共有两种组合可能
+left：i，right：i
+left：i，right：i+1
+/**
+ * @param {string} s
+ * @return {string}
+ */
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindrome = function(s) {
+    let len = s.length;
+    function getMax(left,right){
+        while(left>=0&&right<len&&s[left]===s[right]){
+            left--;
+            right++
+        }
+        return{
+            left:left+1,//因为while循环停止时left已经--，所以应该退一格，right同理
+            right:right-1
+        }
+    }
+
+    let start=0,end=0;
+    for(let i=0;i<len;i++){
+        let obj = getMax(i,i);//aba类型
+        let obj2 = getMax(i,i+1);//abba类型
+        let f = obj.right - obj.left > obj2.right - obj2.left;
+        let maxObj = f?obj:obj2;
+        if(maxObj.right-maxObj.left>end-start){
+            start = maxObj.left;
+            end = maxObj.right;
+        }
+    }
+    return s.slice(start,end+1)
+};
+
+
+```
+
 ## 插入排序
 
 ```
@@ -6480,37 +6938,91 @@ function parseParam(url) {
 ```
 class EventEmitter {
   constructor() {
-    this.events = {}
+    this._events = {}
   }
   on(event, callback) {
-    let callbacks = this.events[event] || []
+    // 添加监听事件及回调
+    let callbacks = this._events[event] || []
     callbacks.push(callback)
-    this.events[event] = callbacks
+    this._events[event] = callbacks
     return this
   }
   off(event, callback) {
-    let callbacks = this.events[event]
-    this.events[event] = callbacks && callbacks.filter(fn => fn !== callback)
+    //停止监听event事件
+    let callbacks = this._events[event]
+    this._events[event] = callbacks && callbacks.filter(fn => fn !== callback)
     return this
   }
   emit(event, ...args) {
-    let callbacks = this.events[event]
-    callbacks.forEach(fn => {
-      fn(...args)
-    })
+    //触发事件,并把参数传给事件的处理函数
+    const callbacks = this._events[event]
+    callbacks.forEach(fn => fn.apply(null, args))
     return this
   }
-  once(event, callback) {
-    let wrapFun = function (...args) {
-      callback(...args)
-      this.off(event, wrapFun)
+  once(event, fn) {
+    const func = (...args) => {
+      this.off(event, func)
+      fn.apply(this, args)
     }
-    this.on(event, wrapFun)
+    this.on(event, func)
     return this
   }
 }
 
+```
 
+## 判断占字节大小，字节大小
+
+```
+const testData = {
+  a: 111,
+  b: 'ccc',
+  222: false
+}
+// Number: 8字节，string: 2字节，boolean:4字节
+
+function calculator(object) {
+  const objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase()
+  switch (objectType) {
+    case 'string': {
+      return object.length * 2
+    }
+    case 'boolean': {
+      return 4
+    }
+    case 'number': {
+      return 8
+    }
+    case 'array': {
+      return object.map(calculator).reduce((res, current) => res + current, 0)
+    }
+    case 'object': {
+      return 8
+    }
+    default:
+      break
+  }
+}
+const seen = new WeakSet()
+function sizeOfObject(object) {
+  if (object === null) return 0
+  let bytes = 0
+  // 对象的key也是占用空间的
+  const properties = Object.keys(object)
+  for (let i = 0; i < properties.length; i++) {
+    const key = properties[i]
+    // 对象的key也是占用内存空间的
+    bytes += calculator(key)
+    if (typeof object[key] === 'object' && object[key] !== null) {
+      if (seen.has(object[key])) {
+        continue
+      }
+      seen.add(object[key])
+    }
+    bytes += calculator(object[key])
+  }
+  return bytes
+}
 ```
 
 ## 统计字符出现最多次的字符
@@ -6590,27 +7102,6 @@ function findMostWord(article) {
 }
 
 ```
-
-## Domdiff算法
-
-https://segmentfault.com/a/1190000018914249
-给组件加 key，用 key 来控制组件的刷新，key 改变组件就刷新，这样开发代码会很好
-
-diff 策略
-React 用 三大策略 将 O(n^3)复杂度 转化为 O(n)复杂度
-
-1. 策略一（tree diff）：
-   只比较同级同层节点，UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。
-
-2. 策略二（component diff）：
-
-- 如果是同一类型的组件，按照原策略继续比较 Virtual DOM 树即可，对于同一类型的组件，有可能其 Virtual DOM 没有任何变化，如果能够确切知道这点，那么就可以节省大量的 diff 运算时间。因此，React 允许用户通过 shouldComponentUpdate()来判断该组件是否需要进行 diff 算法分析，但是如果调用了 forceUpdate 方法，shouldComponentUpdate 则失效。
-- 如果不是，则将该组件判断为 dirty component，从而替换整个组件下的所有子节点。
-
-3. 策略三（element diff）：
-   加上 key 的话对性能是翻天覆地的优化，对于同一层级的一组子节点，通过唯一 id 区分。同级比较，节点的比较有五种情况
-
-   ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png
 
 <!-- endsuanfa -->
 
@@ -9210,27 +9701,6 @@ function findMostWord(article) {
 
 ```
 
-## Domdiff算法
-
-https://segmentfault.com/a/1190000018914249
-给组件加 key，用 key 来控制组件的刷新，key 改变组件就刷新，这样开发代码会很好
-
-diff 策略
-React 用 三大策略 将 O(n^3)复杂度 转化为 O(n)复杂度
-
-1. 策略一（tree diff）：
-   只比较同级同层节点，UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。
-
-2. 策略二（component diff）：
-
-- 如果是同一类型的组件，按照原策略继续比较 Virtual DOM 树即可，对于同一类型的组件，有可能其 Virtual DOM 没有任何变化，如果能够确切知道这点，那么就可以节省大量的 diff 运算时间。因此，React 允许用户通过 shouldComponentUpdate()来判断该组件是否需要进行 diff 算法分析，但是如果调用了 forceUpdate 方法，shouldComponentUpdate 则失效。
-- 如果不是，则将该组件判断为 dirty component，从而替换整个组件下的所有子节点。
-
-3. 策略三（element diff）：
-   加上 key 的话对性能是翻天覆地的优化，对于同一层级的一组子节点，通过唯一 id 区分。同级比较，节点的比较有五种情况
-
-   ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-domdiff.png
-
 ## 遍历树
 
 - 深度优先遍历三种方式
@@ -9273,6 +9743,44 @@ let widthTraversal2 = node => {
   }
   return nodes
 }
+```
+
+## 接雨水问题
+
+首先题目的要求是求解出所有排列的柱子，下雨之后能接多少雨水，我们可以先求解出每一列上所能接雨水的面积
+
+那么如何求解当前位置（每一列）上的面积呢？
+因为宽度为 1，所以每一列上的面积=Math.min(left_max[i],right_max[i])-height[i];
+
+开两个数组先记录下当前位置上左右两边高度的最大值，通过遍历不断更新最大值来记录
+
+```
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var trap = function(height) {
+  let n=height.length;
+  if(n===0) return 0;
+  let res=0;
+
+  let left_max=[] ,right_max=[];
+  //记录左边数组的最大值
+  left_max[0]=height[0];
+  for(let i=1;i<n;i++){
+    left_max[i]=Math.max(left_max[i-1],height[i]);
+  }
+  //记录右边数组的最大值
+  right_max[n-1]=height[n-1];
+  for(let i=n-2;i>=0;i--){
+    right_max[i]=Math.max(right_max[i+1],height[i]);
+  }
+  //统计每一列的面积之和
+  for(let i=0;i<n;i++){
+    res+=Math.min(left_max[i],right_max[i])-height[i];
+  }
+  return res;
+};
 ```
 
 ## 遍历树结构
@@ -9320,6 +9828,95 @@ function findMultiChildPerson(data) {
   return nameList
 }
 
+```
+
+## 实现http拦截器
+
+```
+
+class XhrHook {
+  constructor(beforeHooks = {}, afterHooks = {}) {
+    this.XHR = window.XMLHttpRequest
+    this.beforeHooks = beforeHooks
+    this.afterHooks = afterHooks
+    this.init()
+  }
+  init() {
+    let _this = this
+    // 这里一定不能用箭头函数，因为new的时候this要指向new 的对象而不是简单指向这个类
+    window.XMLHttpRequest = function () {
+      this._xhr = new _this.XHR()
+      _this.overwrite(this)
+    }
+  }
+  overwrite(proxyXHR) {
+    for (let key in proxyXHR._xhr) {
+      if (typeof proxyXHR._xhr[key] === 'function') {
+        this.overwriteMethod(key, proxyXHR)
+        continue
+      }
+      this.overwriteAttributes(key, proxyXHR)
+    }
+  }
+  overwriteMethod(key, proxyXHR) {
+    let beforeHooks = this.beforeHooks
+    let afterHooks = this.afterHooks
+    proxyXHR[key] = (...args) => {
+      if (beforeHooks[key]) {
+        const hookRes = beforeHooks[key].call(proxyXHR, args)
+        if (hookRes === false) {
+          return
+        }
+      }
+
+      const res = proxyXHR._xhr[key].apply(proxyXHR._xhr, args)
+      afterHooks[key] && afterHooks[key].call(proxyXHR._xhr, res)
+      return res
+    }
+  }
+  overwriteAttributes(key, proxyXHR) {
+    Object.defineProperties(proxyXHR, key, {})
+  }
+  setPropertyDescriptor(key, proxyXHR) {
+    let obj = Object.create(null)
+    let _this = this
+    obj.set = function (val) {
+      if (!key.startsWith('on')) {
+        proxyXHR[`__${key}`] = val
+        return
+      }
+      if (_this.beforeHooks[key]) {
+        this._xhr[key] = function (...args) {
+          _this.beforeHooks[key].call(proxyXHR)
+          val.apply(proxyXHR, args)
+        }
+        return
+      }
+      this._xhr[key] = val
+    }
+    obj.get = function () {
+      return proxyXHR[`__${key}`] || this._xhr[key]
+    }
+    return obj
+  }
+}
+
+new XhrHook({
+  open: function () {
+    console.warn('TCL: open')
+  },
+  onload() {
+    console.warn('TCL: onload')
+  },
+  onreadystatechange() {
+    console.warn('TCL: onreadystatechange')
+  },
+  onerror() {
+    console.warn('TCL: onerror')
+  }
+})
+
+let xhr = new XMLHttpRequest()
 ```
 
 ## 二叉树相关性质
