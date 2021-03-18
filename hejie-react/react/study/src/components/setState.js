@@ -14,23 +14,23 @@ class StateCop extends Component {
       this.setState({
         counter: this.state.counter + 1
       })
-      console.log('TCL: 2', this.state.counter) // 6.  ==> 2
+      console.log('TCL: 2', this.state.counter)
     }, 300)
     // 批量操作：对同一个key多次操作会合并，会执行最后一次
     this.setState({ counter: this.state.counter + 1 })
     this.setState({ counter: this.state.counter + 7 })
     this.setState({ counter: this.state.counter + 100 }, () => {
-      console.log('TCL: 1', this.state.counter) // 4.  ==> 1
+      console.log('TCL: 1', this.state.counter)
     })
-    console.log('TCL: 3', this.state.counter) // 1.  ==> 0
+    console.log('TCL: 3', this.state.counter)
     this.setState(prev => {
-      console.log('TCL: 4', this.state.counter) // 2. ==> 0
+      console.log('TCL: 4', this.state.counter)
     })
     setTimeout(() => {
-      console.log('TCL: 5', this.state.counter) // 5.  ==> 1
+      console.log('TCL: 5', this.state.counter)
     }, 280)
     this.setState(pre => {
-      console.log('TCL: 6', pre.counter) // 3.  ==> 1
+      console.log('TCL: 6', pre.counter)
     })
     console.log('TCL: 7', this.state.counter)
     //  TCL: 3 0
