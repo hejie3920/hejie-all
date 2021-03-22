@@ -2,6 +2,48 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [基础](#%E5%9F%BA%E7%A1%80)
+  - [Js数据类型，js基本类型和复杂类型](#js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bjs%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B)
+  - [JavaScript的基本类型和复杂类型存在哪⾥的？](#javascript%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%9C%A8%E5%93%AA%E2%BE%A5%E7%9A%84)
+  - [判断对象是对象还是数组，判断是不是空对象](#%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%AF%B9%E8%B1%A1%E8%BF%98%E6%98%AF%E6%95%B0%E7%BB%84%E5%88%A4%E6%96%AD%E6%98%AF%E4%B8%8D%E6%98%AF%E7%A9%BA%E5%AF%B9%E8%B1%A1)
+  - [数组to，改变数组](#%E6%95%B0%E7%BB%84to%E6%94%B9%E5%8F%98%E6%95%B0%E7%BB%84)
+  - [Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()区别](#objectprototypetostringcall--instanceof-%E4%BB%A5%E5%8F%8A-arrayisarray%E5%8C%BA%E5%88%AB)
+  - [instanceofto,实现instanceof](#instanceofto%E5%AE%9E%E7%8E%B0instanceof)
+  - [深拷贝](#%E6%B7%B1%E6%8B%B7%E8%B4%9D)
+  - [判断类型，获取类型](#%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%9E%8B)
+  - [newto，实现new，new做了什么](#newto%E5%AE%9E%E7%8E%B0newnew%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88)
+  - [分时，渲染大量节点优化](#%E5%88%86%E6%97%B6%E6%B8%B2%E6%9F%93%E5%A4%A7%E9%87%8F%E8%8A%82%E7%82%B9%E4%BC%98%E5%8C%96)
+  - [防抖](#%E9%98%B2%E6%8A%96)
+  - [节流](#%E8%8A%82%E6%B5%81)
+  - [react实现防抖输入框](#react%E5%AE%9E%E7%8E%B0%E9%98%B2%E6%8A%96%E8%BE%93%E5%85%A5%E6%A1%86)
+  - [正则to，](#%E6%AD%A3%E5%88%99to)
+  - [this指向问题，点调用问题](#this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98%E7%82%B9%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98)
+  - [经典foo问题](#%E7%BB%8F%E5%85%B8foo%E9%97%AE%E9%A2%98)
+  - [手动实现bind](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0bind)
+  - [实现实现call](#%E5%AE%9E%E7%8E%B0%E5%AE%9E%E7%8E%B0call)
+  - [实现实现apply](#%E5%AE%9E%E7%8E%B0%E5%AE%9E%E7%8E%B0apply)
+  - [继承to，原型链to，原型to](#%E7%BB%A7%E6%89%BFto%E5%8E%9F%E5%9E%8B%E9%93%BEto%E5%8E%9F%E5%9E%8Bto)
+  - [JavaScript的作⽤域链理解吗？✨](#javascript%E7%9A%84%E4%BD%9C%E2%BD%A4%E5%9F%9F%E9%93%BE%E7%90%86%E8%A7%A3%E5%90%97)
+  - [继承的几种方式](#%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F)
+  - [ES5的继承和ES6的继承有什么区别](#es5%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8Ces6%E7%9A%84%E7%BB%A7%E6%89%BF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [实现promise,promiseto，](#%E5%AE%9E%E7%8E%B0promisepromiseto)
+  - [手动实现promise.race,promise.all,promise.catch,promise.finally,promise.allSettled](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0promiseracepromiseallpromisecatchpromisefinallypromiseallsettled)
+  - [实现async/await](#%E5%AE%9E%E7%8E%B0asyncawait)
+  - [豪华版实现promise](#%E8%B1%AA%E5%8D%8E%E7%89%88%E5%AE%9E%E7%8E%B0promise)
+  - [yieldto，](#yieldto)
+  - [手动实现generator](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0generator)
+  - [微任务，宏任务，先微再宏，只不过一开始的script块也可以算是宏任务](#%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%85%88%E5%BE%AE%E5%86%8D%E5%AE%8F%E5%8F%AA%E4%B8%8D%E8%BF%87%E4%B8%80%E5%BC%80%E5%A7%8B%E7%9A%84script%E5%9D%97%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%AE%97%E6%98%AF%E5%AE%8F%E4%BB%BB%E5%8A%A1)
+  - [node的事件循环机制，浏览器的循环机制和区别](#node%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%92%8C%E5%8C%BA%E5%88%AB)
+  - [实现flatten，打平数组,数组扁平化](#%E5%AE%9E%E7%8E%B0flatten%E6%89%93%E5%B9%B3%E6%95%B0%E7%BB%84%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96)
+  - [数组去重，扩展将数组打平并且去重升序](#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E6%89%A9%E5%B1%95%E5%B0%86%E6%95%B0%E7%BB%84%E6%89%93%E5%B9%B3%E5%B9%B6%E4%B8%94%E5%8E%BB%E9%87%8D%E5%8D%87%E5%BA%8F)
+  - [如何求数组的最大值和最小值？](#%E5%A6%82%E4%BD%95%E6%B1%82%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC)
+  - [求最大公约数和最小公倍数](#%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0)
+  - [js内置对象](#js%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1)
+  - [js中整数的安全范围是多少？](#js%E4%B8%AD%E6%95%B4%E6%95%B0%E7%9A%84%E5%AE%89%E5%85%A8%E8%8C%83%E5%9B%B4%E6%98%AF%E5%A4%9A%E5%B0%91)
+  - [escape,encodeURI,encodeURIComponent有什么区别？](#escapeencodeuriencodeuricomponent%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [set和weakset，map和weakmap](#set%E5%92%8Cweaksetmap%E5%92%8Cweakmap)
+  - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
+  - [使用闭包实现每隔一秒打印1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
 - [亮点to](#%E4%BA%AE%E7%82%B9to)
   - [webp优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件](#webp%E4%BC%98%E5%8C%96%E4%BC%A0%E8%BE%93%E9%AA%A8%E6%9E%B6%E5%B1%8F%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E7%A8%8B%E4%B8%8A%E4%BC%A0%E5%B7%A5%E4%BD%9C%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%89%8B%E6%9E%B6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%85%A8%E6%99%AF%E7%BB%84%E4%BB%B6)
   - [优化](#%E4%BC%98%E5%8C%96)
@@ -145,7 +187,7 @@
 - [webpackto，](#webpackto)
   - [常用插件](#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6)
   - [自定义loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader-1)
-  - [webpack 原理，实现webpack](#webpack-%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
+  - [webpack原理，实现webpack](#webpack%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
   - [自定义插件，自定义plugin](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89plugin)
   - [webpack如何工作，工作流程](#webpack%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
   - [匹配文件夹下所有特定后缀的文件，webpackCopy复制前先压缩所有的js](#%E5%8C%B9%E9%85%8D%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6webpackcopy%E5%A4%8D%E5%88%B6%E5%89%8D%E5%85%88%E5%8E%8B%E7%BC%A9%E6%89%80%E6%9C%89%E7%9A%84js)
@@ -250,8 +292,9 @@
   - [二分查找（递归）](#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E9%80%92%E5%BD%92)
   - [查找第一个不小于的数，用二分法而不用快排,Ologn](#%E6%9F%A5%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B0%8F%E4%BA%8E%E7%9A%84%E6%95%B0%E7%94%A8%E4%BA%8C%E5%88%86%E6%B3%95%E8%80%8C%E4%B8%8D%E7%94%A8%E5%BF%AB%E6%8E%92ologn)
   - [查找第一个大于的数，用二分法而不用快排,Ologn](#%E6%9F%A5%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%A7%E4%BA%8E%E7%9A%84%E6%95%B0%E7%94%A8%E4%BA%8C%E5%88%86%E6%B3%95%E8%80%8C%E4%B8%8D%E7%94%A8%E5%BF%AB%E6%8E%92ologn)
-  - [搜索旋转数组，查找旋转数组特定值，二分法](#%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E6%9F%A5%E6%89%BE%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%89%B9%E5%AE%9A%E5%80%BC%E4%BA%8C%E5%88%86%E6%B3%95)
-  - [搜索旋转排序数组，旋转数组的](#%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84)
+  - [求两个有序数组的第K⼩数](#%E6%B1%82%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%ACk%E2%BC%A9%E6%95%B0)
+  - [搜索旋转数组，查找旋转数组特定值，二分法，旋转数组的某个数](#%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E6%9F%A5%E6%89%BE%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%89%B9%E5%AE%9A%E5%80%BC%E4%BA%8C%E5%88%86%E6%B3%95%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%90%E4%B8%AA%E6%95%B0)
+  - [搜索旋转排序数组，旋转数组的最小元素](#%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0)
   - [二分补齐](#%E4%BA%8C%E5%88%86%E8%A1%A5%E9%BD%90)
   - [1.字符串隐藏，找出最少需要的硬币数，转换成可读性好的文本](#1%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%9A%90%E8%97%8F%E6%89%BE%E5%87%BA%E6%9C%80%E5%B0%91%E9%9C%80%E8%A6%81%E7%9A%84%E7%A1%AC%E5%B8%81%E6%95%B0%E8%BD%AC%E6%8D%A2%E6%88%90%E5%8F%AF%E8%AF%BB%E6%80%A7%E5%A5%BD%E7%9A%84%E6%96%87%E6%9C%AC)
   - [正则解码](#%E6%AD%A3%E5%88%99%E8%A7%A3%E7%A0%81)
@@ -294,7 +337,9 @@
   - [字符串的排列字符串，全排列，递归](#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A8%E6%8E%92%E5%88%97%E9%80%92%E5%BD%92)
   - [数组中出现次数超过一半的数字数组，哈希](#%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97%E6%95%B0%E7%BB%84%E5%93%88%E5%B8%8C)
   - [最小的k个数，输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4。](#%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%E8%BE%93%E5%85%A5n%E4%B8%AA%E6%95%B4%E6%95%B0%E6%89%BE%E5%87%BA%E5%85%B6%E4%B8%AD%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%E4%BE%8B%E5%A6%82%E8%BE%93%E5%85%A545162738%E8%BF%998%E4%B8%AA%E6%95%B0%E5%AD%97%E5%88%99%E6%9C%80%E5%B0%8F%E7%9A%844%E4%B8%AA%E6%95%B0%E5%AD%97%E6%98%AF1234)
-  - [连续子数组的最大和，最大子序和，动态规划](#%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92)
+  - [连续子数组的最大和，最大子序和，动态规划，最大字段和](#%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%9C%80%E5%A4%A7%E5%AD%97%E6%AE%B5%E5%92%8C)
+  - [找零钱](#%E6%89%BE%E9%9B%B6%E9%92%B1)
+  - [最大正方形](#%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2)
   - [整数中1出现的次数（从1到n整数中1出现的次数](#%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%E4%BB%8E1%E5%88%B0n%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0)
   - [把数组排成最小的数](#%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0)
   - [从小到大的顺序的第N个丑数](#%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%E7%9A%84%E9%A1%BA%E5%BA%8F%E7%9A%84%E7%AC%ACn%E4%B8%AA%E4%B8%91%E6%95%B0)
@@ -326,11 +371,14 @@
   - [二叉搜索树种第k个大的节点](#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%A7%8D%E7%AC%ACk%E4%B8%AA%E5%A4%A7%E7%9A%84%E8%8A%82%E7%82%B9)
   - [滑动窗口的最大值](#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC)
   - [矩阵包含指定路径](#%E7%9F%A9%E9%98%B5%E5%8C%85%E5%90%AB%E6%8C%87%E5%AE%9A%E8%B7%AF%E5%BE%84)
-  - [机器人能达到多少格子，机器人格子,不同路径](#%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%83%BD%E8%BE%BE%E5%88%B0%E5%A4%9A%E5%B0%91%E6%A0%BC%E5%AD%90%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A0%BC%E5%AD%90%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84)
+  - [机器人不同路径1](#%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%841)
   - [机器人不同路径2，有障碍物，动态规划](#%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%842%E6%9C%89%E9%9A%9C%E7%A2%8D%E7%89%A9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92)
+  - [不同路径3，不能进入大于K](#%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%843%E4%B8%8D%E8%83%BD%E8%BF%9B%E5%85%A5%E5%A4%A7%E4%BA%8Ek)
+  - [打家劫舍](#%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D)
   - [最小路径和](#%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C)
   - [转换成树,树结构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84-1)
-  - [取中间数，中位数](#%E5%8F%96%E4%B8%AD%E9%97%B4%E6%95%B0%E4%B8%AD%E4%BD%8D%E6%95%B0)
+  - [取中间数，取中位数，长度不等](#%E5%8F%96%E4%B8%AD%E9%97%B4%E6%95%B0%E5%8F%96%E4%B8%AD%E4%BD%8D%E6%95%B0%E9%95%BF%E5%BA%A6%E4%B8%8D%E7%AD%89)
+  - [两个长度相等的数组求中位数,ON,空间O1](#%E4%B8%A4%E4%B8%AA%E9%95%BF%E5%BA%A6%E7%9B%B8%E7%AD%89%E7%9A%84%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0on%E7%A9%BA%E9%97%B4o1)
   - [手动实现filter](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0filter)
   - [数组乱序](#%E6%95%B0%E7%BB%84%E4%B9%B1%E5%BA%8F)
   - [驼峰命名](#%E9%A9%BC%E5%B3%B0%E5%91%BD%E5%90%8D)
@@ -1537,6 +1585,10 @@ for (let i = 0; i < 5; i++) {
 # 亮点to
 
 ## webp优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件
+- requestAnimationFrame，requestAnimationFrame执行频率是1000/60,大概是16ms多执一次
+- 小程序人机校验跨域脚本，重定向问题
+- requestIdleCallback进行资源的预加载，Window.cancelIdleCallback() 取消，safari不兼容，要做判断
+- css
 
 ## 优化
 
@@ -2088,7 +2140,7 @@ const [count,setCount] = useState(0)
 
 快速点击连续触发五次setCount(count + 1) 后，五次打印的都还是1，这是因为
 可见，当传值时，由于我们5次action为单纯的值，由源码可得，快速点击还来不及设置newState为新的值，所以一定时间内都是同一个值
-而传函数时，会执行函数然后更新newState,类似async await,基于newState,这个action函数计算5次，则最终得到累加的结果。
+而传函数时，会执行函数然后更新newState,类似函数触发的话入参都会保证有个先后顺序,这个action函数计算5次，则最终得到累加的结果。
 
 let newState = baseState;
 let update = hook.baseQueue.next;
@@ -4363,7 +4415,7 @@ test: /[\\/]node_modules[\\/]/,
 // 当 webpack 处理文件路径时，它们始终包含/在 Unix 系统和\Windows 上。这就是为什么[\\/]在{cacheGroup}
 // .test 字段中使用 in 来表示路径分隔符的原因。/ 或\in { cacheGroup }.test 会在跨平台使用时引起问题。
 
-## webpack 原理，实现webpack
+## webpack原理，实现webpack
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
@@ -6650,8 +6702,55 @@ function binarySearch(arr, target) {
   return right
 }
 ```
+## 求两个有序数组的第K⼩数
+【题⽬】
+给定两个有序数组arr1和arr2，已知两个数组的⻓度分别为 m1 和 m2，求两个数组中的第 K ⼩数。要
+求时间复杂度O(log(m1 + m2))。
+例如 arr1 = [1, 2,3]，arr2 = [3,4,5,6]，K = 4。
+则第 K ⼩数为 3.
+例如 arr1 = [0,1,2]，arr2 = [3,4,5，7，8]， K = 3;
+则第 K ⼩数为 2.
 
-## 搜索旋转数组，查找旋转数组特定值，二分法
+
+解法：采⽤递归的⽅法不断缩⼩ K 的，把求第 K ⼩元素转化为第 (K-K/2) ⼩元素....
+
+
+```
+public static int findKth(int[] arr1, int[] arr2, int k) {
+if(arr1 == null || arr1.length < 1)
+return arr2[k-1];
+if(arr2 == null || arr2.length < 1)
+return arr1[k-1];
+// 注意这个函数的参数有7个，上⾯那个函数的参数只有3个，同名不同函数哈
+return findKth2(arr1, 0, arr1.length - 1, arr2, 0, arr2.length - 1, k - 1);
+ }
+public static int findKth2(int[] arr1, int l1, int r1, int[] arr2, int l2,
+int r2, int k) {
+// 递归结束条件
+if(l1 > r1)
+return arr2[l2 + k];
+if(l2 > r2)
+return arr1[l1 + k];
+if (k == 0)// 注意，k == 0的结束条件与上⾯两个结束条件不能颠倒。
+return Math.min(arr1[l1],arr2[l2]);
+int md1 = l1 + k/2 < r1 ? l1 + k/2 : r1;
+int md2 = l2 + k/2 < (r2 - l1) ? l2 + k/2 : r2;
+if(arr1[md1] < arr2[md2])
+return findKth2(arr1, md1 + 1, r1, arr2, l2, r2, k - k / 2 - 1);
+else if (arr1[md1] > arr2[md2])
+return findKth2(arr1, l1, r1, arr2, md2 + 1, r2, k - k / 2 - 1);
+else
+return arr1[md1];//返回arr2[md2]也可以，⼀样的。
+ }
+// 测试
+public static void main(String[] args) {
+int[] arr1 = {1, 2, 3};
+int[] arr2 = {0,4, 5, 6, 7, 8};
+System.out.println(findKth(arr1, arr2, 2));
+ }
+```
+
+## 搜索旋转数组，查找旋转数组特定值，二分法，旋转数组的某个数
 
 时间必须要是 Ologn
 题目要求时间复杂度为 logn，因此基本就是二分法了。 这道题目不是直接的有序数组，不然就是 easy 了。
@@ -6723,7 +6822,7 @@ var search = function(nums, target) {
 };
 ```
 
-## 搜索旋转排序数组，旋转数组的
+## 搜索旋转排序数组，旋转数组的最小元素
 
 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
 输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。即二分查找法查最小
@@ -8030,7 +8129,7 @@ function GetLeastNumbers_Solution(input, k){
 
 ```
 
-## 连续子数组的最大和，最大子序和，动态规划
+## 连续子数组的最大和，最大子序和，动态规划，最大字段和
 
 输入一个整型数组，数组里有正数也有负数。数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。要求时间复杂度为 O(n).
 示例 1
@@ -8068,6 +8167,115 @@ function FindGreatestSumOfSubArray(array)
 module.exports = {
     FindGreatestSumOfSubArray : FindGreatestSumOfSubArray
 };
+```
+## 找零钱
+已知不同⾯值的钞票，求如 何⽤最少数量的钞票组成某个⾦额，求可 以使⽤的最少钞票数量。如果任
+意数量的已知⾯值钞票都⽆法组成该⾦额， 则返回-1。
+```
+示例：
+Input: coins = [1, 2, 5], amount = 11
+Output: 3
+Explanation: 11 = 5 + 5 + 1
+Input: coins = [2], amount = 3
+Output: -1
+动态规划解题步骤：
+将原问题拆分成⼦问题
+已知什么？显⽽易⻅，钞票的⾦额都只需要其本身1张即可
+如何在已知钞票的情况下构造出 ⾦额X需要的最少钞票组合
+确认状态
+DP[0] - DP[amount] 表示构造⾦额amount需要的最⼩钞票数
+确认边界状态（初始条件）
+DP[coin] = 1 其他的都未知初始值设为 -1
+例如coins = [1, 2, 5], amount = 11 已知 dp[1]、dp[2]、dp[5] =1
+现在已知 DP[coin] 需要求出每⼀个DP[amount]
+状态转移⽅程
+dp[i] = min(dp[i-1], dp[i-2], dp[i-5]) + 1
+解题代码：（java）
+public int coinChange(int[] coins, int amount) {
+int len = coins.length;
+if (len == 0 || amount<0)
+return -1;
+if (amount==0)
+return 0;
+int [] dp = new int[amount+1];
+for (int i = 0; i <= amount; i++){
+dp[i] = -1;
+ }
+for (int i = 0; i< len;i++){
+if(coins[i] == amount)
+return 1;
+if(coins[i] < amount)
+dp[coins[i]] = 1;
+ }
+// State Transfer Function
+for(int i = 1; i <= amount;i++){
+  for (int j = 0; j < len; j++){
+    if (i - coins[j] >= 0 && dp[i - coins[j]] != -1){
+      if (dp[i] == -1 || dp[i] > dp[i - coins[j]] + 1){
+      dp[i] = dp[i - coins[j]] + 1;
+       }
+     }
+   }
+ }
+return dp[amount];
+ }
+
+```
+
+## 最大正方形
+在⼀个由 0 和 1 组成的⼆维矩阵内，找到只包含 1 的最⼤正⽅形，并返回其⾯积。
+示例
+输⼊:
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+输出: 4
+
+```
+解法三：动态规划优化
+⽤动态规划时，可以说 80% 都是⽤⼆维数组，但是 80% 也都可以优化成⼀维数组，这很容易理解，⼤
+家看这个公式
+dp[i][j] = min( dp[i-1][j], dp[i-1][j-1], dp[i][j-1] ）+ 1
+通过上⾯的公式我们可以知道，我们要算 dp[i][j] 的值时，只需要⽤到 dp[i-1][j], dp[i][j-1], dp[i-1][j-1]
+三个值就可以了。也就是说，我们在算矩阵 dp 第 i ⾏的值时，只需要⽤第 （i - 1） ⾏的值，⾄于（i-
+2）的值根本就不需要⽤到
+所以我们只需要⽤⼀个⼀维数组就可以了，然后每次算出第 i ⾏的值，就⻢上⽤⼀维数组 dp[0....n] 把
+这⾏值保存起来，供计算 i+1 ⾏时使⽤。
+如下图
+new_dp[i] 相当于⼆维矩阵的 dp[i][j]
+dp[i] 相当于 dp[i-1] [j]
+dp[i-1] 相当于 dp[i-1] [j]
+pre 相当于 dp[i-1][j-1]。
+然后⽤⼀维矩阵的话，我们每次计算出 new_dp[i] 后，就⻢上⽤ new_dp[i] 覆盖 dp[i] 的值，并且还要
+⽤⼀个变量 pre 来保存dp[i-1][j-1]的值。
+好吧，估计你也给我绕晕了，如果不⼤理解，强烈建议画图模拟⼀下
+最终代码如下
+ public int maximalSquare(char[][] matrix) {
+ if(matrix.length < 1 || matrix[0].length < 1)
+ return 0;
+ int rows = matrix.length;
+ int cols = matrix[0].length;
+ int[] dp = new int[cols + 1];
+ int max = 0, prev = 0;
+ for (int i = 1; i <= rows; i++) {
+ for (int j = 1; j <= cols; j++) {
+ int temp = dp[j];
+ if (matrix[i - 1][j - 1] == '1') {
+ dp[j] = Math.min(Math.min(dp[j - 1], prev), dp[j]) + 1;
+ max = Math.max(max, dp[j]);
+ } else {
+ dp[j] = 0;
+ }
+ prev = temp;
+ }
+ }
+ return max * max;
+ }
+时间复杂度：O(n*m)
+空间复杂度：O(n)
+
+
 ```
 
 ## 整数中1出现的次数（从1到n整数中1出现的次数
@@ -8966,43 +9174,68 @@ function hasPath(matrix, rows, cols, path){
     }
 }
 ```
-
-## 机器人能达到多少格子，机器人格子,不同路径
-
-地上有一个 m 行和 n 列的方格。一个机器人从坐标 0,0 的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于 k 的格子。 例如，当 k 为 18 时，机器人能够进入方格（35,37），因为 3+5+3+7 = 18。但是，它不能进入方格（35,38），因为 3+5+3+8 = 19。请问该机器人能够达到多少个格子？
-
+## 机器人不同路径1
+空间复杂度Omn
 ```
-function movingCount(threshold, rows, cols){
-    var visited = [];
-    for(var i = 0; i < rows * cols; ++i)
-        visited[i] = false;
-    var count = movingCountCore(0, 0);
-    visited.length = 0;
-    return count;
-    function getDigitSum(number){
-        var sum = 0;
-        while(number > 0){
-            sum += number % 10;
-            number = Math.floor(number / 10);
+var uniquePaths = function(m, n) {
+    const f = new Array(m).fill(0).map(() => new Array(n).fill(0));
+    for (let i = 0; i < m; i++) {
+        f[i][0] = 1;
+    }
+    for (let j = 0; j < n; j++) {
+        f[0][j] = 1;
+    }
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            f[i][j] = f[i - 1][j] + f[i][j - 1];
         }
-        return sum;
     }
-    function check(row, col){
-        if(row >= 0 && row = 0 && col < cols && getDigitSum(row) + getDigitSum(col) <= threshold && !visited[row * cols + col])
-            return true;
-        return false;
-    }
-    function movingCountCore(row, col){
-        var count = 0;
-        if(check(row, col)) {
-            visited[row * cols + col] = true;
-            count = 1 + movingCountCore(row - 1, col)
-                    + movingCountCore(row, col - 1)
-                    + movingCountCore(row + 1, col)
-                    + movingCountCore(row, col + 1);
-        }
-        return count;
-    }
+    return f[m - 1][n - 1];
+};
+
+<!-- 源代码 -->
+public static int uniquePaths(int m, int n) {
+if (m <= 0 || n <= 0) {
+return 0;
+ }
+int[][] dp = new int[m][n]; //
+// 初始化
+for(int i = 0; i < m; i++){
+dp[i][0] = 1;
+ }
+for(int i = 0; i < n; i++){
+dp[0][i] = 1;
+ }
+// 推导出 dp[m-1][n-1]
+for (int i = 1; i < m; i++) {
+for (int j = 1; j < n; j++) {
+dp[i][j] = dp[i-1][j] + dp[i][j-1];
+ }
+ }
+return dp[m-1][n-1];
+}
+
+
+空间复杂度优化成On，把表格不需要的一行剔除掉
+推导公式dp[i] = dp[i-1] + dp[i]
+public static int uniquePaths(int m, int n) {
+if (m <= 0 || n <= 0) {
+return 0;
+ }
+int[] dp = new int[n]; //
+// 初始化
+for(int i = 0; i < n; i++){
+dp[i] = 1;
+ }
+// 公式：dp[i] = dp[i-1] + dp[i]
+for (int i = 1; i < m; i++) {
+// 第 i ⾏第 0 列的初始值
+dp[0] = 1;
+for (int j = 1; j < n; j++) {
+dp[j] = dp[j-1] + dp[j];
+ }
+ }
+return dp[n-1];
 }
 
 
@@ -9052,6 +9285,96 @@ const uniquePathsWithObstacles = obstacleGrid => {
 }
 
 ```
+
+## 不同路径3，不能进入大于K
+
+地上有一个 m 行和 n 列的方格。一个机器人从坐标 0,0 的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于 k 的格子。 例如，当 k 为 18 时，机器人能够进入方格（35,37），因为 3+5+3+7 = 18。但是，它不能进入方格（35,38），因为 3+5+3+8 = 19。请问该机器人能够达到多少个格子？
+
+```
+function movingCount(threshold, rows, cols){
+    var visited = [];
+    for(var i = 0; i < rows * cols; ++i)
+        visited[i] = false;
+    var count = movingCountCore(0, 0);
+    visited.length = 0;
+    return count;
+    function getDigitSum(number){
+        var sum = 0;
+        while(number > 0){
+            sum += number % 10;
+            number = Math.floor(number / 10);
+        }
+        return sum;
+    }
+    function check(row, col){
+        if(row >= 0 && row = 0 && col < cols && getDigitSum(row) + getDigitSum(col) <= threshold && !visited[row * cols + col])
+            return true;
+        return false;
+    }
+    function movingCountCore(row, col){
+        var count = 0;
+        if(check(row, col)) {
+            visited[row * cols + col] = true;
+            count = 1 + movingCountCore(row - 1, col)
+                    + movingCountCore(row, col - 1)
+                    + movingCountCore(row + 1, col)
+                    + movingCountCore(row, col + 1);
+        }
+        return count;
+    }
+}
+
+
+```
+## 打家劫舍
+在⼀条直线上，有n个房屋，每个房屋中有数量不等的财宝，有⼀个盗 贼希望从房屋中盗取财宝，由于
+房屋中有报警器，如果同时从相邻的两个房屋中盗取财宝就会触发报警器。问在不触发报警器的前提
+下，最多可获取多少财宝？例如 [5，2，6，3，1，7]，则选择5，6，7
+
+```
+2 、⼦问题：
+（1）、只考虑前两个房间时，谁⼤选谁 （2）、考虑第三个房间
+如果偷第三个房间，则意味着第⼆个房间不投，也就是第三个房间值 + 第⼀个房间的宝藏数量
+如果不偷第三个房间，则宝藏数量等于前两个房间宝藏数量
+3、确认状态：
+int [] nums; // 各个房间的宝藏数
+int [] flags = new int [n]; // 记录各个房间有没有被偷，若flag = 0 则没偷， flag = 1 则偷了。
+int [] dp = new int [n]; // dp[i]表示前i个房间偷到的最⼤宝藏数
+4、初始状态：
+第⼀个房间：
+Condistion 1 ：dp[0] = nums[0] ; flags[0] = 1;
+Condistion 2 ：dp[0] = 0; flags[0] = 0;
+第⼆个房间：
+Condistion 1 ：when flags[1] = 1; dp[1] = nums[1];
+Condistion 2 ：whenflags[1] = 0; dp[1] = dp[0];
+选 Condistion 1 还是 Condistion 2呢？ ⽐较 两种情况下dp[1]的⼤⼩ 推⼴到前i个房间: (i>=2)
+when flags[i] = 1, dp[i] = nums[i] + dp[i-2]
+when flags[i] = 0; dp[i] = dp[i-1]
+5、状态转移⽅程：
+dp[0] = nums[0];
+dp[1] = max(nums[0],nums[1]);
+for(int i = 2;i<n;i++)
+ dp[i] = max(nums[i] + dp[i-2],dp[i-1])
+6、代码实现
+class Solution {
+public int rob(int[] nums) {
+if(nums.length == 0)
+return 0;
+int [] dp = new int[nums.length];
+dp[0] = nums[0];
+// 每次做数组判定时都需要做数组边界判定，防⽌越界
+if(nums.length < 2)
+return nums[0];
+dp[1] = (nums[0]>nums[1]) ? nums[0] : nums[1];
+for(int i = 2;i<nums.length;i++)
+dp[i] = ((nums[i] + dp[i-2]) > dp[i-1]) ? (nums[i]+dp[i-2]) :
+dp[i-1];
+return dp[nums.length-1];
+ }
+}
+```
+
+
 
 ## 最小路径和
 
@@ -9145,70 +9468,120 @@ function convert(list) {
 }
 ```
 
-## 取中间数，中位数
+
+## 取中间数，取中位数，长度不等
 
 这个在 leetCode 上有， 不考虑时间负责度的情况下 把两个数组合并 -> 排序 -> 单数取中间，双数取中间两个平均值
-
-O(log(m+n))解法
-/\*\*
-
-- @param {number[]} nums1
-- @param {number[]} nums2
-- @return {number}
-  \*/
-
+暴力解法
 ```
+像domdiff一样，新建两个指针，分别指向nums1、nums2
+从头开始比较，将小的存入merged数组
+如果nums1、nums2中某项已经遍历完毕，则把剩下项存入merged数组
+取出中间值，根据奇偶分别计算得出中位数
+
+时间复杂度： O(m + n) >> O(log(m + n)) 不满足题意
+空间复杂度： O(m + n)
+
 var findMedianSortedArrays = function(nums1, nums2) {
-  let m = nums1.length
-  let n = nums2.length
-  let k1 = Math.floor((m + n + 1) / 2)
-  let k2 = Math.floor((m + n + 2) / 2)
+    let p1 = nums1;
+    let indexP1 = 0;
+    let indexP2 = 0;
+    let p2 = nums2;
+    let merged = [];
+    let indexMerge = 0;
 
-  return (
-    (findMedianSortedArraysCore(nums1, 0, nums2, 0, k1) +
-      findMedianSortedArraysCore(nums1, 0, nums2, 0, k2)) /
-    2
-  )
-}
+    while(indexP1 < p1.length || indexP2 < p2.length) {
+        if (p1[indexP1] <= p2[indexP2] || (indexP2 >= p2.length && indexP1 < p1.length)) {
+            merged[indexMerge] = p1[indexP1];
+            indexP1++;
+        } else {
+            merged[indexMerge] = p2[indexP2];
+            indexP2++;
+        }
+        indexMerge++;
+    }
 
-const findMedianSortedArraysCore = (nums1, i, nums2, j, k) => {
-  如果数组起始位置已经大于数组长度-1
-  说明已经是个空数组
-  直接从另外一个数组里取第k个数即可
-  if (i > nums1.length - 1) {
-    return nums2[j + k - 1]
-  }
-  if (j > nums2.length - 1) {
-    return nums1[i + k - 1]
-  }
-  如果k为1
-  就是取两个数组的起始值里的最小值
-  if (k === 1) {
-    return Math.min(nums1[i], nums2[j])
-  }
-  取k2为(k/2)或者数组1的长度或者数组2的长度的最小值
-  这一步可以避免k2大于某个数组的长度（长度为从起始坐标到结尾）
-  let k2 = Math.floor(k / 2)
-  let length1 = nums1.length - i
-  let length2 = nums2.length - j
-  k2 = Math.min(k2, length1, length2)
+    if ((merged.length % 2) === 1) {
+        return merged[Math.floor(merged.length / 2)];
+    } else {
+        return (merged[merged.length / 2 - 1] + merged[merged.length / 2]) / 2;
+    }
+};
+```
 
-  let value1 = nums1[i + k2 - 1]
-  let value2 = nums2[j + k2 - 1]
+二分法 log(m+n)
+```
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+   let len1 = nums1.length;
+   let len2 = nums2.length;
+   // 对长度短的数组进行二分查找    
+   if (len1 > len2) {
+       return findMedianSortedArrays(nums2, nums1);
+   }
+   let len = len1 + len2;
+   let start = 0;
+   let end = len1;
+   // 两个数组左分段的长度    
+   let partLen1 = 0;
+   let partLen2 = 0;
 
-  比较两个数组的起始坐标的值
-  如果value1小于value2
-  就舍弃nums1前i + k2部分
-  否则舍弃nums2前j + k2部分
-  if (value1 < value2) {
-    return findMedianSortedArraysCore(nums1, i + k2, nums2, j, k - k2)
-  } else {
-    return findMedianSortedArraysCore(nums1, i, nums2, j + k2, k - k2)
-  }
-}
+   while (start <= end) {
+       partLen1 = (start + end) >> 1;
+       partLen2 = ((len + 1) >> 1) - partLen1;
+
+       let l1 = partLen1 === 0? -Infinity : nums1[partLen1 - 1];
+       let l2 = partLen2 === 0? -Infinity : nums2[partLen2 - 1];
+       let r1 = partLen1 === len1 ? Infinity : nums1[partLen1];
+       let r2 = partLen2 === len2 ? Infinity : nums2[partLen2];
+
+       if (l1 > r2) {
+            end = partLen1 - 1;
+       } else if (l2 > r1) {
+            start = partLen1 + 1;
+       } else { // 满足条件的情况： l1 <= r2 && l2 <= r1
+            return len % 2 === 0 ?
+            (Math.max(l1, l2) + Math.min(r1, r2) ) / 2 : 
+            Math.max(l1, l2)
+       }
+   }
+};
 
 ```
 
+## 两个长度相等的数组求中位数,ON,空间O1
+二分法不断比对两个数组的中位数
+```
+ 1    public static int getUpMedian(int[] arr1, int[] arr2) {
+ 2        if(arr1 == null || arr2 == null )
+ 3            return -1;
+ 4        // 开始寻找
+ 5        return find(arr1, 0, arr1.length - 1, arr2, 0, arr2.length - 1);
+ 6    }
+ 7
+ 8    public static int find(int[] arr1, int l1, int r1, int[] arr2, int l2, int r2) {
+ 9        int mid1 = l1 + (r1 - l1) / 2;
+10        int mid2 = l2 + (r2 - l2) / 2;
+11        // 表示数组只剩下一个数，把两个数组中较小的数返回去
+12        if (l1 >= r1) {
+13            return Math.min(arr1[l1], arr2[l2]);
+14        }
+15        // 元素个数为奇数，则offset为0，为偶数则 offset 为 1
+16        int offset = ((r1 - l1 + 1) & 1) ^ 1;// 用位运算比较快
+17        if (arr1[mid1] < arr2[mid2]) {
+18            return find(arr1, mid1+offset, r1, arr2, l2, mid2);
+19        } else if (arr1[mid1] > arr2[mid2]) {
+20            return find(arr1, l1, mid1, arr2, mid2 + offset, r2);
+21        } else {
+22            return arr1[mid1];// 返回 arr2[mid2]也可以。
+23        }
+24    }
+
+```
 ## 手动实现filter
 
 ```
