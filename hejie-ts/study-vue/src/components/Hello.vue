@@ -1,12 +1,19 @@
 <template>
   <div>
-    {{msg}}
+    {{ msg }}
     <div>
-      <input type="text" v-model="inputVal" placeholder="输入新特性" @change="addFeature" />
+      <input
+        type="text"
+        v-model="inputVal"
+        placeholder="输入新特性"
+        @change="addFeature"
+      />
     </div>
     <ul>
-      <li v-for="(feature,index) in features" :key="index">{{feature.name}}</li>
-      <li>{{count}}</li>
+      <li v-for="(feature, index) in features" :key="index">
+        {{ feature.name }}
+      </li>
+      <li>{{ count }}</li>
     </ul>
   </div>
 </template>
