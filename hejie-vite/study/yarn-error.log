@@ -1,0 +1,50 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn
+
+PATH: 
+  /Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/aria2/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/mysql/bin:/usr/local/bin/python3.9:/Users/zhanghejie/Desktop/devTool/flutter/bin:/Users/zhanghejie/Library/Android/sdk/tools:/Users/zhanghejie/Library/Android/sdk/platform-tools:/usr/local/mysql/bin:/usr/local/bin/python3.9:/Users/zhanghejie/Desktop/devTool/flutter/bin:/Users/zhanghejie/Library/Android/sdk/tools:/Users/zhanghejie/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.17.3
+
+Node version: 
+  12.13.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://nexus.huya.com/repository/npm-public/@vue/runtime-dom/-/runtime-dom-3.2.20.tgz: Request failed "404 Not Found"
+      at ResponseError.ExtendableBuiltin (/usr/local/lib/node_modules/yarn/lib/cli.js:696:66)
+      at new ResponseError (/usr/local/lib/node_modules/yarn/lib/cli.js:802:124)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:66900:16)
+      at Request.emit (events.js:210:5)
+      at Request.module.exports.Request.onRequestResponse (/usr/local/lib/node_modules/yarn/lib/cli.js:141341:10)
+      at ClientRequest.emit (events.js:210:5)
+      at HTTPParser.parserOnIncomingClient [as onIncoming] (_http_client.js:583:27)
+      at HTTPParser.parserOnHeadersComplete (_http_common.js:115:17)
+      at TLSSocket.socketOnData (_http_client.js:456:22)
+      at TLSSocket.emit (events.js:210:5)
+
+npm manifest: 
+  {
+    "name": "study",
+    "version": "0.0.0",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build"
+    },
+    "dependencies": {
+      "vue": "^3.0.4"
+    },
+    "devDependencies": {
+      "vite": "^1.0.0-rc.13",
+      "@vue/compiler-sfc": "^3.0.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

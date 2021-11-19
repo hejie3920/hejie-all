@@ -1,18 +1,15 @@
 {
-  "name": "mybin",
+  "name": "fetchUrl",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./mybin/formatMd/index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "bin": {
-    "tiny": "./mybin/tiny/index.js"
-  },
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^2.6.1"
+    "request": "^2.88.2"
   }
 }

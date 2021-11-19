@@ -13,7 +13,7 @@
   - [判断类型，获取类型](#%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%9E%8B)
   - [newto，实现new，new做了什么](#newto%E5%AE%9E%E7%8E%B0newnew%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88)
   - [分时，渲染大量节点优化](#%E5%88%86%E6%97%B6%E6%B8%B2%E6%9F%93%E5%A4%A7%E9%87%8F%E8%8A%82%E7%82%B9%E4%BC%98%E5%8C%96)
-  - [防抖](#%E9%98%B2%E6%8A%96)
+  - [防抖,debounceto](#%E9%98%B2%E6%8A%96debounceto)
   - [节流](#%E8%8A%82%E6%B5%81)
   - [react实现防抖输入框](#react%E5%AE%9E%E7%8E%B0%E9%98%B2%E6%8A%96%E8%BE%93%E5%85%A5%E6%A1%86)
   - [正则to，](#%E6%AD%A3%E5%88%99to)
@@ -44,20 +44,21 @@
   - [set和weakset，map和weakmap](#set%E5%92%8Cweaksetmap%E5%92%8Cweakmap)
   - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
   - [使用闭包实现每隔一秒打印1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
-- [亮点to](#%E4%BA%AE%E7%82%B9to)
+- [亮点to，hejieto](#%E4%BA%AE%E7%82%B9tohejieto)
   - [webp优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件](#webp%E4%BC%98%E5%8C%96%E4%BC%A0%E8%BE%93%E9%AA%A8%E6%9E%B6%E5%B1%8F%E9%AB%98%E5%B9%B6%E5%8F%91%E6%B5%81%E7%A8%8B%E4%B8%8A%E4%BC%A0%E5%B7%A5%E4%BD%9C%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%89%8B%E6%9E%B6%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%85%A8%E6%99%AF%E7%BB%84%E4%BB%B6)
-  - [优化](#%E4%BC%98%E5%8C%96)
+  - [性能优化to](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96to)
+  - [常用优化代码块](#%E5%B8%B8%E7%94%A8%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E5%9D%97)
   - [编辑器](#%E7%BC%96%E8%BE%91%E5%99%A8)
   - [实现webpack](#%E5%AE%9E%E7%8E%B0webpack)
-  - [开发插件，开发plugin](#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91plugin)
+  - [开发插件，开发pluginto](#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91pluginto)
   - [自定义loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader)
-  - [开发脚手架](#%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6)
+  - [开发脚手架to](#%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6to)
   - [开发npm包，组件库](#%E5%BC%80%E5%8F%91npm%E5%8C%85%E7%BB%84%E4%BB%B6%E5%BA%93)
-  - [webpack 工作流程 (加载 - 编译 - 输出)](#webpack-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B-%E5%8A%A0%E8%BD%BD---%E7%BC%96%E8%AF%91---%E8%BE%93%E5%87%BA)
   - [传输to，断点传输，分片传输](#%E4%BC%A0%E8%BE%93to%E6%96%AD%E7%82%B9%E4%BC%A0%E8%BE%93%E5%88%86%E7%89%87%E4%BC%A0%E8%BE%93)
-  - [webpack优化，性能优化/代码优化化，webpack优化](#webpack%E4%BC%98%E5%8C%96%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%8C%96webpack%E4%BC%98%E5%8C%96)
+  - [webpack优化，webpackto](#webpack%E4%BC%98%E5%8C%96webpackto)
+  - [webpack 工作流程 (加载 - 编译 - 输出)](#webpack-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B-%E5%8A%A0%E8%BD%BD---%E7%BC%96%E8%AF%91---%E8%BE%93%E5%87%BA)
   - [微前端to，乾坤](#%E5%BE%AE%E5%89%8D%E7%AB%AFto%E4%B9%BE%E5%9D%A4)
-  - [vite](#vite)
+  - [viteto,esbuildto](#vitetoesbuildto)
   - [自动化测试BDD风格](#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95bdd%E9%A3%8E%E6%A0%BC)
   - [node处理高并发](#node%E5%A4%84%E7%90%86%E9%AB%98%E5%B9%B6%E5%8F%91)
   - [PIXIJS，游戏，飞机大战](#pixijs%E6%B8%B8%E6%88%8F%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98)
@@ -185,14 +186,13 @@
   - [移动端为什么点击事件的有延迟，时间是多久，为什么？](#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%9C%89%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4%E6%98%AF%E5%A4%9A%E4%B9%85%E4%B8%BA%E4%BB%80%E4%B9%88)
   - [offsetWidth/offsetHeight,clientWidth/clientHeight与scrollWidth/scrollHeight的区别？](#offsetwidthoffsetheightclientwidthclientheight%E4%B8%8Escrollwidthscrollheight%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [webpackto，](#webpackto)
-  - [常用插件](#%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6)
-  - [自定义loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader-1)
-  - [webpack原理，实现webpack](#webpack%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
-  - [自定义插件，自定义plugin](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89plugin)
+  - [自定义loaderto](#%E8%87%AA%E5%AE%9A%E4%B9%89loaderto)
+  - [webpack 原理，实现webpack](#webpack-%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
+  - [自定义插件，自定义pluginto](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89pluginto)
   - [webpack如何工作，工作流程](#webpack%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
+  - [babel-pollyfillto和babel-transform-runtimeto区别](#babel-pollyfillto%E5%92%8Cbabel-transform-runtimeto%E5%8C%BA%E5%88%AB)
   - [匹配文件夹下所有特定后缀的文件，webpackCopy复制前先压缩所有的js](#%E5%8C%B9%E9%85%8D%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6webpackcopy%E5%A4%8D%E5%88%B6%E5%89%8D%E5%85%88%E5%8E%8B%E7%BC%A9%E6%89%80%E6%9C%89%E7%9A%84js)
   - [Webpack热更新](#webpack%E7%83%AD%E6%9B%B4%E6%96%B0)
-  - [babel-pollyfill和babel-transform-runtime区别](#babel-pollyfill%E5%92%8Cbabel-transform-runtime%E5%8C%BA%E5%88%AB)
   - [import和require的区别](#import%E5%92%8Crequire%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [webpack优化](#webpack%E4%BC%98%E5%8C%96)
   - [Webpack5和webpack4的区别](#webpack5%E5%92%8Cwebpack4%E7%9A%84%E5%8C%BA%E5%88%AB)
@@ -572,7 +572,7 @@ renderFriendList()
 
 ```
 
-## 防抖
+## 防抖,debounceto
 
 ```
 <!-- 加上控制每个周期的第一次是否运行 -->
@@ -590,6 +590,33 @@ function debounce(fn, wait) {
       fn.apply(_this, args)
     }, wait)
   }
+}
+<!-- 自用 -->
+export function debounce(func, wait = 200, needRunAtFirst = true) {
+  // 缓存一个定时器id
+  let timer = 0;
+  let firstTime = needRunAtFirst;
+  let isHandling = false;
+  // 这里返回的函数是每次用户实际调用的防抖函数 // 如果已经设定过定时器了就清空上一次的定时器 // 开始一个新的定时器，延迟执行用户传入的方法
+  return function () {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const _this = this;
+    if (firstTime) {
+      if (isHandling) return;
+      isHandling = true;
+      func.apply(_this, arguments);
+      setTimeout(() => {
+        firstTime = false;
+        isHandling = false;
+      }, wait);
+    } else {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(_this, arguments);
+        firstTime = needRunAtFirst;
+      }, wait);
+    }
+  };
 }
 
 ```
@@ -1582,29 +1609,91 @@ for (let i = 0; i < 5; i++) {
 
 <!-- endjs -->
 
-# 亮点to
+# 亮点to，hejieto
 
-## webp优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件
-- requestAnimationFrame，requestAnimationFrame执行频率是1000/60,大概是16ms多执一次
-- 小程序人机校验跨域脚本，重定向问题
-- requestIdleCallback进行资源的预加载，Window.cancelIdleCallback() 取消，safari不兼容，要做判断
-- css
+- webp优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件
 
-## 优化
+## 性能优化to
 
-- 大小
-  资源体积和按需请求：caniuse 网站查询 webp 在 safari 里面不支持
-  webp 的处理，图像 OSS 处理（指数级增长，只对超 20k 以上阈值的图片进行处理），dynamic-import-node 动态引入，lighthouse 进行排查修复，tiny(自动 tiny 压缩上传)，前端 gzip 打包，polyfill（体积很大），moment 本地化，异步加载，预加载，懒加载，打包压缩 webpack4，控制 cookie 大小
-- 时序优化，白屏
-  ssr,自制骨架屏组件，防抖节流，promise.all，ssr，abort 终止请求，prefect，
-  link rel=‘dns-prefetch’ href=‘\*\*\*.com’预解析
-  link rel=preload as='imgs' href=
-- 图片并发请求限制
-- measure 高阶组件
-- 合理利用缓存
-  cdn,cdn 预热，cdn 刷新
+1. wepack 打包层面
+   打包层面：webpack: babel-import,svg 化为组件后按需导入，bundle-analyzer 打包分析，babel-transform-runtime 代替 babel-pollyfill，treeShaking,cache-loader，threadLoader 和 happypack
+
+2. 指标：通过 chrome 的 performance webvitals 里面查看关键数据：(FCP)：测量页面开始加载到某一块内容显示在页面上的时间。
+   Largest contentful paint (LCP)：测量页面开始加载到最大文本块内容或图片显示在页面中的时间。
+   DomContentLoaded Event：DOM 解析完成时间。
+   OnLoad Event：页面资源加载完成时间。
+
+3. 工具：
+
+- 用谷歌浏览器的 Lighthouse 先检查网站，先修复减少问题资源大小
+- 用谷歌 performance 工具火山图查看性能瓶颈
+
+4. 步骤：
+
+- 大小上：chrom devtools 的 coverage 覆盖率，适当用 critters（可以自动按需内联节点，剔除不需要的样式）内联首屏样式，splitChunks 拆分代码，项目中有个自己的 svg 库比较大，配合 babel-import 改造成可按需引入的，tree-shaking,小图转 base64，其他图 webp 处理，图片 tiny 插件，moment 去国际化，cdn 预热（主动请求和）和刷新
+- 时序上：路由懒加载，react-lazy 拆分，判断浏览器是否可以 prefetch 进行预加载，lazyload 图片懒加载，图片并发控制，为防止埋点阻塞，可以延迟合并上报，用 navigator.sendBeacon(url, data)上报，请求终止，.abort,axios 就是 cancelToken，requestIdleCallback 进行资源的预加载，Window.cancelIdleCallback() 取消，safari 不兼容，要做判断
+- 代码上，重绘回流：在 performance 里面的 frames 火山图和 screensnots 里面可以看到详细的页面抖动情况，针对抖动进行布局的优化，动画硬件加速（transform，opacity，filter，will-change 可以触发加速）
+- 感观体验上：骨架屏（HTMLWebpackPlugin 里面可以插入骨架图）
+
+## 常用优化代码块
 
 ```
+
+<!-- 请求终止，终止请求 -->
+sendRequest () {
+  this.source = this.axios.CancelToken.source(); // 这里初始化source对象
+  this.axios.get(url, {
+    cancelToken: this.source.token // 这里声明的cancelToken其实相当于是一个标记，
+    // 当我们要取消请求的时候，可以通过这个找到该请求
+  })
+cancel () {
+  this.source.cancel('这里你可以输出一些信息，可以在catch中拿到')
+}
+
+<!-- prefetchto -->
+const isPrefetchSupported = () => {
+  const link = document.createElement('link');
+  const { relList } = link;
+
+  if (!relList || !relList.supports) {
+    returnfalse;
+  }
+  return relList.supports('prefetch');
+};
+const prefetch = () => {
+  const isPrefetchSupport = isPrefetchSupported();
+  if (isPrefetchSupport) {
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.as = type;
+    link.href = url;
+    document.head.appendChild(link);
+  } elseif (type === 'script') {
+          // load script
+  }
+};
+
+<!-- webpto -->
+// 检测是否支持webp
+function checkWebp() {
+  try {
+    return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0
+  } catch (e) {
+    return false
+    //TODO handle the exception
+  }
+}
+
+function getWebpImageUrl(url) {
+  if (!url) {
+    throw Error('url不能为空')
+  }
+  if (url.startsWith('data:')) return url
+  if (!checkWebp) return url
+  return (url = '?x-oss-process****')
+}
+
+<!-- 并发加载，limitLoadto -->
 高并发控制，promise.race结合链式调用
 
 function limitLoad(urls, handler, limit) {
@@ -1638,27 +1727,7 @@ function loadImg(url) {
 let tmp = new Array(19).fill(0).map((i, d) => d)
 limitLoad(tmp, loadImg, 3)
 
-// 检测是否支持webp
-function checkWebp() {
-  try {
-    return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0
-  } catch (e) {
-    return false
-    //TODO handle the exception
-  }
-}
-
-function getWebpImageUrl(url) {
-  if (!url) {
-    throw Error('url不能为空')
-  }
-  if (url.startsWith('data:')) return url
-  if (!checkWebp) return url
-  return (url = '?x-oss-process****')
-}
-
-<!-- measure -->
-装饰器
+<!-- 耗时装饰器 -->
 export function measure(target,name,descriptor){
   const oldValue = descriptor.value
   descriptor.value = async function(){
@@ -1670,8 +1739,6 @@ export function measure(target,name,descriptor){
   return descriptor
 }
 ```
-
-promise 的缓存
 
 ## 编辑器
 
@@ -1704,33 +1771,17 @@ promise 的缓存
 2. 开始递归分析依赖数组并递归解析，解析所有模块
 3. 开始输出代码，按照 webpack 的最终 IIFE 的输出格式，将生成的对象直接 JSON.stringify 字符串然后拼接上去，eval 执行即可
 
-## 开发插件，开发plugin
+## 开发插件，开发pluginto
 
-hint: 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tiny 发起请求，下载图片后直接上传到 oss 即可
+hint: 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tiny 发起请求，下载图片后直接上传到 oss 后再删除
 
 一个类，apply 入口，可以拿到 compiler 参数，compiler.plugin('done', (compilation 编译结果) => {}),常用的钩子有 emit 即将打包，compile 编译中，done 打包完成，
 
-<!-- {
- headers: {
-   'Cache-Control': 'no-cache',
-   'Content-Type': 'application/x-www-form-urlencoded',
-   'Postman-Token': Date.now(),
-   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
-   'X-Forwarded-For': ip
- },
- hostname: TINYIMG_URL[index],
- method: 'POST',
- path: '/web/shrink',
- rejectUnauthorized: false
-} -->
-
 ## 自定义loader
 
-hint: 用来检查判断 addEventlistner 后有没 removeEventListener 以及其他的一些规则
+hint: 用来检查判断 addEventlistner 后有没 removeEventListener 以及其他的一些规则就是一个函数，可以解析到 source 对象，然后对 source 进行操作后 return 出去就是了，
 
-就是一个函数，可以解析到 source 对象，然后对 source 进行操作后 return 出去就是了，
-
-## 开发脚手架
+## 开发脚手架to
 
 https://mp.weixin.qq.com/s/TFP6bKADnY5zPDX5bqQqEA
 hint: 前期用 handlebars 模板引擎生成 vue 文件并刷新路由，后面直接工程自动化后 require.context 自动化引入后就不需要手动刷新路由了
@@ -1745,8 +1796,6 @@ npm init,package.json 里面 bin 指向脚本文件，npm link 进行关联，�
 5. 下载依赖，用 execa 调用子进程
 
 ## 开发npm包，组件库
-
-hint: 封装组件库和各种工具包，husky 在发布前执行 linter，跑完测试才能发布
 
 1. yarn add @vue/cli -D 安装 vuecli3 最新的脚手架
 2. npx vue create mycli
@@ -1767,14 +1816,6 @@ hint: 封装组件库和各种工具包，husky 在发布前执行 linter，跑�
 "license": "MIT",  // license协议
 "main": "dist/hejie-plugin-demo.umd.js", // 入口
 ```
-
-## webpack 工作流程 (加载 - 编译 - 输出)
-
-- 1、读取配置文件，按命令 初始化 配置参数，创建 Compiler 对象；
-- 2、调用 plugin 的 apply 方法 挂载插件 监听，然后从入口文件开始执行编译；
-- 3、按文件类型，调用相应的 Loader 对模块进行 编译，并在合适的时机点触发对应的事件，调用 Plugin 执行，最后再根据模块 依赖查找 到所依赖的模块，递归执行第三步；
-- 4、将编译后的所有代码包装成一个个代码块 (Chuck)， 并按依赖和配置确定 输出内容。这个步骤，仍然可以通过 Plugin 进行文件的修改;
-- 5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；
 
 打包风格
 commonJs 的 require 风格
@@ -1889,7 +1930,7 @@ xhr.onreadystatechange = function () {
   构建 form-data form-data
   上传文件 node-fetch
 
-## webpack优化，性能优化/代码优化化，webpack优化
+## webpack优化，webpackto
 
 - babelrc 里面配置开发环境 dynamic-import-node 动态引入
 - alias: 缓存目录，避免重复寻址；
@@ -1914,27 +1955,13 @@ xhr.onreadystatechange = function () {
 - 使用 **fast-sass-loader** 和 fast-css-loader，fast-sass-loader 原理是去重编译，舍弃 sourceMap 提升性能（因此也不支持@import 语法），fast-css-loader 也是剔除了 sourceMap 以及用正则和一些小技巧来实现 css 解析
 - **CompressionWebpackPlugin** 开启 Gzip
 
-1. 工具：
+## webpack 工作流程 (加载 - 编译 - 输出)
 
-- 用谷歌浏览器的 Lighthouse 先检查网站，先修复减少问题资源大小
-- 用谷歌 performance 工具火山图查看性能瓶颈
-
-3. 大小：
-
-- Js 打包，css 压缩，图片压缩，雪碧图，小图用 url-loader 转 base64，nginx 开 gzip,前端 accept-encoding:gzip 允许开启 gzip
-
-4. 缓存：运用浏览器缓存和 cdn，服务端可以用 redis 之类
-5. 首屏渲染优化：路由懒加载，服务端渲染，代码分包，骨架屏（HTMLWebpackPlugin 里面可以插入骨架图），css 分离 cssExtract
-
-6. 代码：
-
-- 防抖，节流
-- 多用备忘录缓存和策略设计模式编写代码，避免太多 if else
-- Css 在头部 head 里面，js 放在 body 后面
-- 使用 动画属性 实现动画，动画时脱离文档流，开启硬件加速，优先使用 css 动画；
-- 使用 <link> 替代原生 @import；
-- 减少重绘与回流，减少回流:
-- 使用事件委托，避免大量的事件绑定；
+- 1、读取配置文件，按命令 初始化 配置参数，创建 Compiler 对象；
+- 2、调用 plugin 的 apply 方法 挂载插件 监听，然后从入口文件开始执行编译；
+- 3、按文件类型，调用相应的 Loader 对模块进行 编译，并在合适的时机点触发对应的事件，调用 Plugin 执行，最后再根据模块 依赖查找 到所依赖的模块，递归执行第三步；
+- 4、将编译后的所有代码包装成一个个代码块 (Chuck)， 并按依赖和配置确定 输出内容。这个步骤，仍然可以通过 Plugin 进行文件的修改;
+- 5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；
 
 ## 微前端to，乾坤
 
@@ -1974,9 +2001,7 @@ output: {
  },
 ```
 
-4. 接入完成
-
-## vite
+## viteto,esbuildto
 
 内核：esbuild
 
@@ -4357,16 +4382,7 @@ FALLBACK: 表示如果访问第一个资源失败，那么就使用第二个资�
 
 # webpackto，
 
-## 常用插件
-
-- ProvidePlugin: 自动加载模块；
-- html-webpack-plugin: 加载 html 文件，并引入 css / js 文件；
-- extract-text-webpack-plugin / mini-css-extract-plugin: 抽离样式，生成 css 文件；
-- DefinePlugin: 定义全局变量；
-- compression-webpack-plugin: 使用 gzip 压缩 js 和 css；
-- EnvironmentPlugin: 定义环境变量
-
-## 自定义loader
+## 自定义loaderto
 
 Schema-utils 校验入参，loderUtils 获取 loader 的 options 参数
 
@@ -4415,11 +4431,11 @@ test: /[\\/]node_modules[\\/]/,
 // 当 webpack 处理文件路径时，它们始终包含/在 Unix 系统和\Windows 上。这就是为什么[\\/]在{cacheGroup}
 // .test 字段中使用 in 来表示路径分隔符的原因。/ 或\in { cacheGroup }.test 会在跨平台使用时引起问题。
 
-## webpack原理，实现webpack
+## webpack 原理，实现webpack
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
-## 自定义插件，自定义plugin
+## 自定义插件，自定义pluginto
 
 插件系统是 Webpack 成功的一个关键性因素。在编译的整个生命周期中，Webpack 会触发许多事件钩子，Plugin 可以监听这些事件，根据需求在相应的时间点对打包内容进行定向的修改。
 
@@ -4463,6 +4479,19 @@ new Plugin(options),
 打包风格
 commonJs 的 require 风格
 
+## babel-pollyfillto和babel-transform-runtimeto区别
+
+pollyfill：优点全局受用，新增属性会作用在原型链上，全能，能避免一些不必要的错误，不过比较大
+Babel-transform-runtime: 按需动态引入，比较小，不过不会污染全局，不会影响原型
+
+pollyfill 使用：
+第一种：entry: ["babel-polyfill", './src/app.js’]，然后 index.js import 'babel-polyfill’
+第二种：.babelrc 里面配置
+transform-runtime 使用：
+
+1. 引入 babel-plugin-tranform-runtime 包；
+2. 在.babelrc 文件 plugins 中添加 babel-plugin-tranform-runtime: "plugins": ["transform-runtime"];
+
 ## 匹配文件夹下所有特定后缀的文件，webpackCopy复制前先压缩所有的js
 
 chainWebpack 中有时会有一种场景，比如复制前先压缩所有特定文件夹下的 js 文件，可用**代替所有子目录，
@@ -4491,19 +4520,6 @@ config.plugin('copy').tap(args => {
 2. webpack 重新编译构建一个或多个模块，并通知 HMR 服务器进行更新；
 3. HMR Server 使用 webSocket 通知 HMR runtime 需要更新，HMR 运行时通过 HTTP 请求更新 jsonp；
 4. HMR 运行时替换更新中的模块，如果确定这些模块无法更新，则触发整个页面刷新。
-
-## babel-pollyfill和babel-transform-runtime区别
-
-pollyfill：优点全局受用，新增属性会作用在原型链上，全能，能避免一些不必要的错误，不过比较大
-Babel-transform-runtime: 按需动态引入，比较小，不过不会污染全局，不会影响原型
-
-pollyfill 使用：
-第一种：entry: ["babel-polyfill", './src/app.js’]，然后 index.js import 'babel-polyfill’
-第二种：.babelrc 里面配置
-transform-runtime 使用：
-
-1. 引入 babel-plugin-tranform-runtime 包；
-2. 在.babelrc 文件 plugins 中添加 babel-plugin-tranform-runtime: "plugins": ["transform-runtime"];
 
 ## import和require的区别
 
@@ -6702,18 +6718,18 @@ function binarySearch(arr, target) {
   return right
 }
 ```
+
 ## 求两个有序数组的第K⼩数
+
 【题⽬】
-给定两个有序数组arr1和arr2，已知两个数组的⻓度分别为 m1 和 m2，求两个数组中的第 K ⼩数。要
-求时间复杂度O(log(m1 + m2))。
+给定两个有序数组 arr1 和 arr2，已知两个数组的⻓度分别为 m1 和 m2，求两个数组中的第 K ⼩数。要
+求时间复杂度 O(log(m1 + m2))。
 例如 arr1 = [1, 2,3]，arr2 = [3,4,5,6]，K = 4。
 则第 K ⼩数为 3.
 例如 arr1 = [0,1,2]，arr2 = [3,4,5，7，8]， K = 3;
 则第 K ⼩数为 2.
 
-
 解法：采⽤递归的⽅法不断缩⼩ K 的，把求第 K ⼩元素转化为第 (K-K/2) ⼩元素....
-
 
 ```
 public static int findKth(int[] arr1, int[] arr2, int k) {
@@ -8168,9 +8184,12 @@ module.exports = {
     FindGreatestSumOfSubArray : FindGreatestSumOfSubArray
 };
 ```
+
 ## 找零钱
+
 已知不同⾯值的钞票，求如 何⽤最少数量的钞票组成某个⾦额，求可 以使⽤的最少钞票数量。如果任
 意数量的已知⾯值钞票都⽆法组成该⾦额， 则返回-1。
+
 ```
 示例：
 Input: coins = [1, 2, 5], amount = 11
@@ -8223,6 +8242,7 @@ return dp[amount];
 ```
 
 ## 最大正方形
+
 在⼀个由 0 和 1 组成的⼆维矩阵内，找到只包含 1 的最⼤正⽅形，并返回其⾯积。
 示例
 输⼊:
@@ -9174,8 +9194,11 @@ function hasPath(matrix, rows, cols, path){
     }
 }
 ```
+
 ## 机器人不同路径1
-空间复杂度Omn
+
+空间复杂度 Omn
+
 ```
 var uniquePaths = function(m, n) {
     const f = new Array(m).fill(0).map(() => new Array(n).fill(0));
@@ -9326,10 +9349,12 @@ function movingCount(threshold, rows, cols){
 
 
 ```
+
 ## 打家劫舍
-在⼀条直线上，有n个房屋，每个房屋中有数量不等的财宝，有⼀个盗 贼希望从房屋中盗取财宝，由于
+
+在⼀条直线上，有 n 个房屋，每个房屋中有数量不等的财宝，有⼀个盗 贼希望从房屋中盗取财宝，由于
 房屋中有报警器，如果同时从相邻的两个房屋中盗取财宝就会触发报警器。问在不触发报警器的前提
-下，最多可获取多少财宝？例如 [5，2，6，3，1，7]，则选择5，6，7
+下，最多可获取多少财宝？例如 [5，2，6，3，1，7]，则选择 5，6，7
 
 ```
 2 、⼦问题：
@@ -9373,8 +9398,6 @@ return dp[nums.length-1];
  }
 }
 ```
-
-
 
 ## 最小路径和
 
@@ -9468,11 +9491,11 @@ function convert(list) {
 }
 ```
 
-
 ## 取中间数，取中位数，长度不等
 
 这个在 leetCode 上有， 不考虑时间负责度的情况下 把两个数组合并 -> 排序 -> 单数取中间，双数取中间两个平均值
 暴力解法
+
 ```
 像domdiff一样，新建两个指针，分别指向nums1、nums2
 从头开始比较，将小的存入merged数组
@@ -9510,6 +9533,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
 ```
 
 二分法 log(m+n)
+
 ```
 /**
  * @param {number[]} nums1
@@ -9519,14 +9543,14 @@ var findMedianSortedArrays = function(nums1, nums2) {
 var findMedianSortedArrays = function(nums1, nums2) {
    let len1 = nums1.length;
    let len2 = nums2.length;
-   // 对长度短的数组进行二分查找    
+   // 对长度短的数组进行二分查找
    if (len1 > len2) {
        return findMedianSortedArrays(nums2, nums1);
    }
    let len = len1 + len2;
    let start = 0;
    let end = len1;
-   // 两个数组左分段的长度    
+   // 两个数组左分段的长度
    let partLen1 = 0;
    let partLen2 = 0;
 
@@ -9545,7 +9569,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
             start = partLen1 + 1;
        } else { // 满足条件的情况： l1 <= r2 && l2 <= r1
             return len % 2 === 0 ?
-            (Math.max(l1, l2) + Math.min(r1, r2) ) / 2 : 
+            (Math.max(l1, l2) + Math.min(r1, r2) ) / 2 :
             Math.max(l1, l2)
        }
    }
@@ -9554,7 +9578,9 @@ var findMedianSortedArrays = function(nums1, nums2) {
 ```
 
 ## 两个长度相等的数组求中位数,ON,空间O1
+
 二分法不断比对两个数组的中位数
+
 ```
  1    public static int getUpMedian(int[] arr1, int[] arr2) {
  2        if(arr1 == null || arr2 == null )
@@ -9582,6 +9608,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
 24    }
 
 ```
+
 ## 手动实现filter
 
 ```
