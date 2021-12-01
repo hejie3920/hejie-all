@@ -21,13 +21,14 @@
   - [经典foo问题](#%E7%BB%8F%E5%85%B8foo%E9%97%AE%E9%A2%98)
   - [手动实现bind](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0bind)
   - [实现实现call](#%E5%AE%9E%E7%8E%B0%E5%AE%9E%E7%8E%B0call)
-  - [实现实现apply](#%E5%AE%9E%E7%8E%B0%E5%AE%9E%E7%8E%B0apply)
+  - [实现apply](#%E5%AE%9E%E7%8E%B0apply)
   - [继承to，原型链to，原型to](#%E7%BB%A7%E6%89%BFto%E5%8E%9F%E5%9E%8B%E9%93%BEto%E5%8E%9F%E5%9E%8Bto)
   - [JavaScript的作⽤域链理解吗？✨](#javascript%E7%9A%84%E4%BD%9C%E2%BD%A4%E5%9F%9F%E9%93%BE%E7%90%86%E8%A7%A3%E5%90%97)
+  - [es5的主要继承方式](#es5%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F)
   - [继承的几种方式](#%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F)
   - [ES5的继承和ES6的继承有什么区别](#es5%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8Ces6%E7%9A%84%E7%BB%A7%E6%89%BF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [实现promise,promiseto，](#%E5%AE%9E%E7%8E%B0promisepromiseto)
-  - [手动实现promise.race,promise.all,promise.catch,promise.finally,promise.allSettled](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0promiseracepromiseallpromisecatchpromisefinallypromiseallsettled)
+  - [手动实现promise.race,实现promise.all,promise.catch,promise.finally,promise.allSettled](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0promiserace%E5%AE%9E%E7%8E%B0promiseallpromisecatchpromisefinallypromiseallsettled)
   - [实现async/await](#%E5%AE%9E%E7%8E%B0asyncawait)
   - [豪华版实现promise](#%E8%B1%AA%E5%8D%8E%E7%89%88%E5%AE%9E%E7%8E%B0promise)
   - [yieldto，](#yieldto)
@@ -228,6 +229,7 @@
   - [合成事件](#%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6)
   - [react浅比较，pureComponent的原理](#react%E6%B5%85%E6%AF%94%E8%BE%83purecomponent%E7%9A%84%E5%8E%9F%E7%90%86)
   - [fiberto](#fiberto)
+  - [scheduler](#scheduler)
   - [如何保证Update不丢失](#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81update%E4%B8%8D%E4%B8%A2%E5%A4%B1)
   - [如何保证状态依赖的连续性](#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%8A%B6%E6%80%81%E4%BE%9D%E8%B5%96%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7)
   - [hooksto](#hooksto)
@@ -446,21 +448,6 @@ isEmpty(val) {
 不改变数组：slice,map,forEach,filter,some,reduce,find,concat,every,some,entries
 
 ```
-arr.map 和arr.forEach的区别在于map方法会返回一个数组，而forEach只是单纯地进行操作
-
-arr.map(item=>{对每一项数组执行方法并最终返回一个新数组})
-
-arr.filter（x => { x>50 }）对每一项数据进行过滤
-
-reduce
-arr.reduce( (pre,next,index) => {
-。。。。
-return val（这个值将会作为pre的新的值）
-} , 初始值)
-
-slice截取
-arr.slice( index,几项) 取出【index，几项）取出数组左闭右开的集合项，
-
 splice，变化原数组
 arr.splice( index, 选中的索引项以及后面几项要被覆盖，‘覆盖为新的什么值’)
 删除: arr.splice(i,1)
@@ -912,7 +899,7 @@ Foo.a();
 Function.prototype.bind = function(ctx) {
   var self = this
   return function() {
-    return self.apply(ctx, arguments
+    return self.apply(ctx, arguments)
   }
 }
 
@@ -938,7 +925,7 @@ Function.prototype.call = function(context) {
 
 ```
 
-## 实现实现apply
+## 实现apply
 
 ```
 Function.prototype.apply2 = function(context, arr) {
@@ -960,46 +947,7 @@ Function.prototype.apply2 = function(context, arr) {
 ```
 
 ## 继承to，原型链to，原型to
-
-1. 最主要认识三点，每个构造函数都有 prototype（孩子）,孩子有老爸所有的方法遗产
-2. 所有实例出来的对象都有一个\_proto（即 Father.prototype，里面有 constructor 标明它的构造函数是 Father）
-   Father.prototype.constructor ==> Father 用来指明爸爸是谁
-3. 寄生组合继承本质就是将目标类的 prototype 设置成父类.prototype,这个 prototype 的 constructor 要改为目标类
-   然后子类在用 Father.call（this）来初始化
-4. 获取原型的方法，p._proto_, p.constructor.prototype, Object.getProtyotypeOf(p)
-
-![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-proto.png
-
-```
-综上
-寄生组合继承
-function inherit(son, father) {
-  let obj = Object.create(father.prototype)
-  obj.constructor = son
-  son.prototype = obj
-}
-function Father(name) {
-  this.name = name
-  this.age = 44
-}
-定义原型链上的方法babaMethod
-为什么要将方法定义在原型上，定义在原型上的方法，所有的实例对象都共享
-不会出现没实列一个对象都重新创建一个这个方法
-Father.prototype.babaMethod = function () {
-  console.log(this.name)
-}
-let haha = new Father('爸爸')
-function Son() {
-  Father.call(this, '儿子')
-  this.age = '20'
-}
-inherit(Son, Father)
-
-let test = new Son()
-test.babaMethod()
-
-```
-
+[继承](https://segmentfault.com/a/1190000015766680)
 ## JavaScript的作⽤域链理解吗？✨
 
 JavaScript 属于静态作⽤域，即声明的作⽤域是根据程序正⽂在编译时就确定的，有时也称为词法作⽤域。
@@ -1007,7 +955,43 @@ JavaScript 属于静态作⽤域，即声明的作⽤域是根据程序正⽂在
 可以通过这个引⽤获取外部词法环境的变量、声明等，这些引⽤串联起来⼀直指向全局的词法环境，因此形成了作⽤域
 链。
 
+## es5的主要继承方式
+
+寄生组合式继承
+
 ## 继承的几种方式
+主要有三种，原型链继承，借用构造函数继承，寄生组合式继承
+寄生组合式继承思想：强行把爸爸儿子的副本抢回来变成子类自己的儿子，同时也要给儿子洗脑，跟儿子说他的构造者就是子类自己
+```
+//父类
+function SuperType(name){
+    //父类实例属性
+    this.name = name;
+    this.colors = ["red", "blue", "green"];
+}
+//父类原型方法
+SuperType.prototype.sayName = function(){
+    alert(this.name);
+};
+//子类
+// 1. 借用构造函数：继承父类的实例属性；
+function SubType(name, age){
+    SuperType.call(this, name);
+    this.age = age;
+}
+// 2. 寄生组合式继承：将父类原型的副本强制赋值给子类原型，实现继承父类的原型方法。
+inherit(SubType, SuperType);
+
+SubType.prototype.sayAge = function(){
+    alert(this.age);
+};
+
+function inherit(subType, superType){
+    var prototype = Object.create(superType.prototype); //创建父类原型的副本
+    prototype.constructor = subType; //将该副本的constructor属性指向子类
+    subType.prototype = prototype; //将子类的原型属性指向副本
+}
+```
 
 - 原型链继承
   基本思想：利用原型让一个引用类型继承另一个引用类型的属性和方法，即让原型对象等于另一个类型的实例，Son.prototype = new Father()
@@ -1042,7 +1026,7 @@ JavaScript 属于静态作⽤域，即声明的作⽤域是根据程序正⽂在
   缺：创造两个相似的对象，但是包含引用类型的值的属性始终会共享响应的值
 
 - 寄生式继承
-  思想：与原型式继承紧密 to，的一种思路，它实质上把原型继承的过程封装起来，直接 Object.create(father)，然后直接给它新增一些属性增强对象，最后再返回对象。
+  思想：与原型式继承紧密关联的一种思路，它实质上把原型继承的过程封装起来，直接 Object.create(father)，然后直接给它新增一些属性增强对象，最后再返回对象。
   缺：使用寄生式继承来为对象添加函数，会因为做不到函数复用而降低效率，这个与构造函数模式类似
 
 - 寄生组合式继承
@@ -1051,9 +1035,8 @@ JavaScript 属于静态作⽤域，即声明的作⽤域是根据程序正⽂在
 
 ## ES5的继承和ES6的继承有什么区别
 
-1. ES5 先创建子类，在实例化父类并添加到子类 this 中
-   【关键：father.call(son, args)）即是实例化子类，然后实例化父类，将 son.protyotype 指向父类实例】
-2. ES6 先创建父类，在实例化子集中通过调用 super 方法访问父级后，在通过修改 this 实现继承
+1. ES5 主要通过，借用父类构造函数或者原型链对象或者寄生组合式继承来共修改原型，从而实现继承和共享
+2. ES6 先创建父类，在实例化子集中通过调用 super 方法直接用父类进行初始化，再在构造器里面修改属性
    【在 class extend 后，子的 constructor 里面需要 super（）一下，这个过程其实是 super 先实例化父类，然后再用子类自己的构造器去修改这个对象，
    所以如果不 super，子类是获取不到 this 的，因为 this 的前提是要 super 出来这个父类实例，此外，因为是直接实例父类的，所以这也就决定了 class 的继承可以直接继承内置对象】
 
@@ -1122,7 +1105,7 @@ let promise = new KPromise((resolve, reject) => {
 
 ```
 
-## 手动实现promise.race,promise.all,promise.catch,promise.finally,promise.allSettled
+## 手动实现promise.race,实现promise.all,promise.catch,promise.finally,promise.allSettled
 
 这些方法接受一个数组作为参数，p1、p2、p3 都是 Promise 实例，如果不是，
 就会先调用下面讲到的 Promise.resolve 方法，将参数转为 Promise 实例，再进一步处理。
@@ -5371,7 +5354,7 @@ function FiberNode(
    这显然是很低效的。
    为了解决这个问题，在 completeWork 的上层函数 completeUnitOfWork 中，每个执行完 completeWork 且存在 effectTag 的 Fiber 节点会被保存在一条被称为 effectList 的单向链表中，effectList 中第一个 Fiber 节点保存在 fiber.firstEffect，最后一个元素保存在 fiber.lastEffect，类似 appendAllChildren，在“归”阶段，所有有 effectTag 的 Fiber 节点都会被追加在 effectList 中，最终形成一条以 rootFiber.firstEffect 为起点的单向链表。
    至此，render 阶段全部工作完成。在 performSyncWorkOnRoot 函数中 fiberRootNode 被传递给 commitRoot 方法，开启 commit 阶段工作流程。
-   ![image](markdown/2021-11-22-14-26-51.png):markdown/2021-11-22-14-26-51.png   fiber.updateQueue,将带有 effectTag 的 fiber 挂载在父级 fiber 的 effectList 末尾，并返回下一个 workInProgress
+   ![image](markdown/2021-11-22-14-26-51.png):markdown/2021-11-22-14-26-51.png fiber.updateQueue,将带有 effectTag 的 fiber 挂载在父级 fiber 的 effectList 末尾，并返回下一个 workInProgress
 
 6. commit 阶段
    从 Reactv16 开始，componentWillXXX 钩子前增加了 UNSAFE\_前缀。
@@ -5541,11 +5524,27 @@ oldIndex 2 < lastPlacedIndex 3
 但实际上 React 保持 d 不变，将 abc 分别移动到了 d 的后面。
 从这点可以看出，考虑性能，我们要尽量减少将节点从后面移动到前面的操作。
 
+## scheduler
+
+- 时间切片
+  本质是模拟实现 requestIdleCallback
+  一个 task(宏任务) -- 队列中全部 job(微任务) -- requestAnimationFrame -- 浏览器重排/重绘 -- requestIdleCallback
+  退而求其次，Scheduler 的时间切片功能是通过 task（宏任务）实现的。
+  最常见的 task 当属 setTimeout 了。但是有个 task 比 setTimeout 执行时机更靠前，那就是 MessageChannel (opens new window)。
+  所以 Scheduler 将需要被执行的回调函数作为 MessageChannel 的回调执行。如果当前宿主环境不支持 MessageChannel，则使用 setTimeout。
+
+```
+var channel = new MessageChannel();
+otherWindow.postMessage('Hello from the main page!', '*', [channel.port2]);
+channel.port1.onmessage = handleMessage;
+```
+
+- 优先级调度
+
 ## 如何保证Update不丢失
 
 在上一节例子中我们讲到，在 render 阶段，shared.pending 的环被剪开并连接在 updateQueue.lastBaseUpdate 后面。
 实际上 shared.pending 会被同时连接在 workInProgress updateQueue.lastBaseUpdate 与 current updateQueue.lastBaseUpdate 后面。
-具体代码见这里(opens new window)
 当 render 阶段被中断后重新开始时，会基于 current updateQueue 克隆出 workInProgress updateQueue。由于 current updateQueue.lastBaseUpdate 已经保存了上一次的 Update，所以不会丢失。
 当 commit 阶段完成渲染，由于 workInProgress updateQueue.lastBaseUpdate 中保存了上一次的 Update，所以 workInProgress Fiber 树变成 current Fiber 树后也不会造成 Update 丢失。
 
