@@ -288,6 +288,7 @@
   - [快速排序（快排）](#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%BF%AB%E6%8E%92)
   - [原地快排（省空间）](#%E5%8E%9F%E5%9C%B0%E5%BF%AB%E6%8E%92%E7%9C%81%E7%A9%BA%E9%97%B4)
   - [选择排序](#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
+  - [动态规划to](#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92to)
   - [最长递增子序列，稳定子序列](#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%A8%B3%E5%AE%9A%E5%AD%90%E5%BA%8F%E5%88%97)
   - [最长回文字符串](#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2)
   - [插入排序](#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)
@@ -387,9 +388,7 @@
   - [驼峰命名](#%E9%A9%BC%E5%B3%B0%E5%91%BD%E5%90%8D)
   - [解析urlquery为对象](#%E8%A7%A3%E6%9E%90urlquery%E4%B8%BA%E5%AF%B9%E8%B1%A1)
   - [实现eventListener,实现emitter,实现eventEmitter](#%E5%AE%9E%E7%8E%B0eventlistener%E5%AE%9E%E7%8E%B0emitter%E5%AE%9E%E7%8E%B0eventemitter-1)
-  - [统计字符出现最多次的字符](#%E7%BB%9F%E8%AE%A1%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6)
   - [统计出现最多的单词](#%E7%BB%9F%E8%AE%A1%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E5%8D%95%E8%AF%8D)
-  - [多行文本溢出](#%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA)
   - [遍历树，深度优先，广度优先](#%E9%81%8D%E5%8E%86%E6%A0%91%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88)
   - [接雨水问题](#%E6%8E%A5%E9%9B%A8%E6%B0%B4%E9%97%AE%E9%A2%98)
   - [遍历树结构](#%E9%81%8D%E5%8E%86%E6%A0%91%E7%BB%93%E6%9E%84-1)
@@ -6904,6 +6903,10 @@ function selectionSort(arr) {
 }
 ```
 
+## 动态规划to
+
+[动态规划推文](https://mp.weixin.qq.com/s/pg-IJ8rA1duIzt5hW1Cycw)
+
 ## 最长递增子序列，稳定子序列
 
 给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
@@ -9598,6 +9601,40 @@ function hasPath(matrix, rows, cols, path){
 
 ## 机器人不同路径1
 
+一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
+
+还是老样子，三个步骤来解决。
+
+步骤一、定义数组元素的含义
+
+由于我们的目的是从左上角到右下角一共有多少种路径，那我们就定义 dp[i] [j]的含义为：当机器人从左上角走到(i, j) 这个位置时，一共有 dp[i] [j] 种路径。那么，dp[m-1] [n-1] 就是我们要的答案了。
+
+注意，这个网格相当于一个二维数组，数组是从下标为 0 开始算起的，所以 右下角的位置是 (m-1, n - 1)，所以 dp[m-1] [n-1] 就是我们要找的答案。
+步骤二：找出关系数组元素间的关系式
+
+想象以下，机器人要怎么样才能到达 (i, j) 这个位置？由于机器人可以向下走或者向右走，所以有两种方式到达
+
+一种是从 (i-1, j) 这个位置走一步到达
+
+一种是从(i, j - 1) 这个位置走一步到达
+
+因为是计算所有可能的步骤，所以是把所有可能走的路径都加起来，所以关系式是 dp[i] [j] = dp[i-1] [j] + dp[i] [j-1]。
+
+步骤三、找出初始值
+
+显然，当 dp[i] [j] 中，如果 i 或者 j 有一个为 0，那么还能使用关系式吗？答是不能的，因为这个时候把 i - 1 或者 j - 1，就变成负数了，数组就会出问题了，所以我们的初始值是计算出所有的 dp[0] [0….n-1] 和所有的 dp[0….m-1] [0]。这个还是非常容易计算的，相当于计算机图中的最上面一行和左边一列。因此初始值如下：
+
+dp[0] [0….n-1] = 1; // 相当于最上面一行，机器人只能一直往左走
+
+dp[0…m-1] [0] = 1; // 相当于最左面一列，机器人只能一直往下走
+
+撸代码
+
+三个步骤都写出来了，直接看代码
+
+问总共有多少条不同的路径
+
 空间复杂度 Omn
 
 ```
@@ -9616,28 +9653,6 @@ var uniquePaths = function(m, n) {
     }
     return f[m - 1][n - 1];
 };
-
-<!-- 源代码 -->
-public static int uniquePaths(int m, int n) {
-if (m <= 0 || n <= 0) {
-return 0;
- }
-int[][] dp = new int[m][n]; //
-// 初始化
-for(int i = 0; i < m; i++){
-dp[i][0] = 1;
- }
-for(int i = 0; i < n; i++){
-dp[0][i] = 1;
- }
-// 推导出 dp[m-1][n-1]
-for (int i = 1; i < m; i++) {
-for (int j = 1; j < n; j++) {
-dp[i][j] = dp[i-1][j] + dp[i][j-1];
- }
- }
-return dp[m-1][n-1];
-}
 
 
 空间复杂度优化成On，把表格不需要的一行剔除掉
@@ -10131,32 +10146,6 @@ class EventEmitter {
 
 ```
 
-## 统计字符出现最多次的字符
-
-```
-let str = "abcabcabcbbccccc"
-let num = 0
-let char = ""
-
-// 使其按照一定的次序排列
-str = str
-  .split("")
-  .sort()
-  .join("")
-// "aaabbbbbcccccccc"
-
-// 定义正则表达式
-let re = /(\w)\1+/g
-str.replace(re, ($0, $1) => {
-  if (num < $0.length) {
-    num = $0.length
-    char = $1
-  }
-})
-console.log(`字符最多的是${char}，出现了${num}次`)
-
-```
-
 ## 统计出现最多的单词
 
 ```
@@ -10182,29 +10171,6 @@ function findMostWord(article) {
     }
   })
   return maxWord + ' ' + maxNum
-}
-
-```
-
-## 多行文本溢出
-
-```
-@mixin ellipsis($rowCount: 1) {
-  @if $rowCount <=1 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  @else {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: $rowCount;
-    /* autoprefixer: off */
-    -webkit-box-orient: vertical;
-  }
 }
 
 ```
@@ -10660,28 +10626,28 @@ dp[i-1][j-1] 替换
 
 3.如果i*j==0 即有一单词为0,直接返回i+j
 
-let minDistance = (word1, word2)=> {
-    //1.初始化
-    let n = word1.length, m = word2.length
-    let dp = new Array(n+1).fill(0).map(() => new Array(m+1).fill(0))
-    for (let i = 0; i <= n; i++) {
-        dp[i][0] = i
-    }
-    for (let j = 0; j <= m; j++) {
-        dp[0][j] = j
-    }
-    //2.dp
-    for(let i = 0;i <= n;i++){
-        for(let j = 0;j <= m;j++){
-            if(i*j){
-                dp[i][j] = word1[i-1] == word2[j-1]? dp[i-1][j-1]: (Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1)
-            }else{
-                dp[i][j] = i + j
+public int minDistance(String word1, String word2) {
+    int n1 = word1.length();
+    int n2 = word2.length();
+    int[][] dp = new int[n1 + 1][n2 + 1];
+    // dp[0][0...n2]的初始值
+    for (int j = 1; j <= n2; j++)
+        dp[0][j] = dp[0][j - 1] + 1;
+    // dp[0...n1][0] 的初始值
+    for (int i = 1; i <= n1; i++) dp[i][0] = dp[i - 1][0] + 1;
+        // 通过公式推出 dp[n1][n2]
+    for (int i = 1; i <= n1; i++) {
+        for (int j = 1; j <= n2; j++) {
+              // 如果 word1[i] 与 word2[j] 相等。第 i 个字符对应下标是 i-1
+            if (word1.charAt(i - 1) == word2.charAt(j - 1)){
+                p[i][j] = dp[i - 1][j - 1];
+            }else {
+               dp[i][j] = Math.min(Math.min(dp[i - 1][j - 1], dp[i][j - 1]), dp[i - 1][j]) + 1;
             }
         }
     }
-    return dp[n][m]
-};
+    return dp[n1][n2];
+}
 
 ```
 
