@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [基础](#%E5%9F%BA%E7%A1%80)
   - [Js数据类型，js基本类型和复杂类型](#js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bjs%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B)
   - [JavaScript的基本类型和复杂类型存在哪⾥的？](#javascript%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%9C%A8%E5%93%AA%E2%BE%A5%E7%9A%84)
@@ -141,7 +140,6 @@
   - [解决跨域](#%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F)
 - [HTMLto,h5to](#htmltoh5to)
   - [让div水平垂直居中](#%E8%AE%A9div%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
-  - [前端如何进行seo优化](#%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8Cseo%E4%BC%98%E5%8C%96)
   - [实现一个比例的长方形](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%AF%94%E4%BE%8B%E7%9A%84%E9%95%BF%E6%96%B9%E5%BD%A2)
   - [实现三角形](#%E5%AE%9E%E7%8E%B0%E4%B8%89%E8%A7%92%E5%BD%A2)
   - [一个自适应矩形，水平垂直居中，且宽高比为2:1](#%E4%B8%80%E4%B8%AA%E8%87%AA%E9%80%82%E5%BA%94%E7%9F%A9%E5%BD%A2%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E4%B8%94%E5%AE%BD%E9%AB%98%E6%AF%94%E4%B8%BA21)
@@ -160,7 +158,7 @@
   - [为什么要用transform而不用margin](#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8transform%E8%80%8C%E4%B8%8D%E7%94%A8margin)
   - [Href和src的区别](#href%E5%92%8Csrc%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [Positionto，布局to，](#positionto%E5%B8%83%E5%B1%80to)
-  - [前端如何进行seo优化](#%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8Cseo%E4%BC%98%E5%8C%96-1)
+  - [前端如何进行seo优化](#%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8Cseo%E4%BC%98%E5%8C%96)
   - [eslint](#eslint)
   - [短路求值，不利用第三个值来交换值](#%E7%9F%AD%E8%B7%AF%E6%B1%82%E5%80%BC%E4%B8%8D%E5%88%A9%E7%94%A8%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%80%BC%E6%9D%A5%E4%BA%A4%E6%8D%A2%E5%80%BC)
   - [图片二值化，图形算法，正片叠底](#%E5%9B%BE%E7%89%87%E4%BA%8C%E5%80%BC%E5%8C%96%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E6%AD%A3%E7%89%87%E5%8F%A0%E5%BA%95)
@@ -196,7 +194,6 @@
   - [babel-pollyfillto和babel-transform-runtimeto区别](#babel-pollyfillto%E5%92%8Cbabel-transform-runtimeto%E5%8C%BA%E5%88%AB)
   - [匹配文件夹下所有特定后缀的文件，webpackCopy复制前先压缩所有的js](#%E5%8C%B9%E9%85%8D%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6webpackcopy%E5%A4%8D%E5%88%B6%E5%89%8D%E5%85%88%E5%8E%8B%E7%BC%A9%E6%89%80%E6%9C%89%E7%9A%84js)
   - [Webpack热更新](#webpack%E7%83%AD%E6%9B%B4%E6%96%B0)
-  - [import和require的区别](#import%E5%92%8Crequire%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [webpack优化](#webpack%E4%BC%98%E5%8C%96)
   - [Webpack5和webpack4的区别](#webpack5%E5%92%8Cwebpack4%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [Nodeto，](#nodeto)
@@ -241,9 +238,7 @@
   - [React.children.map迭代出来的节点是不能直接修改属性的，可以配合React.cloneElement进行扩展修改](#reactchildrenmap%E8%BF%AD%E4%BB%A3%E5%87%BA%E6%9D%A5%E7%9A%84%E8%8A%82%E7%82%B9%E6%98%AF%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8F%AF%E4%BB%A5%E9%85%8D%E5%90%88reactcloneelement%E8%BF%9B%E8%A1%8C%E6%89%A9%E5%B1%95%E4%BF%AE%E6%94%B9)
   - [ForwardingRefs有什么用](#forwardingrefs%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8)
   - [自己封装antDesign的表单，](#%E8%87%AA%E5%B7%B1%E5%B0%81%E8%A3%85antdesign%E7%9A%84%E8%A1%A8%E5%8D%95)
-  - [react16新增](#react16%E6%96%B0%E5%A2%9E)
   - [类似v-html一样解析html](#%E7%B1%BB%E4%BC%BCv-html%E4%B8%80%E6%A0%B7%E8%A7%A3%E6%9E%90html)
-  - [绑定事件](#%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6)
   - [高阶Hoc](#%E9%AB%98%E9%98%B6hoc)
   - [react-router](#react-router)
   - [react生命周期](#react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
@@ -291,7 +286,7 @@
   - [算法复杂度](#%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6)
   - [归并排序](#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
   - [快速排序（快排）](#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%BF%AB%E6%8E%92)
-  - [原地快排](#%E5%8E%9F%E5%9C%B0%E5%BF%AB%E6%8E%92)
+  - [原地快排（省空间）](#%E5%8E%9F%E5%9C%B0%E5%BF%AB%E6%8E%92%E7%9C%81%E7%A9%BA%E9%97%B4)
   - [选择排序](#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
   - [最长递增子序列，稳定子序列](#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%A8%B3%E5%AE%9A%E5%AD%90%E5%BA%8F%E5%88%97)
   - [最长回文字符串](#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2)
@@ -700,15 +695,19 @@ str: match
    然后(\w) \1 + 代表贪婪尽可能多匹配，不加代表非贪婪，只匹配两个，还可以(\w)\1{2,},匹配 2 次以上（不含 2 次）
 
 ```
-let reg = /(\/\.*[\w]+)|(\/\.\.+)/g
-let str = "/a/./b/../../c/"
-console.log("TCL: test", reg.test(str)) true
-console.log("TCL:match ", str.match(reg)) ["/a", "/b", "/..", "/..", "/c"]
-let arr = []
-while ((arr = reg.exec(str))) {
-  reg.exec(str)  ["/a", "/a", undefined, index: 2, input: "/a/./b/../../c/", groups: undefined]
-  console.log("TCL: arr", arr[0]) '/a'
+let a = '/name=hahah&geg=erwer&e=fsdfsfd&name=hejie'
+const arg = 'name'
+const reg = eval(`/${arg}=([^&]*)/gi`)
+const val = a.match(reg)
+let ret = []
+let res = []
+while((res = reg.exec(a))) {
+  console.log('TCL: res',res)
+  ret.push(res[1])
 }
+console.log('TCL: hevall',ret)
+
+
 正则表达式里面，括号是分组，括起来了的东西会成为$1,$2变量可直接用
 let reg = /（(.*)）/g
 let str = "2019-02 （2）"
@@ -947,7 +946,9 @@ Function.prototype.apply2 = function(context, arr) {
 ```
 
 ## 继承to，原型链to，原型to
+
 [继承](https://segmentfault.com/a/1190000015766680)
+
 ## JavaScript的作⽤域链理解吗？✨
 
 JavaScript 属于静态作⽤域，即声明的作⽤域是根据程序正⽂在编译时就确定的，有时也称为词法作⽤域。
@@ -960,8 +961,10 @@ JavaScript 属于静态作⽤域，即声明的作⽤域是根据程序正⽂在
 寄生组合式继承
 
 ## 继承的几种方式
+
 主要有三种，原型链继承，借用构造函数继承，寄生组合式继承
 寄生组合式继承思想：强行把爸爸儿子的副本抢回来变成子类自己的儿子，同时也要给儿子洗脑，跟儿子说他的构造者就是子类自己
+
 ```
 //父类
 function SuperType(name){
@@ -1547,7 +1550,8 @@ return a - b （降序是 b - a）
 
 ## 如何求数组的最大值和最小值？
 
-`var arr = [6, 4, 1, 8, 2, 11, 23];console.log(Math.max.apply(null, arr))`
+1. 快排
+2. `var arr = [6, 4, 1, 8, 2, 11, 23];console.log(Math.max.apply(null, arr))`
 
 ## 求最大公约数和最小公倍数
 
@@ -1681,6 +1685,8 @@ function getWebpImageUrl(url) {
   if (!checkWebp) return url
   return (url = '?x-oss-process****')
 }
+<!-- 二维数组 -->
+Array.from(new Array(20),() => [1,2,3]（一个填充函数）)
 
 <!-- 并发加载，limitLoadto -->
 高并发控制，promise.race结合链式调用
@@ -1694,6 +1700,8 @@ function limitLoad(urls, handler, limit) {
     })
   })
   let p = Promise.race(promises)
+  <!-- sequence经过splice后会剔除掉已经请求的数据 -->
+  <!-- 然后下面的操作是把promise串起来串成一个promise串 -->
   for (let i = 0; i < sequence.length; i++) {
     p = p.then(res => {
       promises[res] = handler(sequence[i]).then(() => {
@@ -2249,6 +2257,7 @@ function reactive(obj) {
   xhr.setRequestHeader('Content-Type', 'application/json'); // 设置请求头
   xhr.send(JSON.stringify(errorObj)); // 发送参数
   }
+- 可以延迟合并上报，用 navigator.sendBeacon(url, data)上报
 
 # 设计模式to，
 
@@ -3647,16 +3656,6 @@ div.child {
 }
 ```
 
-## 前端如何进行seo优化
-
-- 合理的 title、description、keywords：搜索对着三项的权重逐个减小，title 值强调重点即可；description 把页面内容高度概括，不可过分堆砌关键词；keywords 列举出重要关键词。
-- 语义化的 HTML 代码，符合 W3C 规范：语义化代码让搜索引擎容易理解网页
-- 重要内容 HTML 代码放在最前：搜索引擎抓取 HTML 顺序是从上到下，保证重要内容一定会被抓取
-- 重要内容不要用 js 输出：爬虫不会执行 js 获取内容
-- 少用 iframe：搜索引擎不会抓取 iframe 中的内容
-- 非装饰性图片必须加 alt
-- 提高网站速度：网站速度是搜索引擎排序的一个重要指标
-
 ## 实现一个比例的长方形
 
 1. 第一种方式是利用 vw 来实现\_/
@@ -4336,8 +4335,7 @@ function test() {
 比如上面代码，v8 一开始会预测这个函数的可能要到 unknown 这个变量，已经预测到了可能访问到这里，于是也进行了优化，但当真正运行时一直没跑到下面时，v8 就会自我怀疑，就会重新回滚优化代码
 
 - 隐藏类：v8 将不同的对象划分成不同的组，拥有同样属性名和属性值的对象分到同一组，也就是隐藏类，这些对象共享这个类型信息，这样，访问到具体某一个对象时，就可以通过隐藏类的偏移值快速定位访问，但是如果对象 a.z = 1 这样赋予新的属性后，就不再认为是同一个组了，就会变成一个新的隐藏类
-  ![image](markdown/2021-11-21-13-09-37.png):markdown/2021-11-21-13-09-37.png
-- 内存缓存：正常访问一个对象的属性时，会直接先获取隐藏类的地址，然后拿值之后缓存起来，下次访问时对比是不是同一个隐藏类，是的话就直接返回缓存，所以如果一个对象的属性值很多的话，任何一个属性的类型变化都很容易导致这个对象的隐藏类发生变化，缓存就会失效，所以应该尽量避免不定或者增减变量的对象操作
+  ![image](markdown/2021-11-21-13-09-37.png):markdown/2021-11-21-13-09-37.png- 内存缓存：正常访问一个对象的属性时，会直接先获取隐藏类的地址，然后拿值之后缓存起来，下次访问时对比是不是同一个隐藏类，是的话就直接返回缓存，所以如果一个对象的属性值很多的话，任何一个属性的类型变化都很容易导致这个对象的隐藏类发生变化，缓存就会失效，所以应该尽量避免不定或者增减变量的对象操作
 
 - 内存管理 Zone: zone 管理小块内存，自己申请一块内存，小内存块被分配之后不能被 Zone 回收，只能一次性回收所有小内存块，当一个过程中需要很多内存,Zone 分配大量内存却又不能及时回收时就会导致内存不足的情况
 
@@ -4503,10 +4501,6 @@ config.plugin('copy').tap(args => {
 2. webpack 重新编译构建一个或多个模块，并通知 HMR 服务器进行更新；
 3. HMR Server 使用 webSocket 通知 HMR runtime 需要更新，HMR 运行时通过 HTTP 请求更新 jsonp；
 4. HMR 运行时替换更新中的模块，如果确定这些模块无法更新，则触发整个页面刷新。
-
-## import和require的区别
-
-我们知道 import 跟 require 的区别是，import 是动态加载只有在用到的时候才会去加载，而 require 只要声明了就会加载，webpack 遇到了 require 就会把它当成一个模块加载到 bundle 的依赖里
 
 ## webpack优化
 
@@ -5543,7 +5537,7 @@ channel.port1.onmessage = handleMessage;
 
 ## 如何保证Update不丢失
 
-在上一节例子中我们讲到，在 render 阶段，shared.pending 的环被剪开并连接在 updateQueue.lastBaseUpdate 后面。
+在 render 阶段，shared.pending 的环被剪开并连接在 updateQueue.lastBaseUpdate 后面。
 实际上 shared.pending 会被同时连接在 workInProgress updateQueue.lastBaseUpdate 与 current updateQueue.lastBaseUpdate 后面。
 当 render 阶段被中断后重新开始时，会基于 current updateQueue 克隆出 workInProgress updateQueue。由于 current updateQueue.lastBaseUpdate 已经保存了上一次的 Update，所以不会丢失。
 当 commit 阶段完成渲染，由于 workInProgress updateQueue.lastBaseUpdate 中保存了上一次的 Update，所以 workInProgress Fiber 树变成 current Fiber 树后也不会造成 Update 丢失。
@@ -5804,29 +5798,9 @@ return InputComp => (
 };
 ```
 
-## react16新增
-
-- 新钩子
-  简单来说就是 will 的钩子都被替代 getDerivedStateFromProps
-  除了了 shouldComponentUpdate，其他在 render 函数之前的所有函数(componentWillMount，componentWillReceiveProps， componentWillUpdate)都被 getDerivedStateFromProps 替代。
-- 错误边界，componentDidCatch，配合 getDerivedStateFromError 可以降级渲染
-- ReactDOM.createPortal，传送门，挂载节点在任意位置，节点还是可以继续冒泡到 react 根
-- 返回新增 react 元素数组和字符串
-
 ## 类似v-html一样解析html
 
 `<div id='htmlStr' dangerouslySetInnerHTML={{ __html: htmlStr }}##</div##`
-
-## 绑定事件
-
-```
-1. 比较喜欢的做法
-  handleClick = () =## {
-  this.props.asyncFetch(this.state.num + 1)
-  }
-2. 在 constructor 里面 bind(this)
-3. onClick={(e) =## {this.\*\*\*(e)}}
-```
 
 ## 高阶Hoc
 
@@ -6696,10 +6670,6 @@ TDD 测试驱动开发 => 先写测试案例，然后写预期测试结果然后
 3. 共享原型，可以直接操作操作 fn 就能同步到其他的原型对象上`jquery.prototype = jquery.prototype.init.prototype=jquery.fn`
 4. 模块划分
 
-```
-
-```
-
 # 数据库
 
 ## mongoDB
@@ -6794,36 +6764,37 @@ LeetCode: https://leetcode-cn.com/problemset/all/
 ## 归并排序
 
 Onlogn,稳定
+![image](markdown/2021-12-07-02-03-04.png):markdown/2021-12-07-02-03-04.png
 
 ```
 function mergeSort(arr) {
-  采用自上而下的递归方法
-  var len = arr.length
-  if (len < 2) {
-    return arr
-  }
-  var middle = Math.floor(len / 2),
-    left = arr.slice(0, middle),
-    right = arr.slice(middle)
-  return merge(mergeSort(left), mergeSort(right))
+采用自上而下的递归方法
+var len = arr.length
+if (len < 2) {
+return arr
+}
+var middle = Math.floor(len / 2),
+left = arr.slice(0, middle),
+right = arr.slice(middle)
+return merge(mergeSort(left), mergeSort(right))
 }
 
 function merge(left, right) {
-  var result = []
-  console.time("归并排序耗时")
-  while (left.length && right.length) {
-    if (left[0] <= right[0]) {
-      result.push(left.shift())
-    } else {
-      result.push(right.shift())
-    }
-  }
+var result = []
+console.time("归并排序耗时")
+while (left.length && right.length) {
+if (left[0] <= right[0]) {
+result.push(left.shift())
+} else {
+result.push(right.shift())
+}
+}
 
-  while (left.length) result.push(left.shift())
+while (left.length) result.push(left.shift())
 
-  while (right.length) result.push(right.shift())
-  console.timeEnd("归并排序耗时")
-  return result
+while (right.length) result.push(right.shift())
+console.timeEnd("归并排序耗时")
+return result
 }
 
 ```
@@ -6833,55 +6804,67 @@ function merge(left, right) {
 Onlogn,不稳定，On^2~Onlogn
 
 ```
+
 function quick_sort(arr) {
-  if (arr.length <= 1) {
-    return arr
-  }
-  let pivot = arr[0]
-  let left = []
-  let right = []
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i])
-    } else {
-      right.push(arr[i])
-    }
-  }
-  return quick_sort(left).concat([pivot], quick_sort(right))
+if (arr.length <= 1) {
+return arr
+}
+let pivot = arr[0]
+let left = []
+let right = []
+for (let i = 1; i < arr.length; i++) {
+if (arr[i] < pivot) {
+left.push(arr[i])
+} else {
+right.push(arr[i])
+}
+}
+return quick_sort(left).concat([pivot], quick_sort(right))
 }
 
 ```
 
-## 原地快排
+## 原地快排（省空间）
 
 ```
+
 var quickSort = function(arr, left, right) {
+
   <!-- 如果左边界比右边界大，返回结果，排序结束 -->
-  if (left > right) {
-    return
-  }
+
+if (left > right) {
+return
+}
 
   <!-- 默认值处理，如果有传入left和right参数，就赋值这个参数，否则就赋值后面的默认值 -->
-  left = left || 0
-  right = right || arr.length - 1
+
+left = left || 0
+right = right || arr.length - 1
 
   <!-- 定义移动的左游标和右游标 -->
-  var leftPoint = left
-  var rightPoint = right
+
+var leftPoint = left
+var rightPoint = right
 
   <!-- 定义一个基准数 -->
-  var temp = arr[left]
+
+var temp = arr[left]
 
   <!-- 判断左右游标是否重合，如果重合，循环结束 -->
-  while (leftPoint != rightPoint) {
-    <!-- 从右到左，寻找小于基准数的数，且左游标要小于右游标 -->
-    while (arr[rightPoint] >= temp && leftPoint < rightPoint) {
-      rightPoint--
-    }
-    <!-- 从左到右，寻找大于基准数的数 -->
-    while (arr[leftPoint] <= temp && leftPoint < rightPoint) {
-      leftPoint++
-    }
+
+while (leftPoint != rightPoint) {
+
+<!-- 从右到左，寻找小于基准数的数，且左游标要小于右游标 -->
+
+while (arr[rightPoint] >= temp && leftPoint < rightPoint) {
+rightPoint--
+}
+
+<!-- 从左到右，寻找大于基准数的数 -->
+
+while (arr[leftPoint] <= temp && leftPoint < rightPoint) {
+leftPoint++
+}
 
     <!-- 如果左游标小于右游标，则交换两个数字的位置 -->
     if (leftPoint < rightPoint) {
@@ -6890,44 +6873,51 @@ var quickSort = function(arr, left, right) {
       arr[rightPoint] = changeNumber
     }
     <!-- 进行下一次循环，直到两个游标重合位置 -->
-  }
 
-  <!-- 重合之后，交换基准数 -->
-  arr[left] = arr[leftPoint]
-  arr[leftPoint] = temp
-
-  <!-- 递归操作左右两个数组 -->
-  quickSort(arr, left, leftPoint - 1)
-  quickSort(arr, leftPoint + 1, right)
-
-  return arr
 }
 
+  <!-- 重合之后，交换基准数 -->
+
+arr[left] = arr[leftPoint]
+arr[leftPoint] = temp
+
+  <!-- 递归操作左右两个数组 -->
+
+quickSort(arr, left, leftPoint - 1)
+quickSort(arr, leftPoint + 1, right)
+
+return arr
+}
 
 ```
 
 ## 选择排序
 
+实现思路跟冒泡排序差不多， 可以说是冒泡排序的衍生版本；
+![image](markdown/2021-12-07-02-00-10.png):markdown/2021-12-07-02-00-10.png
+
 ```
+
 function selectionSort(arr) {
-  var len = arr.length
-  var minIndex, temp
-  console.time("选择排序耗时")
-  for (var i = 0; i < len - 1; i++) {
-    minIndex = i
-    for (var j = i + 1; j < len; j++) {
-      if (arr[j] < arr[minIndex]) {
-        寻找最小的数
-        minIndex = j 将最小数的索引保存
-      }
-    }
-    temp = arr[i]
-    arr[i] = arr[minIndex]
-    arr[minIndex] = temp
-  }
-  console.timeEnd("选择排序耗时")
-  return arr
+var len = arr.length
+var minIndex, temp
+console.time("选择排序耗时")
+for (var i = 0; i < len - 1; i++) {
+minIndex = i
+for (var j = i + 1; j < len; j++) {
+if (arr[j] < arr[minIndex]) {
+寻找最小的数
+minIndex = j 将最小数的索引保存
 }
+}
+temp = arr[i]
+arr[i] = arr[minIndex]
+arr[minIndex] = temp
+}
+console.timeEnd("选择排序耗时")
+return arr
+}
+
 ```
 
 ## 最长递增子序列，稳定子序列
@@ -6937,121 +6927,129 @@ function selectionSort(arr) {
 子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
 
 ```
+
 <!-- 动态规划 -->
+
 var lengthOfLIS = function(nums, dp = [1]) {
-    for (let i = 1; i < nums.length; i++){
-        dp[i] = 1
-        for (let j = 0; j < i; j++) {
-            nums[i] > nums[j] && (dp[i] = Math.max(dp[i], dp[j] + 1))
-        }
-    }
-    return Math.max(...dp)
+for (let i = 1; i < nums.length; i++){
+dp[i] = 1
+for (let j = 0; j < i; j++) {
+nums[i] > nums[j] && (dp[i] = Math.max(dp[i], dp[j] + 1))
+}
+}
+return Math.max(...dp)
 }
 };
 
 <!-- 贪心加二分法 -->
+
 var lengthOfLIS = function(nums) {
-    let len = 1, n = nums.length
-    if (n === 0) return 0
-    let d = []
-    d[len] = nums[0]
-    for (let i = 1; i < n; ++i) {
-        if (nums[i] > d[len]) {
-            d[++len] = nums[i];
-        } else {
-            let l = 1, r = len, pos = 0; // 如果找不到说明所有的数都比 nums[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0
-            while (l <= r) {
-                let mid = (l + r) >> 1;
-                if (d[mid] < nums[i]) {
-                    pos = mid;
-                    l = mid + 1;
-                } else {
-                    r = mid - 1;
-                }
-            }
-            d[pos + 1] = nums[i];
-        }
-    }
-    return len;
+let len = 1, n = nums.length
+if (n === 0) return 0
+let d = []
+d[len] = nums[0]
+for (let i = 1; i < n; ++i) {
+if (nums[i] > d[len]) {
+d[++len] = nums[i];
+} else {
+let l = 1, r = len, pos = 0; // 如果找不到说明所有的数都比 nums[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0
+while (l <= r) {
+let mid = (l + r) >> 1;
+if (d[mid] < nums[i]) {
+pos = mid;
+l = mid + 1;
+} else {
+r = mid - 1;
+}
+}
+d[pos + 1] = nums[i];
+}
+}
+return len;
 };
+
 ```
 
 ## 最长回文字符串
 
 ```
-动态规划/**
- * @param {string} s
- * @return {string}
- */
-var longestPalindrome = function(s) {
-    let n = s.length;
-    let res = '';
-    let dp = Array.from(new Array(n),() => new Array(n).fill(0));
-    for(let i = n-1;i >= 0;i--){
-        for(let j = i;j < n;j++){
-            <!-- 如果头尾相同了，且因子长度小于2，那么必定是回文，否则往中间凑，判断区间是不是回文 -->
-            dp[i][j] = s[i] == s[j] && (j - i < 2 || dp[i+1][j-1]);
-            if(dp[i][j] && j - i +1 > res.length){
-                res = s.substring(i,j+1);
-            }
-        }
-    }
-    return res;
-};
+
+动态规划/\*\*
+
+- @param {string} s
+- @return {string}
+  \*/
+  var longestPalindrome = function(s) {
+  let n = s.length;
+  let res = '';
+  let dp = Array.from(new Array(n),() => new Array(n).fill(0));
+  for(let i = n-1;i >= 0;i--){
+  for(let j = i;j < n;j++){
+  <!-- 如果头尾相同了，且因子长度小于2，那么必定是回文，否则往中间凑，判断区间是不是回文 -->
+  dp[i][j] = s[i] == s[j] && (j - i < 2 || dp[i+1][j-1]);
+  if(dp[i][j] && j - i +1 > res.length){
+  res = s.substring(i,j+1);
+  }
+  }
+  }
+  return res;
+  };
 
 中心扩展算法
 回文串一定是对称的
 每次选择一个中心，进行中心向两边扩展比较左右字符是否相等
 中心点的选取有两种
-aba，中心点是b
-aa，中心点是两个a之间
+aba，中心点是 b
+aa，中心点是两个 a 之间
 所以共有两种组合可能
 left：i，right：i
 left：i，right：i+1
-/**
- * @param {string} s
- * @return {string}
- */
-/**
- * @param {string} s
- * @return {string}
- */
-var longestPalindrome = function(s) {
-    let len = s.length;
-    function getMax(left,right){
-        while(left>=0&&right<len&&s[left]===s[right]){
-            left--;
-            right++
-        }
-        return{
-            left:left+1,//因为while循环停止时left已经--，所以应该退一格，right同理
-            right:right-1
-        }
-    }
+/\*\*
 
-    let start=0,end=0;
-    for(let i=0;i<len;i++){
-        let obj = getMax(i,i);//aba类型
-        let obj2 = getMax(i,i+1);//abba类型
-        let f = obj.right - obj.left > obj2.right - obj2.left;
-        let maxObj = f?obj:obj2;
-        if(maxObj.right-maxObj.left>end-start){
-            start = maxObj.left;
-            end = maxObj.right;
-        }
-    }
-    return s.slice(start,end+1)
-};
+- @param {string} s
+- @return {string}
+  \*/
+  /\*\*
+- @param {string} s
+- @return {string}
+  \*/
+  var longestPalindrome = function(s) {
+  let len = s.length;
+  function getMax(left,right){
+  while(left>=0&&right<len&&s[left]===s[right]){
+  left--;
+  right++
+  }
+  return{
+  left:left+1,//因为 while 循环停止时 left 已经--，所以应该退一格，right 同理
+  right:right-1
+  }
+  }
 
+      let start=0,end=0;
+      for(let i=0;i<len;i++){
+          let obj = getMax(i,i);//aba类型
+          let obj2 = getMax(i,i+1);//abba类型
+          let f = obj.right - obj.left > obj2.right - obj2.left;
+          let maxObj = f?obj:obj2;
+          if(maxObj.right-maxObj.left>end-start){
+              start = maxObj.left;
+              end = maxObj.right;
+          }
+      }
+      return s.slice(start,end+1)
+
+  };
 
 ```
 
 ## 插入排序
 
 ```
+
 function binaryInsertionSort(array) {
-  if (Array.isArray(array)) {
-    console.time("二分插入排序耗时：")
+if (Array.isArray(array)) {
+console.time("二分插入排序耗时：")
 
     for (var i = 1; i < array.length; i++) {
       var key = array[i],
@@ -7073,9 +7071,10 @@ function binaryInsertionSort(array) {
     console.timeEnd("二分插入排序耗时：")
 
     return array
-  } else {
-    return "array is not an Array!"
-  }
+
+} else {
+return "array is not an Array!"
+}
 }
 
 ```
@@ -7085,65 +7084,71 @@ function binaryInsertionSort(array) {
 ## 二分查找（递归）
 
 ```
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var search = function(nums, target) {
-    let left = 0;
-    let right = nums.length - 1;
-    while (left <= right) {
-        const mid = Math.floor(left + (right - left) / 2);
-        if (nums[mid] === target) {
-            return mid;
-        } else if (nums[mid] < target) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
-    return -1;
-};
+
+/\*\*
+
+- @param {number[]} nums
+- @param {number} target
+- @return {number}
+  \*/
+  var search = function(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+  const mid = Math.floor(left + (right - left) / 2);
+  if (nums[mid] === target) {
+  return mid;
+  } else if (nums[mid] < target) {
+  left = mid + 1;
+  } else {
+  right = mid - 1;
+  }
+  }
+  return -1;
+  };
 
 ```
 
 ## 查找第一个不小于的数，用二分法而不用快排,Ologn
 
 ```
+
 function binarySearch(arr, target) {
-  let left = 0,
-    right = arr.length - 1,
-    mid = 0
-  while (left <= right) {
-    mid = left + (right - left) / 2
-    if (arr[mid] < target) {  // 这里如果是查找第一个大于的话直接把<改成<=
-      left = mid + 1
-    } else {
-      right = mid
-    }
-  }
-  return right
+let left = 0,
+right = arr.length - 1,
+mid = 0
+while (left <= right) {
+mid = left + (right - left) / 2
+if (arr[mid] < target) { // 这里如果是查找第一个大于的话直接把<改成<=
+left = mid + 1
+} else {
+right = mid
 }
+}
+return right
+}
+
 ```
 
 ## 查找第一个大于的数，用二分法而不用快排,Ologn
 
 ```
+
 function binarySearch(arr, target) {
-  let left = 0,
-    right = arr.length - 1,
-    mid = 0
-  while (left <= right) {
-    mid = left + (right - left) / 2
-    if (arr[mid] <= target) {
-      left = mid + 1
-    } else {
-      right = mid
-    }
-  }
-  return right
+let left = 0,
+right = arr.length - 1,
+mid = 0
+while (left <= right) {
+mid = left + (right - left) / 2
+if (arr[mid] <= target) {
+left = mid + 1
+} else {
+right = mid
 }
+}
+return right
+}
+
 ```
 
 ## 求两个有序数组的第K⼩数
@@ -7159,14 +7164,15 @@ function binarySearch(arr, target) {
 解法：采⽤递归的⽅法不断缩⼩ K 的，把求第 K ⼩元素转化为第 (K-K/2) ⼩元素....
 
 ```
+
 public static int findKth(int[] arr1, int[] arr2, int k) {
 if(arr1 == null || arr1.length < 1)
 return arr2[k-1];
 if(arr2 == null || arr2.length < 1)
 return arr1[k-1];
-// 注意这个函数的参数有7个，上⾯那个函数的参数只有3个，同名不同函数哈
+// 注意这个函数的参数有 7 个，上⾯那个函数的参数只有 3 个，同名不同函数哈
 return findKth2(arr1, 0, arr1.length - 1, arr2, 0, arr2.length - 1, k - 1);
- }
+}
 public static int findKth2(int[] arr1, int l1, int r1, int[] arr2, int l2,
 int r2, int k) {
 // 递归结束条件
@@ -7174,7 +7180,7 @@ if(l1 > r1)
 return arr2[l2 + k];
 if(l2 > r2)
 return arr1[l1 + k];
-if (k == 0)// 注意，k == 0的结束条件与上⾯两个结束条件不能颠倒。
+if (k == 0)// 注意，k == 0 的结束条件与上⾯两个结束条件不能颠倒。
 return Math.min(arr1[l1],arr2[l2]);
 int md1 = l1 + k/2 < r1 ? l1 + k/2 : r1;
 int md2 = l2 + k/2 < (r2 - l1) ? l2 + k/2 : r2;
@@ -7183,14 +7189,15 @@ return findKth2(arr1, md1 + 1, r1, arr2, l2, r2, k - k / 2 - 1);
 else if (arr1[md1] > arr2[md2])
 return findKth2(arr1, l1, r1, arr2, md2 + 1, r2, k - k / 2 - 1);
 else
-return arr1[md1];//返回arr2[md2]也可以，⼀样的。
- }
+return arr1[md1];//返回 arr2[md2]也可以，⼀样的。
+}
 // 测试
 public static void main(String[] args) {
 int[] arr1 = {1, 2, 3};
 int[] arr2 = {0,4, 5, 6, 7, 8};
 System.out.println(findKth(arr1, arr2, 2));
- }
+}
+
 ```
 
 ## 搜索旋转数组，查找旋转数组特定值，二分法，旋转数组的某个数
@@ -7214,26 +7221,28 @@ System.out.println(findKth(arr1, arr2, 2));
 可以舍弃左边部分了(start = mid + 1)， 反之亦然。
 
 ```
-/*
- * @lc app=leetcode id=33 lang=javascript
- *
- * [33] Search in Rotated Sorted Array
- */
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number}
- */
-var search = function(nums, target) {
+
+/\*
+
+- @lc app=leetcode id=33 lang=javascript
+-
+- [33] Search in Rotated Sorted Array
+  \*/
+  /\*\*
+- @param {number[]} nums
+- @param {number} target
+- @return {number}
+  \*/
+  var search = function(nums, target) {
   // 时间复杂度：O(logn)
   // 空间复杂度：O(1)
   // [6,7,8,1,2,3,4,5]
   let start = 0;
   let end = nums.length - 1;
 
-  while (start <= end) {
-    const mid = start + ((end - start) >> 1);
-    if (nums[mid] === target) return mid;
+while (start <= end) {
+const mid = start + ((end - start) >> 1);
+if (nums[mid] === target) return mid;
 
     // [start, mid]有序
 
@@ -7259,10 +7268,12 @@ var search = function(nums, target) {
         end = mid - 1;
       }
     }
-  }
 
-  return -1;
+}
+
+return -1;
 };
+
 ```
 
 ## 搜索旋转排序数组，旋转数组的最小元素
@@ -7277,45 +7288,48 @@ NOTE：给出的所有元素都大于 0，若数组大小为 0，请返回 0。
 1
 
 ```
+
 while (line = readline()) {
-  let arr = JSON.parse(line);
-  print(minNumberInRotateArray(arr));
+let arr = JSON.parse(line);
+print(minNumberInRotateArray(arr));
 }
 function minNumberInRotateArray (rotateArray) {
-  var l = 0, r = rotateArray.length - 1
-  var mid
-  while (l + 1 < r) {
-    mid = Math.floor((r + l) / 2)
-    if (rotateArray[mid] >= rotateArray[l]) {
-      l = mid
-    } else {
-      r = mid
-    }
-  }
-  return rotateArray[r]
+var l = 0, r = rotateArray.length - 1
+var mid
+while (l + 1 < r) {
+mid = Math.floor((r + l) / 2)
+if (rotateArray[mid] >= rotateArray[l]) {
+l = mid
+} else {
+r = mid
+}
+}
+return rotateArray[r]
 }
 
 解法二
 function minNumberInRotateArray(rotateArray){
-    var len = rotateArray.length;
-    if(len === 0){
-        return 0;
-    }
-    return Math.min.apply(null,rotateArray);
+var len = rotateArray.length;
+if(len === 0){
+return 0;
 }
+return Math.min.apply(null,rotateArray);
+}
+
 ```
 
 ## 二分补齐
 
 ```
+
 function leftPad(str, length, ch) {
-  let len = (length = str.length)
-  let total = ""
-  while (len) {
-    if (len % 2 == 1) total += ch
-    if (len == 1) return total + str
-    ch += ch // 0 00 0000
-  }
+let len = (length = str.length)
+let total = ""
+while (len) {
+if (len % 2 == 1) total += ch
+if (len == 1) return total + str
+ch += ch // 0 00 0000
+}
 }
 
 ```
@@ -7325,58 +7339,62 @@ function leftPad(str, length, ch) {
 https:juejin.im/post/5e92eb5b6fb9a03c8966dc88
 
 ```
+
 coinChange([1, 2, 5], 11); 3
 coinChange([2, 4], -1) -1
 coinChange([1, 2, 4, 5, 10], 100) 10
 coinChange(coins, amount) {
-  let ans = new Array(amount + 1).fill(Infinity)
-  ans[0] = 0
-  for (let i = 1; i <= amount; i++) {
-    for (let coin of coins) {
-      if (i >= coin) {
-        ans[i] = Math.min(ans[i], ans[i - coin] + 1)
-      }
-    }
-  }
-  return ans[amount] === Infinity ? -1 : ans[amount]
+let ans = new Array(amount + 1).fill(Infinity)
+ans[0] = 0
+for (let i = 1; i <= amount; i++) {
+for (let coin of coins) {
+if (i >= coin) {
+ans[i] = Math.min(ans[i], ans[i - coin] + 1)
 }
+}
+}
+return ans[amount] === Infinity ? -1 : ans[amount]
+}
+
 ```
 
 ## 正则解码
 
 ```
+
 decode() {
-  let sindex = (eindex = -1)
-  let count = -1
-  let substr = ''
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] == '[') {
-      sindex = i
-      if (!isNaN(parseInt(str[i - 1]))) {
-        let reg = /(\d)+$/g
-        reg.test(str.slice(0,i))
-        count = RegExp.$1
-        count = str.slice(0, i).match(reg)[0]
-      } else {
-        count = -1
-      }
-    }
-    if (str[i] == ']') {
-      eindex = i
-    }
-    if (![sindex, eindex].includes(-1)) {
-      substr = str.slice(sindex + 1, eindex)
-      if (count != -1) {
-        str =
-          str.slice(0, sindex - count.length) +
-          substr.repeat(count) +
-          str.slice(eindex + 1)
-      }
-      sindex = eindex = count = i = -1
-    }
-  }
-  return str
+let sindex = (eindex = -1)
+let count = -1
+let substr = ''
+for (let i = 0; i < str.length; i++) {
+if (str[i] == '[') {
+sindex = i
+if (!isNaN(parseInt(str[i - 1]))) {
+let reg = /(\d)+$/g
+reg.test(str.slice(0,i))
+count = RegExp.$1
+count = str.slice(0, i).match(reg)[0]
+} else {
+count = -1
+}
+}
+if (str[i] == ']') {
+eindex = i
+}
+if (![sindex, eindex].includes(-1)) {
+substr = str.slice(sindex + 1, eindex)
+if (count != -1) {
+str =
+str.slice(0, sindex - count.length) +
+substr.repeat(count) +
+str.slice(eindex + 1)
+}
+sindex = eindex = count = i = -1
+}
+}
+return str
 },
+
 ```
 
 ## 找数组中最接近指定值得值，找最近
@@ -7387,29 +7405,31 @@ decode() {
 ```
 
 findNearest(arr, target) {
-  这一步是深拷贝，目的是为了不影响原数组
-  let arr = JSON.parse(JSON.stringify(tmp))
-  arr.push(target)
-  let index = arr.sort((a, b) => a - b).indexOf(target)
-  let res
-  if (index === 0) res = arr[index + 1]
-  else if (index === arr.length - 1) res = arr[index - 1]
-  else {
-    res =
-      target - arr[index - 1] > arr[index + 1] - target
-        ? arr[index + 1]
-        : arr[index - 1]
-  }
-  return res
+这一步是深拷贝，目的是为了不影响原数组
+let arr = JSON.parse(JSON.stringify(tmp))
+arr.push(target)
+let index = arr.sort((a, b) => a - b).indexOf(target)
+let res
+if (index === 0) res = arr[index + 1]
+else if (index === arr.length - 1) res = arr[index - 1]
+else {
+res =
+target - arr[index - 1] > arr[index + 1] - target
+? arr[index + 1]
+: arr[index - 1]
+}
+return res
 },
+
 ```
 
 ## 千位符分割
 
 ```
+
 let str = '1475893475324234'
 console.log( str.replace(/\d{1,3}(?=(\d{3})+$)/g,function(s){
-  return s+','
+return s+','
 }) )
 
 ```
@@ -7417,44 +7437,45 @@ console.log( str.replace(/\d{1,3}(?=(\d{3})+$)/g,function(s){
 ## Eatman连续调用闭包
 
 ```
+
 function EatMan(name) {
-  return new _eatman(name)
+return new \_eatman(name)
 }
-let _eatman = function (name) {
-  let queue = []
-  let init = function () {
-    console.log(`Hi! This is ${name}!`)
-    self.next()
-  }
-  queue.push(init)
-  setTimeout(function () {
-    self.next()
-  }, 0)
-  let self = {
-    next: function () {
-      if (queue.length) {
-        var fn = queue.shift()
-        if (typeof fn === 'function') {
-          fn()
-        }
-      }
-    },
-    eat: function (item) {
-      queue.push(function () {
-        console.log(`Eat ${item}~`)
-        self.next()
-      })
-      return this
-    },
-    eatFirst: function (item) {
-      queue.unshift(function () {
-        console.log(`Eat ${item}~`)
-        self.next()
-      })
-      return this
-    }
-  }
-  return self
+let \_eatman = function (name) {
+let queue = []
+let init = function () {
+console.log(`Hi! This is ${name}!`)
+self.next()
+}
+queue.push(init)
+setTimeout(function () {
+self.next()
+}, 0)
+let self = {
+next: function () {
+if (queue.length) {
+var fn = queue.shift()
+if (typeof fn === 'function') {
+fn()
+}
+}
+},
+eat: function (item) {
+queue.push(function () {
+console.log(`Eat ${item}~`)
+self.next()
+})
+return this
+},
+eatFirst: function (item) {
+queue.unshift(function () {
+console.log(`Eat ${item}~`)
+self.next()
+})
+return this
+}
+}
+return self
 }
 EatMan('hank').eat('dinner').eatFirst('lanunch')
 
@@ -7480,33 +7501,35 @@ console.log(result); -> [ { id: 1, a: 1}, {id: 2, a: 2}, {id: 3, a: 3} ]
 原始 list 如下
 
 ```
+
 let list =[
-    {id:1,name:'部门A',parentId:0},
-    {id:2,name:'部门B',parentId:0},
-    {id:3,name:'部门C',parentId:1},
-    {id:4,name:'部门D',parentId:1},
-    {id:5,name:'部门E',parentId:2},
-    {id:6,name:'部门F',parentId:3},
-    {id:7,name:'部门G',parentId:2},
-    {id:8,name:'部门H',parentId:4}
+{id:1,name:'部门 A',parentId:0},
+{id:2,name:'部门 B',parentId:0},
+{id:3,name:'部门 C',parentId:1},
+{id:4,name:'部门 D',parentId:1},
+{id:5,name:'部门 E',parentId:2},
+{id:6,name:'部门 F',parentId:3},
+{id:7,name:'部门 G',parentId:2},
+{id:8,name:'部门 H',parentId:4}
 ];
 const result = convert(list, ...);
 function convert(list) {
-  const res = []
-  const map = list.reduce((res, v) => ((res[v.id] = v), res), {})
-  for (const item of list) {
-    if (item.parentId === 0) {
-      res.push(item)
-      continue
-    }
-    if (item.parentId in map) {
-      const parent = map[item.parentId]
-      parent.children = parent.children || []
-      parent.children.push(item)
-    }
-  }
-  return res
+const res = []
+const map = list.reduce((res, v) => ((res[v.id] = v), res), {})
+for (const item of list) {
+if (item.parentId === 0) {
+res.push(item)
+continue
 }
+if (item.parentId in map) {
+const parent = map[item.parentId]
+parent.children = parent.children || []
+parent.children.push(item)
+}
+}
+return res
+}
+
 ```
 
 ## 实现eventListener,实现emitter,实现eventEmitter
@@ -7514,37 +7537,38 @@ function convert(list) {
 触发名为 type 的事件
 
 ```
+
 class EventEmitter {
-  constructor() {
-    this._events = {}
-  }
-  on(event, callback) {
-    // 添加监听事件及回调
-    let callbacks = this._events[event] || []
-    callbacks.push(callback)
-    this._events[event] = callbacks
-    return this
-  }
-  off(event, callback) {
-    //停止监听event事件
-    let callbacks = this._events[event]
-    this._events[event] = callbacks && callbacks.filter(fn => fn !== callback)
-    return this
-  }
-  emit(event, ...args) {
-    //触发事件,并把参数传给事件的处理函数
-    const callbacks = this._events[event]
-    callbacks.forEach(fn => fn.apply(null, args))
-    return this
-  }
-  once(event, fn) {
-    const func = (...args) => {
-      this.off(event, func)
-      fn.apply(this, args)
-    }
-    this.on(event, func)
-    return this
-  }
+constructor() {
+this.\_events = {}
+}
+on(event, callback) {
+// 添加监听事件及回调
+let callbacks = this.\_events[event] || []
+callbacks.push(callback)
+this.\_events[event] = callbacks
+return this
+}
+off(event, callback) {
+//停止监听 event 事件
+let callbacks = this.\_events[event]
+this.\_events[event] = callbacks && callbacks.filter(fn => fn !== callback)
+return this
+}
+emit(event, ...args) {
+//触发事件,并把参数传给事件的处理函数
+const callbacks = this.\_events[event]
+callbacks.forEach(fn => fn.apply(null, args))
+return this
+}
+once(event, fn) {
+const func = (...args) => {
+this.off(event, func)
+fn.apply(this, args)
+}
+this.on(event, func)
+return this
+}
 }
 
 ```
@@ -7552,55 +7576,57 @@ class EventEmitter {
 ## 判断占字节大小，字节大小
 
 ```
+
 const testData = {
-  a: 111,
-  b: 'ccc',
-  222: false
+a: 111,
+b: 'ccc',
+222: false
 }
-// Number: 8字节，string: 2字节，boolean:4字节
+// Number: 8 字节，string: 2 字节，boolean:4 字节
 
 function calculator(object) {
-  const objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase()
-  switch (objectType) {
-    case 'string': {
-      return object.length * 2
-    }
-    case 'boolean': {
-      return 4
-    }
-    case 'number': {
-      return 8
-    }
-    case 'array': {
-      return object.map(calculator).reduce((res, current) => res + current, 0)
-    }
-    case 'object': {
-      return 8
-    }
-    default:
-      break
-  }
+const objectType = Object.prototype.toString.call(object).slice(8, -1).toLowerCase()
+switch (objectType) {
+case 'string': {
+return object.length \* 2
+}
+case 'boolean': {
+return 4
+}
+case 'number': {
+return 8
+}
+case 'array': {
+return object.map(calculator).reduce((res, current) => res + current, 0)
+}
+case 'object': {
+return 8
+}
+default:
+break
+}
 }
 const seen = new WeakSet()
 function sizeOfObject(object) {
-  if (object === null) return 0
-  let bytes = 0
-  // 对象的key也是占用空间的
-  const properties = Object.keys(object)
-  for (let i = 0; i < properties.length; i++) {
-    const key = properties[i]
-    // 对象的key也是占用内存空间的
-    bytes += calculator(key)
-    if (typeof object[key] === 'object' && object[key] !== null) {
-      if (seen.has(object[key])) {
-        continue
-      }
-      seen.add(object[key])
-    }
-    bytes += calculator(object[key])
-  }
-  return bytes
+if (object === null) return 0
+let bytes = 0
+// 对象的 key 也是占用空间的
+const properties = Object.keys(object)
+for (let i = 0; i < properties.length; i++) {
+const key = properties[i]
+// 对象的 key 也是占用内存空间的
+bytes += calculator(key)
+if (typeof object[key] === 'object' && object[key] !== null) {
+if (seen.has(object[key])) {
+continue
 }
+seen.add(object[key])
+}
+bytes += calculator(object[key])
+}
+return bytes
+}
+
 ```
 
 ## 遍历树
@@ -7608,15 +7634,16 @@ function sizeOfObject(object) {
 - 深度优先遍历三种方式
 
 ```
+
 let deepTraversal1 = (node, nodeList = []) => {
-  if (node !== null) {
-    nodeList.push(node)
-    let children = node.children
-    for (let i = 0; i < children.length; i++) {
-      deepTraversal1(children[i], nodeList)
-    }
-  }
-  return nodeList
+if (node !== null) {
+nodeList.push(node)
+let children = node.children
+for (let i = 0; i < children.length; i++) {
+deepTraversal1(children[i], nodeList)
+}
+}
+return nodeList
 }
 
 ```
@@ -7624,27 +7651,29 @@ let deepTraversal1 = (node, nodeList = []) => {
 - 广度优先
 
 ```
+
 let widthTraversal2 = node => {
-  let nodes = []
-  let stack = []
-  if (node) {
-    stack.push(node)
-    while (stack.length) {
-      let item = stack.shift()
-      let children = item.children
-      nodes.push(item)
-      队列，先进先出
-      nodes = [] stack = [parent]
-      nodes = [parent] stack = [child1,child2,child3]
-      nodes = [parent, child1] stack = [child2,child3,child1-1,child1-2]
-      nodes = [parent,child1,child2]
-      for (let i = 0; i < children.length; i++) {
-        stack.push(children[i])
-      }
-    }
-  }
-  return nodes
+let nodes = []
+let stack = []
+if (node) {
+stack.push(node)
+while (stack.length) {
+let item = stack.shift()
+let children = item.children
+nodes.push(item)
+队列，先进先出
+nodes = [] stack = [parent]
+nodes = [parent] stack = [child1,child2,child3]
+nodes = [parent, child1] stack = [child2,child3,child1-1,child1-2]
+nodes = [parent,child1,child2]
+for (let i = 0; i < children.length; i++) {
+stack.push(children[i])
 }
+}
+}
+return nodes
+}
+
 ```
 
 ## 遍历树结构
@@ -7652,44 +7681,45 @@ let widthTraversal2 = node => {
 样例数据
 
 ```
+
 let data = {
-  name: "jack",
-  child: [
-    { name: "jack1" },
-    {
-      name: "jack2",
-      child: [
-        {
-          name: "jack2-1",
-          child: { name: "jack2-1-1" }
-        },
-        {
-          name: "jack2-2"
-        }
-      ]
-    },
-    {
-      name: "jack3",
-      child: { name: "jack3-1" }
-    }
-  ]
+name: "jack",
+child: [
+{ name: "jack1" },
+{
+name: "jack2",
+child: [
+{
+name: "jack2-1",
+child: { name: "jack2-1-1" }
+},
+{
+name: "jack2-2"
+}
+]
+},
+{
+name: "jack3",
+child: { name: "jack3-1" }
+}
+]
 }
 
 function findMultiChildPerson(data) {
-  let nameList = []
+let nameList = []
 
-  function tmp(data) {
-    if (data.hasOwnProperty("child")) {
-      if (Array.isArray(data.child)) {
-        nameList.push(data.name)
-        data.child.forEach(child => tmp(child))
-      } else {
-        tmp(data.child)
-      }
-    }
-  }
-  tmp(data)
-  return nameList
+function tmp(data) {
+if (data.hasOwnProperty("child")) {
+if (Array.isArray(data.child)) {
+nameList.push(data.name)
+data.child.forEach(child => tmp(child))
+} else {
+tmp(data.child)
+}
+}
+}
+tmp(data)
+return nameList
 }
 
 ```
@@ -7747,24 +7777,27 @@ function findMultiChildPerson(data) {
 true
 
 ```
+
 var findNumberIn2DArray = function(matrix, target) {
-    return matrix.flat(Infinity).includes(target)
+return matrix.flat(Infinity).includes(target)
 };
 
 <!-- 扩展，实现flat -->
+
 function flatten(arr) {
-  let arrs = [...arr]
-  let newArr = []
-  while (arrs.length) {
-    let item = arrs.shift()
-    if (Array.isArray(item)) {
-      arrs.unshift(...item)
-    } else {
-      newArr.push(item)
-    }
-  }
-  return newArr
+let arrs = [...arr]
+let newArr = []
+while (arrs.length) {
+let item = arrs.shift()
+if (Array.isArray(item)) {
+arrs.unshift(...item)
+} else {
+newArr.push(item)
 }
+}
+return newArr
+}
+
 ```
 
 ## 空格替换
@@ -7772,13 +7805,15 @@ function flatten(arr) {
 请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为 We Are Happy.则经过替换之后的字符串为 We%20Are%20Happy。
 
 ```
+
 function replaceSpace(str)
 {
- return str.replace(/\s/g,'%20')
+return str.replace(/\s/g,'%20')
 }
 module.exports = {
-    replaceSpace : replaceSpace
+replaceSpace : replaceSpace
 };
+
 ```
 
 ## 从尾到头打印链表
@@ -7791,21 +7826,22 @@ module.exports = {
 [58,24,0,67]
 
 ```
-/*function ListNode(x){
-    this.val = x;
-    this.next = null;
-}*/
+
+/_function ListNode(x){
+this.val = x;
+this.next = null;
+}_/
 function printListFromTailToHead(head)
 {
-    // write code here
-    // write code here
-    let node = head
-    let arr = []
-    while(node != null) {
-        arr.unshift(node.val)
-        node = node.next
-    }
-    return arr
+// write code here
+// write code here
+let node = head
+let arr = []
+while(node != null) {
+arr.unshift(node.val)
+node = node.next
+}
+return arr
 }
 
 ```
@@ -7821,28 +7857,30 @@ function printListFromTailToHead(head)
 {1,2,5,3,4,6,7}
 
 ```
-/* function TreeNode(x) {
-    this.val = x;
-    this.left = null;
-    this.right = null;
-} */
+
+/_ function TreeNode(x) {
+this.val = x;
+this.left = null;
+this.right = null;
+} _/
 function reConstructBinaryTree(pre, vin)
 {
-    // write code here
-    let p = 0;
-    let i = 0;
-    let build = function(stop) {
-        if (vin[i] != stop) {
-            var root = new TreeNode(pre[p++])
-            root.left = build(root.val)
-            i++
-            root.right = build(stop)
-            return root
-        }
-        return null
-    }
-    return build()
+// write code here
+let p = 0;
+let i = 0;
+let build = function(stop) {
+if (vin[i] != stop) {
+var root = new TreeNode(pre[p++])
+root.left = build(root.val)
+i++
+root.right = build(stop)
+return root
 }
+return null
+}
+return build()
+}
+
 ```
 
 ## 用栈实现队列
@@ -7850,22 +7888,24 @@ function reConstructBinaryTree(pre, vin)
 用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。 队列中的元素为 int 类型
 
 ```
+
 let stack1=[], stack2=[];
 function push(node)
 {
-    // write code here
-    stack1.push(node);
+// write code here
+stack1.push(node);
 }
 function pop()
 {
-    // write code here
-    if(stack2.length == 0){
-        while(stack1.length!=0){
-            stack2.push(stack1.pop());
-        }
-    }
-    return stack2.pop();
+// write code here
+if(stack2.length == 0){
+while(stack1.length!=0){
+stack2.push(stack1.pop());
 }
+}
+return stack2.pop();
+}
+
 ```
 
 ## 斐波那契数列
@@ -7874,26 +7914,30 @@ function pop()
 n\leq 39n≤39
 
 ```
+
 <!-- 备忘录解法-->
+
 function Fibonacci(n){
-    var a = 1, b = 1, temp;
-    if(n <= 0) return 0;
-    for(var i = 2; i <= n; i++){
-      temp = b;
-      b = a + b;
-      a = temp;
-    }
-    return a;
+var a = 1, b = 1, temp;
+if(n <= 0) return 0;
+for(var i = 2; i <= n; i++){
+temp = b;
+b = a + b;
+a = temp;
 }
+return a;
+}
+
 <!-- 普通解法，耗性能 -->
+
 function Fibonacci(n)
 {
-    // write code here
-    let arr = [0, 1];
-    for(let i = 2; i <= n; i++) {
-        arr[i] = arr[i - 1] + arr[i - 2];
-    }
-    return arr[n];
+// write code here
+let arr = [0, 1];
+for(let i = 2; i <= n; i++) {
+arr[i] = arr[i - 1] + arr[i - 2];
+}
+return arr[n];
 }
 
 ```
@@ -7911,25 +7955,29 @@ function Fibonacci(n)
 时间复杂度：O(n)O(n)
 
 ```
+
 function jumpFloor(number){
-    if(number < 1){
-        return 0;
-    }
-    if(number === 1){
-        return 1;
-    }
-    if(number === 2){
-        return 2;
-    }
-    var temp = 0, a = 1, b = 2;
-    <!-- 裴波那契数列 -->
-    for(var i = 3; i <= number; i++){
-        temp = a + b;
-        a = b;
-        b = temp;
-    }
-    return temp;
+if(number < 1){
+return 0;
 }
+if(number === 1){
+return 1;
+}
+if(number === 2){
+return 2;
+}
+var temp = 0, a = 1, b = 2;
+
+<!-- 裴波那契数列 -->
+
+for(var i = 3; i <= number; i++){
+temp = a + b;
+a = b;
+b = temp;
+}
+return temp;
+}
+
 ```
 
 ## 变态跳台阶
@@ -7940,19 +7988,21 @@ function jumpFloor(number){
 
 function jumpFloorII(number)
 {
-    // write code here
-    if(number===0||number===1)
-        return 1;
+// write code here
+if(number===0||number===1)
+return 1;
 
     let res=1;
     for(let i=2;i<=number;i++){
         res*=2;
     }
     return res;
+
 }
 module.exports = {
-    jumpFloorII : jumpFloorII
+jumpFloorII : jumpFloorII
 };
+
 ```
 
 ## 矩形覆盖
@@ -7963,39 +8013,44 @@ module.exports = {
 解法：递推得知，fn = f(n-1)+f(n-2),其实就是个裴波那契数列
 
 ```
+
 <!-- 备忘录裴波那契 -->
+
 function rectCover(number){
-    var a = 1, b = 2, temp;
-    if(number <= 0){
-        return 0;
-    }
-    if(number === 1){
-        return 1;
-    }
-    if(number === 2){
-        return 2
-    }
-    for(var i = 3; i <= number; i++){
-      temp = a + b;
-      a = b;
-      b = temp;
-    }
-    return temp;
+var a = 1, b = 2, temp;
+if(number <= 0){
+return 0;
 }
+if(number === 1){
+return 1;
+}
+if(number === 2){
+return 2
+}
+for(var i = 3; i <= number; i++){
+temp = a + b;
+a = b;
+b = temp;
+}
+return temp;
+}
+
 <!-- 常规解法 -->
+
 function rectCover(number)
 {
-    // write code here
-    let arr = [0, 1, 2]
-    for(let i=3; i<=number; i++){
-        arr[i] = arr[i-1] + arr[i-2]
-    }
-    return arr[number];
+// write code here
+let arr = [0, 1, 2]
+for(let i=3; i<=number; i++){
+arr[i] = arr[i-1] + arr[i-2]
+}
+return arr[number];
 }
 
 module.exports = {
-    rectCover : rectCover
+rectCover : rectCover
 };
+
 ```
 
 ## 二进制中1的个数
@@ -8003,15 +8058,17 @@ module.exports = {
 输入一个整数，输出该数 32 位二进制表示中 1 的个数。其中负数用补码表示
 
 ```
+
 function NumberOf1(n){
-    if(n < 0){
-        n = n >>> 0;
-    }
-    var arr = n.toString(2).split('');
-    return arr.reduce(function(a,b){
-        return b === "1" ? a + 1 : a;
-    },0);
+if(n < 0){
+n = n >>> 0;
 }
+var arr = n.toString(2).split('');
+return arr.reduce(function(a,b){
+return b === "1" ? a + 1 : a;
+},0);
+}
+
 ```
 
 ## 数值的整数次方
@@ -8019,33 +8076,37 @@ function NumberOf1(n){
 给定一个 double 类型的浮点数 base 和 int 类型的整数 exponent。求 base 的 exponent 次方。保证 base 和 exponent 不同时为 0
 
 ```
+
 function Power(base, exponent)
 {
-    // write code here
-    if (exponent === 0) return 1;
-    if (exponent < 0) return 1 / Power(base, -exponent);
-    if (exponent & 1) return base * Power(base, exponent - 1);
-    return Power(base * base, exponent / 2);
+// write code here
+if (exponent === 0) return 1;
+if (exponent < 0) return 1 / Power(base, -exponent);
+if (exponent & 1) return base _ Power(base, exponent - 1);
+return Power(base _ base, exponent / 2);
 }
 module.exports = {
-    Power : Power
+Power : Power
 };
+
 ```
 
 ## 调整数组顺序使奇数位于偶数前面
 
 ```
+
 function reOrderArray(array)
 {
-    // write code here
-    function isOdd(n){
-        return n%2!=0;
-    }
-    return array.filter(item=>isOdd(item)).concat(array.filter(item=>!isOdd(item)))
+// write code here
+function isOdd(n){
+return n%2!=0;
+}
+return array.filter(item=>isOdd(item)).concat(array.filter(item=>!isOdd(item)))
 }
 module.exports = {
-    reOrderArray : reOrderArray
+reOrderArray : reOrderArray
 };
+
 ```
 
 ## 链表中倒数第k个结点链表双指针
@@ -8057,19 +8118,21 @@ module.exports = {
 转为数组，再直接取
 
 ```
+
 function FindKthToTail(head, k)
 {
-    let temp = []
-    let cur = head
-    while(cur) {
-        temp.push(cur)
-        cur = cur.next
-    }
-    return temp[temp.length - k]
+let temp = []
+let cur = head
+while(cur) {
+temp.push(cur)
+cur = cur.next
+}
+return temp[temp.length - k]
 }
 module.exports = {
-    FindKthToTail : FindKthToTail
+FindKthToTail : FindKthToTail
 };
+
 ```
 
 ## 树的子结构
@@ -8082,23 +8145,25 @@ module.exports = {
 true
 
 ```
-/* function TreeNode(x) {
-    this.val = x;
-    this.left = null;
-    this.right = null;
-} */
+
+/_ function TreeNode(x) {
+this.val = x;
+this.left = null;
+this.right = null;
+} _/
 function HasSubtree(pRoot1, pRoot2)
 {
-    if(!pRoot1||!pRoot2) return false
-    // 当前节点的root1树，是否有符合子结构的root2。若没有，就进行root1的左节点试试，再试试右节点
-    return same(pRoot1,pRoot2)||HasSubtree(pRoot1.left,pRoot2)||HasSubtree(pRoot1.right,pRoot2)
+if(!pRoot1||!pRoot2) return false
+// 当前节点的 root1 树，是否有符合子结构的 root2。若没有，就进行 root1 的左节点试试，再试试右节点
+return same(pRoot1,pRoot2)||HasSubtree(pRoot1.left,pRoot2)||HasSubtree(pRoot1.right,pRoot2)
 }
 function same(root1,root2){
-    if(!root2) return true
-    if(!root1) return false
-    // 比当前这个节点，是不是有符合的子结构
-    return root1.val==root2.val && same(root1.left,root2.left) && same(root1.right,root2.right)
+if(!root2) return true
+if(!root1) return false
+// 比当前这个节点，是不是有符合的子结构
+return root1.val==root2.val && same(root1.left,root2.left) && same(root1.right,root2.right)
 }
+
 ```
 
 ## 二叉树镜像
@@ -8106,14 +8171,16 @@ function same(root1,root2){
 操作给定的二叉树，将其变换为源二叉树的镜像。即以 root 为中间轴水平翻转对称
 
 ```
+
 function Mirror(root)
 {
-    if (root){
-        [root.left,root.right] = [root.right,root.left]
-        Mirror(root.left);
-        Mirror(root.right);
-    }
+if (root){
+[root.left,root.right] = [root.right,root.left]
+Mirror(root.left);
+Mirror(root.right);
 }
+}
+
 ```
 
 ## 顺时针打印矩阵，打印二维矩阵
@@ -8125,41 +8192,43 @@ function Mirror(root)
 [1,2,4,3]
 
 ```
+
 function printMatrix(matrix)
 {
-    var container = []
-    var top = 0,
-        left = 0,
-        right = matrix[0].length-1,
-        bottom = matrix.length-1;
-    while(left <= right && top <= bottom){
-        // 顺时针依次打印
-        //第一行
-        for (let i=left;i<=right;i++){
-            container.push(matrix[top][i])
-        }
-        top++;
-        // 最右边一列
-        for (let i=top;i<=bottom;i++){
-            container.push(matrix[i][right])
-        }
-        right--;
-        if(top>bottom || left>right){
-         break;
-         }
-        // 最低端一行
-        for (let i=right;i>=left;i--){
-            container.push(matrix[bottom][i])
-        }
-        bottom--;
-        // 最左边一列
-        for (let i=bottom;i>=top;i--){
-            container.push(matrix[i][left])
-        }
-        left++;
-    }
-    return container;
+var container = []
+var top = 0,
+left = 0,
+right = matrix[0].length-1,
+bottom = matrix.length-1;
+while(left <= right && top <= bottom){
+// 顺时针依次打印
+//第一行
+for (let i=left;i<=right;i++){
+container.push(matrix[top][i])
 }
+top++;
+// 最右边一列
+for (let i=top;i<=bottom;i++){
+container.push(matrix[i][right])
+}
+right--;
+if(top>bottom || left>right){
+break;
+}
+// 最低端一行
+for (let i=right;i>=left;i--){
+container.push(matrix[bottom][i])
+}
+bottom--;
+// 最左边一列
+for (let i=bottom;i>=top;i--){
+container.push(matrix[i][left])
+}
+left++;
+}
+return container;
+}
+
 ```
 
 ## 包含min的栈
@@ -8167,29 +8236,31 @@ function printMatrix(matrix)
 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的 min 函数（时间复杂度应为 O（1））
 
 ```
+
 let stack = []
 function push(node)
 {
-    // write code here
-    stack.push(node);
+// write code here
+stack.push(node);
 }
 function pop()
 {
-    // write code here
-    return stack.length ? stack.pop() : null;
+// write code here
+return stack.length ? stack.pop() : null;
 }
 function top()
 {
-    // write code here
-    return stack.length ? stack[stack.length - 1] : null;
+// write code here
+return stack.length ? stack[stack.length - 1] : null;
 }
 function min()
 {
-    // write code here
-    if(stack.length == 0)
-        return null;
-    return Math.min(...stack);
+// write code here
+if(stack.length == 0)
+return null;
+return Math.min(...stack);
 }
+
 ```
 
 ## 反转链表
@@ -8198,43 +8269,48 @@ in: {1,2,3}
 out:{3,2,1}
 
 ```
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var reverseList = function(head) {
+
+/\*\*
+
+- @param {ListNode} head
+- @return {ListNode}
+  \*/
+  var reverseList = function(head) {
   let cur = head
   let prev = null
   while (cur !== null) {
-    // 精简之后，可以免去交换变量
-    [cur.next, prev, cur] = [prev, cur, cur.next]
+  // 精简之后，可以免去交换变量
+  [cur.next, prev, cur] = [prev, cur, cur.next]
   }
   return prev
-}
+  }
+
 ```
 
 ## 合并链表并排序
 
 ```
-/*function ListNode(x){
-    this.val = x;
-    this.next = null;
-}*/
+
+/_function ListNode(x){
+this.val = x;
+this.next = null;
+}_/
 function Merge(pHead1, pHead2)
 {
-    // write code here
-    //递归
-    if(!pHead1) return pHead2
-    if(!pHead2) return pHead1
-    if(pHead1.val < pHead2.val){
-        pHead1.next = Merge(pHead1.next,pHead2)
-        return pHead1
-    }else{
-         pHead2.next = Merge(pHead1,pHead2.next)
-        return pHead2
-    }
+// write code here
+//递归
+if(!pHead1) return pHead2
+if(!pHead2) return pHead1
+if(pHead1.val < pHead2.val){
+pHead1.next = Merge(pHead1.next,pHead2)
+return pHead1
+}else{
+pHead2.next = Merge(pHead1,pHead2.next)
+return pHead2
+}
 
 }
+
 ```
 
 ## 栈的压入、弹出序列
@@ -8273,13 +8349,14 @@ false
 对于每一个放进栈中的元素，栈顶元素都与出栈的 popIndex 对应位置的元素进行比较，是否相等，相等则 popIndex++，再判断，直到为空或者不相等为止。
 
 ```
+
 function IsPopOrder(pushV, popV)
 {
-    // write code here
-    var stack = [];
-    let flag = 0;
-    for(let i = 0; i < pushV.length; i++){
-        stack.push(pushV[i]);
+// write code here
+var stack = [];
+let flag = 0;
+for(let i = 0; i < pushV.length; i++){
+stack.push(pushV[i]);
 
         //判断当前栈是否为空 并且栈顶元素和popV[flag]是否相等 相等弹出，并向下继续判断
         while(stack.length && stack[stack.length-1] === popV[flag]) {
@@ -8288,10 +8365,12 @@ function IsPopOrder(pushV, popV)
         }
     }
     return stack.length === 0;
+
 }
 module.exports = {
-    IsPopOrder : IsPopOrder
+IsPopOrder : IsPopOrder
 };
+
 ```
 
 ## 树的遍历
@@ -8299,40 +8378,42 @@ module.exports = {
 ![image](markdown/2021-02-20-16-29-58.png):markdown/2021-02-20-16-29-58.png
 
 ```
-// 前序遍历： 自 - 左 - 右    先顶点，然后左子节点，左子节点没有了，再从最底部的右节点递归打印
-// 中序遍历： 左 - 自 - 右    最左，然后最左那一层逐步一层一层补充完成树
-// 后序遍历： 左 - 右 - 自    类似横向激光从下到上扫描树
+
+// 前序遍历： 自 - 左 - 右 先顶点，然后左子节点，左子节点没有了，再从最底部的右节点递归打印
+// 中序遍历： 左 - 自 - 右 最左，然后最左那一层逐步一层一层补充完成树
+// 后序遍历： 左 - 右 - 自 类似横向激光从下到上扫描树
 var preorderTraversal = function(root, arr = []) {
-  // 1. 递归
-  if (root) {
-    // 先处理自己，再处理左右
-    // 前序
-    // arr.push(root.val)
-    preorderTraversal(root.left, arr)
-    // 中序
-    // arr.push(root.val)
-    preorderTraversal(root.right, arr)
-    // 后序
-    // arr.push(root.val)
-  }
-  return arr
-  // -----------------
-  // 2. 迭代实现前序遍历1
-  // 开始遍历，stack存储，left入栈，直到left为空，节点出栈，右孩子为目标节点
-  // let res = []
-  // let stack = []
-  // let cur = root
-  // while (cur || stack.length > 0) {
-  //   while (cur) {
-  //     res.push(cur.val)
-  //     stack.push(cur) // 后面要通过cur找他的right
-  //     cur = cur.left
-  //   }
-  //   cur = stack.pop()
-  //   cur = cur.right
-  // }
-  // return res
+// 1. 递归
+if (root) {
+// 先处理自己，再处理左右
+// 前序
+// arr.push(root.val)
+preorderTraversal(root.left, arr)
+// 中序
+// arr.push(root.val)
+preorderTraversal(root.right, arr)
+// 后序
+// arr.push(root.val)
 }
+return arr
+// -----------------
+// 2. 迭代实现前序遍历 1
+// 开始遍历，stack 存储，left 入栈，直到 left 为空，节点出栈，右孩子为目标节点
+// let res = []
+// let stack = []
+// let cur = root
+// while (cur || stack.length > 0) {
+// while (cur) {
+// res.push(cur.val)
+// stack.push(cur) // 后面要通过 cur 找他的 right
+// cur = cur.left
+// }
+// cur = stack.pop()
+// cur = cur.right
+// }
+// return res
+}
+
 ```
 
 ## 从上往下打印二叉树
@@ -8345,22 +8426,24 @@ var preorderTraversal = function(root, arr = []) {
 [5,4,3,2,1]
 
 ```
+
 function PrintFromTopToBottom(root) {
-  if(!root || !root.val) return []
-  const res = [];
-  const queue = [];
-  queue.push(root);
-  while (queue.length > 0) {
-    const node = queue.shift();
-    res.push(node.val);
-    if (node.left) queue.push(node.left);
-    if (node.right) queue.push(node.right);
-  }
-  return res;
+if(!root || !root.val) return []
+const res = [];
+const queue = [];
+queue.push(root);
+while (queue.length > 0) {
+const node = queue.shift();
+res.push(node.val);
+if (node.left) queue.push(node.left);
+if (node.right) queue.push(node.right);
+}
+return res;
 }
 module.exports = {
-    PrintFromTopToBottom : PrintFromTopToBottom
+PrintFromTopToBottom : PrintFromTopToBottom
 };
+
 ```
 
 ## 二叉搜索树的后序遍历序列
@@ -8373,15 +8456,16 @@ module.exports = {
 true
 
 ```
+
 function VerifySquenceOfBST(sequence) {
-    console.log(sequence)
-    if (sequence.length === 0) {
-        return false;
-    }
-    const root = sequence.pop();
-    const left = [];
-    const right = [];
-    let firstRight;
+console.log(sequence)
+if (sequence.length === 0) {
+return false;
+}
+const root = sequence.pop();
+const left = [];
+const right = [];
+let firstRight;
 
     for (let index = 0 ; index < sequence.length; index++) {
         const element = sequence[index];
@@ -8397,6 +8481,7 @@ function VerifySquenceOfBST(sequence) {
     }
 
     return (VerifySquenceOfBST(left) || left.length===0) && (VerifySquenceOfBST(right) || right.length === 0);
+
 }
 
 ```
@@ -8411,44 +8496,46 @@ function VerifySquenceOfBST(sequence) {
 [[10,5,7],[10,12]]
 
 ```
-/* function TreeNode(x) {
-    this.val = x;
-    this.left = null;
-    this.right = null;
-} */
+
+/_ function TreeNode(x) {
+this.val = x;
+this.left = null;
+this.right = null;
+} _/
 function DFS(root,number,path,result){
-    if(!root){
-        return null
-    }
-    if(root.left == null && root.right == null){
-        if(root.val == number){
-            path.push(root.val)
-            result.push(path)
-            return result
-        }else{
-            path = []
-            return null
-        }
-    }
-    path.push(root.val)
-    DFS(root.left,number - root.val, [...path] ,result)
-    DFS(root.right,number - root.val,[...path],result)
-    return result
+if(!root){
+return null
+}
+if(root.left == null && root.right == null){
+if(root.val == number){
+path.push(root.val)
+result.push(path)
+return result
+}else{
+path = []
+return null
+}
+}
+path.push(root.val)
+DFS(root.left,number - root.val, [...path] ,result)
+DFS(root.right,number - root.val,[...path],result)
+return result
 }
 function FindPath(root, expectNumber)
 {
-    // write code here
-    var result = DFS(root,expectNumber,[],[])
-    if(result == null)
-        return []
-    result.sort((x,y)=>{
-        return x.toString() - y.toString()
-    })
-    return result
+// write code here
+var result = DFS(root,expectNumber,[],[])
+if(result == null)
+return []
+result.sort((x,y)=>{
+return x.toString() - y.toString()
+})
+return result
 }
 module.exports = {
-    FindPath : FindPath
+FindPath : FindPath
 };
+
 ```
 
 ## 复杂链表的复制
@@ -8456,16 +8543,18 @@ module.exports = {
 输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针 random 指向一个随机节点），请对此链表进行深拷贝，并返回拷贝后的头结点。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
 
 ```
+
 function Clone(pHead)
 {
-    if(!pHead){
-        return null;
-    }
-    var head = new RandomListNode(pHead.label);
-    head.random = pHead.random;
-    head.next = Clone(pHead.next);
-    return head;
+if(!pHead){
+return null;
 }
+var head = new RandomListNode(pHead.label);
+head.random = pHead.random;
+head.next = Clone(pHead.next);
+return head;
+}
+
 ```
 
 ## 二叉搜索树与双向链表
@@ -8473,36 +8562,38 @@ function Clone(pHead)
 输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。
 
 ```
-/* function TreeNode(x) {
-    this.val = x;
-    this.left = null;
-    this.right = null;
-} */
+
+/_ function TreeNode(x) {
+this.val = x;
+this.left = null;
+this.right = null;
+} _/
 function Convert(pRootOfTree)
 {
-    // write code here
-    if(!pRootOfTree) return null;
-    let pre = null, head = null;
-    function inOrder(node) {
-        if(!node) return;
-        inOrder(node.left);
-        if(pre == null) {
-            pre = node;
-            head = node;
-        }
-        else {
-            node.left = pre;
-            pre.right = node;
-            pre = node;
-        }
-        inOrder(node.right);
-    }
-    inOrder(pRootOfTree);
-    return head;
+// write code here
+if(!pRootOfTree) return null;
+let pre = null, head = null;
+function inOrder(node) {
+if(!node) return;
+inOrder(node.left);
+if(pre == null) {
+pre = node;
+head = node;
+}
+else {
+node.left = pre;
+pre.right = node;
+pre = node;
+}
+inOrder(node.right);
+}
+inOrder(pRootOfTree);
+return head;
 }
 module.exports = {
-    Convert : Convert
+Convert : Convert
 };
+
 ```
 
 ## 字符串的排列字符串，全排列，递归
@@ -8510,26 +8601,32 @@ module.exports = {
 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串 abc,则按字典序打印出由字符 a,b,c 所能排列出来的所有字符串 abc,acb,bac,bca,cab 和 cba。
 
 ```
+
 // 递归法
 var permutation = function (s) {
-    if (s.length === 1) {
-        return Array.from(s)
-    } else {
-        let resArr = permutation(s.slice(1, s.length))
-        <!-- 记录是不是同一个情况 -->
-        let newResArr = new Set()
-        resArr.forEach(str => {
-            for (let i = 0; i <= str.length; i++) {
-                let newStr = str.slice(0, i) + s[0] + str.slice(i, str.length)
-                <!-- 不是同一个情况才添加 -->
-                if (!newResArr.has(newStr)) {
-                    newResArr.add(newStr)
-                }
-            }
-        })
-        return [...newResArr]
-    }
+if (s.length === 1) {
+return Array.from(s)
+} else {
+let resArr = permutation(s.slice(1, s.length))
+
+<!-- 记录是不是同一个情况 -->
+
+let newResArr = new Set()
+resArr.forEach(str => {
+for (let i = 0; i <= str.length; i++) {
+let newStr = str.slice(0, i) + s[0] + str.slice(i, str.length)
+
+<!-- 不是同一个情况才添加 -->
+
+if (!newResArr.has(newStr)) {
+newResArr.add(newStr)
+}
+}
+})
+return [...newResArr]
+}
 };
+
 ```
 
 ## 数组中出现次数超过一半的数字数组，哈希
@@ -8537,37 +8634,40 @@ var permutation = function (s) {
 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为 9 的数组{1,2,3,2,2,2,5,4,2}。由于数字 2 在数组中出现了 5 次，超过数组长度的一半，因此输出 2。如果不存在则输出 0。
 
 ```
+
 function MoreThanHalfNum_Solution(numbers){
-    if(!numbers || numbers.length === 0){
-        return 0;
-    }
-    var arr = [];
-    var len = numbers.length, index;
-    for(var i = 0; i < len; i++){
-      var index = numbers[i];
-      arr[index] !== undefined ? arr[index]++ : arr[index] = 1;
-    }
-    var index = -1;
-    var arrLen = arr.length;
-    var max = -Infinity;
-    for(var i = 0; i < arrLen; i++){
-      if(!arr[i]) continue;
-      max = arr[i] > max ? (index = i, arr[i]) : max;
-    }
-    return max > len / 2 ? index : 0;
+if(!numbers || numbers.length === 0){
+return 0;
 }
+var arr = [];
+var len = numbers.length, index;
+for(var i = 0; i < len; i++){
+var index = numbers[i];
+arr[index] !== undefined ? arr[index]++ : arr[index] = 1;
+}
+var index = -1;
+var arrLen = arr.length;
+var max = -Infinity;
+for(var i = 0; i < arrLen; i++){
+if(!arr[i]) continue;
+max = arr[i] > max ? (index = i, arr[i]) : max;
+}
+return max > len / 2 ? index : 0;
+}
+
 ```
 
 ## 最小的k个数，输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4。
 
 ```
+
 function GetLeastNumbers_Solution(input, k){
-    if(!input || input.length < k){
-        return [];
-    }
-    return input.sort(function(a,b){
-        return a - b
-    }).slice(0, k);
+if(!input || input.length < k){
+return [];
+}
+return input.sort(function(a,b){
+return a - b
+}).slice(0, k);
 }
 
 ```
@@ -8582,18 +8682,19 @@ function GetLeastNumbers_Solution(input, k){
 18
 
 ```
+
 这道题用动态规划的思路并不难解决，比较难的是后文提出的用分治法求解，但由于其不是最优解法，所以先不列出来
 动态规划的是首先对数组进行遍历，当前最大连续子序列和为 sum，结果为 ans
 如果 sum > 0，则说明 sum 对结果有增益效果，则 sum 保留并加上当前遍历数字
 如果 sum <= 0，则说明 sum 对结果无增益效果，需要舍弃，则 sum 直接更新为当前遍历数字
-每次比较 sum 和 ans的大小，将最大值置为ans，遍历结束返回结果
+每次比较 sum 和 ans 的大小，将最大值置为 ans，遍历结束返回结果
 时间复杂度：O(n)O(n)
 function FindGreatestSumOfSubArray(array)
 {
-    // write code here
-    let sum = array[0]
-    let res = array[0]
-    for(let i=1;i<array.length;i++){
+// write code here
+let sum = array[0]
+let res = array[0]
+for(let i=1;i<array.length;i++){
 
         <!-- 是正数就加上去设置为当前最大值 -->
         if(sum>0){
@@ -8606,10 +8707,12 @@ function FindGreatestSumOfSubArray(array)
         res = Math.max(res,sum)
     }
     return res
+
 }
 module.exports = {
-    FindGreatestSumOfSubArray : FindGreatestSumOfSubArray
+FindGreatestSumOfSubArray : FindGreatestSumOfSubArray
 };
+
 ```
 
 ## 找零钱
@@ -8618,6 +8721,7 @@ module.exports = {
 意数量的已知⾯值钞票都⽆法组成该⾦额， 则返回-1。
 
 ```
+
 示例：
 Input: coins = [1, 2, 5], amount = 11
 Output: 3
@@ -8626,14 +8730,14 @@ Input: coins = [2], amount = 3
 Output: -1
 动态规划解题步骤：
 将原问题拆分成⼦问题
-已知什么？显⽽易⻅，钞票的⾦额都只需要其本身1张即可
-如何在已知钞票的情况下构造出 ⾦额X需要的最少钞票组合
+已知什么？显⽽易⻅，钞票的⾦额都只需要其本身 1 张即可
+如何在已知钞票的情况下构造出 ⾦额 X 需要的最少钞票组合
 确认状态
-DP[0] - DP[amount] 表示构造⾦额amount需要的最⼩钞票数
+DP[0] - DP[amount] 表示构造⾦额 amount 需要的最⼩钞票数
 确认边界状态（初始条件）
 DP[coin] = 1 其他的都未知初始值设为 -1
-例如coins = [1, 2, 5], amount = 11 已知 dp[1]、dp[2]、dp[5] =1
-现在已知 DP[coin] 需要求出每⼀个DP[amount]
+例如 coins = [1, 2, 5], amount = 11 已知 dp[1]、dp[2]、dp[5] =1
+现在已知 DP[coin] 需要求出每⼀个 DP[amount]
 状态转移⽅程
 dp[i] = min(dp[i-1], dp[i-2], dp[i-5]) + 1
 解题代码：（java）
@@ -8646,25 +8750,25 @@ return 0;
 int [] dp = new int[amount+1];
 for (int i = 0; i <= amount; i++){
 dp[i] = -1;
- }
+}
 for (int i = 0; i< len;i++){
 if(coins[i] == amount)
 return 1;
 if(coins[i] < amount)
 dp[coins[i]] = 1;
- }
+}
 // State Transfer Function
 for(int i = 1; i <= amount;i++){
-  for (int j = 0; j < len; j++){
-    if (i - coins[j] >= 0 && dp[i - coins[j]] != -1){
-      if (dp[i] == -1 || dp[i] > dp[i - coins[j]] + 1){
-      dp[i] = dp[i - coins[j]] + 1;
-       }
-     }
-   }
- }
+for (int j = 0; j < len; j++){
+if (i - coins[j] >= 0 && dp[i - coins[j]] != -1){
+if (dp[i] == -1 || dp[i] > dp[i - coins[j]] + 1){
+dp[i] = dp[i - coins[j]] + 1;
+}
+}
+}
+}
 return dp[amount];
- }
+}
 
 ```
 
@@ -8680,6 +8784,7 @@ return dp[amount];
 输出: 4
 
 ```
+
 解法三：动态规划优化
 ⽤动态规划时，可以说 80% 都是⽤⼆维数组，但是 80% 也都可以优化成⼀维数组，这很容易理解，⼤
 家看这个公式
@@ -8695,50 +8800,51 @@ dp[i] 相当于 dp[i-1] [j]
 dp[i-1] 相当于 dp[i-1] [j]
 pre 相当于 dp[i-1][j-1]。
 然后⽤⼀维矩阵的话，我们每次计算出 new_dp[i] 后，就⻢上⽤ new_dp[i] 覆盖 dp[i] 的值，并且还要
-⽤⼀个变量 pre 来保存dp[i-1][j-1]的值。
+⽤⼀个变量 pre 来保存 dp[i-1][j-1]的值。
 好吧，估计你也给我绕晕了，如果不⼤理解，强烈建议画图模拟⼀下
 最终代码如下
- public int maximalSquare(char[][] matrix) {
- if(matrix.length < 1 || matrix[0].length < 1)
- return 0;
- int rows = matrix.length;
- int cols = matrix[0].length;
- int[] dp = new int[cols + 1];
- int max = 0, prev = 0;
- for (int i = 1; i <= rows; i++) {
- for (int j = 1; j <= cols; j++) {
- int temp = dp[j];
- if (matrix[i - 1][j - 1] == '1') {
- dp[j] = Math.min(Math.min(dp[j - 1], prev), dp[j]) + 1;
- max = Math.max(max, dp[j]);
- } else {
- dp[j] = 0;
- }
- prev = temp;
- }
- }
- return max * max;
- }
+public int maximalSquare(char[][] matrix) {
+if(matrix.length < 1 || matrix[0].length < 1)
+return 0;
+int rows = matrix.length;
+int cols = matrix[0].length;
+int[] dp = new int[cols + 1];
+int max = 0, prev = 0;
+for (int i = 1; i <= rows; i++) {
+for (int j = 1; j <= cols; j++) {
+int temp = dp[j];
+if (matrix[i - 1][j - 1] == '1') {
+dp[j] = Math.min(Math.min(dp[j - 1], prev), dp[j]) + 1;
+max = Math.max(max, dp[j]);
+} else {
+dp[j] = 0;
+}
+prev = temp;
+}
+}
+return max * max;
+}
 时间复杂度：O(n*m)
 空间复杂度：O(n)
-
 
 ```
 
 ## 整数中1出现的次数（从1到n整数中1出现的次数
 
 ```
+
 function NumberOf1Between1AndN_Solution(n)
 {
-    if (n < 0) return 0;
-    var ones = 0;
-    var arr = [];
-    while(n){
-        arr.push(n);
-        n--;
-    }
-    return arr.join('').replace(/[^1]+/g,'').length;
+if (n < 0) return 0;
+var ones = 0;
+var arr = [];
+while(n){
+arr.push(n);
+n--;
 }
+return arr.join('').replace(/[^1]+/g,'').length;
+}
+
 ```
 
 ## 把数组排成最小的数
@@ -8747,15 +8853,16 @@ function NumberOf1Between1AndN_Solution(n)
 解法：先排序后直接整合
 
 ```
+
 function PrintMinNumber(numbers)
 {
-    // write code here
-    return numbers.sort((a,b)=>{
-        return (a+''+b)-(b+''+a)
-    }).join('')
+// write code here
+return numbers.sort((a,b)=>{
+return (a+''+b)-(b+''+a)
+}).join('')
 }
 module.exports = {
-    PrintMinNumber : PrintMinNumber
+PrintMinNumber : PrintMinNumber
 };
 
 ```
@@ -8765,36 +8872,40 @@ module.exports = {
 把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。例如 6、8 都是丑数，但 14 不是，因为它包含因子 7。 习惯上我们把 1 当做是第一个丑数。求按从小到大的顺序的第N个丑数。
 
 ```
-function GetUglyNumber_Solution(index) {
-    if (index === 0) return 0;
-    var uglyNum = [1];
-    var factor2 = 0, factor3 = 0, factor5 = 0;
-    for (var i = 1; i < index; i++) {
-        uglyNum[i] = Math.min(uglyNum[factor2] * 2, uglyNum[factor3] * 3, uglyNum[factor5] * 5);
-        if (uglyNum[i] === uglyNum[factor2] * 2) factor2++;
-        if (uglyNum[i] === uglyNum[factor3] * 3) factor3++;
-        if (uglyNum[i] === uglyNum[factor5] * 5) factor5++;
-    }
-    return uglyNum[index - 1];
+
+function GetUglyNumber*Solution(index) {
+if (index === 0) return 0;
+var uglyNum = [1];
+var factor2 = 0, factor3 = 0, factor5 = 0;
+for (var i = 1; i < index; i++) {
+uglyNum[i] = Math.min(uglyNum[factor2] * 2, uglyNum[factor3] _ 3, uglyNum[factor5] _ 5);
+if (uglyNum[i] === uglyNum[factor2] _ 2) factor2++;
+if (uglyNum[i] === uglyNum[factor3] _ 3) factor3++;
+if (uglyNum[i] === uglyNum[factor5] \_ 5) factor5++;
 }
+return uglyNum[index - 1];
+}
+
 ```
 
 ## 第一个只出现一次的字符位置
 
 ```
+
 function FirstNotRepeatingChar(str)
 {
-    // write code here
-    for(let i = 0; i < str.length; i++) {
-        if(str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
-            return i
-        }
-    }
-    return -1
+// write code here
+for(let i = 0; i < str.length; i++) {
+if(str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+return i
+}
+}
+return -1
 }
 module.exports = {
-    FirstNotRepeatingChar : FirstNotRepeatingChar
+FirstNotRepeatingChar : FirstNotRepeatingChar
 };
+
 ```
 
 ## 数组中的逆序对
@@ -8814,101 +8925,108 @@ https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&tags=
 ## 数字在排序数组中出现的次数
 
 ```
+
 indexOf 和 lastIndexOf
+
 ```
 
 ## 两个链表的第一个公共节点
 
 ```
+
 function FindFirstCommonNode(pHead1, pHead2){
-    if(!pHead1 || !pHead2){
-        return null;
-    }
-    var len1 = getLength(pHead1);
-    var len2 = getLength(pHead2);
-    var lenDiff = len1 - len2;
-    var curr1 = pHead1;
-    var curr2 = pHead2;
-    if(len2 > len1){
-        curr1 = pHead2;
-        curr2 = pHead1;
-        lenDiff = len2 - len1;
-    }
-    for(var i = 0; i < lenDiff; ++i)
-        curr1 = curr1.next;
-    while(curr1 && curr2 && curr1 != curr2){
-        curr1 = curr1.next;
-        curr2 = curr2.next;
-    }
-    return curr1;
-    function getLength(node){
-        var len = 0;
-        curr = node;
-        while(curr){
-            len++;
-            curr = curr.next;
-        }
-        return len;
-    }
+if(!pHead1 || !pHead2){
+return null;
 }
+var len1 = getLength(pHead1);
+var len2 = getLength(pHead2);
+var lenDiff = len1 - len2;
+var curr1 = pHead1;
+var curr2 = pHead2;
+if(len2 > len1){
+curr1 = pHead2;
+curr2 = pHead1;
+lenDiff = len2 - len1;
+}
+for(var i = 0; i < lenDiff; ++i)
+curr1 = curr1.next;
+while(curr1 && curr2 && curr1 != curr2){
+curr1 = curr1.next;
+curr2 = curr2.next;
+}
+return curr1;
+function getLength(node){
+var len = 0;
+curr = node;
+while(curr){
+len++;
+curr = curr.next;
+}
+return len;
+}
+}
+
 ```
 
 ## 二叉树的深度
 
 ```
+
 function TreeDepth(pRoot){
-    if(!pRoot){
-        return 0;
-    }
-    var depth = 0;
-    var currDepth = 0;
-    dfs(pRoot);
-    return depth;
-    function dfs(node){
-        if(!node){
-            depth = depth > currDepth ? depth : currDepth;
-            return;
-        }
-        currDepth++;
-        dfs(node.left);
-        dfs(node.right);
-        currDepth--;
-    }
+if(!pRoot){
+return 0;
 }
+var depth = 0;
+var currDepth = 0;
+dfs(pRoot);
+return depth;
+function dfs(node){
+if(!node){
+depth = depth > currDepth ? depth : currDepth;
+return;
+}
+currDepth++;
+dfs(node.left);
+dfs(node.right);
+currDepth--;
+}
+}
+
 ```
 
 ## 是不是平衡二叉树
 
 ```
+
 function IsBalanced_Solution(pRoot){
-    if(!pRoot){
-        return true;
-    }
-    var left = TreeDepth(pRoot.left);
-    var right = TreeDepth(pRoot.right);
-    var diff = left - right;
-    if(diff > 1 || diff < -1)
-        return false;
-    return IsBalanced_Solution(pRoot.left) && IsBalanced_Solution(pRoot.right);
-    function TreeDepth(pRoot){
-        if(!pRoot){
-            return 0;
-        }
-        var depth = 0;
-        var currDepth = 0;
-        dfs(pRoot);
-        return depth;
-        function dfs(node){
-            if(!node){
-                depth = depth > currDepth ? depth : currDepth;
-                return;
-            }
-            currDepth++;
-            dfs(node.left);
-            dfs(node.right);
-            currDepth--;
-        }
-    }
+if(!pRoot){
+return true;
+}
+var left = TreeDepth(pRoot.left);
+var right = TreeDepth(pRoot.right);
+var diff = left - right;
+if(diff > 1 || diff < -1)
+return false;
+return IsBalanced_Solution(pRoot.left) && IsBalanced_Solution(pRoot.right);
+function TreeDepth(pRoot){
+if(!pRoot){
+return 0;
+}
+var depth = 0;
+var currDepth = 0;
+dfs(pRoot);
+return depth;
+function dfs(node){
+if(!node){
+depth = depth > currDepth ? depth : currDepth;
+return;
+}
+currDepth++;
+dfs(node.left);
+dfs(node.right);
+currDepth--;
+}
+}
 }
 
 ```
@@ -8918,38 +9036,40 @@ function IsBalanced_Solution(pRoot){
 小明很喜欢数学,有一天他在做数学作业时,要求计算出 9~16 的和,他马上就写出了正确答案是 100。但是他并不满足于此,他在想究竟有多少种连续的正数序列的和为 100(至少包括两个数)。没多久,他就得到另一组连续正数和为 100 的序列:18,19,20,21,22。现在把问题交给你,你能不能也很快的找出所有和为 S 的连续正数序列? Good Luck!
 
 ```
+
 function FindContinuousSequence(sum){
-    if(sum < 3){
-        return [];
-    }
-    var small = 1, big = 2;
-    var mid = (1 + sum) / 2;
-    var curr = small + big;
-    var result = [];
-    while(small < mid){
-        if(curr === sum){
-            pushSeq(small, big);
-        }
-        while(curr > sum && small < mid){
-            curr -= small;
-            small++;
-            if(curr === sum){
-                pushSeq(small, big);
-            }
-        }
-        big++;
-        curr += big;
-    }
-    result.sort(function(a,b){return a[0] - b[0];});
-    return result;
-    function pushSeq(small, big){
-        var temp = [];
-        for(var i = small; i <= big; i++){
-            temp.push(i);
-        }
-        result.push(temp);
-    }
+if(sum < 3){
+return [];
 }
+var small = 1, big = 2;
+var mid = (1 + sum) / 2;
+var curr = small + big;
+var result = [];
+while(small < mid){
+if(curr === sum){
+pushSeq(small, big);
+}
+while(curr > sum && small < mid){
+curr -= small;
+small++;
+if(curr === sum){
+pushSeq(small, big);
+}
+}
+big++;
+curr += big;
+}
+result.sort(function(a,b){return a[0] - b[0];});
+return result;
+function pushSeq(small, big){
+var temp = [];
+for(var i = small; i <= big; i++){
+temp.push(i);
+}
+result.push(temp);
+}
+}
+
 ```
 
 ## 和为S的两个数字
@@ -8957,26 +9077,28 @@ function FindContinuousSequence(sum){
 输入一个递增排序的数组和一个数字 S，在数组中查找两个数，使得他们的和正好是 S，如果有多对数字的和等于 S，输出两个数的乘积最小的。
 
 ```
+
 function FindNumbersWithSum(array, sum)
 {
-    // write code
-    let map = new Map;
-    let arr = [];
-    for(let i = 0;i<array.length;i++){
-        if(map.has(array[i])){
-            arr.push(array[i])
-        }else{
-            map.set(sum-array[i],array[i])
-        }
-    }
-    if(arr.length==0){
-        return []
-    }
-    return [sum-arr[arr.length-1],arr[arr.length-1]]
+// write code
+let map = new Map;
+let arr = [];
+for(let i = 0;i<array.length;i++){
+if(map.has(array[i])){
+arr.push(array[i])
+}else{
+map.set(sum-array[i],array[i])
+}
+}
+if(arr.length==0){
+return []
+}
+return [sum-arr[arr.length-1],arr[arr.length-1]]
 }
 module.exports = {
-    FindNumbersWithSum : FindNumbersWithSum
+FindNumbersWithSum : FindNumbersWithSum
 };
+
 ```
 
 ## 翻转单词顺序列
@@ -8984,13 +9106,15 @@ module.exports = {
 牛客最近来了一个新员工 Fish，每天早晨总是会拿着一本英文杂志，写些句子在本子上。同事 Cat 对 Fish 写的内容颇感兴趣，有一天他向 Fish 借来翻看，但却读不懂它的意思。例如，“student. a am I”。后来才意识到，这家伙原来把句子单词的顺序翻转了，正确的句子应该是“I am a student.”。Cat 对一一的翻转这些单词顺序可不在行，你能帮助他么？
 
 ```
+
 function ReverseSentence(str)
 {
-    return str.split(' ').reverse().join(' ');
+return str.split(' ').reverse().join(' ');
 }
 module.exports = {
-    ReverseSentence : ReverseSentence
+ReverseSentence : ReverseSentence
 };
+
 ```
 
 ## 扑克牌
@@ -8998,26 +9122,28 @@ module.exports = {
 LL 今天心情特别好,因为他去买了一副扑克牌,发现里面居然有 2 个大王,2 个小王(一副牌原本是 54 张^\_^)...他随机从中抽出了 5 张牌,想测测自己的手气,看看能不能抽到顺子,如果抽到的话,他决定去买体育彩票,嘿嘿！！“红心 A,黑桃 3,小王,大王,方片 5”,“Oh My God!”不是顺子.....LL 不高兴了,他想了想,决定大\小 王可以看成任何数字,并且 A 看作 1,J 为 11,Q 为 12,K 为 13。上面的 5 张牌就可以变成“1,2,3,4,5”(大小王分别看作 2 和 4),“So Lucky!”。LL 决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的过程,然后告诉我们 LL 的运气如何。为了方便起见,你可以认为大小王是 0
 
 ```
+
 function IsContinuous(numbers){
-    if(!numbers || numbers.length < 1){
-        return false;
-    }
-    var len = numbers.length;
-    numbers.sort(function(a,b){return a - b;});
-    var zeros = 0, gaps = 0;
-    for(var i = 0; i < len && numbers[i] == 0; i++){
-        zeros++;
-    }
-    var small = zeros, big = small + 1;
-    while(big < len){
-        if(numbers[small] == numbers[big]){
-            return false;
-        }
-        gaps += numbers[big] - numbers[small] - 1;
-        small = big++;
-    }
-    return gaps <= zeros;
+if(!numbers || numbers.length < 1){
+return false;
 }
+var len = numbers.length;
+numbers.sort(function(a,b){return a - b;});
+var zeros = 0, gaps = 0;
+for(var i = 0; i < len && numbers[i] == 0; i++){
+zeros++;
+}
+var small = zeros, big = small + 1;
+while(big < len){
+if(numbers[small] == numbers[big]){
+return false;
+}
+gaps += numbers[big] - numbers[small] - 1;
+small = big++;
+}
+return gaps <= zeros;
+}
+
 ```
 
 ## 儿童节礼物
@@ -9025,15 +9151,16 @@ function IsContinuous(numbers){
 每年六一儿童节,牛客都会准备一些小礼物去看望孤儿院的小朋友,今年亦是如此。HF 作为牛客的资深元老,自然也准备了一些小游戏。其中,有个游戏是这样的:首先,让小朋友们围成一个大圈。然后,他随机指定一个数 m,让编号为 0 的小朋友开始报数。每次喊到 m-1 的那个小朋友要出列唱首歌,然后可以在礼品箱中任意的挑选礼物,并且不再回到圈中,从他的下一个小朋友开始,继续 0...m-1 报数....这样下去....直到剩下最后一个小朋友,可以不用表演,并且拿到牛客名贵的“名侦探柯南”典藏版(名额有限哦!!^\_^)。请你试着想下,哪个小朋友会得到这份礼品呢？(注：小朋友的编号是从 0 到 n-1)
 
 ```
+
 function LastRemaining_Solution(n, m){
-    if(n < 1 || m < 1){
-        return -1;
-    }
-    var last = 0;
-    for(var i = 2; i <= n; i++){
-        last = (last + m) % i;
-    }
-    return last;
+if(n < 1 || m < 1){
+return -1;
+}
+var last = 0;
+for(var i = 2; i <= n; i++){
+last = (last + m) % i;
+}
+return last;
 }
 
 ```
@@ -9043,39 +9170,43 @@ function LastRemaining_Solution(n, m){
 写一个函数，求两个整数之和，要求在函数体内不得使用+、-、\*、/四则运算符号
 
 ```
+
 function Add(num1, num2){
-    var sum, carry;
-    do{
-        sum = num1 ^ num2;
-        carry = (num1 & num2) << 1;
-        num1 = sum;
-        num2 = carry;
-    }while(num2 != 0);
-    return num1;
+var sum, carry;
+do{
+sum = num1 ^ num2;
+carry = (num1 & num2) << 1;
+num1 = sum;
+num2 = carry;
+}while(num2 != 0);
+return num1;
 }
+
 ```
 
 ## 实现parsetInt，将字符串转换成整数
 
 ```
+
 function StrToInt(str){
-    if(str.length === 0){
-        return 0;
-    }
-    var format = str.match(/^(\+?|-?)(\d+)$/);
-    if(!format){
-        return 0;
-    }
-    var num = 0;
-    var temp = format[2];
-    var base = 1;
-    var flag = format[1];
-    for(var i = temp.length - 1; i >= 0; i--){
-        num += parseInt(temp[i]) * base;
-        base *= 10;
-    }
-    return flag === '-' ? num * (-1) : num;
+if(str.length === 0){
+return 0;
 }
+var format = str.match(/^(\+?|-?)(\d+)$/);
+if(!format){
+return 0;
+}
+var num = 0;
+var temp = format[2];
+var base = 1;
+var flag = format[1];
+for(var i = temp.length - 1; i >= 0; i--){
+num += parseInt(temp[i]) _ base;
+base _= 10;
+}
+return flag === '-' ? num \* (-1) : num;
+}
+
 ```
 
 ## 数组中重复的数字
@@ -9086,25 +9217,27 @@ function StrToInt(str){
 如果数组中有重复的数字，把重复的数字放到参数 duplication[0]中。（ps:duplication 已经初始化，可以直接赋值使用。）
 
 ```
+
 function duplicate(numbers, duplication)
 {
-    // write code here
-    //这里要特别注意~找到任意重复的一个值并赋值到duplication[0]
-    //函数返回True/False
-    let map = {}
-    for(let i = 0; i < numbers.length; i++) {
-        if(numbers.lastIndexOf(numbers[i]) !== i) {
-            duplication[0] = numbers[i]
-            return true
-        } else {
-            map[numbers[i]] = i
-        }
-    }
-    return false
+// write code here
+//这里要特别注意~找到任意重复的一个值并赋值到 duplication[0]
+//函数返回 True/False
+let map = {}
+for(let i = 0; i < numbers.length; i++) {
+if(numbers.lastIndexOf(numbers[i]) !== i) {
+duplication[0] = numbers[i]
+return true
+} else {
+map[numbers[i]] = i
+}
+}
+return false
 }
 module.exports = {
-    duplicate : duplicate
+duplicate : duplicate
 };
+
 ```
 
 ## 给定数组，不能用除法
@@ -9112,23 +9245,25 @@ module.exports = {
 给定一个数组 A[0,1,...,n-1],请构建一个数组 B[0,1,...,n-1],其中 B 中的元素 B[i]=A[0]A[1]...A[i-1]A[i+1]...A[n-1]。不能使用除法。
 
 ```
+
 function multiply(array){
-    if(!array || !array.length){
-        return [];
-    }
-    var result = [];
-    var len1 = array.length, len2 = result.length;
-    result[0] = 1;
-    for(var i = 1; i < len1; i++){
-        result[i] = array[i - 1] * result[i - 1];
-    }
-    var temp = 1;
-    for(var i = len1 - 2; i >= 0;--i){
-        temp *=array[i + 1];
-        result[i] *= temp
-    }
-    return result;
+if(!array || !array.length){
+return [];
 }
+var result = [];
+var len1 = array.length, len2 = result.length;
+result[0] = 1;
+for(var i = 1; i < len1; i++){
+result[i] = array[i - 1] _ result[i - 1];
+}
+var temp = 1;
+for(var i = len1 - 2; i >= 0;--i){
+temp _=array[i + 1];
+result[i] \*= temp
+}
+return result;
+}
+
 ```
 
 ## 正则表达式匹配，实现正则表达式种的.和\*匹配
@@ -9136,9 +9271,10 @@ function multiply(array){
 请实现一个函数用来匹配包括'.'和''的正则表达式。模式中的字符'.'表示任意一个字符，而''表示它前面的字符可以出现任意次（包含 0 次）。 在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串"aaa"与模式"a.a"和"abaca"匹配，但是与"aa.a"和"ab\*a"均不匹配
 
 ```
+
 思路分析
 状态定义
-dp[i][j]：表示s的前i个是否能被p的前j个匹配，布尔类型
+dp[i][j]：表示 s 的前 i 个是否能被 p 的前 j 个匹配，布尔类型
 
 状态方程
 p[j] == s[i]
@@ -9146,62 +9282,63 @@ dp[i][j] = dp[i-1][j-1]
 当前同一位置的字符匹配，则判断上一位的字符是否匹配
 p[j] == "."
 dp[i][j] = dp[i-1][j-1]
-"."可以换成和s[i]相同的字符，则情况同第一种一样
-p[j] == " * "
-" * "匹配前面0个或n个字符，因此要越过" * "，匹配规则至少退到上一步，即比较p[j-1]和s[i]
+"."可以换成和 s[i]相同的字符，则情况同第一种一样
+p[j] == " _ "
+" _ "匹配前面 0 个或 n 个字符，因此要越过" _ "，匹配规则至少退到上一步，即比较 p[j-1]和 s[i]
 p[j-1] != s[i]
 dp[i][j] = dp[i][j-2]
-对应于匹配前一个字符0次
-例如：s = 'aa'，p = 'aac*'，那么此时，就要将匹配规则后退2步，即用'aa'去匹配'aa'
+对应于匹配前一个字符 0 次
+例如：s = 'aa'，p = 'aac_'，那么此时，就要将匹配规则后退 2 步，即用'aa'去匹配'aa'
 p[j-1] == s[i]
 dp[i][j] = dp[i][j-2]
-对应于匹配前一个字符0次，或者说不匹配
-例如：s = 'ab'，p = 'abb*'，那么此时，就要将匹配规则后退2步，即用'ab'去匹配'ab'
+对应于匹配前一个字符 0 次，或者说不匹配
+例如：s = 'ab'，p = 'abb*'，那么此时，就要将匹配规则后退 2 步，即用'ab'去匹配'ab'
 dp[i][j] = dp[i][j-1]
-对应于匹配前一个字符1次
-例如：s = 'ac'，p = 'ac*'，那么此时，就要将匹配规则后退1步，即用'ac'去匹配'ac'
+对应于匹配前一个字符 1 次
+例如：s = 'ac'，p = 'ac*'，那么此时，就要将匹配规则后退 1 步，即用'ac'去匹配'ac'
 dp[i][j] = dp[i-1][j]
-对应于匹配前一个字符n次
-例如：s = 'abbbb'，p = 'ab*'，
-那么此时，就要将匹配规则前进n-1步，即复制n-1份前一个字符b
-相当于s后退n-1步
-又因为动态规划属于递推，所以每次s后退一步就可以了
+对应于匹配前一个字符 n 次
+例如：s = 'abbbb'，p = 'ab\*'，
+那么此时，就要将匹配规则前进 n-1 步，即复制 n-1 份前一个字符 b
+相当于 s 后退 n-1 步
+又因为动态规划属于递推，所以每次 s 后退一步就可以了
 p[j] == " . "
-同p[j-1] == s[i]，所以将此条件归并但上一步的条件中即可
+同 p[j-1] == s[i]，所以将此条件归并但上一步的条件中即可
 初始化
-s[i]的前0个字符 和 p[j]的前j个字符能否匹配
+s[i]的前 0 个字符 和 p[j]的前 j 个字符能否匹配
 
-/**
- * @param {string} s
- * @param {string} p
- * @return {boolean}
- */
-var isMatch = function(s, p) {
-    let n = s.length;
-    let m = p.length;
-    let dp = Array.from(new Array(n+1),() => new Array(m+1).fill(false));
-    dp[0][0] = true;
-    for(let i = 0;i <= m;i++){
-        if(p[i] == '*' && dp[0][i-1]){
-            dp[0][i+1] = true;
-        }
-    }
-    for(let i = 1;i <= n;i++){
-        for(let j = 1;j <= m;j++){
-            if(p[j-1] == s[i-1] || p[j-1] == '.'){
-                dp[i][j] = dp[i-1][j-1]
-            }else if(p[j-1] == '*'){
-                if(p[j-2] != s[i-1]){
-                    dp[i][j] = dp[i][j-2];
-                }
-                if(p[j-2] == s[i-1] || p[j-2] == '.'){
-                    dp[i][j] = dp[i-1][j] || dp[i][j-1] || dp[i][j-2];
-                }
-            }
-        }
-    }
-    return dp[n][m];
-};
+/\*\*
+
+- @param {string} s
+- @param {string} p
+- @return {boolean}
+  _/
+  var isMatch = function(s, p) {
+  let n = s.length;
+  let m = p.length;
+  let dp = Array.from(new Array(n+1),() => new Array(m+1).fill(false));
+  dp[0][0] = true;
+  for(let i = 0;i <= m;i++){
+  if(p[i] == '_' && dp[0][i-1]){
+  dp[0][i+1] = true;
+  }
+  }
+  for(let i = 1;i <= n;i++){
+  for(let j = 1;j <= m;j++){
+  if(p[j-1] == s[i-1] || p[j-1] == '.'){
+  dp[i][j] = dp[i-1][j-1]
+  }else if(p[j-1] == '\*'){
+  if(p[j-2] != s[i-1]){
+  dp[i][j] = dp[i][j-2];
+  }
+  if(p[j-2] == s[i-1] || p[j-2] == '.'){
+  dp[i][j] = dp[i-1][j] || dp[i][j-1] || dp[i][j-2];
+  }
+  }
+  }
+  }
+  return dp[n][m];
+  };
 
 ```
 
@@ -9210,49 +9347,51 @@ var isMatch = function(s, p) {
 给定一个字符串 (s) 和一个字符模式 (p) ，实现一个支持 '?' 和 '\*' 的通配符匹配。
 
 ```
+
 解法一：动态规划
 类似题型
 10、正则表达式匹配-解法三
 思路
 状态定义
-dp[i][j]：表示 s 的前i个字符是否与 p的前j个字符是否匹配
+dp[i][j]：表示 s 的前 i 个字符是否与 p 的前 j 个字符是否匹配
 状态方程
-当 s[i] == p[j] 或者p[j] == '?' 时
+当 s[i] == p[j] 或者 p[j] == '?' 时
 dp[i][j] = dp[i-1][j-1]
-当 s[i] != p[j] && p[j] == '*' 时
+当 s[i] != p[j] && p[j] == '_' 时
 dp[i][j] = dp[i-1][j] || dp[i][j-1]
-dp[i-1][j]：匹配任意非空字符，例如abkk,ab*
-dp[i][j-1]：匹配空字符相当于0个，例如ab，ab*
+dp[i-1][j]：匹配任意非空字符，例如 abkk,ab_
+dp[i][j-1]：匹配空字符相当于 0 个，例如 ab，ab*
 初始化
-dp[0][0]：两个空字符串，为true
-dp[0][j]：当s为空，p为*号时，为true
-p[j-1] == '*' && dp[0][j] = dp[0][j-1]
-/**
- * @param {string} s
- * @param {string} p
- * @return {boolean}
- */
-var isMatch = function(s, p) {
-    let n = s.length;
-    let m = p.length;
-    let dp = Array.from(new Array(n+1),() => new Array(m+1).fill(false));
-    dp[0][0] = true;
-   for(let j = 1;j <= m;j++){
-       if(p[j-1] == '*'){
-           dp[0][j] = dp[0][j-1];
-       }
-   }
-    for(let i = 1;i <= n;i++){
-        for(let j = 1;j <= m;j++){
-            if(s[i-1] == p[j-1] || p[j-1] == '?'){
-                dp[i][j] = dp[i-1][j-1];
-            }else if(p[j-1] == '*'){
-                 dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
-            }
-        }
-    }
-    return dp[n][m];
-};
+dp[0][0]：两个空字符串，为 true
+dp[0][j]：当 s 为空，p 为*号时，为 true
+p[j-1] == '\*' && dp[0][j] = dp[0][j-1]
+/\*\*
+
+- @param {string} s
+- @param {string} p
+- @return {boolean}
+  _/
+  var isMatch = function(s, p) {
+  let n = s.length;
+  let m = p.length;
+  let dp = Array.from(new Array(n+1),() => new Array(m+1).fill(false));
+  dp[0][0] = true;
+  for(let j = 1;j <= m;j++){
+  if(p[j-1] == '_'){
+  dp[0][j] = dp[0][j-1];
+  }
+  }
+  for(let i = 1;i <= n;i++){
+  for(let j = 1;j <= m;j++){
+  if(s[i-1] == p[j-1] || p[j-1] == '?'){
+  dp[i][j] = dp[i-1][j-1];
+  }else if(p[j-1] == '\*'){
+  dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
+  }
+  }
+  }
+  return dp[n][m];
+  };
 
 ```
 
@@ -9261,9 +9400,10 @@ var isMatch = function(s, p) {
 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串"+100","5e2","-123","3.1416"和"-1E-16"都表示数值。 但是"12e","1a3.14","1.2.3","+-5"和"12e+4.3"都不是。
 
 ```
+
 function isNumeric(s){
-    var reg = /^[+-]?(?:(\d+)(\.\d+)?|(\.\d+))([eE][+-]?\d+)?$/;
-    return reg.test(s);
+var reg = /^[+-]?(?:(\d+)(\.\d+)?|(\.\d+))([eE][+-]?\d+)?$/;
+return reg.test(s);
 }
 
 ```
@@ -9271,53 +9411,55 @@ function isNumeric(s){
 ## 一个链表中包含环，请找出该链表的环的入口结点，环的入口
 
 ```
-/*function ListNode(x){
-    this.val = x;
-    this.next = null;
-}*/
+
+/_function ListNode(x){
+this.val = x;
+this.next = null;
+}_/
 function EntryNodeOfLoop(pHead){
-    if(!pHead){
-        return null;
-    }
-    var meeting = meetingNode(pHead);
-    if(!meeting){
-        return null;
-    }
-    var nodeLoop = 1;
-    var node1 = meeting;
-    while(node1.next != meeting){
-        node1 = node1.next;
-        nodeLoop++;
-    }
-    node1 = pHead;
-    for(var i = 0; i < nodeLoop; i++){
-        node1 = node1.next;
-    }
-    var node2 = pHead;
-    while(node1 != node2){
-        node1 = node1.next;
-        node2 = node2.next;
-    }
-    return node1;
-    function meetingNode(node){
-        if(!node || !node.next){
-            return null;
-        }
-        var slow = node.next;
-        var fast = slow.next;
-        while(fast && slow){
-            if(fast === slow){
-                return fast;
-            }
-            slow = slow.next;
-            fast = fast.next;
-            if(fast){
-                fast = fast.next;
-            }
-        }
-        return null;
-    }
+if(!pHead){
+return null;
 }
+var meeting = meetingNode(pHead);
+if(!meeting){
+return null;
+}
+var nodeLoop = 1;
+var node1 = meeting;
+while(node1.next != meeting){
+node1 = node1.next;
+nodeLoop++;
+}
+node1 = pHead;
+for(var i = 0; i < nodeLoop; i++){
+node1 = node1.next;
+}
+var node2 = pHead;
+while(node1 != node2){
+node1 = node1.next;
+node2 = node2.next;
+}
+return node1;
+function meetingNode(node){
+if(!node || !node.next){
+return null;
+}
+var slow = node.next;
+var fast = slow.next;
+while(fast && slow){
+if(fast === slow){
+return fast;
+}
+slow = slow.next;
+fast = fast.next;
+if(fast){
+fast = fast.next;
+}
+}
+return null;
+}
+}
+
 ```
 
 ## 链表删除重复的节点
@@ -9325,69 +9467,73 @@ function EntryNodeOfLoop(pHead){
 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，返回链表头指针。 例如，链表 1->2->3->3->4->4->5 处理后为 1->2->5
 
 ```
+
 function deleteDuplication(pHead){
-    if(!pHead){
-        return null;
-    }
-    var tempHead = new ListNode(-1);
-    tempHead.next = pHead;
-    var preNode = tempHead;
-    var curr1 = preNode.next;
-    var curr2 = curr1.next;
-    while(curr1){
-        if(!curr2 || curr2.val !== curr1.val){
-            if(curr1.next !== curr2){
-                clear(curr1, curr2);
-                preNode.next = curr2;
-            } else {
-              preNode = curr1;
-            }
-            curr1 = curr2;
-            if(curr2){
-              curr2 = curr2.next;
-            }
-        } else {
-          if(curr2){
-            curr2 = curr2.next;
-          }
-        }
-    }
-    return tempHead.next;
-    function clear(node, stop){
-        var temp;
-        while(node !== stop){
-            temp = node.next;
-            node.next = null;
-            node = temp;
-        }
-    }
+if(!pHead){
+return null;
 }
+var tempHead = new ListNode(-1);
+tempHead.next = pHead;
+var preNode = tempHead;
+var curr1 = preNode.next;
+var curr2 = curr1.next;
+while(curr1){
+if(!curr2 || curr2.val !== curr1.val){
+if(curr1.next !== curr2){
+clear(curr1, curr2);
+preNode.next = curr2;
+} else {
+preNode = curr1;
+}
+curr1 = curr2;
+if(curr2){
+curr2 = curr2.next;
+}
+} else {
+if(curr2){
+curr2 = curr2.next;
+}
+}
+}
+return tempHead.next;
+function clear(node, stop){
+var temp;
+while(node !== stop){
+temp = node.next;
+node.next = null;
+node = temp;
+}
+}
+}
+
 ```
 
 ## 给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针
 
 ```
+
 function GetNext(pNode){
-    if (!pNode){
-        return pNode;
-    }
-    if (pNode.right){
-        pNode = pNode.right;
-        while (pNode.left) {
-            pNode = pNode.left;
-        }
-        return pNode;
-    } else if(pNode.next && pNode.next.left == pNode){
-        return pNode.next;
-    } else if(pNode.next && pNode.next.right == pNode){
-        while(pNode.next && pNode.next.left != pNode){
-            pNode = pNode.next ;
-        }
-        return pNode.next;
-    } else {
-        return pNode.next;
-    }
+if (!pNode){
+return pNode;
 }
+if (pNode.right){
+pNode = pNode.right;
+while (pNode.left) {
+pNode = pNode.left;
+}
+return pNode;
+} else if(pNode.next && pNode.next.left == pNode){
+return pNode.next;
+} else if(pNode.next && pNode.next.right == pNode){
+while(pNode.next && pNode.next.left != pNode){
+pNode = pNode.next ;
+}
+return pNode.next;
+} else {
+return pNode.next;
+}
+}
+
 ```
 
 ## 是不是对称二叉树
@@ -9395,21 +9541,23 @@ function GetNext(pNode){
 请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的
 
 ```
+
 function isSymmetrical(pRoot){
-    if(!pRoot){
-      return true;
-    }
-    return symmetrical(pRoot, pRoot);
-    function symmetrical(node1,node2){
-        if(!node1 && !node2)
-            return true;
-        if(!node1 || !node2)
-            return false;
-        if(node1.val != node2.val)
-            return false;
-        return symmetrical(node1.left, node2.right) && symmetrical(node1.right, node2.left);
-    }
+if(!pRoot){
+return true;
 }
+return symmetrical(pRoot, pRoot);
+function symmetrical(node1,node2){
+if(!node1 && !node2)
+return true;
+if(!node1 || !node2)
+return false;
+if(node1.val != node2.val)
+return false;
+return symmetrical(node1.left, node2.right) && symmetrical(node1.right, node2.left);
+}
+}
+
 ```
 
 ## 之字形打印二叉树
@@ -9417,32 +9565,33 @@ function isSymmetrical(pRoot){
 .请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推
 
 ```
+
 function Print(pRoot) {
-    var res = [];
-    if(!pRoot){
-        return res;
-    }
-    var que = [];
-    que.push(pRoot);
-    var flag = false;
-    while(que.length > 0){
-        var vec = [];
-        var len = que.length;
-        for(var i = 0; i < len; i++){
-            var tmp = que.shift(); //front
-            vec.push(tmp.val);
-            if(tmp.left)
-                que.push(tmp.left);
-            if(tmp.right)
-                que.push(tmp.right);
-        }
-        if(flag){
-            vec.reverse();
-        }
-        res.push(vec);
-        flag = !flag;
-    }
-    return res;
+var res = [];
+if(!pRoot){
+return res;
+}
+var que = [];
+que.push(pRoot);
+var flag = false;
+while(que.length > 0){
+var vec = [];
+var len = que.length;
+for(var i = 0; i < len; i++){
+var tmp = que.shift(); //front
+vec.push(tmp.val);
+if(tmp.left)
+que.push(tmp.left);
+if(tmp.right)
+que.push(tmp.right);
+}
+if(flag){
+vec.reverse();
+}
+res.push(vec);
+flag = !flag;
+}
+return res;
 }
 
 ```
@@ -9452,73 +9601,77 @@ function Print(pRoot) {
 从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行
 
 ```
+
 function Print(pRoot) {
-    var res = [];
-    if(!pRoot){
-        return res;
-    }
-    var que = [];
-    que.push(pRoot);
-    while(que.length > 0){
-        var vec = [];
-        var len = que.length;
-        for(var i = 0; i < len; i++){
-            var tmp = que.shift(); //front
-            vec.push(tmp.val);
-            if(tmp.left)
-                que.push(tmp.left);
-            if(tmp.right)
-                que.push(tmp.right);
-        }
-        res.push(vec);
-    }
-    return res;
+var res = [];
+if(!pRoot){
+return res;
 }
+var que = [];
+que.push(pRoot);
+while(que.length > 0){
+var vec = [];
+var len = que.length;
+for(var i = 0; i < len; i++){
+var tmp = que.shift(); //front
+vec.push(tmp.val);
+if(tmp.left)
+que.push(tmp.left);
+if(tmp.right)
+que.push(tmp.right);
+}
+res.push(vec);
+}
+return res;
+}
+
 ```
 
 ## 序列化和反序列化二叉树
 
 ```
+
 function Serialize(pNode) {
-    var str = [];
-    ser(pNode);
-    for(var i = str.length - 1; i >= 0; i--){
-      if(str[i] !== '#'){
-        break;
-      }
-      str.pop();
-    }
-    return str.join();
-    function ser(node){
-        if(!node){
-            str.push('#');
-            return;
-        }
-        str.push(node.val);
-        ser(node.left);
-        ser(node.right);
-    }
+var str = [];
+ser(pNode);
+for(var i = str.length - 1; i >= 0; i--){
+if(str[i] !== '#'){
+break;
+}
+str.pop();
+}
+return str.join();
+function ser(node){
+if(!node){
+str.push('#');
+return;
+}
+str.push(node.val);
+ser(node.left);
+ser(node.right);
+}
 }
 function Deserialize(str) {
-    var index = -1;
-    var len = str.length;
-    if(index >= len){
-        return null;
-    }
-    var arr = str.split(",");
-    var head = des();
-    return head;
-    function des(node){
-        index++;
-        if(arr[index] && arr[index] !== '#'){
-            var temp = new TreeNode(arr[index]);
-            node = temp;
-            node.left = des();
-            node.right = des();
-        }
-        return node;
-    }
+var index = -1;
+var len = str.length;
+if(index >= len){
+return null;
 }
+var arr = str.split(",");
+var head = des();
+return head;
+function des(node){
+index++;
+if(arr[index] && arr[index] !== '#'){
+var temp = new TreeNode(arr[index]);
+node = temp;
+node.left = des();
+node.right = des();
+}
+return node;
+}
+}
+
 ```
 
 ## 二叉搜索树种第k个大的节点
@@ -9526,26 +9679,28 @@ function Deserialize(str) {
 给定一颗二叉搜索树，请找出其中的第 k 大的结点。例如， 5 / \ 3 7 /\ /\ 2 4 6 8 中，按结点数值大小顺序第三个结点的值为 4
 
 ```
+
 function KthNode(pRoot, k){
-    if(!pRoot || !k){
-        return null;
-    }
-    return KthCore(pRoot);
-    function KthCore(node){
-        var target = null;
-        if(node.left){
-            target = KthCore(node.left);
-        }
-        if(!target){
-            if(k === 1)
-                target = node;
-            k--;
-        }
-        if(!target && node.right)
-            target = KthCore(node.right);
-        return target;
-    }
+if(!pRoot || !k){
+return null;
 }
+return KthCore(pRoot);
+function KthCore(node){
+var target = null;
+if(node.left){
+target = KthCore(node.left);
+}
+if(!target){
+if(k === 1)
+target = node;
+k--;
+}
+if(!target && node.right)
+target = KthCore(node.right);
+return target;
+}
+}
+
 ```
 
 ## 滑动窗口的最大值
@@ -9553,30 +9708,32 @@ function KthNode(pRoot, k){
 给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小 3，那么一共存在 6 个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下 6 个： {[2,3,4],2,6,2,5,1}， {2,[3,4,2],6,2,5,1}， {2,3,[4,2,6],2,5,1}， {2,3,4,[2,6,2],5,1}， {2,3,4,2,[6,2,5],1}， {2,3,4,2,6,[2,5,1]}
 
 ```
+
 function maxInWindows(num, size){
-    if(!num || num.length === 0){
-        return null;
-    }
-    var max = [];
-    if(num.length >= size && size >= 1){
-        var index = [];
-        for(var i = 0; i < size; ++i){
-            while(index.length > 0 && num[i] >= num[index[index.length - 1]])
-                index.pop();
-            index.push(i);
-        }
-        for(var i = size; i < num.length; ++i){
-            max.push(num[index[0]]);
-            while(index.length > 0 && num[i] >= num[index[index.length - 1]])
-                index.pop();
-            if(index.length > 0 && index[0] <= i - size)
-                index.shift();
-            index.push(i);
-        }
-        max.push(num[index[0]]);
-    }
-    return max;
+if(!num || num.length === 0){
+return null;
 }
+var max = [];
+if(num.length >= size && size >= 1){
+var index = [];
+for(var i = 0; i < size; ++i){
+while(index.length > 0 && num[i] >= num[index[index.length - 1]])
+index.pop();
+index.push(i);
+}
+for(var i = size; i < num.length; ++i){
+max.push(num[index[0]]);
+while(index.length > 0 && num[i] >= num[index[index.length - 1]])
+index.pop();
+if(index.length > 0 && index[0] <= i - size)
+index.shift();
+index.push(i);
+}
+max.push(num[index[0]]);
+}
+return max;
+}
+
 ```
 
 ## 矩阵包含指定路径
@@ -9584,42 +9741,43 @@ function maxInWindows(num, size){
 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则该路径不能再进入该格子。 例如 a b c e s f c s a d e e 矩阵中包含一条字符串"bcced"的路径，但是矩阵中不包含"abcb"路径，因为字符串的第一个字符 b 占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子
 
 ```
+
 function hasPath(matrix, rows, cols, path){
-    var visited = [];
-    for(var i = 0; i < rows * cols; i++){
-        visited[i] = false;
-    }
-    var pathLen = 0;
-    try{
-        for(var i = 0; i < rows; i++){
-            for(var j = 0; j < cols; j++){
-                if(core(i,j)){
-                    return true;
-                }
-            }
-        }
-    } finally {
-        visited.length = 0;
-    }
-    return false;
-    function core(row, col){
-        if(path.length === pathLen){
-            return true;
-        }
-        var hasPath = false;
-        if(row >= 0 && row = 0 && col < cols && matrix[row * cols + col] === path[pathLen] && !visited[row * cols + col]){
-            pathLen++;
-            visited[row * cols + col] = true;
-            hasPath = core(row - 1, col)+ core(row, col - 1)
-                    + core(row + 1, col) + core(row, col + 1);
-            if(!hasPath){
-                pathLen--;
-                visited[row * cols + col] = false;
-            }
-        }
-        return hasPath;
-    }
+var visited = [];
+for(var i = 0; i < rows _ cols; i++){
+visited[i] = false;
 }
+var pathLen = 0;
+try{
+for(var i = 0; i < rows; i++){
+for(var j = 0; j < cols; j++){
+if(core(i,j)){
+return true;
+}
+}
+}
+} finally {
+visited.length = 0;
+}
+return false;
+function core(row, col){
+if(path.length === pathLen){
+return true;
+}
+var hasPath = false;
+if(row >= 0 && row = 0 && col < cols && matrix[row _ cols + col] === path[pathLen] && !visited[row * cols + col]){
+pathLen++;
+visited[row * cols + col] = true;
+hasPath = core(row - 1, col)+ core(row, col - 1) + core(row + 1, col) + core(row, col + 1);
+if(!hasPath){
+pathLen--;
+visited[row * cols + col] = false;
+}
+}
+return hasPath;
+}
+}
+
 ```
 
 ## 机器人不同路径1
@@ -9627,67 +9785,67 @@ function hasPath(matrix, rows, cols, path){
 空间复杂度 Omn
 
 ```
+
 var uniquePaths = function(m, n) {
-    const f = new Array(m).fill(0).map(() => new Array(n).fill(0));
-    for (let i = 0; i < m; i++) {
-        f[i][0] = 1;
-    }
-    for (let j = 0; j < n; j++) {
-        f[0][j] = 1;
-    }
-    for (let i = 1; i < m; i++) {
-        for (let j = 1; j < n; j++) {
-            f[i][j] = f[i - 1][j] + f[i][j - 1];
-        }
-    }
-    return f[m - 1][n - 1];
+const f = new Array(m).fill(0).map(() => new Array(n).fill(0));
+for (let i = 0; i < m; i++) {
+f[i][0] = 1;
+}
+for (let j = 0; j < n; j++) {
+f[0][j] = 1;
+}
+for (let i = 1; i < m; i++) {
+for (let j = 1; j < n; j++) {
+f[i][j] = f[i - 1][j] + f[i][j - 1];
+}
+}
+return f[m - 1][n - 1];
 };
 
 <!-- 源代码 -->
+
 public static int uniquePaths(int m, int n) {
 if (m <= 0 || n <= 0) {
 return 0;
- }
+}
 int[][] dp = new int[m][n]; //
 // 初始化
 for(int i = 0; i < m; i++){
 dp[i][0] = 1;
- }
+}
 for(int i = 0; i < n; i++){
 dp[0][i] = 1;
- }
+}
 // 推导出 dp[m-1][n-1]
 for (int i = 1; i < m; i++) {
 for (int j = 1; j < n; j++) {
 dp[i][j] = dp[i-1][j] + dp[i][j-1];
- }
- }
+}
+}
 return dp[m-1][n-1];
 }
 
-
-空间复杂度优化成On，把表格不需要的一行剔除掉
-推导公式dp[i] = dp[i-1] + dp[i]
+空间复杂度优化成 On，把表格不需要的一行剔除掉
+推导公式 dp[i] = dp[i-1] + dp[i]
 public static int uniquePaths(int m, int n) {
 if (m <= 0 || n <= 0) {
 return 0;
- }
+}
 int[] dp = new int[n]; //
 // 初始化
 for(int i = 0; i < n; i++){
 dp[i] = 1;
- }
+}
 // 公式：dp[i] = dp[i-1] + dp[i]
 for (int i = 1; i < m; i++) {
 // 第 i ⾏第 0 列的初始值
 dp[0] = 1;
 for (int j = 1; j < n; j++) {
 dp[j] = dp[j-1] + dp[j];
- }
- }
+}
+}
 return dp[n-1];
 }
-
 
 ```
 
@@ -9708,30 +9866,31 @@ return dp[n-1];
 2. 向下 -> 向下 -> 向右 -> 向右
 
 ```
+
 const uniquePathsWithObstacles = obstacleGrid => {
-  if (obstacleGrid[0][0] == 1) return 0 // 出发点就被障碍堵住
-  const m = obstacleGrid.length
-  const n = obstacleGrid[0].length
-  // dp数组初始化
-  const dp = new Array(m)
-  for (let i = 0; i < m; i++) dp[i] = new Array(n)
-  // base case
-  dp[0][0] = 1 // 终点就是出发点
-  for (let i = 1; i < m; i++) {
-    // 第一列其余的case
-    dp[i][0] = obstacleGrid[i][0] == 1 || dp[i - 1][0] == 0 ? 0 : 1
-  }
-  for (let i = 1; i < n; i++) {
-    // 第一行其余的case
-    dp[0][i] = obstacleGrid[0][i] == 1 || dp[0][i - 1] == 0 ? 0 : 1
-  }
-  // 迭代
-  for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-      dp[i][j] = obstacleGrid[i][j] == 1 ? 0 : dp[i - 1][j] + dp[i][j - 1]
-    }
-  }
-  return dp[m - 1][n - 1] // 到达(m-1,n-1)的路径数
+if (obstacleGrid[0][0] == 1) return 0 // 出发点就被障碍堵住
+const m = obstacleGrid.length
+const n = obstacleGrid[0].length
+// dp 数组初始化
+const dp = new Array(m)
+for (let i = 0; i < m; i++) dp[i] = new Array(n)
+// base case
+dp[0][0] = 1 // 终点就是出发点
+for (let i = 1; i < m; i++) {
+// 第一列其余的 case
+dp[i][0] = obstacleGrid[i][0] == 1 || dp[i - 1][0] == 0 ? 0 : 1
+}
+for (let i = 1; i < n; i++) {
+// 第一行其余的 case
+dp[0][i] = obstacleGrid[0][i] == 1 || dp[0][i - 1] == 0 ? 0 : 1
+}
+// 迭代
+for (let i = 1; i < m; i++) {
+for (let j = 1; j < n; j++) {
+dp[i][j] = obstacleGrid[i][j] == 1 ? 0 : dp[i - 1][j] + dp[i][j - 1]
+}
+}
+return dp[m - 1][n - 1] // 到达(m-1,n-1)的路径数
 }
 
 ```
@@ -9741,39 +9900,36 @@ const uniquePathsWithObstacles = obstacleGrid => {
 地上有一个 m 行和 n 列的方格。一个机器人从坐标 0,0 的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于 k 的格子。 例如，当 k 为 18 时，机器人能够进入方格（35,37），因为 3+5+3+7 = 18。但是，它不能进入方格（35,38），因为 3+5+3+8 = 19。请问该机器人能够达到多少个格子？
 
 ```
-function movingCount(threshold, rows, cols){
-    var visited = [];
-    for(var i = 0; i < rows * cols; ++i)
-        visited[i] = false;
-    var count = movingCountCore(0, 0);
-    visited.length = 0;
-    return count;
-    function getDigitSum(number){
-        var sum = 0;
-        while(number > 0){
-            sum += number % 10;
-            number = Math.floor(number / 10);
-        }
-        return sum;
-    }
-    function check(row, col){
-        if(row >= 0 && row = 0 && col < cols && getDigitSum(row) + getDigitSum(col) <= threshold && !visited[row * cols + col])
-            return true;
-        return false;
-    }
-    function movingCountCore(row, col){
-        var count = 0;
-        if(check(row, col)) {
-            visited[row * cols + col] = true;
-            count = 1 + movingCountCore(row - 1, col)
-                    + movingCountCore(row, col - 1)
-                    + movingCountCore(row + 1, col)
-                    + movingCountCore(row, col + 1);
-        }
-        return count;
-    }
-}
 
+function movingCount(threshold, rows, cols){
+var visited = [];
+for(var i = 0; i < rows _ cols; ++i)
+visited[i] = false;
+var count = movingCountCore(0, 0);
+visited.length = 0;
+return count;
+function getDigitSum(number){
+var sum = 0;
+while(number > 0){
+sum += number % 10;
+number = Math.floor(number / 10);
+}
+return sum;
+}
+function check(row, col){
+if(row >= 0 && row = 0 && col < cols && getDigitSum(row) + getDigitSum(col) <= threshold && !visited[row _ cols + col])
+return true;
+return false;
+}
+function movingCountCore(row, col){
+var count = 0;
+if(check(row, col)) {
+visited[row * cols + col] = true;
+count = 1 + movingCountCore(row - 1, col) + movingCountCore(row, col - 1) + movingCountCore(row + 1, col) + movingCountCore(row, col + 1);
+}
+return count;
+}
+}
 
 ```
 
@@ -9784,14 +9940,15 @@ function movingCount(threshold, rows, cols){
 下，最多可获取多少财宝？例如 [5，2，6，3，1，7]，则选择 5，6，7
 
 ```
+
 2 、⼦问题：
 （1）、只考虑前两个房间时，谁⼤选谁 （2）、考虑第三个房间
 如果偷第三个房间，则意味着第⼆个房间不投，也就是第三个房间值 + 第⼀个房间的宝藏数量
 如果不偷第三个房间，则宝藏数量等于前两个房间宝藏数量
 3、确认状态：
 int [] nums; // 各个房间的宝藏数
-int [] flags = new int [n]; // 记录各个房间有没有被偷，若flag = 0 则没偷， flag = 1 则偷了。
-int [] dp = new int [n]; // dp[i]表示前i个房间偷到的最⼤宝藏数
+int [] flags = new int [n]; // 记录各个房间有没有被偷，若 flag = 0 则没偷， flag = 1 则偷了。
+int [] dp = new int [n]; // dp[i]表示前 i 个房间偷到的最⼤宝藏数
 4、初始状态：
 第⼀个房间：
 Condistion 1 ：dp[0] = nums[0] ; flags[0] = 1;
@@ -9799,14 +9956,14 @@ Condistion 2 ：dp[0] = 0; flags[0] = 0;
 第⼆个房间：
 Condistion 1 ：when flags[1] = 1; dp[1] = nums[1];
 Condistion 2 ：whenflags[1] = 0; dp[1] = dp[0];
-选 Condistion 1 还是 Condistion 2呢？ ⽐较 两种情况下dp[1]的⼤⼩ 推⼴到前i个房间: (i>=2)
+选 Condistion 1 还是 Condistion 2 呢？ ⽐较 两种情况下 dp[1]的⼤⼩ 推⼴到前 i 个房间: (i>=2)
 when flags[i] = 1, dp[i] = nums[i] + dp[i-2]
 when flags[i] = 0; dp[i] = dp[i-1]
 5、状态转移⽅程：
 dp[0] = nums[0];
 dp[1] = max(nums[0],nums[1]);
 for(int i = 2;i<n;i++)
- dp[i] = max(nums[i] + dp[i-2],dp[i-1])
+dp[i] = max(nums[i] + dp[i-2],dp[i-1])
 6、代码实现
 class Solution {
 public int rob(int[] nums) {
@@ -9822,8 +9979,9 @@ for(int i = 2;i<nums.length;i++)
 dp[i] = ((nums[i] + dp[i-2]) > dp[i-1]) ? (nums[i]+dp[i-2]) :
 dp[i-1];
 return dp[nums.length-1];
- }
 }
+}
+
 ```
 
 ## 最小路径和
@@ -9835,6 +9993,7 @@ return dp[nums.length-1];
 解释：因为路径 1→3→1→1→1 的总和最小。
 
 ```
+
 思路
 
 记录到达每一格时最小的路径
@@ -9848,37 +10007,38 @@ dp[0][0] = grid[0][0]
 遍历从 i=1,j=1 开始
 dp[i][0],dp[0][j],使用当前行或者列累加做默认值
 
-/**
- * @param {number[][]} grid
- * @return {number}
- */
-var minPathSum = function (grid) {
+/\*\*
+
+- @param {number[][]} grid
+- @return {number}
+  \*/
+  var minPathSum = function (grid) {
   let m = grid.length,
-    n = grid[0] ? grid[0].length : 0
+  n = grid[0] ? grid[0].length : 0
   if (m === 0 || n === 0) return 0
   let dp = Array.from({ length: m }, () => new Array(n).fill(Number.MAX_VALUE))
 
-  // 起点
-  dp[0][0] = grid[0][0]
+// 起点
+dp[0][0] = grid[0][0]
 
-  // 补齐首行路径和
-  for (let i = 1; i < m; i++) {
-    dp[i][0] = dp[i - 1][0] + grid[i][0]
-  }
+// 补齐首行路径和
+for (let i = 1; i < m; i++) {
+dp[i][0] = dp[i - 1][0] + grid[i][0]
+}
 
-  // 补齐首列路径和
-  for (let j = 1; j < n; j++) {
-    dp[0][j] = dp[0][j - 1] + grid[0][j]
-  }
+// 补齐首列路径和
+for (let j = 1; j < n; j++) {
+dp[0][j] = dp[0][j - 1] + grid[0][j]
+}
 
-  for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-      // 从路径和较小的地方进入
-      let itemMin = Math.min(dp[i - 1][j], dp[i][j - 1])
-      dp[i][j] = Math.min(itemMin + grid[i][j], dp[i][j])
-    }
-  }
-  return dp[m - 1][n - 1]
+for (let i = 1; i < m; i++) {
+for (let j = 1; j < n; j++) {
+// 从路径和较小的地方进入
+let itemMin = Math.min(dp[i - 1][j], dp[i][j - 1])
+dp[i][j] = Math.min(itemMin + grid[i][j], dp[i][j])
+}
+}
+return dp[m - 1][n - 1]
 }
 
 ```
@@ -9889,33 +10049,35 @@ var minPathSum = function (grid) {
 原始 list 如下
 
 ```
+
 let list =[
-    {id:1,name:'部门A',parentId:0},
-    {id:2,name:'部门B',parentId:0},
-    {id:3,name:'部门C',parentId:1},
-    {id:4,name:'部门D',parentId:1},
-    {id:5,name:'部门E',parentId:2},
-    {id:6,name:'部门F',parentId:3},
-    {id:7,name:'部门G',parentId:2},
-    {id:8,name:'部门H',parentId:4}
+{id:1,name:'部门 A',parentId:0},
+{id:2,name:'部门 B',parentId:0},
+{id:3,name:'部门 C',parentId:1},
+{id:4,name:'部门 D',parentId:1},
+{id:5,name:'部门 E',parentId:2},
+{id:6,name:'部门 F',parentId:3},
+{id:7,name:'部门 G',parentId:2},
+{id:8,name:'部门 H',parentId:4}
 ];
 const result = convert(list, ...);
 function convert(list) {
-  const res = []
-  const map = list.reduce((res, v) => ((res[v.id] = v), res), {})
-  for (const item of list) {
-    if (item.parentId === 0) {
-      res.push(item)
-      continue
-    }
-    if (item.parentId in map) {
-      const parent = map[item.parentId]
-      parent.children = parent.children || []
-      parent.children.push(item)
-    }
-  }
-  return res
+const res = []
+const map = list.reduce((res, v) => ((res[v.id] = v), res), {})
+for (const item of list) {
+if (item.parentId === 0) {
+res.push(item)
+continue
 }
+if (item.parentId in map) {
+const parent = map[item.parentId]
+parent.children = parent.children || []
+parent.children.push(item)
+}
+}
+return res
+}
+
 ```
 
 ## 取中间数，取中位数，长度不等
@@ -9924,21 +10086,22 @@ function convert(list) {
 暴力解法
 
 ```
-像domdiff一样，新建两个指针，分别指向nums1、nums2
-从头开始比较，将小的存入merged数组
-如果nums1、nums2中某项已经遍历完毕，则把剩下项存入merged数组
+
+像 domdiff 一样，新建两个指针，分别指向 nums1、nums2
+从头开始比较，将小的存入 merged 数组
+如果 nums1、nums2 中某项已经遍历完毕，则把剩下项存入 merged 数组
 取出中间值，根据奇偶分别计算得出中位数
 
 时间复杂度： O(m + n) >> O(log(m + n)) 不满足题意
 空间复杂度： O(m + n)
 
 var findMedianSortedArrays = function(nums1, nums2) {
-    let p1 = nums1;
-    let indexP1 = 0;
-    let indexP2 = 0;
-    let p2 = nums2;
-    let merged = [];
-    let indexMerge = 0;
+let p1 = nums1;
+let indexP1 = 0;
+let indexP2 = 0;
+let p2 = nums2;
+let merged = [];
+let indexMerge = 0;
 
     while(indexP1 < p1.length || indexP2 < p2.length) {
         if (p1[indexP1] <= p2[indexP2] || (indexP2 >= p2.length && indexP1 < p1.length)) {
@@ -9956,51 +10119,56 @@ var findMedianSortedArrays = function(nums1, nums2) {
     } else {
         return (merged[merged.length / 2 - 1] + merged[merged.length / 2]) / 2;
     }
+
 };
+
 ```
 
 二分法 log(m+n)
 
 ```
-/**
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number}
- */
-var findMedianSortedArrays = function(nums1, nums2) {
-   let len1 = nums1.length;
-   let len2 = nums2.length;
-   // 对长度短的数组进行二分查找
-   if (len1 > len2) {
-       return findMedianSortedArrays(nums2, nums1);
-   }
-   let len = len1 + len2;
-   let start = 0;
-   let end = len1;
-   // 两个数组左分段的长度
-   let partLen1 = 0;
-   let partLen2 = 0;
 
-   while (start <= end) {
-       partLen1 = (start + end) >> 1;
-       partLen2 = ((len + 1) >> 1) - partLen1;
+/\*\*
 
-       let l1 = partLen1 === 0? -Infinity : nums1[partLen1 - 1];
-       let l2 = partLen2 === 0? -Infinity : nums2[partLen2 - 1];
-       let r1 = partLen1 === len1 ? Infinity : nums1[partLen1];
-       let r2 = partLen2 === len2 ? Infinity : nums2[partLen2];
+- @param {number[]} nums1
+- @param {number[]} nums2
+- @return {number}
+  \*/
+  var findMedianSortedArrays = function(nums1, nums2) {
+  let len1 = nums1.length;
+  let len2 = nums2.length;
+  // 对长度短的数组进行二分查找
+  if (len1 > len2) {
+  return findMedianSortedArrays(nums2, nums1);
+  }
+  let len = len1 + len2;
+  let start = 0;
+  let end = len1;
+  // 两个数组左分段的长度
+  let partLen1 = 0;
+  let partLen2 = 0;
 
-       if (l1 > r2) {
-            end = partLen1 - 1;
-       } else if (l2 > r1) {
-            start = partLen1 + 1;
-       } else { // 满足条件的情况： l1 <= r2 && l2 <= r1
-            return len % 2 === 0 ?
-            (Math.max(l1, l2) + Math.min(r1, r2) ) / 2 :
-            Math.max(l1, l2)
-       }
-   }
-};
+  while (start <= end) {
+  partLen1 = (start + end) >> 1;
+  partLen2 = ((len + 1) >> 1) - partLen1;
+
+         let l1 = partLen1 === 0? -Infinity : nums1[partLen1 - 1];
+         let l2 = partLen2 === 0? -Infinity : nums2[partLen2 - 1];
+         let r1 = partLen1 === len1 ? Infinity : nums1[partLen1];
+         let r2 = partLen2 === len2 ? Infinity : nums2[partLen2];
+
+         if (l1 > r2) {
+              end = partLen1 - 1;
+         } else if (l2 > r1) {
+              start = partLen1 + 1;
+         } else { // 满足条件的情况： l1 <= r2 && l2 <= r1
+              return len % 2 === 0 ?
+              (Math.max(l1, l2) + Math.min(r1, r2) ) / 2 :
+              Math.max(l1, l2)
+         }
+
+  }
+  };
 
 ```
 
@@ -10009,49 +10177,51 @@ var findMedianSortedArrays = function(nums1, nums2) {
 二分法不断比对两个数组的中位数
 
 ```
- 1    public static int getUpMedian(int[] arr1, int[] arr2) {
- 2        if(arr1 == null || arr2 == null )
- 3            return -1;
- 4        // 开始寻找
- 5        return find(arr1, 0, arr1.length - 1, arr2, 0, arr2.length - 1);
- 6    }
- 7
- 8    public static int find(int[] arr1, int l1, int r1, int[] arr2, int l2, int r2) {
- 9        int mid1 = l1 + (r1 - l1) / 2;
-10        int mid2 = l2 + (r2 - l2) / 2;
-11        // 表示数组只剩下一个数，把两个数组中较小的数返回去
-12        if (l1 >= r1) {
-13            return Math.min(arr1[l1], arr2[l2]);
-14        }
-15        // 元素个数为奇数，则offset为0，为偶数则 offset 为 1
-16        int offset = ((r1 - l1 + 1) & 1) ^ 1;// 用位运算比较快
-17        if (arr1[mid1] < arr2[mid2]) {
-18            return find(arr1, mid1+offset, r1, arr2, l2, mid2);
-19        } else if (arr1[mid1] > arr2[mid2]) {
-20            return find(arr1, l1, mid1, arr2, mid2 + offset, r2);
-21        } else {
-22            return arr1[mid1];// 返回 arr2[mid2]也可以。
-23        }
-24    }
+
+1 public static int getUpMedian(int[] arr1, int[] arr2) {
+2 if(arr1 == null || arr2 == null )
+3 return -1;
+4 // 开始寻找
+5 return find(arr1, 0, arr1.length - 1, arr2, 0, arr2.length - 1);
+6 }
+7
+8 public static int find(int[] arr1, int l1, int r1, int[] arr2, int l2, int r2) {
+9 int mid1 = l1 + (r1 - l1) / 2;
+10 int mid2 = l2 + (r2 - l2) / 2;
+11 // 表示数组只剩下一个数，把两个数组中较小的数返回去
+12 if (l1 >= r1) {
+13 return Math.min(arr1[l1], arr2[l2]);
+14 }
+15 // 元素个数为奇数，则 offset 为 0，为偶数则 offset 为 1
+16 int offset = ((r1 - l1 + 1) & 1) ^ 1;// 用位运算比较快
+17 if (arr1[mid1] < arr2[mid2]) {
+18 return find(arr1, mid1+offset, r1, arr2, l2, mid2);
+19 } else if (arr1[mid1] > arr2[mid2]) {
+20 return find(arr1, l1, mid1, arr2, mid2 + offset, r2);
+21 } else {
+22 return arr1[mid1];// 返回 arr2[mid2]也可以。
+23 }
+24 }
 
 ```
 
 ## 手动实现filter
 
 ```
+
 Array.prototype.filter = function(fn, context) {
-  if (typeof fn != "function") {
-    throw new TypeError(`${fn} is not a function`)
-  }
-  let arr = this
-  let reuslt = []
-  for (var i = 0; i < arr.length; i++) {
-    let temp = fn.call(context, arr[i], i, arr)
-    if (temp) {
-      result.push(arr[i])
-    }
-  }
-  return result
+if (typeof fn != "function") {
+throw new TypeError(`${fn} is not a function`)
+}
+let arr = this
+let reuslt = []
+for (var i = 0; i < arr.length; i++) {
+let temp = fn.call(context, arr[i], i, arr)
+if (temp) {
+result.push(arr[i])
+}
+}
+return result
 }
 
 ```
@@ -10061,10 +10231,11 @@ Array.prototype.filter = function(fn, context) {
 取巧的一种算法，但是每个位置乱序的概率不同
 
 ```
+
 function mixArr(arr) {
-  return arr.sort(() => {
-    return Math.random() - 0.5
-  })
+return arr.sort(() => {
+return Math.random() - 0.5
+})
 }
 
 ```
@@ -10076,10 +10247,11 @@ var s1 = "get-element-by-id"
 // 转化为 getElementById
 
 ```
+
 var f = function(s) {
-  return s.replace(/-\w/g, function(x) {
-    return x.slice(1).toUpperCase()
-  })
+return s.replace(/-\w/g, function(x) {
+return x.slice(1).toUpperCase()
+})
 }
 
 ```
@@ -10087,8 +10259,9 @@ var f = function(s) {
 ## 解析urlquery为对象
 
 ```
+
 function parseParam(url) {
-  const paramsStr = /.+\?(.+)$/.exec(url)[1] // 将 ? 后面的字符串取出来
+const paramsStr = /.+\?(.+)$/.exec(url)[1] // 将 ? 后面的字符串取出来
   const paramsArr = paramsStr.split("&") // 将字符串以 & 分割后存到数组中
   let paramsObj = {}
   // 将 params 存到对象中
@@ -10110,9 +10283,10 @@ function parseParam(url) {
       // 处理没有 value 的参数
       paramsObj[param] = true
     }
-  })
 
-  return paramsObj
+})
+
+return paramsObj
 }
 
 ```
@@ -10122,53 +10296,54 @@ function parseParam(url) {
 触发名为 type 的事件
 
 ```
-class EventEmitter {
-  constructor() {
-    this.events = {}
-  }
-  on(event, callback) {
-    let callbacks = this.events[event] || []
-    callbacks.push(callback)
-    this.events[event] = callbacks
-    return this
-  }
-  off(event, callback) {
-    let callbacks = this.events[event]
-    this.events[event] = callbacks && callbacks.filter(fn => fn !== callback)
-    return this
-  }
-  emit(event, ...args) {
-    let callbacks = this.events[event]
-    callbacks.forEach(fn => {
-      fn(...args)
-    })
-    return this
-  }
-  once(event, callback) {
-    let wrapFun = function (...args) {
-      callback(...args)
-      this.off(event, wrapFun)
-    }
-    this.on(event, wrapFun)
-    return this
-  }
-}
 
+class EventEmitter {
+constructor() {
+this.events = {}
+}
+on(event, callback) {
+let callbacks = this.events[event] || []
+callbacks.push(callback)
+this.events[event] = callbacks
+return this
+}
+off(event, callback) {
+let callbacks = this.events[event]
+this.events[event] = callbacks && callbacks.filter(fn => fn !== callback)
+return this
+}
+emit(event, ...args) {
+let callbacks = this.events[event]
+callbacks.forEach(fn => {
+fn(...args)
+})
+return this
+}
+once(event, callback) {
+let wrapFun = function (...args) {
+callback(...args)
+this.off(event, wrapFun)
+}
+this.on(event, wrapFun)
+return this
+}
+}
 
 ```
 
 ## 统计字符出现最多次的字符
 
 ```
+
 let str = "abcabcabcbbccccc"
 let num = 0
 let char = ""
 
 // 使其按照一定的次序排列
 str = str
-  .split("")
-  .sort()
-  .join("")
+.split("")
+.sort()
+.join("")
 // "aaabbbbbcccccccc"
 
 // 定义正则表达式
@@ -10186,28 +10361,29 @@ console.log(`字符最多的是${char}，出现了${num}次`)
 ## 统计出现最多的单词
 
 ```
+
 function findMostWord(article) {
-  // 合法性判断
-  if (!article) return // 参数处理
-  article = article.trim().toLowerCase()
-  let wordList = article.match(/[a-z]+/g),
-    visited = [],
-    maxNum = 0,
-    maxWord = ''
-  article = ' ' + wordList.join(' ') + ' ' // 遍历判断单词出现次数
-  wordList.forEach(function (item) {
-    if (visited.indexOf(item) < 0) {
-      // 加入 visited
-      visited.push(item)
-      let word = new RegExp(' ' + item + ' ', 'g'),
-        num = article.match(word).length
-      if (num > maxNum) {
-        maxNum = num
-        maxWord = item
-      }
-    }
-  })
-  return maxWord + ' ' + maxNum
+// 合法性判断
+if (!article) return // 参数处理
+article = article.trim().toLowerCase()
+let wordList = article.match(/[a-z]+/g),
+visited = [],
+maxNum = 0,
+maxWord = ''
+article = ' ' + wordList.join(' ') + ' ' // 遍历判断单词出现次数
+wordList.forEach(function (item) {
+if (visited.indexOf(item) < 0) {
+// 加入 visited
+visited.push(item)
+let word = new RegExp(' ' + item + ' ', 'g'),
+num = article.match(word).length
+if (num > maxNum) {
+maxNum = num
+maxWord = item
+}
+}
+})
+return maxWord + ' ' + maxNum
 }
 
 ```
@@ -10215,22 +10391,23 @@ function findMostWord(article) {
 ## 多行文本溢出
 
 ```
-@mixin ellipsis($rowCount: 1) {
-  @if $rowCount <=1 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
 
-  @else {
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: $rowCount;
-    /* autoprefixer: off */
-    -webkit-box-orient: vertical;
-  }
+@mixin ellipsis($rowCount: 1) {
+@if $rowCount <=1 {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+@else {
+min-width: 0;
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: $rowCount;
+/_ autoprefixer: off _/
+-webkit-box-orient: vertical;
+}
 }
 
 ```
@@ -10240,15 +10417,16 @@ function findMostWord(article) {
 - 深度优先遍历三种方式
 
 ```
+
 let deepTraversal1 = (node, nodeList = []) => {
-  if (node !== null) {
-    nodeList.push(node)
-    let children = node.children
-    for (let i = 0; i < children.length; i++) {
-      deepTraversal1(children[i], nodeList)
-    }
-  }
-  return nodeList
+if (node !== null) {
+nodeList.push(node)
+let children = node.children
+for (let i = 0; i < children.length; i++) {
+deepTraversal1(children[i], nodeList)
+}
+}
+return nodeList
 }
 
 ```
@@ -10256,27 +10434,29 @@ let deepTraversal1 = (node, nodeList = []) => {
 - 广度优先
 
 ```
+
 let widthTraversal2 = node => {
-  let nodes = []
-  let stack = []
-  if (node) {
-    stack.push(node)
-    while (stack.length) {
-      let item = stack.shift()
-      let children = item.children
-      nodes.push(item)
-      队列，先进先出
-      nodes = [] stack = [parent]
-      nodes = [parent] stack = [child1,child2,child3]
-      nodes = [parent, child1] stack = [child2,child3,child1-1,child1-2]
-      nodes = [parent,child1,child2]
-      for (let i = 0; i < children.length; i++) {
-        stack.push(children[i])
-      }
-    }
-  }
-  return nodes
+let nodes = []
+let stack = []
+if (node) {
+stack.push(node)
+while (stack.length) {
+let item = stack.shift()
+let children = item.children
+nodes.push(item)
+队列，先进先出
+nodes = [] stack = [parent]
+nodes = [parent] stack = [child1,child2,child3]
+nodes = [parent, child1] stack = [child2,child3,child1-1,child1-2]
+nodes = [parent,child1,child2]
+for (let i = 0; i < children.length; i++) {
+stack.push(children[i])
 }
+}
+}
+return nodes
+}
+
 ```
 
 ## 接雨水问题
@@ -10289,32 +10469,35 @@ let widthTraversal2 = node => {
 开两个数组先记录下当前位置上左右两边高度的最大值，通过遍历不断更新最大值来记录
 
 ```
-/**
- * @param {number[]} height
- * @return {number}
- */
-var trap = function(height) {
+
+/\*\*
+
+- @param {number[]} height
+- @return {number}
+  \*/
+  var trap = function(height) {
   let n=height.length;
   if(n===0) return 0;
   let res=0;
 
-  let left_max=[] ,right_max=[];
-  //记录左边数组的最大值
-  left_max[0]=height[0];
-  for(let i=1;i<n;i++){
-    left_max[i]=Math.max(left_max[i-1],height[i]);
-  }
-  //记录右边数组的最大值
-  right_max[n-1]=height[n-1];
-  for(let i=n-2;i>=0;i--){
-    right_max[i]=Math.max(right_max[i+1],height[i]);
-  }
-  //统计每一列的面积之和
-  for(let i=0;i<n;i++){
-    res+=Math.min(left_max[i],right_max[i])-height[i];
-  }
-  return res;
+let left_max=[] ,right_max=[];
+//记录左边数组的最大值
+left_max[0]=height[0];
+for(let i=1;i<n;i++){
+left_max[i]=Math.max(left_max[i-1],height[i]);
+}
+//记录右边数组的最大值
+right_max[n-1]=height[n-1];
+for(let i=n-2;i>=0;i--){
+right_max[i]=Math.max(right_max[i+1],height[i]);
+}
+//统计每一列的面积之和
+for(let i=0;i<n;i++){
+res+=Math.min(left_max[i],right_max[i])-height[i];
+}
+return res;
 };
+
 ```
 
 ## 遍历树结构
@@ -10322,44 +10505,45 @@ var trap = function(height) {
 样例数据
 
 ```
+
 let data = {
-  name: "jack",
-  child: [
-    { name: "jack1" },
-    {
-      name: "jack2",
-      child: [
-        {
-          name: "jack2-1",
-          child: { name: "jack2-1-1" }
-        },
-        {
-          name: "jack2-2"
-        }
-      ]
-    },
-    {
-      name: "jack3",
-      child: { name: "jack3-1" }
-    }
-  ]
+name: "jack",
+child: [
+{ name: "jack1" },
+{
+name: "jack2",
+child: [
+{
+name: "jack2-1",
+child: { name: "jack2-1-1" }
+},
+{
+name: "jack2-2"
+}
+]
+},
+{
+name: "jack3",
+child: { name: "jack3-1" }
+}
+]
 }
 
 function findMultiChildPerson(data) {
-  let nameList = []
+let nameList = []
 
-  function tmp(data) {
-    if (data.hasOwnProperty("child")) {
-      if (Array.isArray(data.child)) {
-        nameList.push(data.name)
-        data.child.forEach(child => tmp(child))
-      } else {
-        tmp(data.child)
-      }
-    }
-  }
-  tmp(data)
-  return nameList
+function tmp(data) {
+if (data.hasOwnProperty("child")) {
+if (Array.isArray(data.child)) {
+nameList.push(data.name)
+data.child.forEach(child => tmp(child))
+} else {
+tmp(data.child)
+}
+}
+}
+tmp(data)
+return nameList
 }
 
 ```
@@ -10369,88 +10553,90 @@ function findMultiChildPerson(data) {
 ```
 
 class XhrHook {
-  constructor(beforeHooks = {}, afterHooks = {}) {
-    this.XHR = window.XMLHttpRequest
-    this.beforeHooks = beforeHooks
-    this.afterHooks = afterHooks
-    this.init()
-  }
-  init() {
-    let _this = this
-    // 这里一定不能用箭头函数，因为new的时候this要指向new 的对象而不是简单指向这个类
-    window.XMLHttpRequest = function () {
-      this._xhr = new _this.XHR()
-      _this.overwrite(this)
-    }
-  }
-  overwrite(proxyXHR) {
-    for (let key in proxyXHR._xhr) {
-      if (typeof proxyXHR._xhr[key] === 'function') {
-        this.overwriteMethod(key, proxyXHR)
-        continue
-      }
-      this.overwriteAttributes(key, proxyXHR)
-    }
-  }
-  overwriteMethod(key, proxyXHR) {
-    let beforeHooks = this.beforeHooks
-    let afterHooks = this.afterHooks
-    proxyXHR[key] = (...args) => {
-      if (beforeHooks[key]) {
-        const hookRes = beforeHooks[key].call(proxyXHR, args)
-        if (hookRes === false) {
-          return
-        }
-      }
+constructor(beforeHooks = {}, afterHooks = {}) {
+this.XHR = window.XMLHttpRequest
+this.beforeHooks = beforeHooks
+this.afterHooks = afterHooks
+this.init()
+}
+init() {
+let \_this = this
+// 这里一定不能用箭头函数，因为 new 的时候 this 要指向 new 的对象而不是简单指向这个类
+window.XMLHttpRequest = function () {
+this.\_xhr = new \_this.XHR()
+\_this.overwrite(this)
+}
+}
+overwrite(proxyXHR) {
+for (let key in proxyXHR.\_xhr) {
+if (typeof proxyXHR.\_xhr[key] === 'function') {
+this.overwriteMethod(key, proxyXHR)
+continue
+}
+this.overwriteAttributes(key, proxyXHR)
+}
+}
+overwriteMethod(key, proxyXHR) {
+let beforeHooks = this.beforeHooks
+let afterHooks = this.afterHooks
+proxyXHR[key] = (...args) => {
+if (beforeHooks[key]) {
+const hookRes = beforeHooks[key].call(proxyXHR, args)
+if (hookRes === false) {
+return
+}
+}
 
       const res = proxyXHR._xhr[key].apply(proxyXHR._xhr, args)
       afterHooks[key] && afterHooks[key].call(proxyXHR._xhr, res)
       return res
     }
-  }
-  overwriteAttributes(key, proxyXHR) {
-    Object.defineProperties(proxyXHR, key, {})
-  }
-  setPropertyDescriptor(key, proxyXHR) {
-    let obj = Object.create(null)
-    let _this = this
-    obj.set = function (val) {
-      if (!key.startsWith('on')) {
-        proxyXHR[`__${key}`] = val
-        return
-      }
-      if (_this.beforeHooks[key]) {
-        this._xhr[key] = function (...args) {
-          _this.beforeHooks[key].call(proxyXHR)
-          val.apply(proxyXHR, args)
-        }
-        return
-      }
-      this._xhr[key] = val
-    }
-    obj.get = function () {
-      return proxyXHR[`__${key}`] || this._xhr[key]
-    }
-    return obj
-  }
+
+}
+overwriteAttributes(key, proxyXHR) {
+Object.defineProperties(proxyXHR, key, {})
+}
+setPropertyDescriptor(key, proxyXHR) {
+let obj = Object.create(null)
+let \_this = this
+obj.set = function (val) {
+if (!key.startsWith('on')) {
+proxyXHR[`__${key}`] = val
+return
+}
+if (\_this.beforeHooks[key]) {
+this.\_xhr[key] = function (...args) {
+\_this.beforeHooks[key].call(proxyXHR)
+val.apply(proxyXHR, args)
+}
+return
+}
+this.\_xhr[key] = val
+}
+obj.get = function () {
+return proxyXHR[`__${key}`] || this.\_xhr[key]
+}
+return obj
+}
 }
 
 new XhrHook({
-  open: function () {
-    console.warn('TCL: open')
-  },
-  onload() {
-    console.warn('TCL: onload')
-  },
-  onreadystatechange() {
-    console.warn('TCL: onreadystatechange')
-  },
-  onerror() {
-    console.warn('TCL: onerror')
-  }
+open: function () {
+console.warn('TCL: open')
+},
+onload() {
+console.warn('TCL: onload')
+},
+onreadystatechange() {
+console.warn('TCL: onreadystatechange')
+},
+onerror() {
+console.warn('TCL: onerror')
+}
 })
 
 let xhr = new XMLHttpRequest()
+
 ```
 
 ## 二叉树相关性质
@@ -10499,17 +10685,18 @@ let xhr = new XMLHttpRequest()
 ## 是否循环引用
 
 ```
+
 const isLoop = (originObj) => {
-    let wm = new WeakMap();
-    let rs = false;
-    function dp(obj) {
-        let cwm = new WeakMap();
-        if(!wm.has(obj)) {
-            wm.set(obj, obj)
-        }
-        let keys = Object.keys(obj);
-        for (let i = 0, len = keys.length; i < len; i++) {
-            key = keys[i];
+let wm = new WeakMap();
+let rs = false;
+function dp(obj) {
+let cwm = new WeakMap();
+if(!wm.has(obj)) {
+wm.set(obj, obj)
+}
+let keys = Object.keys(obj);
+for (let i = 0, len = keys.length; i < len; i++) {
+key = keys[i];
 
             if(typeof obj[key] === 'object') {
                 if(cwm.has(obj[key])) {
@@ -10537,54 +10724,58 @@ const isLoop = (originObj) => {
     }
     dp(originObj);
     return rs;
+
 }
+
 ```
 
 ## 有效括号
 
 ```
-空间复杂度ON
+
+空间复杂度 ON
 var isValid = function (s) {
-  if (s.length % 2 !== 0) return false
-  let stack = []
-  let map = {
-    '{': '}',
-    '(': ')',
-    '[': ']'
-  }
-  for (let i = 0; i < s.length; i++) {
-    let item = s[i]
-    if (item in map) stack.push(item)
-    else {
-      if (item != map[stack.pop()]) return false
-    }
-  }
-  return stack.length === 0
+if (s.length % 2 !== 0) return false
+let stack = []
+let map = {
+'{': '}',
+'(': ')',
+'[': ']'
+}
+for (let i = 0; i < s.length; i++) {
+let item = s[i]
+if (item in map) stack.push(item)
+else {
+if (item != map[stack.pop()]) return false
+}
+}
+return stack.length === 0
 }
 
 优化空间复杂度
 
 public static boolean isValid(String s){
-  if(s == null || s.length() < 1)
-    return true;
-  int n = s.length();// 字符串⻓度
-  // ⽤来记录遇到的 "(" 的个数
-  int sum = 0;
-  // 遍历字符串
-  for(int i = 0; i < n; i++){
-  // 获取字符串的第 i 个字符
-    char c = s.charAt(i);
-  if(c == '('){
-  sum++;
-   }else{
-    if(sum == 0)
-    return false;
-    else
-       sum--;
-   }
-  }
+if(s == null || s.length() < 1)
+return true;
+int n = s.length();// 字符串⻓度
+// ⽤来记录遇到的 "(" 的个数
+int sum = 0;
+// 遍历字符串
+for(int i = 0; i < n; i++){
+// 获取字符串的第 i 个字符
+char c = s.charAt(i);
+if(c == '('){
+sum++;
+}else{
+if(sum == 0)
+return false;
+else
+sum--;
+}
+}
 return sum == 0 ? true : false;
- }
+}
+
 ```
 
 ## 最长有效括号
@@ -10592,55 +10783,59 @@ return sum == 0 ? true : false;
 给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。
 
 ```
+
 滑动窗口，两个窗口相撞时合成最长的那个
 const longestValidParentheses = (s) => {
-  let maxLen = 0;
-  const stack = [];
-  stack.push(-1);
-  for (let i = 0; i < s.length; i++) {
-    const c = s[i];
-    if (c == '(') {       // 左括号的索引，入栈
-      stack.push(i);
-    } else {              // 遍历到右括号
-      stack.pop();        // 栈顶的左括号被匹配，出栈
-      if (stack.length) { // 栈未空
-        const curMaxLen = i - stack[stack.length - 1]; // 计算有效连续长度
-        maxLen = Math.max(maxLen, curMaxLen);          // 挑战最大值
-      } else {            // 栈空了
-        stack.push(i);    // 入栈充当参照
-      }
-    }
-  }
-  return maxLen;
+let maxLen = 0;
+const stack = [];
+stack.push(-1);
+for (let i = 0; i < s.length; i++) {
+const c = s[i];
+if (c == '(') { // 左括号的索引，入栈
+stack.push(i);
+} else { // 遍历到右括号
+stack.pop(); // 栈顶的左括号被匹配，出栈
+if (stack.length) { // 栈未空
+const curMaxLen = i - stack[stack.length - 1]; // 计算有效连续长度
+maxLen = Math.max(maxLen, curMaxLen); // 挑战最大值
+} else { // 栈空了
+stack.push(i); // 入栈充当参照
+}
+}
+}
+return maxLen;
 };
+
 ```
 
 ## x的n次方，不能用库函数，考察二分法
 
 ```
-为了方便讨论，假设指数exponent是正数。那么递归式如下：
 
-如果exponent是偶数，Power(base, exponent) = Power(base, exponent / 2) * Power(base, exponent / 2)
-如果exponent是奇数，Power(base, exponent) = base * Power(base, exponent / 2) * Power(base, exponent / 2)
-对于负指数exponent的情况，取其绝对值先计算。将最后结果取倒数即可。
+为了方便讨论，假设指数 exponent 是正数。那么递归式如下：
+
+如果 exponent 是偶数，Power(base, exponent) = Power(base, exponent / 2) _ Power(base, exponent / 2)
+如果 exponent 是奇数，Power(base, exponent) = base _ Power(base, exponent / 2) \* Power(base, exponent / 2)
+对于负指数 exponent 的情况，取其绝对值先计算。将最后结果取倒数即可。
 
 时间复杂度是 O(logN)；由于采用递归结构，空间复杂度是 O(logN)。
 
-/**
- * @param {number} x
- * @param {number} n
- * @return {number}
- */
-var myPow = function(x, n) {
-    const isNegative = n < 0; // 是否是负指数
-    const result = absMyPow(x, Math.abs(n));
-    return isNegative ? 1 / result : result;
-};
+/\*\*
+
+- @param {number} x
+- @param {number} n
+- @return {number}
+  \*/
+  var myPow = function(x, n) {
+  const isNegative = n < 0; // 是否是负指数
+  const result = absMyPow(x, Math.abs(n));
+  return isNegative ? 1 / result : result;
+  };
 
 function absMyPow(base, exponent) {
-    if (exponent === 0) {
-        return 1;
-    }
+if (exponent === 0) {
+return 1;
+}
 
     if (exponent === 1) {
         return base;
@@ -10648,7 +10843,9 @@ function absMyPow(base, exponent) {
 
     const subResult = absMyPow(base, Math.floor(exponent / 2));
     return exponent % 2 ? subResult * subResult * base : subResult * subResult;
+
 }
+
 ```
 
 ## 编辑距离，最少操作数
@@ -10671,42 +10868,43 @@ rorse -> rose (删除 'r')
 rose -> ros (删除 'e')
 
 ```
-1.dp状态定义
-dp[i][j]表示w1的前i个字母要转换成w2的前j个字母所需的最少操作数。
 
-2.dp状态转移方程
-w1,w2字母相同：word1[i-1] == word2[j-1] --->
-    dp[i-1][j-1]
-w1,w2字母不同则为三种操作最小值：--->
-    Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1
+1.dp 状态定义
+dp[i][j]表示 w1 的前 i 个字母要转换成 w2 的前 j 个字母所需的最少操作数。
+
+2.dp 状态转移方程
+w1,w2 字母相同：word1[i-1] == word2[j-1] --->
+dp[i-1][j-1]
+w1,w2 字母不同则为三种操作最小值：--->
+Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1
 
 dp[i-1][j] 删除
 dp[i][j-1] 插入
 dp[i-1][j-1] 替换
 
-3.如果i*j==0 即有一单词为0,直接返回i+j
+3.如果 i\*j==0 即有一单词为 0,直接返回 i+j
 
 let minDistance = (word1, word2)=> {
-    //1.初始化
-    let n = word1.length, m = word2.length
-    let dp = new Array(n+1).fill(0).map(() => new Array(m+1).fill(0))
-    for (let i = 0; i <= n; i++) {
-        dp[i][0] = i
-    }
-    for (let j = 0; j <= m; j++) {
-        dp[0][j] = j
-    }
-    //2.dp
-    for(let i = 0;i <= n;i++){
-        for(let j = 0;j <= m;j++){
-            if(i*j){
-                dp[i][j] = word1[i-1] == word2[j-1]? dp[i-1][j-1]: (Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1)
-            }else{
-                dp[i][j] = i + j
-            }
-        }
-    }
-    return dp[n][m]
+//1.初始化
+let n = word1.length, m = word2.length
+let dp = new Array(n+1).fill(0).map(() => new Array(m+1).fill(0))
+for (let i = 0; i <= n; i++) {
+dp[i][0] = i
+}
+for (let j = 0; j <= m; j++) {
+dp[0][j] = j
+}
+//2.dp
+for(let i = 0;i <= n;i++){
+for(let j = 0;j <= m;j++){
+if(i\*j){
+dp[i][j] = word1[i-1] == word2[j-1]? dp[i-1][j-1]: (Math.min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]) + 1)
+}else{
+dp[i][j] = i + j
+}
+}
+}
+return dp[n][m]
 };
 
 ```
@@ -10714,20 +10912,22 @@ let minDistance = (word1, word2)=> {
 ## 无重复的最长子串
 
 ```
-var lengthOfLongestSubstring = function (s) {
-  let tmp = ''
-  let res = ''
 
-  for (let i = 0; i < s.length; i++) {
-    let item = s[i]
-    let index = tmp.indexOf(item)
-    if (index > -1) {
-      tmp = tmp.slice(index + 1) + item
-    } else {
-      tmp += item
-    }
-    res = Math.max(tmp.length, res)
-  }
-  return res
+var lengthOfLongestSubstring = function (s) {
+let tmp = ''
+let res = ''
+
+for (let i = 0; i < s.length; i++) {
+let item = s[i]
+let index = tmp.indexOf(item)
+if (index > -1) {
+tmp = tmp.slice(index + 1) + item
+} else {
+tmp += item
 }
+res = Math.max(tmp.length, res)
+}
+return res
+}
+
 ```
