@@ -198,6 +198,7 @@
   - [Webpack5和webpack4的区别](#webpack5%E5%92%8Cwebpack4%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [Nodeto，](#nodeto)
   - [node单线程，node特性，事件驱动，非阻塞I/O](#node%E5%8D%95%E7%BA%BF%E7%A8%8Bnode%E7%89%B9%E6%80%A7%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E9%9D%9E%E9%98%BB%E5%A1%9Eio)
+  - [node性能调优](#node%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98)
   - [node的readFile和readFileSync的区别](#node%E7%9A%84readfile%E5%92%8Creadfilesync%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [fs和fs-extra](#fs%E5%92%8Cfs-extra)
   - [node实现多进程](#node%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BF%9B%E7%A8%8B)
@@ -4552,6 +4553,86 @@ node 单线程
 特性：事件驱动（event loop）非阻塞 I/O
 Js 都是单线程的，node 也是单线程的，只是底层还是多线程 I/O 实现非阻塞的，同时，也支持 cluster 多核多进程处理，但多进程处理的话有一个问题，每个进程都是相互独立的，这也就意味着 token 什么的不能放在内存中而应该在 redis 里面，因为每个进程相互独立，内存自然不能共享
 
+## node性能调优
+
+- 使用 fast-json-stringify 加速 JSON 序列化
+  `const json = JSON.stringify(obj)`
+  在 JSON 序列化时，我们需要识别大量的字段类型，比如对于 string 类型，我们就需要在两边加上 "，对于数组类型，我们需要遍历数组，把每个对象序列化后，用 , 隔开，然后在两边加上 [ 和 ]，诸如此类等等。
+  但如果已经提前通过 Schema 知道每个字段的类型，那么就不需要遍历、识别字段类型，而可以直接用序列化对应的字段，这就大大减少了计算开销，这就是 fast-json-stringfy 的原理。
+  在 Node.js 的中间件业务中，通常会有很多数据使用 JSON 进行传输，并且这些 JSON 的结构是非常相似的（如果你使用了 TypeScript，更是这样），这种场景就非常适合使用 JSON Schema 来优化。
+
+```
+const fastJson = require('fast-json-stringify')
+const stringify = fastJson({
+    title: 'Example Schema',
+    type: 'object',
+    properties: {
+        name: { type: 'string' },
+        age: { type: 'integer' },
+        books: {
+            type: 'array',
+            items: {
+                type: 'string',
+                uniqueItems: true
+            }
+        }
+    }
+})
+
+console.log(stringify({
+    name: 'Starkwang',
+    age: 23,
+    books: ['C++ Primer', '響け！ユーフォニアム～']
+}))
+//=> {"name":"Starkwang","age":23,"books":["C++ Primer","響け！ユーフォニアム～"]}
+```
+
+- 尽量使用 redis 而不用大对象做缓存，因为会导致老生代的垃圾回收变慢
+
+- 新生代空间不足，导致频繁垃圾回收（GC)
+  Node.js 默认给新生代分配的内存是 64MB（64 位的机器，后同），但因为新生代 GC 使用的是 Scavenge 算法，所以实际能使用的内存只有一半，即 32MB。
+  内存少，变量多，就会导致 v8 不得不频繁 GC,这时可以扩充 v8 的启动内存
+  `node --max-semi-space-size=128 app.js`
+  随着内存的增大，GC 的次数减少，但每次 GC 所需要的时间也会增加，所以并不是越大越好，具体数值需要对业务进行压测 profile 才能确定分配多少新生代内存最好。
+  但一般根据经验而言，分配 64MB 或者 128MB 是比较合理的。
+
+- 使用流直接读写，可以用 pipeline 管理流
+
+```
+const { pipeline } = require('stream');
+const fs = require('fs');
+const zlib = require('zlib');
+
+pipeline(
+    fs.createReadStream('archive.tar'),
+    zlib.createGzip(),
+    fs.createWriteStream('archive.tar.gz'),
+    (err) => {
+        if (err) {
+            console.error('Pipeline failed', err);
+        } else {
+            console.log('Pipeline succeeded');
+        }
+    }
+);
+```
+
+- 使用 node-clinic 快速定位性能问题
+  node-clinic 是 NearForm 开源的一款 Node.js 性能诊断工具，可以非常快速地定位性能问题。
+
+```
+npm i -g clinic
+npm i -g autocannon
+使用的时候，先开启服务进程：
+
+clinic doctor -- node server.js
+autocannon http://localhost:3000
+然后我们可以用任何压测工具跑一次压测，比如使用同一个作者的 autocannon（当然你也可以使用 ab、curl 这样的工具来进行压测。）：
+
+压测完毕后，我们 ctrl + c 关闭 clinic 开启的进程，就会自动生成报告。比如下面就是我们一个中间件服务的性能报告：
+
+```
+
 ## node的readFile和readFileSync的区别
 
 node 的所有方法都有自带的普通的异步和 Sync 后缀的同步的写法，同步的写法需要 try catch 捕获错误
@@ -6919,7 +7000,9 @@ var lengthOfLIS = function(nums, dp = [1]) {
     for (let i = 1; i < nums.length; i++){
         dp[i] = 1
         for (let j = 0; j < i; j++) {
-            nums[i] > nums[j] && (dp[i] = Math.max(dp[i], dp[j] + 1))
+          if(nums[i] > nums[j]) {
+            dp[i] = Math.max(dp[i], dp[j] + 1)
+          }
         }
     }
     return Math.max(...dp)
@@ -6956,21 +7039,27 @@ var lengthOfLIS = function(nums) {
 ## 最长回文字符串
 
 ```
-动态规划/**
+动态规划
+/**
  * @param {string} s
  * @return {string}
  */
 var longestPalindrome = function(s) {
-    let n = s.length;
-    let res = '';
-    let dp = Array.from(new Array(n),() => new Array(n).fill(0));
-    for(let i = n-1;i >= 0;i--){
-        for(let j = i;j < n;j++){
-            <!-- 如果头尾相同了，且因子长度小于2，那么必定是回文，否则往中间凑，判断区间是不是回文 -->
-            dp[i][j] = s[i] == s[j] && (j - i < 2 || dp[i+1][j-1]);
-            if(dp[i][j] && j - i +1 > res.length){
-                res = s.substring(i,j+1);
-            }
+    if(s.length == 0) return '';
+    let res = s[0];
+    const dp = [];
+    // 从后向前判断回文串，逐步延申字符串
+    for(let i = s.length - 1; i >= 0; i--){
+        dp[i] = [];
+        for(let j = i; j < s.length; j++){
+            // case1: a
+            if(j - i === 0) dp[i][j] = true;
+            // case2: aa
+            else if(j - i == 1 && s[j] === s[i]) dp[i][j] = true;
+            // state transition
+            else if(s[i] === s[j] && dp[i + 1][j - 1]) dp[i][j] =true;
+            // update res
+            if(dp[i][j] && j - i + 1 > res.length) res = s.slice(i, j + 1);
         }
     }
     return res;
