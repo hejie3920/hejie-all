@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [基础](#%E5%9F%BA%E7%A1%80)
   - [Js数据类型，js基本类型和复杂类型](#js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bjs%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B)
   - [JavaScript的基本类型和复杂类型存在哪⾥的？](#javascript%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%9C%A8%E5%93%AA%E2%BE%A5%E7%9A%84)
@@ -56,6 +57,8 @@
   - [传输to，断点传输，分片传输](#%E4%BC%A0%E8%BE%93to%E6%96%AD%E7%82%B9%E4%BC%A0%E8%BE%93%E5%88%86%E7%89%87%E4%BC%A0%E8%BE%93)
   - [webpack优化，webpackto](#webpack%E4%BC%98%E5%8C%96webpackto)
   - [webpack 工作流程 (加载 - 编译 - 输出)](#webpack-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B-%E5%8A%A0%E8%BD%BD---%E7%BC%96%E8%AF%91---%E8%BE%93%E5%87%BA)
+  - [babel插件to，babelto](#babel%E6%8F%92%E4%BB%B6tobabelto)
+  - [babel-import-node按需加载原理，使用它按需加载自己的组件库](#babel-import-node%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E4%BD%BF%E7%94%A8%E5%AE%83%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD%E8%87%AA%E5%B7%B1%E7%9A%84%E7%BB%84%E4%BB%B6%E5%BA%93)
   - [微前端to，乾坤](#%E5%BE%AE%E5%89%8D%E7%AB%AFto%E4%B9%BE%E5%9D%A4)
   - [viteto,esbuildto](#vitetoesbuildto)
   - [自动化测试BDD风格](#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95bdd%E9%A3%8E%E6%A0%BC)
@@ -297,6 +300,7 @@
   - [二分查找（递归）](#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E9%80%92%E5%BD%92)
   - [查找第一个不小于的数，用二分法而不用快排,Ologn](#%E6%9F%A5%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B0%8F%E4%BA%8E%E7%9A%84%E6%95%B0%E7%94%A8%E4%BA%8C%E5%88%86%E6%B3%95%E8%80%8C%E4%B8%8D%E7%94%A8%E5%BF%AB%E6%8E%92ologn)
   - [查找第一个大于的数，用二分法而不用快排,Ologn](#%E6%9F%A5%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%A7%E4%BA%8E%E7%9A%84%E6%95%B0%E7%94%A8%E4%BA%8C%E5%88%86%E6%B3%95%E8%80%8C%E4%B8%8D%E7%94%A8%E5%BF%AB%E6%8E%92ologn)
+  - [两个有序数组的中位数](#%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0)
   - [求两个有序数组的第K⼩数](#%E6%B1%82%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%ACk%E2%BC%A9%E6%95%B0)
   - [搜索旋转数组，查找旋转数组特定值，二分法，旋转数组的某个数](#%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E6%9F%A5%E6%89%BE%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%89%B9%E5%AE%9A%E5%80%BC%E4%BA%8C%E5%88%86%E6%B3%95%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%90%E4%B8%AA%E6%95%B0)
   - [搜索旋转排序数组，旋转数组的最小元素](#%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0)
@@ -305,7 +309,7 @@
   - [正则解码](#%E6%AD%A3%E5%88%99%E8%A7%A3%E7%A0%81)
   - [找数组中最接近指定值得值，找最近](#%E6%89%BE%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9C%80%E6%8E%A5%E8%BF%91%E6%8C%87%E5%AE%9A%E5%80%BC%E5%BE%97%E5%80%BC%E6%89%BE%E6%9C%80%E8%BF%91)
   - [千位符分割](#%E5%8D%83%E4%BD%8D%E7%AC%A6%E5%88%86%E5%89%B2)
-  - [Eatman连续调用闭包](#eatman%E8%BF%9E%E7%BB%AD%E8%B0%83%E7%94%A8%E9%97%AD%E5%8C%85)
+  - [Eatman连续调用闭包，链式调用](#eatman%E8%BF%9E%E7%BB%AD%E8%B0%83%E7%94%A8%E9%97%AD%E5%8C%85%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8)
   - [对象数组去重](#%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D)
   - [转换成树,树结构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84)
   - [实现eventListener,实现emitter,实现eventEmitter](#%E5%AE%9E%E7%8E%B0eventlistener%E5%AE%9E%E7%8E%B0emitter%E5%AE%9E%E7%8E%B0eventemitter)
@@ -388,13 +392,11 @@
   - [数组乱序](#%E6%95%B0%E7%BB%84%E4%B9%B1%E5%BA%8F)
   - [驼峰命名](#%E9%A9%BC%E5%B3%B0%E5%91%BD%E5%90%8D)
   - [解析urlquery为对象](#%E8%A7%A3%E6%9E%90urlquery%E4%B8%BA%E5%AF%B9%E8%B1%A1)
-  - [实现eventListener,实现emitter,实现eventEmitter](#%E5%AE%9E%E7%8E%B0eventlistener%E5%AE%9E%E7%8E%B0emitter%E5%AE%9E%E7%8E%B0eventemitter-1)
   - [统计出现最多的单词](#%E7%BB%9F%E8%AE%A1%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E5%8D%95%E8%AF%8D)
   - [遍历树，深度优先，广度优先](#%E9%81%8D%E5%8E%86%E6%A0%91%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88)
   - [接雨水问题](#%E6%8E%A5%E9%9B%A8%E6%B0%B4%E9%97%AE%E9%A2%98)
   - [遍历树结构](#%E9%81%8D%E5%8E%86%E6%A0%91%E7%BB%93%E6%9E%84-1)
   - [实现http拦截器](#%E5%AE%9E%E7%8E%B0http%E6%8B%A6%E6%88%AA%E5%99%A8)
-  - [二叉树相关性质](#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9B%B8%E5%85%B3%E6%80%A7%E8%B4%A8-1)
   - [是否循环引用](#%E6%98%AF%E5%90%A6%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8)
   - [有效括号](#%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7)
   - [最长有效括号](#%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7)
@@ -1623,7 +1625,17 @@ for (let i = 0; i < 5; i++) {
 
 4. 步骤：
 
-- 大小上：chrom devtools 的 coverage 覆盖率，适当用 critters（可以自动按需内联节点，剔除不需要的样式）内联首屏样式，splitChunks 拆分代码，项目中有个自己的 svg 库比较大，配合 babel-import 改造成可按需引入的，tree-shaking,小图转 base64，其他图 webp 处理，图片 tiny 插件，moment 去国际化，cdn 预热（主动请求和）和刷新
+- 大小上：chrom devtools 的 coverage 覆盖率，适当用 critters（可以自动按需内联节点，剔除不需要的样式）内联首屏样式，splitChunks 拆分代码，项目中有个自己的 svg 库比较大，配合 babel-import 改造成可按需引入的，tree-shaking,小图转 base64，其他图 webp 处理，图片 tiny 插件，moment 去国际化，cdn 预热（主动请求和）和刷新，
+  图片根据不同设备设置不同图片 srcset
+
+```
+<img srcset="elva-fairy-320w.jpg,
+             elva-fairy-480w.jpg 1.5x,
+             elva-fairy-640w.jpg 2x"
+     src="elva-fairy-640w.jpg"
+     alt="Elva dressed as a fairy">
+```
+
 - 时序上：路由懒加载，react-lazy 拆分，判断浏览器是否可以 prefetch 进行预加载，lazyload 图片懒加载，图片并发控制，为防止埋点阻塞，可以延迟合并上报，用 navigator.sendBeacon(url, data)上报，请求终止，.abort,axios 就是 cancelToken，requestIdleCallback 进行资源的预加载，Window.cancelIdleCallback() 取消，safari 不兼容，要做判断
 - 代码上，重绘回流：在 performance 里面的 frames 火山图和 screensnots 里面可以看到详细的页面抖动情况，针对抖动进行布局的优化，动画硬件加速（transform，opacity，filter，will-change 可以触发加速）
 - 感观体验上：骨架屏（HTMLWebpackPlugin 里面可以插入骨架图）
@@ -1779,6 +1791,9 @@ hint: 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tin
 hint: 用来检查判断 addEventlistner 后有没 removeEventListener 以及其他的一些规则就是一个函数，可以解析到 source 对象，然后对 source 进行操作后 return 出去就是了，
 
 ## 开发脚手架to
+
+https://mp.weixin.qq.com/s/4h-PnP-kCWvq05ejLCBiGg
+用 oclif 开发脚手架
 
 https://mp.weixin.qq.com/s/TFP6bKADnY5zPDX5bqQqEA
 hint: 前期用 handlebars 模板引擎生成 vue 文件并刷新路由，后面直接工程自动化后 require.context 自动化引入后就不需要手动刷新路由了
@@ -1959,6 +1974,80 @@ xhr.onreadystatechange = function () {
 - 3、按文件类型，调用相应的 Loader 对模块进行 编译，并在合适的时机点触发对应的事件，调用 Plugin 执行，最后再根据模块 依赖查找 到所依赖的模块，递归执行第三步；
 - 4、将编译后的所有代码包装成一个个代码块 (Chuck)， 并按依赖和配置确定 输出内容。这个步骤，仍然可以通过 Plugin 进行文件的修改;
 - 5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；
+
+## babel插件to，babelto
+
+babelType：类似 lodash 那样的工具集，主要用来操作 AST 节点，比如创建、校验、转变等。举例：判断某个节点是不是标识符(identifier)。
+path：AST 中有很多节点，每个节点可能有不同的属性，并且节点之间可能存在关联。path 是个对象，它代表了两个节点之间的关联。你可以在 path 上访问到节点的属性，也可以通过 path 来访问到关联的节点（比如父节点、兄弟节点等）
+state：代表了插件的状态，你可以通过 state 来访问插件的配置项。
+visitor：Babel 采取递归的方式访问 AST 的每个节点，之所以叫做 visitor，只是因为有个类似的设计模式叫做访问者模式，不用在意背后的细节。
+Identifier、ASTNodeTypeHere：AST 的每个节点，都有对应的节点类型，比如标识符（Identifier）、函数声明（FunctionDeclaration）等，可以在 visitor 上声明同名的属性，当 Babel 遍历到相应类型的节点，属性对应的方法就会被调用，传入的参数就是 path、state。
+链接：https://juejin.cn/post/6844903616080281614
+
+```
+export default function({ types: babelTypes }) {
+  return {
+    visitor: {
+      Identifier(path, state) {},
+      ASTNodeTypeHere(path, state) {}
+    }
+  };
+};
+
+// plugin.js
+<!-- 把所有let bad 的声明变成let good -->
+module.exports = function({ types: babelTypes }) {
+  return {
+    name: "deadly-simple-plugin-example",
+    visitor: {
+      Identifier(path, state) {
+        if (path.node.name === 'bad') {
+          path.node.name = 'good';
+        }
+      }
+    }
+  };
+};
+```
+
+## babel-import-node按需加载原理，使用它按需加载自己的组件库
+
+```
+<!-- 原理：  -->
+import { Button } from 'antd';
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+var _button = require('antd/lib/button');
+
+<!-- 实现：  -->
+ // 编译添加，将自己的组件库包添加到编译
+include: [
+  path.resolve(appDirectory, 'node_modules/hejie-lego'),
+  //...others
+]
+
+// 按需加载支持
+// npm/yarn 安装依赖 `babel-plugin-import` 详细参见该插件使用
+// 配置如下
+plugins: [
+    ['import', {
+      'libraryName': 'hejie-lego',
+      // libraryDirectory: 'lib',
+      camel2DashComponentName: false, // 是否需要驼峰转短线
+      camel2UnderlineComponentName: false, // 是否需要驼峰转下划线
+      customName: (name) => {
+        return `hejie-lego/lib/components/${name}` // 核心配置 根据你自己的组件目录配置
+      },
+      style: () => {
+        return false
+      }
+    }],
+    //...others
+  ]
+```
+
+配置完后就可以按需加载了
+`import { Button } from 'hejie-lego';`
 
 ## 微前端to，乾坤
 
@@ -7212,6 +7301,28 @@ function binarySearch(arr, target) {
 }
 ```
 
+## 两个有序数组的中位数
+
+```
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+var findMedianSortedArrays = function(nums1, nums2) {
+    for(i=0;i<nums2.length;i++){
+        nums1.push(nums2[i])
+    }
+    nums1=nums1.sort(function(a,b){ return b-a});//排序
+    if(nums1.length%2==0){
+        return (nums1[nums1.length/2]+nums1[nums1.length/2-1])/2 //中位数
+    }
+    else{return nums1[(nums1.length-1)/2]}
+
+};
+
+```
+
 ## 求两个有序数组的第K⼩数
 
 【题⽬】
@@ -7480,7 +7591,7 @@ console.log( str.replace(/\d{1,3}(?=(\d{3})+$)/g,function(s){
 
 ```
 
-## Eatman连续调用闭包
+## Eatman连续调用闭包，链式调用
 
 ```
 function EatMan(name) {
@@ -9902,6 +10013,32 @@ dp[i-1];
 return dp[nums.length-1];
  }
 }
+
+//奇偶数的动态规划
+let rob = function(nums) {
+    if(nums.length <= 0){
+        return false;
+    }
+    let result; //保存将要返回的结果
+    let sum = [0, 0];//数组的第一个数保存奇数的和，第二保存偶数的和
+    if(nums.length === 1){
+        result = nums[0];
+    }
+    for(let i = 0; i < nums.length; i++){
+        if(i % 2 === 0){
+            //奇数时求和
+            sum[0] +=nums[i];
+            sum[0] = Math.max(sum[0], sum[1]);
+        }
+        if(i % 2 !== 0){
+            //偶数求和
+            sum[1] +=nums[i];
+            sum[1] = Math.max(sum[0], sum[1]);
+        }
+    }
+    result = Math.max(sum[0], sum[1]);
+    return result;
+}
 ```
 
 ## 最小路径和
@@ -10195,46 +10332,6 @@ function parseParam(url) {
 
 ```
 
-## 实现eventListener,实现emitter,实现eventEmitter
-
-触发名为 type 的事件
-
-```
-class EventEmitter {
-  constructor() {
-    this.events = {}
-  }
-  on(event, callback) {
-    let callbacks = this.events[event] || []
-    callbacks.push(callback)
-    this.events[event] = callbacks
-    return this
-  }
-  off(event, callback) {
-    let callbacks = this.events[event]
-    this.events[event] = callbacks && callbacks.filter(fn => fn !== callback)
-    return this
-  }
-  emit(event, ...args) {
-    let callbacks = this.events[event]
-    callbacks.forEach(fn => {
-      fn(...args)
-    })
-    return this
-  }
-  once(event, callback) {
-    let wrapFun = function (...args) {
-      callback(...args)
-      this.off(event, wrapFun)
-    }
-    this.on(event, wrapFun)
-    return this
-  }
-}
-
-
-```
-
 ## 统计出现最多的单词
 
 ```
@@ -10482,91 +10579,26 @@ new XhrHook({
 let xhr = new XMLHttpRequest()
 ```
 
-## 二叉树相关性质
-
-- 节点的度：一个节点含有的子树的个数称为该节点的度；
-- 叶节点或终端节点：度为零的节点；
-- 节点的层次：从根开始定义起，根为第 1 层，根的子节点为第 2 层，以此 类推。
-- 树的高度或深度：树中节点的最大层次。
-- 在非空二叉树中，第 i 层的结点总数不超过 2^(i-1)，i>=1。
-- 深度为 h 的二叉树最多有 2^h-1 个结点(h>=1)，最少有 h 个结点。
-- 对于任意一棵二叉树，如果其叶结点数为 N0，而度数为 2 的结点总数为 N2，则 N0 = N2+1；
--
-- 给定 N 个节点，能构成 h(N) 种不同的二叉树。h(N)为卡特兰数的第 N 项。(2n)!/(n!(n+1)!)。
-- 二叉树的前序遍历，首先访问根结点，然后遍历左子树，最后遍历右子树。 简记根-左-右。
-- 二叉树的中序遍历，首先遍历左子树，然后访问根结点，最后遍历右子树。 简记左-根-右。
-- 二叉树的后序遍历，首先遍历左子树，然后遍历右子树，最后访问根结点。 简记左-右-根。
-- 二叉树是非线性数据结构，但是顺序存储结构和链式存储结构都能存储。
-- 一个带权的无向连通图的最小生成树的权值之和是唯一的。
-- 只有一个结点的二叉树的度为 0 。
-- 二叉树的度是以节点的最大的度数定义的。
-- 树的后序遍历序列等同于该树对应的二叉树的中序序列。
-- 树的先序遍历序列等同于该树对应的二叉树的先序序列。
-- 线索二叉树的线索实际上指向的是相应遍历序列特定结点的前驱结点和 后继结点，所以先写出二叉树的中序遍历序列： debxac，中序遍历中在 x 左边和右边的字符，就是它在中序线索化的左、右线索，即 b、a 。
-- 递归式的先序遍历一个 n 节点，深度为 d 的二叉树，需要栈空间的大 小为 O（d），因为二叉树并不一定是平衡的， 也就是深度 d！=logn， 有可能 d>>logn。所以栈大小应该是 O（d）
-- 一棵具有 N 个结点的二叉树的前序序列和后序序列正好相反 ，则该二 叉树一定满足该二叉树只有左子树或只有右子树， 即该二叉树一定是一 条链（二叉树的高度为 N，高度等于结点数）。
-- 引入二叉线索树的目的是加快查找结点的前驱或后继的速度。
-- 二叉树线索化后，先序线索化与后序线索化最多有 1 个空指针域，而中序 线索化最多有 2 个空指针域。
-- 不管是几叉树，节点数等于=分叉数+1
-- 任何一棵二叉树的叶子结点在先序、中序和后序遍历中的相对次序不发生 改变。
-
-- 满二叉树 对于一棵二叉树，如果每一个非叶子节点都存在左右子树，并且二叉树中所有的 叶子节点都在同一层中，这样的二叉树称为满 二叉树。
-
-- 完全二叉树
-  对于一棵具有 n 个节点的二叉树按照层次编号，同时，左右子树按照先左后右 编号，如果编号为 i 的节点与同样深度的满 二叉树中编号为 i 的节点在满二叉 树中的位置完全相同，则这棵二叉树称为完全二叉树。
-  性质：
-
-1. 具有 n 个结点的完全二叉树的深度为 K =[log2n」+1(取下整数)
-2. 有 N 个结点的完全二叉树各结点如果用顺序方式存储，则结点之间有如 下关系： 若 I 为结点编号（从 1 开始编号）则 如果 I>1，则其父结点 的编号为 I/2；
-3. 完全二叉树，如果 2 _ I <= N，则其左儿子（即左子树的根结点）的编号 为 2 _ I；若 2 _ I > N，则无左儿子；如 果 2 _ I + 1 <= N，则其右儿子 的结点编号为 2 _ I + 1；若 2 _ I + 1 > N，则无右儿子。
-
-- 平衡二叉查找树（AVL） 平衡二叉查找树具有如下几个性质：
-  1. 可以是空树。
-  2. 假如不是空树，任何一个结点的左子树与右子树都是平衡二叉树，并且高 度之差的绝对值不超过 1。
-     平衡二叉树是为了解决二叉查找树中出现链式结构（只有左子树或只有右子树） 的情况，这样的情况出现后对我们的查找没有 一点帮帮助，反而增加了维护的 成本。 平衡因子使用两个字母来表示。第一个字母表示最小不平衡子树根结点的平衡因 子，第二个字母表示最小不平衡子树较高子树 的根结点的平衡因子。根据不同 的情况使用不同的方法来调整失衡的子树。
-
 ## 是否循环引用
 
 ```
-const isLoop = (originObj) => {
-    let wm = new WeakMap();
-    let rs = false;
-    function dp(obj) {
-        let cwm = new WeakMap();
-        if(!wm.has(obj)) {
-            wm.set(obj, obj)
-        }
-        let keys = Object.keys(obj);
-        for (let i = 0, len = keys.length; i < len; i++) {
-            key = keys[i];
-
-            if(typeof obj[key] === 'object') {
-                if(cwm.has(obj[key])) {
-                    // 如果同层级的互相引用了，终结掉
-                    obj[key] = {};
-                } else {
-                    cwm.set(obj[key], obj[key]);
+function cycle(obj, parent) {
+    //表示调用的父级数组
+    var parentArr = parent || [obj];
+    for (var i in obj) {
+        if (typeof obj[i] === "object") {
+            //判断是否有循环引用
+            parentArr.forEach((pObj) => {
+                if (pObj === obj[i]) {
+                    obj[i] = "[cycle]"
                 }
-            }
-        }
-        for (let i = 0, len = keys.length; i < len; i++) {
-            key = keys[i];
-
-            if(typeof obj[key] === 'object') {
-                if(wm.has(obj[key])) {
-                    // 如果循环引用了，终结掉
-                    obj[key] = {};
-                    rs = true;
-                } else {
-                    wm.set(obj[key], obj[key])
-                }
-                dp(obj[key])
-            }
+            });
+            cycle(obj[i], [...parentArr, obj[i]])
         }
     }
-    dp(originObj);
-    return rs;
+    return obj;
 }
+
 ```
 
 ## 有效括号
