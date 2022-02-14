@@ -1,11 +1,10 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [基础](#%E5%9F%BA%E7%A1%80)
   - [Js数据类型，js基本类型和复杂类型](#js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bjs%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B)
-  - [JavaScript的基本类型和复杂类型存在哪⾥的？](#javascript%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%9C%A8%E5%93%AA%E2%BE%A5%E7%9A%84)
-  - [判断对象是对象还是数组，判断是不是空对象](#%E5%88%A4%E6%96%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%AF%B9%E8%B1%A1%E8%BF%98%E6%98%AF%E6%95%B0%E7%BB%84%E5%88%A4%E6%96%AD%E6%98%AF%E4%B8%8D%E6%98%AF%E7%A9%BA%E5%AF%B9%E8%B1%A1)
+  - [JavaScript 的基本类型和复杂类型存在哪⾥的？(基站复堆)](#javascript-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%9C%A8%E5%93%AA%E2%BE%A5%E7%9A%84%E5%9F%BA%E7%AB%99%E5%A4%8D%E5%A0%86)
+  - [判断类型，判断是不是空对象](#%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD%E6%98%AF%E4%B8%8D%E6%98%AF%E7%A9%BA%E5%AF%B9%E8%B1%A1)
   - [数组to，改变数组](#%E6%95%B0%E7%BB%84to%E6%94%B9%E5%8F%98%E6%95%B0%E7%BB%84)
   - [Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()区别](#objectprototypetostringcall--instanceof-%E4%BB%A5%E5%8F%8A-arrayisarray%E5%8C%BA%E5%88%AB)
   - [instanceofto,实现instanceof](#instanceofto%E5%AE%9E%E7%8E%B0instanceof)
@@ -415,17 +414,14 @@
 typeof 可以检测出基本数据类型（除了 null，typeof null 结果是 object，这个是 bug），会返回 string, boolean, number, object , function,undefined，
 typeof NaN // number,NaN 比较特殊，是唯一一个与自身不相等的，NaN != NaN
 
-## JavaScript的基本类型和复杂类型存在哪⾥的？
+## JavaScript 的基本类型和复杂类型存在哪⾥的？(基站复堆)
 
 基本类型：存在栈（空间小，大小固定，存放频繁需要的数据，存太多会影响运行性能），但是⼀旦被闭包引⽤则成为常住内存，会储存在内存堆中。
 复杂类型：存在堆（一个优先队列，空间大，大小不固定），会储存在内存堆中，但是指针会存在栈中，指向自身
 
-## 判断对象是对象还是数组，判断是不是空对象
+## 判断类型，判断是不是空对象
 
-if (typeof obj === 'object' && Array.isArray(obj)) else
-、直接判断是对象还是数组
-{}.toString.call( obj ) === "[object Object]"
-{}.toString.call( obj ) === "[object Array]"
+`Object.prototype.toString.call([1,2,1]).slice(8,-1).toLocaleLowerCase()`
 
 判断是不是空对象
 
@@ -471,8 +467,8 @@ instanceof 运算符用于判断构造函数的 prototype 属性是否出现在�
 
 ```
 function myInstanceof(left, right) {
-  let proto = Object.getPrototypeOf(left), // 获取对象的原型
-    prototype = right.prototype // 获取构造函数的 prototype 对象 // 判断构造函数的 prototype 对象是否在对象的原型链上
+  let proto = Object.getPrototypeOf(left) // 获取对象的原型
+  let prototype = right.prototype
   while (true) {
     if (!proto) return false
     if (proto === prototype) return true
@@ -484,20 +480,18 @@ function myInstanceof(left, right) {
 ## 深拷贝
 
 ```
-  deepCopy(obj) {
-    判断是否是简单数据类型，
-    if (typeof obj == 'object') {
-      复杂数据类型
-      var result = obj.constructor == Array ? [] : {}
-      for (let i in obj) {
-        result[i] = typeof obj[i] == 'object' ? deepCopy(obj[i]) : obj[i]
-      }
-    } else {
-      简单数据类型 直接 == 赋值
-      var result = obj
+function deepClone(obj) {
+  let res = null;
+  if (typeof obj === "object") {
+    res = obj.construct === "Array" ? [] : {};
+    for (const i in obj) {
+      res[i] = deepClone(obj[i]);
     }
-    return result
+  } else {
+    res = obj;
   }
+  return res;
+}
 ```
 
 ## 判断类型，获取类型
@@ -510,24 +504,30 @@ getType(val) {
 
 ## newto，实现new，new做了什么
 
-1.肯定要返回一个新对象的啦，所以第一步先创建个新的空对象， 2.这个对象也要继承基类所有父方法的啦，所以把的原型指向基类的原型对象 obj.**proto** = Base.prototype 3.这个对象创建完后，需要初始化，初始化就是借用爸爸来初始化啦，就是 Base.call(obj)了
-自然而然 obj.prototype 原型就是初始化后的原型，直接返回 obj 就可以了
-基本三步
+new 做了三步
+
+1. let obj = {}
+2. obj._proto_ = Father.prototype
+3. Father.apply(obj,参数) 调用构造器初始化
 
 ```
-_new(fn, ...args) {
-  const obj = Object.create(fn.prototype)
-  const ret = fn.apply(obj, args)
-  return ret instanceof Object ? ret : obj
-},
+实现：
+let newMethod = function (Parent, ...rest) {
+    // 1.以构造器的prototype属性为原型，创建新对象；
+    let child = Object.create(Parent.prototype);
+    // 2.将this和调用参数传给构造器执行
+    let result = Parent.apply(child, rest);
+    // 3.如果构造器没有手动返回对象，则返回第一步的对象
+    return typeof result  === 'object' ? result : child;
+};
 ```
 
 ## 分时，渲染大量节点优化
 
-分时函数,把 1 秒渲染 1000 个分成每 200 毫秒渲染 8 个
+分时函数,把 一次性渲染 1000 个拆分分成每 200 毫秒渲染其中 8 个
 
 ```
-timeThunk(ary, fn, count) {
+timeThunk(ary, fn, count,delay = 200) {
   let timer
   let start = function () {
     for (let i = 0; i < Math.min(count || 1, ary.length); i++) {
@@ -541,7 +541,7 @@ timeThunk(ary, fn, count) {
         return clearInterval(timer)
       }
       start()
-    }, 200)
+    }, delay)
   }
 },
 大量节点渲染优化，分时渲染，验证后发现直接用innerHTML性能比createDocumentFragment文档碎片好
@@ -565,44 +565,21 @@ renderFriendList()
 ## 防抖,debounceto
 
 ```
-<!-- 加上控制每个周期的第一次是否运行 -->
-function debounce(fn, wait) {
-  let timer = null
-  return function () {
-    let _this = this,
-      args = arguments // 如果此时存在定时器的话，则取消之前的定时器重新记时
-    if (timer) {
-      clearTimeout(timer)
-      timer = null
-    }
-    // 设置定时器，使事件间隔指定事件后执行
-    timer = setTimeout(() => {
-      fn.apply(_this, args)
-    }, wait)
-  }
-}
 <!-- 自用 -->
-export function debounce(func, wait = 200, needRunAtFirst = true) {
+export function debounce(func, wait = 200, needRunAtFirst = false) {
   // 缓存一个定时器id
   let timer = 0;
   let firstTime = needRunAtFirst;
-  let isHandling = false;
   // 这里返回的函数是每次用户实际调用的防抖函数 // 如果已经设定过定时器了就清空上一次的定时器 // 开始一个新的定时器，延迟执行用户传入的方法
-  return function () {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
+  return function (...args) {
     const _this = this;
     if (firstTime) {
-      if (isHandling) return;
-      isHandling = true;
-      func.apply(_this, arguments);
-      setTimeout(() => {
-        firstTime = false;
-        isHandling = false;
-      }, wait);
+      func.apply(_this, args);
+      firstTime = false;
     } else {
       if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
-        func.apply(_this, arguments);
+        func.apply(_this, args);
         firstTime = needRunAtFirst;
       }, wait);
     }
@@ -614,26 +591,18 @@ export function debounce(func, wait = 200, needRunAtFirst = true) {
 ## 节流
 
 ```
-throttle(fn, interval = 200) {
- let timer, 定时器
-   firstTime = true 是否是第一次调用
- return function () {
-   let _this = this
-   if (firstTime) {
-     如果是第一次调用，不需延迟执行
-     fn.apply(_this, arguments)
-     return (firstTime = false)
-   }
-   if (timer) {
-     return false
-   }
-   timer = setTimeout(function () {
-     clearTimeout(timer)
-     timer = null
-     fn.apply(_this, arguments)
-   }, interval)
- }
-},
+<!-- 这种时间时间的定时器，可以自带runAtFirst，完美解决第一次需要运行的问题，用setTimeout实现的话要处理首次运行的问题比较多 -->
+function throttle(fn, delay = 5000) {
+  let old = 0;
+  return function (...args) {
+    const _this = this;
+    const now = Date.now();
+    if (now - old > delay) {
+      fn.apply(_this, args);
+      old = now;
+    }
+  };
+}
 ```
 
 ## react实现防抖输入框
@@ -685,6 +654,9 @@ class SearchInput extends React.Component {
 ```
 
 ## 正则to，
+
+1. 只有正则表达式才有 exec,和 test 的方法，字符串才有 match
+2. exec 和 replace 的结果用...args 打印出来都可以知道第一个结果是总体的匹配结果，后面是$1 和$2 之类的
 
 reg: test,exec,exec(eval(动态模板正则))
 str: match
@@ -1661,7 +1633,7 @@ const isPrefetchSupported = () => {
   const { relList } = link;
 
   if (!relList || !relList.supports) {
-    returnfalse;
+    return false;
   }
   return relList.supports('prefetch');
 };
