@@ -288,9 +288,10 @@
   - [快速排序（快排）](#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%BF%AB%E6%8E%92)
   - [原地快排（省空间）](#%E5%8E%9F%E5%9C%B0%E5%BF%AB%E6%8E%92%E7%9C%81%E7%A9%BA%E9%97%B4)
   - [选择排序](#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
+  - [冒泡排序](#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F)
   - [动态规划to](#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92to)
   - [最长递增子序列，稳定子序列](#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%A8%B3%E5%AE%9A%E5%AD%90%E5%BA%8F%E5%88%97)
-  - [最长回文字符串](#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2)
+  - [最长回文字符串，最长回文子序列](#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E5%BA%8F%E5%88%97)
   - [插入排序](#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)
   - [二分to](#%E4%BA%8C%E5%88%86to)
   - [二分查找（递归）](#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E9%80%92%E5%BD%92)
@@ -4856,22 +4857,68 @@ koa-convert 用来兼容 koa2 以下版本的写法
 将函数串联起来, [A,B,C] => A(B(C()))
 
 ```js
-let compose = function (middlewares) {
-  return function (ctx) {
-    return dispatch(0);
+// 实现compose
+const add = (x, y) => x + y;
+const plus = (x) => x * x;
+const square = (z) => z * z;
+const compose = (fns) => {
+  let res;
+  return (...args) => {
+    let _this = this;
+    const test = (i, args) => {
+      if (!fns[i]) return res;
+      res = fns[i].apply(_this, args);
+      return test(i + 1, [res]);
+    };
+    return test(0, args);
+  };
+};
+
+const fn = compose([add, square, plus]);
+console.log(fn(1, 2));
+
+// koa版
+function compose(middlewares) {
+  return function () {
+    return dispatch(0); // 执行第0个
     function dispatch(i) {
       let fn = middlewares[i];
       if (!fn) {
         return Promise.resolve();
       }
       return Promise.resolve(
-        fn(ctx, function next() {
+        fn(function next() {
+          // promise完成后，再执行下一个
           return dispatch(i + 1);
         })
       );
     }
   };
-};
+}
+async function fn1(next) {
+  console.log("fn1");
+  await next();
+  console.log("end fn1");
+}
+async function fn2(next) {
+  console.log("fn2");
+  await delay();
+  await next();
+  console.log("end fn2");
+}
+function fn3(next) {
+  console.log("fn3");
+}
+function delay() {
+  return new Promise((reslove, reject) => {
+    setTimeout(() => {
+      reslove();
+    }, 2000);
+  });
+}
+const middlewares = [fn1, fn2, fn3];
+const finalFn = compose(middlewares);
+finalFn();
 ```
 
 ## 实现限量重启，比如我最多让其在1分钟内重启5次，超过了就报警给运维
@@ -5096,7 +5143,7 @@ var version = exec('node --version', {silent:true}).stdout;
 
 var child = exec('some*long_running_process', {async:true});
 child.stdout.on('data', function(data) {
-/* ... do something with data ... \_/
+//  ... do something with data ... \_/
 });
 
 exec('some_long_running_process', function(code, stdout, stderr) {
@@ -5882,11 +5929,11 @@ rules: [{ required: true, message: "Please input your username!" }]
 getFieldDec = (field, option) => {
 this.options[field] = option; // 选项告诉我们如何校验
 
-<!-- 柯里化 -->
 
 return InputComp => (
 
   <div>
+  // 因为这里是个高阶函数，InputComp是入参，入参是无法直接修改属性的，所以这里用React.cloneElement来复制，就可以修改属性
     {React.cloneElement(InputComp, {
       name: field,
       value: this.state[field] || "",
@@ -6857,36 +6904,37 @@ LeetCode: https://leetcode-cn.com/problemset/all/
 
 Onlogn,稳定
 ![image](markdown/2021-12-07-02-03-04.png):markdown/2021-12-07-02-03-04.png
+分而治之，先分后治
 
 ```js
-function mergeSort(arr) {
-  采用自上而下的递归方法;
-  var len = arr.length;
-  if (len < 2) {
-    return arr;
+function MergeSort(array) {
+  let len = array.length;
+  if (len <= 1) {
+    return array;
   }
-  var middle = Math.floor(len / 2),
-    left = arr.slice(0, middle),
-    right = arr.slice(middle);
-  return merge(mergeSort(left), mergeSort(right));
-}
+  let num = Math.floor(len / 2);
+  let left = MergeSort(array.slice(0, num));
+  let right = MergeSort(array.slice(num, array.length));
+  return merge(left, right);
 
-function merge(left, right) {
-  var result = [];
-  console.time("归并排序耗时");
-  while (left.length && right.length) {
-    if (left[0] <= right[0]) {
-      result.push(left.shift());
-    } else {
-      result.push(right.shift());
+  // 最基础的两个小数组合并的方法，始终比对左右数组的第一项，小的先推入
+  // 结果数组里面，直到左右数组有一方遍历完，剩下的另一方直接推入即可
+  function merge(left, right) {
+    let [l, r] = [0, 0];
+    let result = [];
+    while (l < left.length && r < right.length) {
+      if (left[l] < right[r]) {
+        result.push(left[l]);
+        l++;
+      } else {
+        result.push(right[r]);
+        r++;
+      }
     }
+    // 左右数组其中一方比对完后，讲剩下的直接推入后面即可，因为这时剩下的必定是有序的更大的
+    result = [...result, ...left.slice(l), ...right.slice(r)];
+    return result;
   }
-
-  while (left.length) result.push(left.shift());
-
-  while (right.length) result.push(right.shift());
-  console.timeEnd("归并排序耗时");
-  return result;
 }
 ```
 
@@ -6909,7 +6957,7 @@ function quick_sort(arr) {
       right.push(arr[i]);
     }
   }
-  return quick_sort(left).concat([pivot], quick_sort(right));
+  return [quick_sort(left), pivot, quick_sort(right)];
 }
 ```
 
@@ -6971,26 +7019,45 @@ var quickSort = function(arr, left, right) {
 
 实现思路跟冒泡排序差不多， 可以说是冒泡排序的衍生版本；
 ![image](markdown/2021-12-07-02-00-10.png):markdown/2021-12-07-02-00-10.png
+每一趟从起点位置开始获得区间内最小的数字，然后与起点位置比对交换，起点位置+1 继续，就是冒泡排序的升级版
 
 ```js
 function selectionSort(arr) {
-  var len = arr.length
-  var minIndex, temp
-  console.time("选择排序耗时")
+  var len = arr.length;
+  var minIndex, temp;
+  console.time("选择排序耗时");
   for (var i = 0; i < len - 1; i++) {
-    minIndex = i
+    minIndex = i;
     for (var j = i + 1; j < len; j++) {
       if (arr[j] < arr[minIndex]) {
-        寻找最小的数
-        minIndex = j 将最小数的索引保存
+        // 寻找最小的数，将最小数的索引保存
+        minIndex = j;
       }
     }
-    temp = arr[i]
-    arr[i] = arr[minIndex]
-    arr[minIndex] = temp
+    temp = arr[i];
+    arr[i] = arr[minIndex];
+    arr[minIndex] = temp;
   }
-  console.timeEnd("选择排序耗时")
-  return arr
+  console.timeEnd("选择排序耗时");
+  return arr;
+}
+```
+
+## 冒泡排序
+
+就是每一趟循环都相邻两两比对可以堆后一个这次循环理最大的数，一个一个冒出来，直到全都冒泡完了
+
+```js
+function BubbleSort(array) {
+  let len = array.length;
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len - i - 1; j++) {
+      if (array[j] > array[j + 1]) {
+        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+      }
+    }
+  }
+  return array;
 }
 ```
 
@@ -7005,7 +7072,7 @@ function selectionSort(arr) {
 子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
 
 ```js
-<!-- 动态规划 -->
+// <!-- 动态规划 -->
 var lengthOfLIS = function(nums, dp = [1]) {
     for (let i = 1; i < nums.length; i++){
         dp[i] = 1
@@ -7046,30 +7113,23 @@ var lengthOfLIS = function(nums) {
 };
 ```
 
-## 最长回文字符串
+## 最长回文字符串，最长回文子序列
 
 ```js
 动态规划
-/**
- * @param {string} s
- * @return {string}
- */
 var longestPalindrome = function(s) {
-    if(s.length == 0) return '';
-    let res = s[0];
-    const dp = [];
-    // 从后向前判断回文串，逐步延申字符串
-    for(let i = s.length - 1; i >= 0; i--){
-        dp[i] = [];
-        for(let j = i; j < s.length; j++){
-            // case1: a
-            if(j - i === 0) dp[i][j] = true;
-            // case2: aa
-            else if(j - i == 1 && s[j] === s[i]) dp[i][j] = true;
-            // state transition
-            else if(s[i] === s[j] && dp[i + 1][j - 1]) dp[i][j] =true;
-            // update res
-            if(dp[i][j] && j - i + 1 > res.length) res = s.slice(i, j + 1);
+    let n = s.length;
+    let res = '';
+    let dp = Array.from(new Array(n),() => new Array(n).fill(false));//初始化数组
+    for(let i = n-1;i >= 0;i--){//循环字符串
+        for(let j = i;j < n;j++){
+          //dp[i][j]表示子串i～j是否是回文子串
+          //回文子串必须满足s[i]，s[j]相等。并且向外扩展一个字符也相等，即dp[i+1][j-1]也是回文子串
+          //j - i < 2表示子串小于等于1也是回文串
+            dp[i][j] = s[i] == s[j] && (j - i < 2 || dp[i+1][j-1]);
+            if(dp[i][j] && j - i +1 > res.length){//当前回文子串比之前的大，更新最大长度
+                res = s.substring(i,j+1);
+            }
         }
     }
     return res;
@@ -7230,16 +7290,14 @@ function binarySearch(arr, target) {
  * @return {number}
  */
 var findMedianSortedArrays = function (nums1, nums2) {
-  for (i = 0; i < nums2.length; i++) {
-    nums1.push(nums2[i]);
-  }
-  nums1 = nums1.sort(function (a, b) {
+  let tmp = [...nums1, ...nums2];
+  tmp = tmp.sort(function (a, b) {
     return b - a;
   }); //排序
-  if (nums1.length % 2 == 0) {
-    return (nums1[nums1.length / 2] + nums1[nums1.length / 2 - 1]) / 2; //中位数
+  if (tmp.length % 2 == 0) {
+    return (tmp[tmp.length / 2] + tmp[tmp.length / 2 - 1]) / 2; //中位数
   } else {
-    return nums1[(nums1.length - 1) / 2];
+    return tmp[(tmp.length - 1) / 2];
   }
 };
 ```
