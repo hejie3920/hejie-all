@@ -29,7 +29,7 @@
   - [实现promise,promiseto，](#%E5%AE%9E%E7%8E%B0promisepromiseto)
   - [手动实现promise.race,实现promise.all,promise.catch,promise.finally,promise.allSettled](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0promiserace%E5%AE%9E%E7%8E%B0promiseallpromisecatchpromisefinallypromiseallsettled)
   - [实现async/await](#%E5%AE%9E%E7%8E%B0asyncawait)
-  - [豪华版实现promise](#%E8%B1%AA%E5%8D%8E%E7%89%88%E5%AE%9E%E7%8E%B0promise)
+  - [豪华版实现promise，可链式调用prosmise](#%E8%B1%AA%E5%8D%8E%E7%89%88%E5%AE%9E%E7%8E%B0promise%E5%8F%AF%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8prosmise)
   - [yieldto，](#yieldto)
   - [手动实现generator](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0generator)
   - [微任务，宏任务，先微再宏，只不过一开始的script块也可以算是宏任务](#%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%85%88%E5%BE%AE%E5%86%8D%E5%AE%8F%E5%8F%AA%E4%B8%8D%E8%BF%87%E4%B8%80%E5%BC%80%E5%A7%8B%E7%9A%84script%E5%9D%97%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%AE%97%E6%98%AF%E5%AE%8F%E4%BB%BB%E5%8A%A1)
@@ -187,7 +187,7 @@
   - [v8代码优化实践](#v8%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5)
 - [webpackto，](#webpackto)
   - [自定义loaderto](#%E8%87%AA%E5%AE%9A%E4%B9%89loaderto)
-  - [webpack 原理，实现webpack](#webpack-%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
+  - [webpack原理，实现webpack](#webpack%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
   - [自定义插件，自定义pluginto](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89pluginto)
   - [webpack如何工作，工作流程](#webpack%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
   - [babel-pollyfillto和babel-transform-runtimeto区别](#babel-pollyfillto%E5%92%8Cbabel-transform-runtimeto%E5%8C%BA%E5%88%AB)
@@ -326,6 +326,7 @@
   - [二进制中1的个数](#%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0)
   - [数值的整数次方](#%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9)
   - [调整数组顺序使奇数位于偶数前面](#%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2)
+  - [链表中倒数最后k个结点](#%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E6%9C%80%E5%90%8Ek%E4%B8%AA%E7%BB%93%E7%82%B9)
   - [链表中倒数第k个结点链表双指针](#%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E7%BB%93%E7%82%B9%E9%93%BE%E8%A1%A8%E5%8F%8C%E6%8C%87%E9%92%88)
   - [树的子结构](#%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84)
   - [二叉树镜像](#%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F)
@@ -333,14 +334,15 @@
   - [包含min的栈](#%E5%8C%85%E5%90%ABmin%E7%9A%84%E6%A0%88)
   - [反转链表](#%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8)
   - [合并链表并排序](#%E5%90%88%E5%B9%B6%E9%93%BE%E8%A1%A8%E5%B9%B6%E6%8E%92%E5%BA%8F)
+  - [栈实现队列，栈队](#%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%E6%A0%88%E9%98%9F)
   - [栈的压入、弹出序列](#%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97)
   - [树的遍历](#%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86)
   - [从上往下打印二叉树](#%E4%BB%8E%E4%B8%8A%E5%BE%80%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91)
   - [二叉搜索树的后序遍历序列](#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97)
-  - [二叉树中和为某一值的路径](#%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84)
+  - [二叉树中和为某一值的路径，树和为x的路径](#%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84%E6%A0%91%E5%92%8C%E4%B8%BAx%E7%9A%84%E8%B7%AF%E5%BE%84)
   - [复杂链表的复制](#%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6)
   - [二叉搜索树与双向链表](#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8)
-  - [字符串的排列字符串，全排列，递归](#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A8%E6%8E%92%E5%88%97%E9%80%92%E5%BD%92)
+  - [字符串的排列字符串，全排列，递归，排列组合](#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A8%E6%8E%92%E5%88%97%E9%80%92%E5%BD%92%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88)
   - [数组中出现次数超过一半的数字数组，哈希](#%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97%E6%95%B0%E7%BB%84%E5%93%88%E5%B8%8C)
   - [最小的k个数，输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4。](#%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%E8%BE%93%E5%85%A5n%E4%B8%AA%E6%95%B4%E6%95%B0%E6%89%BE%E5%87%BA%E5%85%B6%E4%B8%AD%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%E4%BE%8B%E5%A6%82%E8%BE%93%E5%85%A545162738%E8%BF%998%E4%B8%AA%E6%95%B0%E5%AD%97%E5%88%99%E6%9C%80%E5%B0%8F%E7%9A%844%E4%B8%AA%E6%95%B0%E5%AD%97%E6%98%AF1234)
   - [连续子数组的最大和，最大子序和，动态规划，最大字段和](#%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%9C%80%E5%A4%A7%E5%AD%97%E6%AE%B5%E5%92%8C)
@@ -353,7 +355,7 @@
   - [数组中的逆序对](#%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9)
   - [数字在排序数组中出现的次数](#%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0)
   - [两个链表的第一个公共节点](#%E4%B8%A4%E4%B8%AA%E9%93%BE%E8%A1%A8%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%AC%E5%85%B1%E8%8A%82%E7%82%B9)
-  - [二叉树的深度](#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6)
+  - [二叉树的深度，二叉树深度](#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6)
   - [是不是平衡二叉树](#%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91)
   - [指定和的连续正数序列](#%E6%8C%87%E5%AE%9A%E5%92%8C%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%AD%A3%E6%95%B0%E5%BA%8F%E5%88%97)
   - [和为S的两个数字](#%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97)
@@ -368,6 +370,7 @@
   - [通配符匹配](#%E9%80%9A%E9%85%8D%E7%AC%A6%E5%8C%B9%E9%85%8D)
   - [判断字符串是不是数值](#%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%98%AF%E4%B8%8D%E6%98%AF%E6%95%B0%E5%80%BC)
   - [一个链表中包含环，请找出该链表的环的入口结点，环的入口](#%E4%B8%80%E4%B8%AA%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%8C%85%E5%90%AB%E7%8E%AF%E8%AF%B7%E6%89%BE%E5%87%BA%E8%AF%A5%E9%93%BE%E8%A1%A8%E7%9A%84%E7%8E%AF%E7%9A%84%E5%85%A5%E5%8F%A3%E7%BB%93%E7%82%B9%E7%8E%AF%E7%9A%84%E5%85%A5%E5%8F%A3)
+  - [删除链表节点](#%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9)
   - [链表删除重复的节点](#%E9%93%BE%E8%A1%A8%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E7%9A%84%E8%8A%82%E7%82%B9)
   - [给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针](#%E7%BB%99%E5%AE%9A%E4%B8%80%E4%B8%AA%E4%BA%8C%E5%8F%89%E6%A0%91%E5%92%8C%E5%85%B6%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E7%BB%93%E7%82%B9%E8%AF%B7%E6%89%BE%E5%87%BA%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E9%A1%BA%E5%BA%8F%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E7%BB%93%E7%82%B9%E5%B9%B6%E4%B8%94%E8%BF%94%E5%9B%9E%E6%B3%A8%E6%84%8F%E6%A0%91%E4%B8%AD%E7%9A%84%E7%BB%93%E7%82%B9%E4%B8%8D%E4%BB%85%E5%8C%85%E5%90%AB%E5%B7%A6%E5%8F%B3%E5%AD%90%E7%BB%93%E7%82%B9%E5%90%8C%E6%97%B6%E5%8C%85%E5%90%AB%E6%8C%87%E5%90%91%E7%88%B6%E7%BB%93%E7%82%B9%E7%9A%84%E6%8C%87%E9%92%88)
   - [是不是对称二叉树](#%E6%98%AF%E4%B8%8D%E6%98%AF%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91)
@@ -1209,7 +1212,7 @@ function run(gen) {
 }
 ```
 
-## 豪华版实现promise
+## 豪华版实现promise，可链式调用prosmise
 
 ```js
 Promise/A+规定的三种状态
@@ -1675,8 +1678,8 @@ function limitLoad(urls, handler, limit) {
     })
   })
   let p = Promise.race(promises)
-  <!-- sequence经过splice后会剔除掉已经请求的数据 -->
-  <!-- 然后下面的操作是把promise串起来串成一个promise串 -->
+  // <!-- sequence经过splice后会剔除掉已经请求的数据 -->
+  // <!-- 然后下面的操作是把promise串起来串成一个promise串 -->
   for (let i = 0; i < sequence.length; i++) {
     p = p.then(res => {
       promises[res] = handler(sequence[i]).then(() => {
@@ -2147,7 +2150,10 @@ key 的作用是用在 sameNode 里面，type 和 key 相同才是可复用的�
 
 - vue3
   https://www.jb51.net/article/189862.htm
-  vue3 的 diff 做了些优化，做法不一样了，直接头头相消，尾尾相消，开始向中间靠拢而不再头尾比较，先消掉头尾公共的部分，然后多退少补，如果中间有不确定的部分，直接进入核心 diff，首先建立 weakMap 索引映射新节点列表的 key 和 index,定义一个 newIndexToOldIndexMap 数组用来在正确的定位放老 dom，遍历老节点列表，如果有 key，直接可以通过 key 找到新的定位，如果没有，就遍历找最新的定位，然后针对 newIndexToOldIndexMap 求一个最长稳定递增子序列，用来做为基础的参照序列，其他新增或者发生移动的节点都参照这个序列进行移动
+  vue3 的 diff 做了些优化，做法不一样了，直接头头相消，尾尾相消，开始向中间靠拢而不再头尾比较,头尾相消后，剩下的老节点那些不确定的部分开始待确定，遍历老节点，建立一个数组newIndexToOldIndexMap，每个子元素都是[ 0, 0, 0, 0, 0, 0, ] 里面的数字是老节点的索引，索引位置是新节点的索引，
+  比如老： abcd
+  新：dacb
+  建立newIndexToOldIndexMap： [3,0,2,1],然后找最长递增子序列，可以得出是[0,1],也就代表着老节点树的0,1也就是ab不用动，然后c,d参照着进行移动，从而得出最小的操作数
 
 ## Vue原理，Vueto
 
@@ -4444,7 +4450,7 @@ test: /[\\/]node_modules[\\/]/,
 // 当 webpack 处理文件路径时，它们始终包含/在 Unix 系统和\Windows 上。这就是为什么[\\/]在{cacheGroup}
 // .test 字段中使用 in 来表示路径分隔符的原因。/ 或\in { cacheGroup }.test 会在跨平台使用时引起问题。
 
-## webpack 原理，实现webpack
+## webpack原理，实现webpack
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
@@ -7073,44 +7079,65 @@ function BubbleSort(array) {
 
 ```js
 // <!-- 动态规划 -->
-var lengthOfLIS = function(nums, dp = [1]) {
-    for (let i = 1; i < nums.length; i++){
-        dp[i] = 1
-        for (let j = 0; j < i; j++) {
-          if(nums[i] > nums[j]) {
-            dp[i] = Math.max(dp[i], dp[j] + 1)
-          }
+// 思路：dp[i]表示选择nums[i]，并且以nums[i]结尾的最长上升子序列的长度。两层循环，i：1～nums.length，
+// j：0～i，如果nums[i] > nums[j]，则构成一个上升对，dp[i]就从dp[i], dp[j]+1两个种选择较大者，最后返回dp数组总的最大数
+// 复杂度分析：时间复杂度O(n^2)，n是nums的长度，外层需要循环n次，dp[i]需要从dp[0~i-1],所以复杂度是O(n^2)。空间复杂度是O(n)，即dp数组的空间
+
+var lengthOfLIS = function(nums) {
+    // 保存长度
+    let n = nums.length;
+    if(n == 0) return 0
+    // 创建个对应长度的数组，并且都填充1,
+    // 填充1是子数组最差也是包含自己，那么长度怎么都是1
+    let dp = new Array(n).fill(1);
+    // 需要返回的值
+    let max = 0;
+    // 遍历整个数组
+    for(let i = 0;i < n;i++){
+        // 遍历[0,i-1]范围的数
+        for(let j = 0;j < i;j++){
+            //如果成立nums[j] < nums[i]，那么这个数组就是递增的
+            if(nums[j] < nums[i]){
+                // 对比下之前的长度，和这次能够生成的长度
+                dp[i] = Math.max(dp[i],dp[j]+1);
+            }
         }
+        max = Math.max(max,dp[i]);
     }
-    return Math.max(...dp)
-}
+    return max;
 };
 
-<!-- 贪心加二分法 -->
-var lengthOfLIS = function(nums) {
-    let len = 1, n = nums.length
-    if (n === 0) return 0
-    let d = []
-    d[len] = nums[0]
-    for (let i = 1; i < n; ++i) {
-        if (nums[i] > d[len]) {
-            d[++len] = nums[i];
-        } else {
-            let l = 1, r = len, pos = 0; // 如果找不到说明所有的数都比 nums[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0
-            while (l <= r) {
-                let mid = (l + r) >> 1;
-                if (d[mid] < nums[i]) {
-                    pos = mid;
-                    l = mid + 1;
+// <!-- 贪心加二分法 -->
+// 思路：准备tail数组存放最长上升子序列，核心思想就是越小的数字越要往前放，这样后面就会有更多的数字可以加入tails数组。将nums中的数不断加入tail，当nums中的元素比tail中的最后一个大时 可以放心push进tail，否则进行二分查找，让比较小的数二分查找到合适的位置，让后面有更多的数字与这个数形成上升子序列
+// 复杂度：时间复杂度O(nlogn)，n为nums的长度，每次二分查找需要logn，所以是总体的复杂度是O(nlogn)。空间复杂度是O(n) ,tail数组的开销
+
+var lengthOfLIS = function (nums) {
+    let n = nums.length;
+    if (n <= 1) {
+        return n;
+    }
+    let tail = [nums[0]];//存放最长上升子序列数组
+    for (let i = 0; i < n; i++) {
+        if (nums[i] > tail[tail.length - 1]) {//当nums中的元素比tail中的最后一个大时 可以放心push进tail
+            tail.push(nums[i]);
+        } else {//否则进行二分查找
+            let left = 0;
+            let right = tail.length - 1;
+            while (left < right) {
+                let mid = (left + right) >> 1;
+                // >> 1 相当于除以2
+                if (tail[mid] < nums[i]) {
+                    left = mid + 1;
                 } else {
-                    r = mid - 1;
+                    right = mid;
                 }
             }
-            d[pos + 1] = nums[i];
+            tail[left] = nums[i];//将nums[i]放置到合适的位置，此时前面的元素都比nums[i]小
         }
     }
-    return len;
+    return tail.length;
 };
+
 ```
 
 ## 最长回文字符串，最长回文子序列
@@ -8196,6 +8223,28 @@ module.exports = {
   reOrderArray: reOrderArray,
 };
 ```
+## 链表中倒数最后k个结点
+
+```js
+function FindKthToTail( pHead ,  k ) {
+    // write code here
+    let listNodeLen = 0;
+    let res = pHead;
+    let flag = 0;
+    while(pHead) {
+        pHead = pHead.next;
+        if(listNodeLen >= k) {
+            res = res.next;
+            flag = 1;
+        }
+        listNodeLen++;
+    }
+    if(!flag && listNodeLen !== k) {
+        res = null;
+    }
+    return res;
+}
+```
 
 ## 链表中倒数第k个结点链表双指针
 
@@ -8383,6 +8432,31 @@ function Merge(pHead1, pHead2) {
 }
 ```
 
+## 栈实现队列，栈队
+
+```js
+let stack_push=[];
+let stack_pop=[];
+ 
+function push(node)
+{
+    stack_push.push(node);
+}
+function pop()
+{
+    if(stack_pop.length==0){
+        if(stack_push.length==0){
+            return null;
+        }
+        while(stack_push.length>0){
+            stack_pop.push(stack_push.pop());
+        }
+ 
+    }
+    return stack_pop.pop();
+}
+```
+
 ## 栈的压入、弹出序列
 
 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列 1,2,3,4,5 是某栈的压入顺序，序列 4,5,3,2,1 是该压栈序列对应的一个弹出序列，但 4,3,5,1,2 就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）
@@ -8548,7 +8622,7 @@ function VerifySquenceOfBST(sequence) {
 }
 ```
 
-## 二叉树中和为某一值的路径
+## 二叉树中和为某一值的路径，树和为x的路径
 
 输入一颗二叉树的根节点和一个整数，按字典序打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
 示例 1
@@ -8563,33 +8637,23 @@ function VerifySquenceOfBST(sequence) {
     this.left = null;
     this.right = null;
 } */
-function DFS(root, number, path, result) {
-  if (!root) {
-    return null;
-  }
-  if (root.left == null && root.right == null) {
-    if (root.val == number) {
-      path.push(root.val);
-      result.push(path);
-      return result;
-    } else {
-      path = [];
-      return null;
+function FindPath(root, expectNumber)
+{
+    //dfs深度优先搜索，记录每一条路径的和值，与目标值比较，相同将该路径推入resArr
+    if(root===null){return 0}
+    let resArr=[]
+    let sum=0
+    let tempArr=[]
+    dfs(root,expectNumber,tempArr,sum,resArr)
+    return resArr
+    function dfs(root,expectNumber,tempArr,sum,resArr){
+        tempArr.push(root.val)
+        sum+=root.val
+        if(root.left===null&&root.right===null&&sum===expectNumber){resArr.push(tempArr.slice(0))} //注意深拷贝
+        if(root.left){dfs(root.left,expectNumber,tempArr,sum,resArr)} //注意每次都要把变量传递进去
+        if(root.right){dfs(root.right,expectNumber,tempArr,sum,resArr)}
+        tempArr.pop()
     }
-  }
-  path.push(root.val);
-  DFS(root.left, number - root.val, [...path], result);
-  DFS(root.right, number - root.val, [...path], result);
-  return result;
-}
-function FindPath(root, expectNumber) {
-  // write code here
-  var result = DFS(root, expectNumber, [], []);
-  if (result == null) return [];
-  result.sort((x, y) => {
-    return x.toString() - y.toString();
-  });
-  return result;
 }
 module.exports = {
   FindPath: FindPath,
@@ -8648,31 +8712,42 @@ module.exports = {
 };
 ```
 
-## 字符串的排列字符串，全排列，递归
+## 字符串的排列字符串，全排列，递归，排列组合
 
 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串 abc,则按字典序打印出由字符 a,b,c 所能排列出来的所有字符串 abc,acb,bac,bca,cab 和 cba。
 
 ```js
 // 递归法
-var permutation = function (s) {
-    if (s.length === 1) {
-        return Array.from(s)
-    } else {
-        let resArr = permutation(s.slice(1, s.length))
-        <!-- 记录是不是同一个情况 -->
-        let newResArr = new Set()
-        resArr.forEach(str => {
-            for (let i = 0; i <= str.length; i++) {
-                let newStr = str.slice(0, i) + s[0] + str.slice(i, str.length)
-                <!-- 不是同一个情况才添加 -->
-                if (!newResArr.has(newStr)) {
-                    newResArr.add(newStr)
-                }
-            }
-        })
-        return [...newResArr]
+function Permutation(str)
+{
+    let Str=[...str];//转为数组才能实现交换操作
+    dfs(Str,0);
+    return res;
+}
+let res=[];
+function dfs(str,index){
+    if(index===str.length-1){//递归到最后一位就不需要交换了，因为最多也只能同自己交换，值没变化
+        //push是通过地址操作的，而我们的str是定义在外部的，没有随for循环改变,如果直接push(str)，结果是每个值都相同，
+        //只能存到另一个变量中来避免
+        let c=[...str];
+        res.push(c.join(''));//转为字符串，返回结果
+        return;
     }
-};
+    let tmp=new Set();//set对象存储任何类型的唯一值,每一个for循环都新建一个，只保证当前index不相同值交换
+    for(let i=index;i<str.length;i++){
+        if(tmp.has(str[i]))  continue;//如果有相同的，跳过，不进行交换
+        tmp.add(str[i]);
+        swap(str,index,i);
+        dfs(str,index+1);
+        swap(str,index,i);//因为是在原字符串交换，所以递归之后还要换回来
+    }
+}
+ 
+function swap(str,l,r){
+    let tmp=str[l];
+    str[l]=str[r];
+    str[r]=tmp;
+}
 ```
 
 ## 数组中出现次数超过一半的数字数组，哈希
@@ -8719,42 +8794,60 @@ function GetLeastNumbers_Solution(input, k) {
 
 ## 连续子数组的最大和，最大子序和，动态规划，最大字段和
 
-输入一个整型数组，数组里有正数也有负数。数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。要求时间复杂度为 O(n).
-示例 1
-输入
+输入一个长度为n的整型数组array，数组中的一个或连续多个整数组成一个子数组，找到一个具有最大和的连续子数组。
+输入：
 [1,-2,3,10,-4,7,2,-5]
-返回值
-18
+复制
+返回值：
+[3,10,-4,7,2]
+复制
+说明：
+经分析可知，输入数组的子数组[3,10,-4,7,2]可以求得最大和为18，故返回[3,10,-4,7,2]  
 
-```js
+```java
 这道题用动态规划的思路并不难解决，比较难的是后文提出的用分治法求解，但由于其不是最优解法，所以先不列出来
 动态规划的是首先对数组进行遍历，当前最大连续子序列和为 sum，结果为 ans
 如果 sum > 0，则说明 sum 对结果有增益效果，则 sum 保留并加上当前遍历数字
 如果 sum <= 0，则说明 sum 对结果无增益效果，需要舍弃，则 sum 直接更新为当前遍历数字
 每次比较 sum 和 ans的大小，将最大值置为ans，遍历结束返回结果
 时间复杂度：O(n)O(n)
-function FindGreatestSumOfSubArray(array)
-{
-    // write code here
-    let sum = array[0]
-    let res = array[0]
-    for(let i=1;i<array.length;i++){
 
-        <!-- 是正数就加上去设置为当前最大值 -->
-        if(sum>0){
-            sum = sum+array[i]
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     *
+     * 
+     * @param array int整型一维数组 
+     * @return int整型一维数组
+     */
+    public int[] FindGreatestSumOfSubArray (int[] array) {
+        // write code here
+        int max = array[0];  //最大和
+        int index = 0;  //最优子数组右坐标
+        int maxlen = 0;  //最大长度
+        int len = 0;  //当前长度
+        int pre = Integer.MIN_VALUE;
+        int now;
+        for(int i=1; i<=array.length; i++){
+            if(pre>=0){
+                now = pre+array[i-1];
+                len+= 1;
+            }else{  //重置长度
+                now = array[i-1];
+                len = 1;
+            }
+            if(now > max || (now==max && len>maxlen)){  //更新最新值
+                index = i;
+                maxlen = len;
+                max = now;
+            }
+            pre = now;
         }
-        <!-- 否则直接设置为新的数组开头 -->
-        else{
-            sum = array[i]
-        }
-        res = Math.max(res,sum)
+        int[] ans = Arrays.copyOfRange(array, index-maxlen, index);
+        return ans;
     }
-    return res
 }
-module.exports = {
-    FindGreatestSumOfSubArray : FindGreatestSumOfSubArray
-};
+
 ```
 
 ## 找零钱
@@ -8962,8 +9055,45 @@ https://www.nowcoder.com/practice/96bd6684e04a44eb80e6a68efc0ec6c5?tpId=13&tags=
 
 ## 数字在排序数组中出现的次数
 
-```
-indexOf 和 lastIndexOf
+```js
+// indexOf 和 lastIndexOf
+// 二、用二分法，判断数组中间的数，如果正好等于k或者数组已经不可分，则从中间分别向两头找相等的数，同时计数，最后返回总数。如果是大于k，则递归数组的左半部分；小于k,则递归数组的右半部分。
+function GetNumberOfK(data, k)
+{
+    /*
+    let i=0;
+    let count=0;
+    while(data[i]<=k){
+        if(data[i]==k){
+            count++;
+        }
+        i++;
+    }
+    return count;
+    */
+    const mid = Math.floor(data.length/2);
+    if(data[mid] == k || data.length < 2){
+        let count=0;
+        let i = mid;
+        while(i>=0 && data[i] == k){
+            count++;
+            i--;
+        }
+        i = mid+1;
+        while(i<data.length && data[i] == k){
+            count++;
+            i++;
+        }
+        return count;
+    }
+    else if(data[mid]<k){
+        return GetNumberOfK(data.slice(mid+1), k)
+    }
+    else if(data[mid]>k){
+        return GetNumberOfK(data.slice(0,mid), k)
+    }
+ 
+}
 ```
 
 ## 两个链表的第一个公共节点
@@ -9001,7 +9131,7 @@ function FindFirstCommonNode(pHead1, pHead2) {
 }
 ```
 
-## 二叉树的深度
+## 二叉树的深度，二叉树深度
 
 ```js
 function TreeDepth(pRoot) {
@@ -9466,6 +9596,26 @@ function EntryNodeOfLoop(pHead) {
     }
     return null;
   }
+}
+```
+
+## 删除链表节点
+```js
+export function deleteNode(head: ListNode, val: number): ListNode {
+    // write code here
+    if(!head) {
+        return null;
+    }
+    const dummy = new ListNode(0);
+    dummy.next = head;
+    let cur = dummy;
+    while(cur.next) {
+        if(cur.next.val === val) {
+            cur.next = cur.next.next;
+        }
+        cur = cur.next;
+    }
+    return dummy.next;
 }
 ```
 
