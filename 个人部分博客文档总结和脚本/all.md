@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [基础](#%E5%9F%BA%E7%A1%80)
   - [Js数据类型，js基本类型和复杂类型](#js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bjs%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B)
   - [JavaScript 的基本类型和复杂类型存在哪⾥的？(基站复堆)](#javascript-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%9C%A8%E5%93%AA%E2%BE%A5%E7%9A%84%E5%9F%BA%E7%AB%99%E5%A4%8D%E5%A0%86)
@@ -257,6 +258,10 @@
   - [reactssr掘金好文](#reactssr%E6%8E%98%E9%87%91%E5%A5%BD%E6%96%87)
   - [Egg + React + SSR 服务端渲染](#egg--react--ssr-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93)
   - [Next](#next)
+- [tsto](#tsto)
+  - [实现ReturnType](#%E5%AE%9E%E7%8E%B0returntype)
+  - [实现Pick](#%E5%AE%9E%E7%8E%B0pick)
+  - [筛选出为函数类型的字段名](#%E7%AD%9B%E9%80%89%E5%87%BA%E4%B8%BA%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D)
 - [Umi+Dva](#umidva)
   - [所有配置](#%E6%89%80%E6%9C%89%E9%85%8D%E7%BD%AE)
   - [运行时配置](#%E8%BF%90%E8%A1%8C%E6%97%B6%E9%85%8D%E7%BD%AE)
@@ -6333,6 +6338,30 @@ Router.beforePopState(({ url, as, options }) => {
 - next.config.js
   自定义配置 [https://github.com/zeit/](https://github.com/zeit/)
 
+# tsto
+
+## 实现ReturnType
+
+```ts
+type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
+```
+
+## 实现Pick
+
+```ts
+type MyPick<T, K> = {
+  [k in K]: k extends keyof T ? T[k] : never;
+};
+```
+
+## 筛选出为函数类型的字段名
+
+```ts
+type PickFuncProp<T> = {
+  [P in keyof T]: T[P] extends Function ? P : never;
+}[keyof T];
+```
+
 # Umi+Dva
 
 ## 所有配置
@@ -7543,7 +7572,7 @@ decode() {
 ```js
 
 findNearest(arr, target) {
-  这一步是深拷贝，目的是为了不影响原数组
+  // 这一步是深拷贝，目的是为了不影响原数组
   let arr = JSON.parse(JSON.stringify(tmp))
   arr.push(target)
   let index = arr.sort((a, b) => a - b).indexOf(target)
@@ -7584,9 +7613,7 @@ let _eatman = function (name) {
     self.next();
   };
   queue.push(init);
-  setTimeout(function () {
-    self.next();
-  }, 0);
+
   let self = {
     next: function () {
       if (queue.length) {
@@ -7611,6 +7638,9 @@ let _eatman = function (name) {
       return this;
     },
   };
+  setTimeout(function () {
+    self.next();
+  }, 0);
   return self;
 };
 EatMan("hank").eat("dinner").eatFirst("lanunch");
@@ -7791,7 +7821,7 @@ let widthTraversal2 = node => {
       let item = stack.shift()
       let children = item.children
       nodes.push(item)
-      队列，先进先出
+      // 队列，先进先出
       nodes = [] stack = [parent]
       nodes = [parent] stack = [child1,child2,child3]
       nodes = [parent, child1] stack = [child2,child3,child1-1,child1-2]
@@ -9935,73 +9965,30 @@ function movingCount(threshold, rows, cols){
 房屋中有报警器，如果同时从相邻的两个房屋中盗取财宝就会触发报警器。问在不触发报警器的前提
 下，最多可获取多少财宝？例如 [5，2，6，3，1，7]，则选择 5，6，7
 
-```
-2 、⼦问题：
-（1）、只考虑前两个房间时，谁⼤选谁 （2）、考虑第三个房间
-如果偷第三个房间，则意味着第⼆个房间不投，也就是第三个房间值 + 第⼀个房间的宝藏数量
-如果不偷第三个房间，则宝藏数量等于前两个房间宝藏数量
-3、确认状态：
-int [] nums; // 各个房间的宝藏数
-int [] flags = new int [n]; // 记录各个房间有没有被偷，若flag = 0 则没偷， flag = 1 则偷了。
-int [] dp = new int [n]; // dp[i]表示前i个房间偷到的最⼤宝藏数
-4、初始状态：
-第⼀个房间：
-Condistion 1 ：dp[0] = nums[0] ; flags[0] = 1;
-Condistion 2 ：dp[0] = 0; flags[0] = 0;
-第⼆个房间：
-Condistion 1 ：when flags[1] = 1; dp[1] = nums[1];
-Condistion 2 ：whenflags[1] = 0; dp[1] = dp[0];
-选 Condistion 1 还是 Condistion 2呢？ ⽐较 两种情况下dp[1]的⼤⼩ 推⼴到前i个房间: (i>=2)
-when flags[i] = 1, dp[i] = nums[i] + dp[i-2]
-when flags[i] = 0; dp[i] = dp[i-1]
-5、状态转移⽅程：
-dp[0] = nums[0];
-dp[1] = max(nums[0],nums[1]);
-for(int i = 2;i<n;i++)
- dp[i] = max(nums[i] + dp[i-2],dp[i-1])
-6、代码实现
-class Solution {
-public int rob(int[] nums) {
-if(nums.length == 0)
-return 0;
-int [] dp = new int[nums.length];
-dp[0] = nums[0];
-// 每次做数组判定时都需要做数组边界判定，防⽌越界
-if(nums.length < 2)
-return nums[0];
-dp[1] = (nums[0]>nums[1]) ? nums[0] : nums[1];
-for(int i = 2;i<nums.length;i++)
-dp[i] = ((nums[i] + dp[i-2]) > dp[i-1]) ? (nums[i]+dp[i-2]) :
-dp[i-1];
-return dp[nums.length-1];
- }
-}
+我们遍历数组，尝试算出偷到 n 房间获得的最大金钱，根据题意不能偷相邻的两个房间。
 
+偷第 n 个房间所的的最大金钱为：偷到 n-2 房间获得的最大金钱和 n-3 房间的最大金钱中最大者再加上 n 房间里的钱：
+
+maxMoney[n] = MAX( maxMoney[n-1], maxMoney[n-2] + num )
+
+时间复杂度：O(n)
+
+```js
 //奇偶数的动态规划
-let rob = function(nums) {
-    if(nums.length <= 0){
-        return false;
+var rob = function (nums) {
+  if (nums.length === 0) {
+    return 0;
+  }
+  let maxMoney = nums[0];
+  for (let i = 0; i < nums.length; i++) {
+    nums[i] = Math.max(nums[i - 2] || 0, nums[i - 3] || 0) + nums[i];
+    if (nums[i] > maxMoney) {
+      maxMoney = nums[i];
     }
-    let result; //保存将要返回的结果
-    let sum = [0, 0];//数组的第一个数保存奇数的和，第二保存偶数的和
-    if(nums.length === 1){
-        result = nums[0];
-    }
-    for(let i = 0; i < nums.length; i++){
-        if(i % 2 === 0){
-            //奇数时求和
-            sum[0] +=nums[i];
-            sum[0] = Math.max(sum[0], sum[1]);
-        }
-        if(i % 2 !== 0){
-            //偶数求和
-            sum[1] +=nums[i];
-            sum[1] = Math.max(sum[0], sum[1]);
-        }
-    }
-    result = Math.max(sum[0], sum[1]);
-    return result;
-}
+  }
+
+  return maxMoney;
+};
 ```
 
 ## 最小路径和
