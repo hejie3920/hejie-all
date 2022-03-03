@@ -4934,7 +4934,7 @@ const compose = (fns) => {
 const fn = compose([add, square, plus]);
 console.log(fn(1, 2));
 
-// koa版
+// koacompose
 function compose(middlewares) {
   return function () {
     return dispatch(0); // 执行第0个
