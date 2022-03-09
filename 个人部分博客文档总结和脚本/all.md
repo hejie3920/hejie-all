@@ -46,6 +46,7 @@
   - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
   - [使用闭包实现每隔一秒打印1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
 - [亮点to，hejieto](#%E4%BA%AE%E7%82%B9tohejieto)
+  - [懒加载，视图内加载](#%E6%87%92%E5%8A%A0%E8%BD%BD%E8%A7%86%E5%9B%BE%E5%86%85%E5%8A%A0%E8%BD%BD)
   - [性能优化to](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96to)
   - [常用优化代码块](#%E5%B8%B8%E7%94%A8%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E5%9D%97)
   - [编辑器](#%E7%BC%96%E8%BE%91%E5%99%A8)
@@ -1580,6 +1581,57 @@ for (let i = 0; i < 5; i++) {
 
 - webp 优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件
 
+## 懒加载，视图内加载
+
+https://mp.weixin.qq.com/s/XIuINjn6t0uY6kALqEQMaQ
+
+```js
+import React, { useEffect, useState } from "react";
+import VideoItem from "components/VideoItem";
+import styles from "./videoList.less";
+
+const data = [
+  // 视频列表
+];
+
+function VideoList(props) {
+  useEffect(() => {
+    let observerVideo = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          // 当移入指定区域内后，播放视频
+          if (entry.intersectionRatio === 1) {
+            // 一些操作
+            return;
+          }
+          // 停止监听
+          // observer.unobserve(entry.target);
+        });
+      },
+      {
+        root: document.getElementById("scrollView"),
+        rootMargin: "-180px 0px -180px 0px",
+        threshold: 1,
+      }
+    );
+    document.querySelectorAll(".video-item").forEach((video) => {
+      observerVideo.observe(video);
+    });
+  }, []);
+  return (
+    <div className={styles.videoWrap}>
+      <div className={styles.list} id="scrollView">
+        {data.map((item) => {
+          return <VideoItem src={item} groupName="video-item" key={item} />;
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default VideoList;
+```
+
 ## 性能优化to
 
 1. wepack 打包层面
@@ -2295,42 +2347,53 @@ function reactive(obj) {
 ## 前端日志监控，异常上报，性能监控,异常to
 
 - 错误类型
-Error
-EvalError
-RangeError
-ReferenceError
-SyntaxError（语法错误）
-TypeError
-URIError
+  Error
+  EvalError
+  RangeError
+  ReferenceError
+  SyntaxError（语法错误）
+  TypeError
+  URIError
 
+1. trycath 只能抓同步的运行时错误，语法错误抓不了，异步请求错误也抓不了，比如 setTimeout 里面的错误抓不了
+2. Promise.catch()抓异步错误，所以改写 Promise.catch 可以进行错误上报，但 promise.catch 同样抓不了语法错误和异步任务
+3. unhandledrejection unhandledrejection：当 Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事件
 
-1. trycath只能抓同步的运行时错误，语法错误抓不了，异步请求错误也抓不了，比如setTimeout里面的错误抓不了
-2. Promise.catch()抓异步错误，所以改写Promise.catch可以进行错误上报，但promise.catch同样抓不了语法错误和异步任务
-3. unhandledrejection unhandledrejection：当Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事件
 ```js
-window.addEventListener("unhandledrejection", function(e){
+window.addEventListener("unhandledrejection", function (e) {
   console.log(e);
 });
 ```
-4. window.onerror，window.addEventListener，不能抓Promise错误和语法错误和iframe异常，其他的可以
+
+4. window.onerror，window.addEventListener，不能抓 Promise 错误和语法错误和 iframe 异常，其他的可以
+
 ```js
-window.onerror = function(message, source, lineno, colno, error) {
-   console.log('捕获到异常：',{message, source, lineno, colno, error});
-}
-```
-5. iframe异常
-```js
-window.frames[0].onerror = function (message, source, lineno, colno, error) {
-    console.log('捕获到 iframe 异常：',{message, source, lineno, colno, error});
-    return true;
+window.onerror = function (message, source, lineno, colno, error) {
+  console.log("捕获到异常：", { message, source, lineno, colno, error });
 };
 ```
-6. react ErrorBoundary,可以处理任务js错误
-7. vue Vue.config.errorHandler 同上，可以处理promise链错误
+
+5. iframe 异常
+
+```js
+window.frames[0].onerror = function (message, source, lineno, colno, error) {
+  console.log("捕获到 iframe 异常：", {
+    message,
+    source,
+    lineno,
+    colno,
+    error,
+  });
+  return true;
+};
+```
+
+6. react ErrorBoundary,可以处理任务 js 错误
+7. vue Vue.config.errorHandler 同上，可以处理 promise 链错误
 8. 跨端脚本无法准确捕获异常
 解决方案：对 script 标签增加一个 crossorigin=”anonymous”，并且服务器添加 Access-Control-Allow-Origin。
 <script src="http://cdn.xxx.com/index.js" crossorigin="anonymous"></script>
-3. 开发环境下开启 source-map 可以定位错误文件
+9. 开发环境下开启 source-map 可以定位错误文件
 
 ## 性能监控
 
@@ -5982,7 +6045,7 @@ const Counter = React.memo((props) => {
 
 - 浏览器 performance 看 timing
 - map.get(), map.has()，与数组查找相比尤其高效
-- 类组件用immutable 单向数据可以方便地实现数据响应，对象添加属性就会自动响应，而不用像 redux 一样一定要返回一个{...state,newpeyload}，函数组件可以用immer.js
+- 类组件用 immutable 单向数据可以方便地实现数据响应，对象添加属性就会自动响应，而不用像 redux 一样一定要返回一个{...state,newpeyload}，函数组件可以用 immer.js
 - 能尽量用 props 传的就尽量用 props 传，redux 的话一些无关属性的变化可能会导致子孙也渲染
 
 ## JSX
@@ -6468,6 +6531,7 @@ type PickFuncProp<T> = {
 ```
 
 # dockerto
+
 https://mp.weixin.qq.com/s/Qp9jSzUNsJJrHeImXD9w6Q
 
 # Umi+Dva
