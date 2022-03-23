@@ -1581,7 +1581,7 @@ for (let i = 0; i < 5; i++) {
 
 - webp 优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件
 
-## 懒加载，视图内加载
+## 懒加载，视图内加载，可视区内加载
 
 https://mp.weixin.qq.com/s/XIuINjn6t0uY6kALqEQMaQ
 
