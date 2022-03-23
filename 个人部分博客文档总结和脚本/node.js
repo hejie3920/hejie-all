@@ -34,7 +34,7 @@ class _Promise {
       });
     };
 
-    cb?.(resolve, reject);
+    cb(resolve, reject);
   }
   then(onResolve, onReject) {
     if (typeof onResolve === "function") {
@@ -46,18 +46,18 @@ class _Promise {
     return this;
   }
 }
-let promise = new _Promise((resolve, reject) => {
-  resolve("hi");
-})
-  .then((res) => {
-    console.log("TCL: res", res);
-  })
-  .then((res) => {
-    console.log("TCL: res222", res);
-  })
-  .then((res) => {
-    console.log("TCL: res333", res);
-  });
+// let promise = new _Promise((resolve, reject) => {
+//   resolve("hi");
+// })
+//   .then((res) => {
+//     console.log("TCL: res", res);
+//   })
+//   .then((res) => {
+//     console.log("TCL: res222", res);
+//   })
+//   .then((res) => {
+//     console.log("TCL: res333", res);
+//   });
 
 // 实现一个方法，判断对象中是否存在循环引用。
 function isCycle(obj, parent) {
@@ -171,3 +171,30 @@ const maxLength2 = (nums) => {
   return dp;
 };
 console.log("TCL: 二分", maxLength2([1, 10, 11, 13, 2, 3, 4, 5]));
+
+const test = {
+  a_b_c: 1,
+  a_c_b: 2,
+  c_b_d: 3,
+};
+
+function convert(data = "a_b_c") {
+  const keysMap = data.split("_");
+  let backUp = {};
+  let map = {};
+  let res = {};
+  for (let i = keysMap.length - 1; i >= 0; i--) {
+    const key = keysMap[i];
+    if (i === 0) {
+      res[key] = backUp;
+    } else {
+      map = {
+        [key]: i === keysMap.length - 1 ? 1 : backUp,
+      };
+      backUp = map;
+    }
+  }
+  console.log("TCL: res", res);
+  return res;
+}
+convert();

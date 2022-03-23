@@ -11,17 +11,17 @@ let utils = {
   // 深拷贝
   deepCopy(obj) {
     //判断是否是简单数据类型，
-    if (typeof obj == 'object') {
+    if (typeof obj == "object") {
       //复杂数据类型
-      var result = obj.constructor == Array ? [] : {}
+      var result = obj.constructor == Array ? [] : {};
       for (let i in obj) {
-        result[i] = typeof obj[i] == 'object' ? deepCopy(obj[i]) : obj[i]
+        result[i] = typeof obj[i] == "object" ? deepCopy(obj[i]) : obj[i];
       }
     } else {
       //简单数据类型 直接 == 赋值
-      var result = obj
+      var result = obj;
     }
-    return result
+    return result;
   },
   // https://juejin.im/post/5e92eb5b6fb9a03c8966dc88
   // 1.字符串隐藏
@@ -32,46 +32,49 @@ let utils = {
   // coinChange([2, 4], -1) // -1
   // coinChange([1, 2, 4, 5, 10], 100) //10
   coinChange(coins, amount) {
-    let ans = new Array(amount + 1).fill(Infinity)
-    ans[0] = 0
+    let ans = new Array(amount + 1).fill(Infinity);
+    ans[0] = 0;
     for (let i = 1; i <= amount; i++) {
       for (let coin of coins) {
         if (i >= coin) {
-          ans[i] = Math.min(ans[i], ans[i - coin] + 1)
+          ans[i] = Math.min(ans[i], ans[i - coin] + 1);
         }
       }
     }
-    return ans[amount] === Infinity ? -1 : ans[amount]
+    return ans[amount] === Infinity ? -1 : ans[amount];
   },
   // 正则解码
   decode() {
-    let sindex = (eindex = -1)
-    let count = -1
-    let substr = ''
+    let sindex = (eindex = -1);
+    let count = -1;
+    let substr = "";
     for (let i = 0; i < str.length; i++) {
-      if (str[i] == '[') {
-        sindex = i
+      if (str[i] == "[") {
+        sindex = i;
         if (!isNaN(parseInt(str[i - 1]))) {
-          let reg = /(\d)+$/g
+          let reg = /(\d)+$/g;
           // reg.test(str.slice(0,i))
           // count = RegExp.$1
-          count = str.slice(0, i).match(reg)[0]
+          count = str.slice(0, i).match(reg)[0];
         } else {
-          count = -1
+          count = -1;
         }
       }
-      if (str[i] == ']') {
-        eindex = i
+      if (str[i] == "]") {
+        eindex = i;
       }
       if (![sindex, eindex].includes(-1)) {
-        substr = str.slice(sindex + 1, eindex)
+        substr = str.slice(sindex + 1, eindex);
         if (count != -1) {
-          str = str.slice(0, sindex - count.length) + substr.repeat(count) + str.slice(eindex + 1)
+          str =
+            str.slice(0, sindex - count.length) +
+            substr.repeat(count) +
+            str.slice(eindex + 1);
         }
-        sindex = eindex = count = i = -1
+        sindex = eindex = count = i = -1;
       }
     }
-    return str
+    return str;
   },
   // 找数组中最接近指定值得值，找最近
   // 找最接近目标的值，找最近
@@ -79,15 +82,18 @@ let utils = {
   findNearest(arr, target) {
     // 这一步是深拷贝，目的是为了不影响原数组
     // let arr = JSON.parse(JSON.stringify(tmp))
-    arr.push(target)
-    let index = arr.sort((a, b) => a - b).indexOf(target)
-    let res
-    if (index === 0) res = arr[index + 1]
-    else if (index === arr.length - 1) res = arr[index - 1]
+    arr.push(target);
+    let index = arr.sort((a, b) => a - b).indexOf(target);
+    let res;
+    if (index === 0) res = arr[index + 1];
+    else if (index === arr.length - 1) res = arr[index - 1];
     else {
-      res = target - arr[index - 1] > arr[index + 1] - target ? arr[index + 1] : arr[index - 1]
+      res =
+        target - arr[index - 1] > arr[index + 1] - target
+          ? arr[index + 1]
+          : arr[index - 1];
     }
-    return res
+    return res;
   },
   /**
    * 同步加载js脚本
@@ -96,52 +102,56 @@ let utils = {
    * @return {Boolean}   返回是否加载成功，true代表成功，false代表失败
    */
   loadJS(id, url) {
-    var xmlHttp = null
+    var xmlHttp = null;
     if (window.ActiveXObject) {
       //IE
       try {
         //IE6以及以后版本中可以使用
-        xmlHttp = new ActiveXObject('Msxml2.XMLHTTP')
+        xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
       } catch (e) {
         //IE5.5以及以后版本可以使用
-        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP')
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
       }
     } else if (window.XMLHttpRequest) {
       //Firefox，Opera 8.0+，Safari，Chrome
-      xmlHttp = new XMLHttpRequest()
+      xmlHttp = new XMLHttpRequest();
     }
     //采用同步加载
-    xmlHttp.open('GET', url, false)
+    xmlHttp.open("GET", url, false);
     //发送同步请求，如果浏览器为Chrome或Opera，必须发布后才能运行，不然会报错
-    xmlHttp.send(null)
+    xmlHttp.send(null);
     //4代表数据发送完毕
     if (xmlHttp.readyState == 4) {
       //0为访问的本地，200到300代表访问服务器成功，304代表没做修改访问的是缓存
-      if ((xmlHttp.status >= 200 && xmlHttp.status < 300) || xmlHttp.status == 0 || xmlHttp.status == 304) {
-        var myHead = document.getElementsByTagName('HEAD').item(0)
-        var myScript = document.createElement('script')
-        myScript.language = 'javascript'
-        myScript.type = 'text/javascript'
-        myScript.id = id
+      if (
+        (xmlHttp.status >= 200 && xmlHttp.status < 300) ||
+        xmlHttp.status == 0 ||
+        xmlHttp.status == 304
+      ) {
+        var myHead = document.getElementsByTagName("HEAD").item(0);
+        var myScript = document.createElement("script");
+        myScript.language = "javascript";
+        myScript.type = "text/javascript";
+        myScript.id = id;
         try {
           //IE8以及以下不支持这种方式，需要通过text属性来设置
-          myScript.appendChild(document.createTextNode(xmlHttp.responseText))
+          myScript.appendChild(document.createTextNode(xmlHttp.responseText));
         } catch (ex) {
-          myScript.text = xmlHttp.responseText
+          myScript.text = xmlHttp.responseText;
         }
-        myHead.appendChild(myScript)
-        return true
+        myHead.appendChild(myScript);
+        return true;
       } else {
-        return false
+        return false;
       }
     } else {
-      return false
+      return false;
     }
   },
 
   // 判断类型，获取类型
   getType(val) {
-    return Object.prototype.toString.call(val).slice(8, -1).toLowerCase()
+    return Object.prototype.toString.call(val).slice(8, -1).toLowerCase();
   },
   // 实现new，new做了什么
   // 1.肯定要返回一个新对象的啦，所以第一步先创建个新的空对象，
@@ -150,27 +160,27 @@ let utils = {
   // 自然而然obj.prototype原型就是初始化后的原型，直接返回obj就可以了
   // 基本三步
   _new(fn, ...args) {
-    const obj = Object.create(fn.prototype)
-    const ret = fn.apply(obj, args)
-    return ret instanceof Object ? ret : obj
+    const obj = Object.create(fn.prototype);
+    const ret = fn.apply(obj, args);
+    return ret instanceof Object ? ret : obj;
   },
   // 分时函数,把1秒渲染1000个分成每200毫秒渲染8个
   timeThunk(ary, fn, count) {
-    let timer
+    let timer;
     let start = function () {
       for (let i = 0; i < Math.min(count || 1, ary.length); i++) {
-        let obj = ary.shift()
-        fn(obj)
+        let obj = ary.shift();
+        fn(obj);
       }
-    }
+    };
     return function () {
       timer = setInterval(() => {
         if (ary.length === 0) {
-          return clearInterval(timer)
+          return clearInterval(timer);
         }
-        start()
-      }, 200)
-    }
+        start();
+      }, 200);
+    };
   },
   // 大量节点渲染优化，分时渲染，验证后发现直接用innerHTML性能比createDocumentFragment文档碎片好
   // var ary = []
@@ -190,58 +200,58 @@ let utils = {
 
   // 防抖
   debounce(func, wait = 200, needRunAtFirst = true) {
-    let timer = 0
-    let firstTime = needRunAtFirst
+    let timer = 0;
+    let firstTime = needRunAtFirst;
     return function () {
-      let _this = this
+      let _this = this;
       if (firstTime) {
-        func.apply(_this, arguments)
-        firstTime = false
+        func.apply(_this, arguments);
+        firstTime = false;
       } else {
-        if (timer) clearTimeout(timer)
+        if (timer) clearTimeout(timer);
         timer = setTimeout(() => {
-          func.apply(_this, arguments)
-          firstTime = needRunAtFirst
-        }, wait)
+          func.apply(_this, arguments);
+          firstTime = needRunAtFirst;
+        }, wait);
       }
-    }
+    };
   },
   throttle(fn, interval = 200) {
     let timer, // 定时器
-      firstTime = true // 是否是第一次调用
+      firstTime = true; // 是否是第一次调用
     return function () {
-      let _this = this
+      let _this = this;
       if (firstTime) {
         // 如果是第一次调用，不需延迟执行
-        fn.apply(_this, arguments)
-        return (firstTime = false)
+        fn.apply(_this, arguments);
+        return (firstTime = false);
       }
       if (timer) {
-        return false
+        return false;
       }
       timer = setTimeout(function () {
-        clearTimeout(timer)
-        timer = null
-        fn.apply(_this, arguments)
-      }, interval)
-    }
+        clearTimeout(timer);
+        timer = null;
+        fn.apply(_this, arguments);
+      }, interval);
+    };
   },
   debounceExec(func, delay = 200) {
-    closure.debounceTimer && clearTimeout(closure.debounceTimer)
+    closure.debounceTimer && clearTimeout(closure.debounceTimer);
     closure.debounceTimer = setTimeout(() => {
-      func && func()
-    }, delay)
+      func && func();
+    }, delay);
   },
   throttleExec(func, wait = 200) {
     // 当前时间
-    let now = +new Date()
+    let now = +new Date();
     // 将当前时间和上一次执行函数时间对比 // 如果差值大于设置的等待时间就执行函数
     if (now - closure.throttleLastTime > wait) {
-      closure.throttleLastTime = now
-      func && func()
+      closure.throttleLastTime = now;
+      func && func();
     }
-  }
-}
+  },
+};
 // react实现防抖输入框
 // 防抖函数
 // function debounce(fn, wait, immediate) {
@@ -2071,3 +2081,74 @@ ref="input"
 /*
 
 */
+// let list = [
+//   { id: 0, name: "部门", pid: -1 },
+//   { id: 1, name: "部门A", pid: 0 },
+//   { id: 2, name: "部门B", pid: 0 },
+//   { id: 3, name: "部门C", pid: 1 },
+//   { id: 4, name: "部门D", pid: 1 },
+//   { id: 5, name: "部门E", pid: 2 },
+//   { id: 6, name: "部门F", pid: 3 },
+//   { id: 7, name: "部门G", pid: 2 },
+//   { id: 8, name: "部门H", pid: 4 },
+// ];
+
+// let hejie = {};
+// (hejie.children || (hejie.children = [])).push("1111");
+// console.log("TCL: hejie", hejie);
+
+// console.log("TCL: con", convert(list));
+let arr = [
+  { id: 2, name: "部门B", parentId: "root" },
+  { id: 3, name: "部门C", parentId: 1 },
+  { id: 1, name: "部门A", parentId: 2 },
+  { id: 4, name: "部门D", parentId: 1 },
+  { id: 5, name: "部门E", parentId: 2 },
+  { id: 6, name: "部门F", parentId: 3 },
+  { id: 7, name: "部门G", parentId: 2 },
+  { id: 8, name: "部门H", parentId: 4 },
+];
+/** * 数组转树 非递归求解 * 利用数组和对象相互引用 时间复杂度O(n) * @param {Object} list */
+function totree(list, parId) {
+  let obj = {};
+  let result = {};
+  //将数组中数据转为键值对结构 (这里的数组和obj会相互引用)
+  list.map((el) => {
+    obj[el.id] = el;
+  });
+  for (let i = 0; i < list.length; i++) {
+    let id = list[i].parentId;
+    if (id == parId) {
+      // result.push(list[i]);
+      result = list[i];
+      continue;
+    }
+    if (obj[id].children) {
+      obj[id].children.push(list[i]);
+    } else {
+      obj[id].children = [list[i]];
+    }
+  }
+  return result;
+}
+let res1 = totree(arr, "root");
+/** * 数组转树 递归求解 */
+function toTree(list, parId) {
+  let len = list.length;
+  function loop(parId) {
+    let res = {};
+    for (let i = 0; i < len; i++) {
+      let item = list[i];
+      if (item.parentId === parId) {
+        item.children = loop(item.id);
+        // res.push(item);
+        res = item;
+      }
+    }
+    return res;
+  }
+  return loop(parId);
+}
+let result = toTree(arr, "root");
+
+console.log("TCL: res1", res1, result);

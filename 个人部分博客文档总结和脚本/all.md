@@ -315,7 +315,7 @@
   - [千位符分割](#%E5%8D%83%E4%BD%8D%E7%AC%A6%E5%88%86%E5%89%B2)
   - [Eatman连续调用闭包，链式调用](#eatman%E8%BF%9E%E7%BB%AD%E8%B0%83%E7%94%A8%E9%97%AD%E5%8C%85%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8)
   - [对象数组去重](#%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D)
-  - [转换成树,树结构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84)
+  - [转换成树,树结构，数组转树，js转部门架构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84%E6%95%B0%E7%BB%84%E8%BD%AC%E6%A0%91js%E8%BD%AC%E9%83%A8%E9%97%A8%E6%9E%B6%E6%9E%84)
   - [实现eventListener,实现emitter,实现eventEmitter](#%E5%AE%9E%E7%8E%B0eventlistener%E5%AE%9E%E7%8E%B0emitter%E5%AE%9E%E7%8E%B0eventemitter)
   - [判断占字节大小，字节大小](#%E5%88%A4%E6%96%AD%E5%8D%A0%E5%AD%97%E8%8A%82%E5%A4%A7%E5%B0%8F%E5%AD%97%E8%8A%82%E5%A4%A7%E5%B0%8F)
   - [遍历树](#%E9%81%8D%E5%8E%86%E6%A0%91)
@@ -392,7 +392,7 @@
   - [不同路径3，不能进入大于K](#%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%843%E4%B8%8D%E8%83%BD%E8%BF%9B%E5%85%A5%E5%A4%A7%E4%BA%8Ek)
   - [打家劫舍](#%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D)
   - [最小路径和](#%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C)
-  - [转换成树,树结构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84-1)
+  - [转换成树,树结构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84)
   - [取中间数，取中位数，长度不等](#%E5%8F%96%E4%B8%AD%E9%97%B4%E6%95%B0%E5%8F%96%E4%B8%AD%E4%BD%8D%E6%95%B0%E9%95%BF%E5%BA%A6%E4%B8%8D%E7%AD%89)
   - [两个长度相等的数组求中位数,ON,空间O1](#%E4%B8%A4%E4%B8%AA%E9%95%BF%E5%BA%A6%E7%9B%B8%E7%AD%89%E7%9A%84%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0on%E7%A9%BA%E9%97%B4o1)
   - [手动实现filter](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0filter)
@@ -7854,39 +7854,91 @@ return ids.includes(cur.id) ? acc : [...acc, cur];
 }, []);
 console.log(result); -> [ { id: 1, a: 1}, {id: 2, a: 2}, {id: 3, a: 3} ]
 
-## 转换成树,树结构
+## 转换成树,树结构，数组转树，js转部门架构
 
 以下数据结构中，id 代表部门编号，name 是部门名称，parentId 是父部门编号，为 0 代表一级部门，现在要求实现一个 convert 方法，把原始 list 转换成树形结构，parentId 为多少就挂载在该 id 的属性 children 数组下，结构如下：
 原始 list 如下
 
 ```js
-let list =[
-    {id:1,name:'部门A',parentId:0},
-    {id:2,name:'部门B',parentId:0},
-    {id:3,name:'部门C',parentId:1},
-    {id:4,name:'部门D',parentId:1},
-    {id:5,name:'部门E',parentId:2},
-    {id:6,name:'部门F',parentId:3},
-    {id:7,name:'部门G',parentId:2},
-    {id:8,name:'部门H',parentId:4}
+let arr = [
+  { id: 2, name: "部门B", parentId: "root" },
+  { id: 3, name: "部门C", parentId: 1 },
+  { id: 1, name: "部门A", parentId: 2 },
+  { id: 4, name: "部门D", parentId: 1 },
+  { id: 5, name: "部门E", parentId: 2 },
+  { id: 6, name: "部门F", parentId: 3 },
+  { id: 7, name: "部门G", parentId: 2 },
+  { id: 8, name: "部门H", parentId: 4 },
 ];
-const result = convert(list, ...);
-function convert(list) {
-  const res = []
-  const map = list.reduce((res, v) => ((res[v.id] = v), res), {})
-  for (const item of list) {
-    if (item.parentId === 0) {
-      res.push(item)
-      continue
+/** * 数组转树 非递归求解 * 利用数组和对象相互引用 时间复杂度O(n) * @param {Object} list */
+function totree(list, parId) {
+  let obj = {};
+  let result = {};
+  //将数组中数据转为键值对结构 (这里的数组和obj会相互引用)
+  list.map((el) => {
+    obj[el.id] = el;
+  });
+  for (let i = 0; i < list.length; i++) {
+    let id = list[i].parentId;
+    if (id == parId) {
+      // result.push(list[i]);
+      result = list[i];
+      continue;
     }
-    if (item.parentId in map) {
-      const parent = map[item.parentId]
-      parent.children = parent.children || []
-      parent.children.push(item)
+    if (obj[id].children) {
+      obj[id].children.push(list[i]);
+    } else {
+      obj[id].children = [list[i]];
     }
   }
-  return res
+  return result;
 }
+let res1 = totree(arr, "root");
+/** * 数组转树 递归求解 */
+function toTree(list, parId) {
+  let len = list.length;
+  function loop(parId) {
+    let res = {};
+    for (let i = 0; i < len; i++) {
+      let item = list[i];
+      if (item.parentId === parId) {
+        item.children = loop(item.id);
+        // res.push(item);
+        res = item;
+      }
+    }
+    return res;
+  }
+  return loop(parId);
+}
+let result = toTree(arr, "root");
+
+const test = {
+  a_b_c: 1,
+  a_c_b: 2,
+  c_b_d: 3,
+};
+
+function convert(data = "a_b_c") {
+  const keysMap = data.split("_");
+  let backUp = {};
+  let map = {};
+  let res = {};
+  for (let i = keysMap.length - 1; i >= 0; i--) {
+    const key = keysMap[i];
+    if (i === 0) {
+      res[key] = backUp;
+    } else {
+      map = {
+        [key]: i === keysMap.length - 1 ? 1 : backUp,
+      };
+      backUp = map;
+    }
+  }
+  console.log("TCL: res", res);
+  return res;
+}
+convert();
 ```
 
 ## 实现eventListener,实现emitter,实现eventEmitter
