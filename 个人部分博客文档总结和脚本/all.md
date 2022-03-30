@@ -46,7 +46,7 @@
   - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
   - [使用闭包实现每隔一秒打印1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
 - [亮点to，hejieto](#%E4%BA%AE%E7%82%B9tohejieto)
-  - [懒加载，视图内加载](#%E6%87%92%E5%8A%A0%E8%BD%BD%E8%A7%86%E5%9B%BE%E5%86%85%E5%8A%A0%E8%BD%BD)
+  - [懒加载，视图内加载，可视区内加载](#%E6%87%92%E5%8A%A0%E8%BD%BD%E8%A7%86%E5%9B%BE%E5%86%85%E5%8A%A0%E8%BD%BD%E5%8F%AF%E8%A7%86%E5%8C%BA%E5%86%85%E5%8A%A0%E8%BD%BD)
   - [性能优化to](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96to)
   - [常用优化代码块](#%E5%B8%B8%E7%94%A8%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E5%9D%97)
   - [编辑器](#%E7%BC%96%E8%BE%91%E5%99%A8)
@@ -189,7 +189,7 @@
   - [v8代码优化实践](#v8%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5)
 - [webpackto，](#webpackto)
   - [自定义loaderto](#%E8%87%AA%E5%AE%9A%E4%B9%89loaderto)
-  - [webpack 原理，实现webpack](#webpack-%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
+  - [webpack原理，实现webpack](#webpack%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
   - [自定义插件，自定义pluginto](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89pluginto)
   - [webpack如何工作，工作流程](#webpack%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
   - [babel-pollyfillto和babel-transform-runtimeto区别](#babel-pollyfillto%E5%92%8Cbabel-transform-runtimeto%E5%8C%BA%E5%88%AB)
@@ -208,7 +208,7 @@
   - [Nodejs加载模块机制，模块加载机制，require加载机制](#nodejs%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9D%97%E6%9C%BA%E5%88%B6%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6require%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6)
   - [node调用java,node调用接口](#node%E8%B0%83%E7%94%A8javanode%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3)
   - [使用过的koa中间件](#%E4%BD%BF%E7%94%A8%E8%BF%87%E7%9A%84koa%E4%B8%AD%E9%97%B4%E4%BB%B6)
-  - [实现koa，关键的中间件机制，compose](#%E5%AE%9E%E7%8E%B0koa%E5%85%B3%E9%94%AE%E7%9A%84%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9C%BA%E5%88%B6compose)
+  - [实现koa，compose,中间件to](#%E5%AE%9E%E7%8E%B0koacompose%E4%B8%AD%E9%97%B4%E4%BB%B6to)
   - [实现限量重启，比如我最多让其在1分钟内重启5次，超过了就报警给运维](#%E5%AE%9E%E7%8E%B0%E9%99%90%E9%87%8F%E9%87%8D%E5%90%AF%E6%AF%94%E5%A6%82%E6%88%91%E6%9C%80%E5%A4%9A%E8%AE%A9%E5%85%B6%E5%9C%A81%E5%88%86%E9%92%9F%E5%86%85%E9%87%8D%E5%90%AF5%E6%AC%A1%E8%B6%85%E8%BF%87%E4%BA%86%E5%B0%B1%E6%8A%A5%E8%AD%A6%E7%BB%99%E8%BF%90%E7%BB%B4)
   - [实现一个node子进程被杀死，然后自动重启代码的思路](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAnode%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80%E6%AD%BB%E7%84%B6%E5%90%8E%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E4%BB%A3%E7%A0%81%E7%9A%84%E6%80%9D%E8%B7%AF)
   - [buffer模块](#buffer%E6%A8%A1%E5%9D%97)
@@ -1724,7 +1724,7 @@ function getWebpImageUrl(url) {
 <!-- 二维数组 -->
 Array.from(new Array(20),() => [1,2,3]（一个填充函数）)
 
-<!-- 并发加载，limitLoadto -->
+<!-- 并发限制to，并发加载，请求限制 -->
 高并发控制，promise.race结合链式调用
 
 function limitLoad(urls, handler, limit) {
@@ -4549,7 +4549,7 @@ test: /[\\/]node_modules[\\/]/,
 // 当 webpack 处理文件路径时，它们始终包含/在 Unix 系统和\Windows 上。这就是为什么[\\/]在{cacheGroup}
 // .test 字段中使用 in 来表示路径分隔符的原因。/ 或\in { cacheGroup }.test 会在跨平台使用时引起问题。
 
-## webpack 原理，实现webpack
+## webpack原理，实现webpack
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
@@ -4974,7 +4974,7 @@ Koa-helmet 增加头盔
 Koa-compress 类 gzip 一样的压缩
 koa-convert 用来兼容 koa2 以下版本的写法
 
-## 实现koa，关键的中间件机制，compose
+## 实现koa，compose,中间件to
 
 将函数串联起来, [A,B,C] => A(B(C()))
 
