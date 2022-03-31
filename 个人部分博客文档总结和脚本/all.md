@@ -1,87 +1,86 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [基础](#%E5%9F%BA%E7%A1%80)
-  - [Js数据类型，js基本类型和复杂类型](#js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bjs%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B)
+  - [Js 数据类型，js 基本类型和复杂类型](#js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bjs%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B)
   - [JavaScript 的基本类型和复杂类型存在哪⾥的？(基站复堆)](#javascript-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%9C%A8%E5%93%AA%E2%BE%A5%E7%9A%84%E5%9F%BA%E7%AB%99%E5%A4%8D%E5%A0%86)
   - [判断类型，判断是不是空对象](#%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD%E6%98%AF%E4%B8%8D%E6%98%AF%E7%A9%BA%E5%AF%B9%E8%B1%A1)
-  - [数组to，改变数组](#%E6%95%B0%E7%BB%84to%E6%94%B9%E5%8F%98%E6%95%B0%E7%BB%84)
+  - [数组 to，改变数组](#%E6%95%B0%E7%BB%84to%E6%94%B9%E5%8F%98%E6%95%B0%E7%BB%84)
   - [Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()区别](#objectprototypetostringcall--instanceof-%E4%BB%A5%E5%8F%8A-arrayisarray%E5%8C%BA%E5%88%AB)
-  - [instanceofto,实现instanceof](#instanceofto%E5%AE%9E%E7%8E%B0instanceof)
+  - [instanceofto,实现 instanceof](#instanceofto%E5%AE%9E%E7%8E%B0instanceof)
   - [深拷贝](#%E6%B7%B1%E6%8B%B7%E8%B4%9D)
   - [判断类型，获取类型](#%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%9E%8B)
-  - [newto，实现new，new做了什么](#newto%E5%AE%9E%E7%8E%B0newnew%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88)
+  - [newto，实现 new，new 做了什么](#newto%E5%AE%9E%E7%8E%B0newnew%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88)
   - [分时，渲染大量节点优化](#%E5%88%86%E6%97%B6%E6%B8%B2%E6%9F%93%E5%A4%A7%E9%87%8F%E8%8A%82%E7%82%B9%E4%BC%98%E5%8C%96)
   - [防抖,debounceto](#%E9%98%B2%E6%8A%96debounceto)
   - [节流](#%E8%8A%82%E6%B5%81)
-  - [react实现防抖输入框](#react%E5%AE%9E%E7%8E%B0%E9%98%B2%E6%8A%96%E8%BE%93%E5%85%A5%E6%A1%86)
-  - [正则to，](#%E6%AD%A3%E5%88%99to)
-  - [this指向问题，点调用问题](#this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98%E7%82%B9%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98)
-  - [经典foo问题](#%E7%BB%8F%E5%85%B8foo%E9%97%AE%E9%A2%98)
-  - [手动实现bind](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0bind)
-  - [实现实现call](#%E5%AE%9E%E7%8E%B0%E5%AE%9E%E7%8E%B0call)
-  - [实现apply](#%E5%AE%9E%E7%8E%B0apply)
-  - [继承to，原型链to，原型to](#%E7%BB%A7%E6%89%BFto%E5%8E%9F%E5%9E%8B%E9%93%BEto%E5%8E%9F%E5%9E%8Bto)
-  - [JavaScript的作⽤域链理解吗？✨](#javascript%E7%9A%84%E4%BD%9C%E2%BD%A4%E5%9F%9F%E9%93%BE%E7%90%86%E8%A7%A3%E5%90%97)
-  - [es5的主要继承方式](#es5%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F)
+  - [react 实现防抖输入框](#react%E5%AE%9E%E7%8E%B0%E9%98%B2%E6%8A%96%E8%BE%93%E5%85%A5%E6%A1%86)
+  - [正则 to，](#%E6%AD%A3%E5%88%99to)
+  - [this 指向问题，点调用问题](#this%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98%E7%82%B9%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98)
+  - [经典 foo 问题](#%E7%BB%8F%E5%85%B8foo%E9%97%AE%E9%A2%98)
+  - [手动实现 bind](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0bind)
+  - [实现实现 call](#%E5%AE%9E%E7%8E%B0%E5%AE%9E%E7%8E%B0call)
+  - [实现 apply](#%E5%AE%9E%E7%8E%B0apply)
+  - [继承 to，原型链 to，原型 to](#%E7%BB%A7%E6%89%BFto%E5%8E%9F%E5%9E%8B%E9%93%BEto%E5%8E%9F%E5%9E%8Bto)
+  - [JavaScript 的作⽤域链理解吗？✨](#javascript%E7%9A%84%E4%BD%9C%E2%BD%A4%E5%9F%9F%E9%93%BE%E7%90%86%E8%A7%A3%E5%90%97)
+  - [es5 的主要继承方式](#es5%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F)
   - [继承的几种方式](#%E7%BB%A7%E6%89%BF%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F)
-  - [ES5的继承和ES6的继承有什么区别](#es5%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8Ces6%E7%9A%84%E7%BB%A7%E6%89%BF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [实现promise,promiseto，](#%E5%AE%9E%E7%8E%B0promisepromiseto)
-  - [手动实现promise.race,实现promise.all,promise.catch,promise.finally,promise.allSettled](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0promiserace%E5%AE%9E%E7%8E%B0promiseallpromisecatchpromisefinallypromiseallsettled)
-  - [实现async/await](#%E5%AE%9E%E7%8E%B0asyncawait)
-  - [豪华版实现promise，可链式调用prosmise](#%E8%B1%AA%E5%8D%8E%E7%89%88%E5%AE%9E%E7%8E%B0promise%E5%8F%AF%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8prosmise)
+  - [ES5 的继承和 ES6 的继承有什么区别](#es5%E7%9A%84%E7%BB%A7%E6%89%BF%E5%92%8Ces6%E7%9A%84%E7%BB%A7%E6%89%BF%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [实现 promise,promiseto，](#%E5%AE%9E%E7%8E%B0promisepromiseto)
+  - [手动实现 promise.race,实现 promise.all,promise.catch,promise.finally,promise.allSettled](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0promiserace%E5%AE%9E%E7%8E%B0promiseallpromisecatchpromisefinallypromiseallsettled)
+  - [实现 async/await](#%E5%AE%9E%E7%8E%B0asyncawait)
+  - [豪华版实现 promise，可链式调用 prosmise](#%E8%B1%AA%E5%8D%8E%E7%89%88%E5%AE%9E%E7%8E%B0promise%E5%8F%AF%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8prosmise)
   - [yieldto，](#yieldto)
-  - [手动实现generator](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0generator)
-  - [微任务，宏任务，先微再宏，只不过一开始的script块也可以算是宏任务](#%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%85%88%E5%BE%AE%E5%86%8D%E5%AE%8F%E5%8F%AA%E4%B8%8D%E8%BF%87%E4%B8%80%E5%BC%80%E5%A7%8B%E7%9A%84script%E5%9D%97%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%AE%97%E6%98%AF%E5%AE%8F%E4%BB%BB%E5%8A%A1)
-  - [node的事件循环机制，浏览器的循环机制和区别](#node%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%92%8C%E5%8C%BA%E5%88%AB)
-  - [实现flatten，打平数组,数组扁平化](#%E5%AE%9E%E7%8E%B0flatten%E6%89%93%E5%B9%B3%E6%95%B0%E7%BB%84%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96)
+  - [手动实现 generator](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0generator)
+  - [微任务，宏任务，先微再宏，只不过一开始的 script 块也可以算是宏任务](#%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%85%88%E5%BE%AE%E5%86%8D%E5%AE%8F%E5%8F%AA%E4%B8%8D%E8%BF%87%E4%B8%80%E5%BC%80%E5%A7%8B%E7%9A%84script%E5%9D%97%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%AE%97%E6%98%AF%E5%AE%8F%E4%BB%BB%E5%8A%A1)
+  - [node 的事件循环机制，浏览器的循环机制和区别](#node%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6%E5%92%8C%E5%8C%BA%E5%88%AB)
+  - [实现 flatten，打平数组,数组扁平化](#%E5%AE%9E%E7%8E%B0flatten%E6%89%93%E5%B9%B3%E6%95%B0%E7%BB%84%E6%95%B0%E7%BB%84%E6%89%81%E5%B9%B3%E5%8C%96)
   - [数组去重，扩展将数组打平并且去重升序](#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E6%89%A9%E5%B1%95%E5%B0%86%E6%95%B0%E7%BB%84%E6%89%93%E5%B9%B3%E5%B9%B6%E4%B8%94%E5%8E%BB%E9%87%8D%E5%8D%87%E5%BA%8F)
   - [如何求数组的最大值和最小值？](#%E5%A6%82%E4%BD%95%E6%B1%82%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E5%92%8C%E6%9C%80%E5%B0%8F%E5%80%BC)
   - [求最大公约数和最小公倍数](#%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0)
-  - [js内置对象](#js%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1)
-  - [js中整数的安全范围是多少？](#js%E4%B8%AD%E6%95%B4%E6%95%B0%E7%9A%84%E5%AE%89%E5%85%A8%E8%8C%83%E5%9B%B4%E6%98%AF%E5%A4%9A%E5%B0%91)
-  - [escape,encodeURI,encodeURIComponent有什么区别？](#escapeencodeuriencodeuricomponent%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [set和weakset，map和weakmap](#set%E5%92%8Cweaksetmap%E5%92%8Cweakmap)
-  - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
-  - [使用闭包实现每隔一秒打印1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
-- [亮点to，hejieto](#%E4%BA%AE%E7%82%B9tohejieto)
+  - [js 内置对象](#js%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1)
+  - [js 中整数的安全范围是多少？](#js%E4%B8%AD%E6%95%B4%E6%95%B0%E7%9A%84%E5%AE%89%E5%85%A8%E8%8C%83%E5%9B%B4%E6%98%AF%E5%A4%9A%E5%B0%91)
+  - [escape,encodeURI,encodeURIComponent 有什么区别？](#escapeencodeuriencodeuricomponent%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [set 和 weakset，map 和 weakmap](#set%E5%92%8Cweaksetmap%E5%92%8Cweakmap)
+  - [Reflect 对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
+  - [使用闭包实现每隔一秒打印 1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
+- [亮点 to，hejieto](#%E4%BA%AE%E7%82%B9tohejieto)
   - [懒加载，视图内加载，可视区内加载](#%E6%87%92%E5%8A%A0%E8%BD%BD%E8%A7%86%E5%9B%BE%E5%86%85%E5%8A%A0%E8%BD%BD%E5%8F%AF%E8%A7%86%E5%8C%BA%E5%86%85%E5%8A%A0%E8%BD%BD)
-  - [性能优化to](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96to)
+  - [性能优化 to](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96to)
   - [常用优化代码块](#%E5%B8%B8%E7%94%A8%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E5%9D%97)
   - [编辑器](#%E7%BC%96%E8%BE%91%E5%99%A8)
-  - [实现webpack](#%E5%AE%9E%E7%8E%B0webpack)
-  - [开发插件，开发pluginto](#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91pluginto)
-  - [自定义loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader)
-  - [开发脚手架to](#%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6to)
-  - [开发npm包，组件库](#%E5%BC%80%E5%8F%91npm%E5%8C%85%E7%BB%84%E4%BB%B6%E5%BA%93)
-  - [传输to，断点传输，分片传输](#%E4%BC%A0%E8%BE%93to%E6%96%AD%E7%82%B9%E4%BC%A0%E8%BE%93%E5%88%86%E7%89%87%E4%BC%A0%E8%BE%93)
-  - [webpack优化，webpackto](#webpack%E4%BC%98%E5%8C%96webpackto)
+  - [实现 webpack](#%E5%AE%9E%E7%8E%B0webpack)
+  - [开发插件，开发 pluginto](#%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91pluginto)
+  - [自定义 loader](#%E8%87%AA%E5%AE%9A%E4%B9%89loader)
+  - [开发脚手架 to](#%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6to)
+  - [开发 npm 包，组件库](#%E5%BC%80%E5%8F%91npm%E5%8C%85%E7%BB%84%E4%BB%B6%E5%BA%93)
+  - [传输 to，断点传输，分片传输](#%E4%BC%A0%E8%BE%93to%E6%96%AD%E7%82%B9%E4%BC%A0%E8%BE%93%E5%88%86%E7%89%87%E4%BC%A0%E8%BE%93)
+  - [webpack 优化，webpackto](#webpack%E4%BC%98%E5%8C%96webpackto)
   - [webpack 工作流程 (加载 - 编译 - 输出)](#webpack-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B-%E5%8A%A0%E8%BD%BD---%E7%BC%96%E8%AF%91---%E8%BE%93%E5%87%BA)
-  - [babel插件to，babelto](#babel%E6%8F%92%E4%BB%B6tobabelto)
-  - [babel-import-node按需加载原理，使用它按需加载自己的组件库](#babel-import-node%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E4%BD%BF%E7%94%A8%E5%AE%83%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD%E8%87%AA%E5%B7%B1%E7%9A%84%E7%BB%84%E4%BB%B6%E5%BA%93)
-  - [微前端to，乾坤](#%E5%BE%AE%E5%89%8D%E7%AB%AFto%E4%B9%BE%E5%9D%A4)
+  - [babel 插件 to，babelto](#babel%E6%8F%92%E4%BB%B6tobabelto)
+  - [babel-import-node 按需加载原理，使用它按需加载自己的组件库](#babel-import-node%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E4%BD%BF%E7%94%A8%E5%AE%83%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD%E8%87%AA%E5%B7%B1%E7%9A%84%E7%BB%84%E4%BB%B6%E5%BA%93)
+  - [微前端 to，乾坤](#%E5%BE%AE%E5%89%8D%E7%AB%AFto%E4%B9%BE%E5%9D%A4)
   - [viteto,esbuildto](#vitetoesbuildto)
-  - [自动化测试BDD风格](#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95bdd%E9%A3%8E%E6%A0%BC)
-  - [node处理高并发](#node%E5%A4%84%E7%90%86%E9%AB%98%E5%B9%B6%E5%8F%91)
+  - [自动化测试 BDD 风格](#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95bdd%E9%A3%8E%E6%A0%BC)
+  - [node 处理高并发](#node%E5%A4%84%E7%90%86%E9%AB%98%E5%B9%B6%E5%8F%91)
   - [PIXIJS，游戏，飞机大战](#pixijs%E6%B8%B8%E6%88%8F%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98)
   - [domdiffto](#domdiffto)
-  - [Vue原理，Vueto](#vue%E5%8E%9F%E7%90%86vueto)
+  - [Vue 原理，Vueto](#vue%E5%8E%9F%E7%90%86vueto)
   - [Vue3to](#vue3to)
-  - [前端日志监控，异常上报，性能监控,异常to](#%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7%E5%BC%82%E5%B8%B8%E4%B8%8A%E6%8A%A5%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E5%BC%82%E5%B8%B8to)
+  - [前端日志监控，异常上报，性能监控,异常 to](#%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E7%9B%91%E6%8E%A7%E5%BC%82%E5%B8%B8%E4%B8%8A%E6%8A%A5%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7%E5%BC%82%E5%B8%B8to)
   - [性能监控](#%E6%80%A7%E8%83%BD%E7%9B%91%E6%8E%A7)
   - [日志上报](#%E6%97%A5%E5%BF%97%E4%B8%8A%E6%8A%A5)
-- [设计模式to，](#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8Fto)
+- [设计模式 to，](#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8Fto)
   - [单例模式，单一职责模式，中介者模式，策略模式，代理模式（中间件），](#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E6%A8%A1%E5%BC%8F%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B8%AD%E9%97%B4%E4%BB%B6)
-  - [高阶函数实现AOP（面向切面编程，即各种中间件）,函数中间件](#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0aop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B%E5%8D%B3%E5%90%84%E7%A7%8D%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%87%BD%E6%95%B0%E4%B8%AD%E9%97%B4%E4%BB%B6)
+  - [高阶函数实现 AOP（面向切面编程，即各种中间件）,函数中间件](#%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0aop%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B%E5%8D%B3%E5%90%84%E7%A7%8D%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%87%BD%E6%95%B0%E4%B8%AD%E9%97%B4%E4%BB%B6)
   - [科利华,柯里化，部分求值，传入的参数先存起来，到最后才一次性求](#%E7%A7%91%E5%88%A9%E5%8D%8E%E6%9F%AF%E9%87%8C%E5%8C%96%E9%83%A8%E5%88%86%E6%B1%82%E5%80%BC%E4%BC%A0%E5%85%A5%E7%9A%84%E5%8F%82%E6%95%B0%E5%85%88%E5%AD%98%E8%B5%B7%E6%9D%A5%E5%88%B0%E6%9C%80%E5%90%8E%E6%89%8D%E4%B8%80%E6%AC%A1%E6%80%A7%E6%B1%82)
   - [策略模式](#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F)
   - [代理模式，缓存代理](#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%A3%E7%90%86)
   - [观察者和发布订阅模式的区别](#%E8%A7%82%E5%AF%9F%E8%80%85%E5%92%8C%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [常见设计模式](#%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
 - [httpto，](#httpto)
-  - [网络模型，7层模型，tcp,udp,socket](#%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B7%E5%B1%82%E6%A8%A1%E5%9E%8Btcpudpsocket)
-  - [三次握手，HTTPS握手过程中，客户端如何验证证书的合法性](#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8Bhttps%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E8%AF%81%E4%B9%A6%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7)
+  - [网络模型，7 层模型，tcp,udp,socket](#%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B7%E5%B1%82%E6%A8%A1%E5%9E%8Btcpudpsocket)
+  - [三次握手，HTTPS 握手过程中，客户端如何验证证书的合法性](#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8Bhttps%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E8%AF%81%E4%B9%A6%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7)
   - [四次挥手](#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B)
   - [中间人攻击过程如下：](#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB%E8%BF%87%E7%A8%8B%E5%A6%82%E4%B8%8B)
   - [http1,http1.1,http2,http1/2,http3，](#http1http11http2http12http3)
@@ -89,179 +88,179 @@
   - [网络防御，加密算法](#%E7%BD%91%E7%BB%9C%E9%98%B2%E5%BE%A1%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95)
   - [返回头](#%E8%BF%94%E5%9B%9E%E5%A4%B4)
   - [请求方法](#%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95)
-  - [301和302](#301%E5%92%8C302)
-  - [GET和POST有什么区别？](#get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [301 和 302](#301%E5%92%8C302)
+  - [GET 和 POST 有什么区别？](#get%E5%92%8Cpost%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [前端加密的常见场景和方法](#%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF%E5%92%8C%E6%96%B9%E6%B3%95)
-  - [https用哪些端口进行通信，这些端口分别有什么用](#https%E7%94%A8%E5%93%AA%E4%BA%9B%E7%AB%AF%E5%8F%A3%E8%BF%9B%E8%A1%8C%E9%80%9A%E4%BF%A1%E8%BF%99%E4%BA%9B%E7%AB%AF%E5%8F%A3%E5%88%86%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8)
+  - [https 用哪些端口进行通信，这些端口分别有什么用](#https%E7%94%A8%E5%93%AA%E4%BA%9B%E7%AB%AF%E5%8F%A3%E8%BF%9B%E8%A1%8C%E9%80%9A%E4%BF%A1%E8%BF%99%E4%BA%9B%E7%AB%AF%E5%8F%A3%E5%88%86%E5%88%AB%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8)
 - [老码农的心得](#%E8%80%81%E7%A0%81%E5%86%9C%E7%9A%84%E5%BF%83%E5%BE%97)
   - [如何终止请求](#%E5%A6%82%E4%BD%95%E7%BB%88%E6%AD%A2%E8%AF%B7%E6%B1%82)
   - [格式化金额](#%E6%A0%BC%E5%BC%8F%E5%8C%96%E9%87%91%E9%A2%9D)
-  - [从输入URL到页面加载全过程，敲下url发生了什么](#%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%85%A8%E8%BF%87%E7%A8%8B%E6%95%B2%E4%B8%8Burl%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88)
+  - [从输入 URL 到页面加载全过程，敲下 url 发生了什么](#%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%85%A8%E8%BF%87%E7%A8%8B%E6%95%B2%E4%B8%8Burl%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88)
   - [flexto，](#flexto)
-  - [为什么for性能高于forEach](#%E4%B8%BA%E4%BB%80%E4%B9%88for%E6%80%A7%E8%83%BD%E9%AB%98%E4%BA%8Eforeach)
+  - [为什么 for 性能高于 forEach](#%E4%B8%BA%E4%BB%80%E4%B9%88for%E6%80%A7%E8%83%BD%E9%AB%98%E4%BA%8Eforeach)
   - [webSocketto,](#websocketto)
   - [浏览器架构](#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9E%B6%E6%9E%84)
-  - [常用meta](#%E5%B8%B8%E7%94%A8meta)
-  - [为什么for性能高于forEach](#%E4%B8%BA%E4%BB%80%E4%B9%88for%E6%80%A7%E8%83%BD%E9%AB%98%E4%BA%8Eforeach-1)
+  - [常用 meta](#%E5%B8%B8%E7%94%A8meta)
+  - [为什么 for 性能高于 forEach](#%E4%B8%BA%E4%BB%80%E4%B9%88for%E6%80%A7%E8%83%BD%E9%AB%98%E4%BA%8Eforeach-1)
   - [类型转换,undefined==null](#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2undefinednull)
-  - [隐式转换，隐式转换会调用本类型toString或valueOf方法.](#%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E4%BC%9A%E8%B0%83%E7%94%A8%E6%9C%AC%E7%B1%BB%E5%9E%8Btostring%E6%88%96valueof%E6%96%B9%E6%B3%95)
+  - [隐式转换，隐式转换会调用本类型 toString 或 valueOf 方法.](#%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2%E4%BC%9A%E8%B0%83%E7%94%A8%E6%9C%AC%E7%B1%BB%E5%9E%8Btostring%E6%88%96valueof%E6%96%B9%E6%B3%95)
   - [对象借用数组的方法](#%E5%AF%B9%E8%B1%A1%E5%80%9F%E7%94%A8%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95)
   - [实现(5).add(3).minus(2) 功能](#%E5%AE%9E%E7%8E%B05add3minus2-%E5%8A%9F%E8%83%BD)
-  - [proxy实现数据绑定,Object.defindProperty与proxy](#proxy%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9Aobjectdefindproperty%E4%B8%8Eproxy)
+  - [proxy 实现数据绑定,Object.defindProperty 与 proxy](#proxy%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9Aobjectdefindproperty%E4%B8%8Eproxy)
   - [对象键名转换](#%E5%AF%B9%E8%B1%A1%E9%94%AE%E5%90%8D%E8%BD%AC%E6%8D%A2)
   - [函数传参，函数参数，形参，对象传参问题](#%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E5%BD%A2%E5%8F%82%E5%AF%B9%E8%B1%A1%E4%BC%A0%E5%8F%82%E9%97%AE%E9%A2%98)
-  - [input框中文输入问题](#input%E6%A1%86%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98)
-  - [递归实现翻转,颠倒数组，实现reverse](#%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E7%BF%BB%E8%BD%AC%E9%A2%A0%E5%80%92%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0reverse)
+  - [input 框中文输入问题](#input%E6%A1%86%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98)
+  - [递归实现翻转,颠倒数组，实现 reverse](#%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E7%BF%BB%E8%BD%AC%E9%A2%A0%E5%80%92%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0reverse)
   - [连续赋值，点赋值](#%E8%BF%9E%E7%BB%AD%E8%B5%8B%E5%80%BC%E7%82%B9%E8%B5%8B%E5%80%BC)
-  - [pwa原理](#pwa%E5%8E%9F%E7%90%86)
+  - [pwa 原理](#pwa%E5%8E%9F%E7%90%86)
   - [实现请求函数，可以设置最大请求次数，请求成功则不再请求，请求失败则继续请求直到超过最大次数](#%E5%AE%9E%E7%8E%B0%E8%AF%B7%E6%B1%82%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E6%9C%80%E5%A4%A7%E8%AF%B7%E6%B1%82%E6%AC%A1%E6%95%B0%E8%AF%B7%E6%B1%82%E6%88%90%E5%8A%9F%E5%88%99%E4%B8%8D%E5%86%8D%E8%AF%B7%E6%B1%82%E8%AF%B7%E6%B1%82%E5%A4%B1%E8%B4%A5%E5%88%99%E7%BB%A7%E7%BB%AD%E8%AF%B7%E6%B1%82%E7%9B%B4%E5%88%B0%E8%B6%85%E8%BF%87%E6%9C%80%E5%A4%A7%E6%AC%A1%E6%95%B0)
   - [map(parseInt)问题](#mapparseint%E9%97%AE%E9%A2%98)
   - [位运算，与运算](#%E4%BD%8D%E8%BF%90%E7%AE%97%E4%B8%8E%E8%BF%90%E7%AE%97)
-  - [解决ios手机fixed问题键盘](#%E8%A7%A3%E5%86%B3ios%E6%89%8B%E6%9C%BAfixed%E9%97%AE%E9%A2%98%E9%94%AE%E7%9B%98)
-  - [前端图片转base64，转格式，转blob，上传的总结](#%E5%89%8D%E7%AB%AF%E5%9B%BE%E7%89%87%E8%BD%ACbase64%E8%BD%AC%E6%A0%BC%E5%BC%8F%E8%BD%ACblob%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%80%BB%E7%BB%93)
-  - [URL截取URLto，](#url%E6%88%AA%E5%8F%96urlto)
-  - [存储cookie存储对象](#%E5%AD%98%E5%82%A8cookie%E5%AD%98%E5%82%A8%E5%AF%B9%E8%B1%A1)
-  - [rem适配，class匹配](#rem%E9%80%82%E9%85%8Dclass%E5%8C%B9%E9%85%8D)
+  - [解决 ios 手机 fixed 问题键盘](#%E8%A7%A3%E5%86%B3ios%E6%89%8B%E6%9C%BAfixed%E9%97%AE%E9%A2%98%E9%94%AE%E7%9B%98)
+  - [前端图片转 base64，转格式，转 blob，上传的总结](#%E5%89%8D%E7%AB%AF%E5%9B%BE%E7%89%87%E8%BD%ACbase64%E8%BD%AC%E6%A0%BC%E5%BC%8F%E8%BD%ACblob%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%80%BB%E7%BB%93)
+  - [URL 截取 URLto，](#url%E6%88%AA%E5%8F%96urlto)
+  - [存储 cookie 存储对象](#%E5%AD%98%E5%82%A8cookie%E5%AD%98%E5%82%A8%E5%AF%B9%E8%B1%A1)
+  - [rem 适配，class 匹配](#rem%E9%80%82%E9%85%8Dclass%E5%8C%B9%E9%85%8D)
   - [gitto，](#gitto)
   - [gitfork](#gitfork)
   - [Object.assignto，深拷贝浅拷贝](#objectassignto%E6%B7%B1%E6%8B%B7%E8%B4%9D%E6%B5%85%E6%8B%B7%E8%B4%9D)
-  - [redux和vuex的区别和设计思想](#redux%E5%92%8Cvuex%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3)
-  - [为什么Vuex的mutation和Redux的reducer中不能做异步操作](#%E4%B8%BA%E4%BB%80%E4%B9%88vuex%E7%9A%84mutation%E5%92%8Credux%E7%9A%84reducer%E4%B8%AD%E4%B8%8D%E8%83%BD%E5%81%9A%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C)
+  - [redux 和 vuex 的区别和设计思想](#redux%E5%92%8Cvuex%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3)
+  - [为什么 Vuex 的 mutation 和 Redux 的 reducer 中不能做异步操作](#%E4%B8%BA%E4%BB%80%E4%B9%88vuex%E7%9A%84mutation%E5%92%8Credux%E7%9A%84reducer%E4%B8%AD%E4%B8%8D%E8%83%BD%E5%81%9A%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C)
   - [JSONP](#jsonp)
-  - [模块化发展amd,cmd,commonjs,esmodule](#%E6%A8%A1%E5%9D%97%E5%8C%96%E5%8F%91%E5%B1%95amdcmdcommonjsesmodule)
-  - [缓存to，浏览器缓存，缓存机制](#%E7%BC%93%E5%AD%98to%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6)
+  - [模块化发展 amd,cmd,commonjs,esmodule](#%E6%A8%A1%E5%9D%97%E5%8C%96%E5%8F%91%E5%B1%95amdcmdcommonjsesmodule)
+  - [缓存 to，浏览器缓存，缓存机制](#%E7%BC%93%E5%AD%98to%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6)
   - [BFCto，IFC，GFC,FFC](#bfctoifcgfcffc)
   - [为什么用图片埋点打点](#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E5%9B%BE%E7%89%87%E5%9F%8B%E7%82%B9%E6%89%93%E7%82%B9)
-  - [js按引用传参，js传参](#js%E6%8C%89%E5%BC%95%E7%94%A8%E4%BC%A0%E5%8F%82js%E4%BC%A0%E5%8F%82)
-  - [call和apply,bind的区别是什么，哪个性能更好一些](#call%E5%92%8Capplybind%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E5%93%AA%E4%B8%AA%E6%80%A7%E8%83%BD%E6%9B%B4%E5%A5%BD%E4%B8%80%E4%BA%9B)
-  - [动态挂载节点,动态添加节点，js创建节点](#%E5%8A%A8%E6%80%81%E6%8C%82%E8%BD%BD%E8%8A%82%E7%82%B9%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9js%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9)
+  - [js 按引用传参，js 传参](#js%E6%8C%89%E5%BC%95%E7%94%A8%E4%BC%A0%E5%8F%82js%E4%BC%A0%E5%8F%82)
+  - [call 和 apply,bind 的区别是什么，哪个性能更好一些](#call%E5%92%8Capplybind%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E5%93%AA%E4%B8%AA%E6%80%A7%E8%83%BD%E6%9B%B4%E5%A5%BD%E4%B8%80%E4%BA%9B)
+  - [动态挂载节点,动态添加节点，js 创建节点](#%E5%8A%A8%E6%80%81%E6%8C%82%E8%BD%BD%E8%8A%82%E7%82%B9%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9js%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9)
   - [resolvepath](#resolvepath)
-  - [cdn原理](#cdn%E5%8E%9F%E7%90%86)
+  - [cdn 原理](#cdn%E5%8E%9F%E7%90%86)
   - [常用正则](#%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99)
   - [解决跨域](#%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F)
 - [HTMLto,h5to](#htmltoh5to)
-  - [让div水平垂直居中](#%E8%AE%A9div%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
+  - [让 div 水平垂直居中](#%E8%AE%A9div%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD)
   - [实现一个比例的长方形](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%AF%94%E4%BE%8B%E7%9A%84%E9%95%BF%E6%96%B9%E5%BD%A2)
   - [实现三角形](#%E5%AE%9E%E7%8E%B0%E4%B8%89%E8%A7%92%E5%BD%A2)
-  - [一个自适应矩形，水平垂直居中，且宽高比为2:1](#%E4%B8%80%E4%B8%AA%E8%87%AA%E9%80%82%E5%BA%94%E7%9F%A9%E5%BD%A2%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E4%B8%94%E5%AE%BD%E9%AB%98%E6%AF%94%E4%B8%BA21)
-  - [css实现瀑布流](#css%E5%AE%9E%E7%8E%B0%E7%80%91%E5%B8%83%E6%B5%81)
+  - [一个自适应矩形，水平垂直居中，且宽高比为 2:1](#%E4%B8%80%E4%B8%AA%E8%87%AA%E9%80%82%E5%BA%94%E7%9F%A9%E5%BD%A2%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E4%B8%94%E5%AE%BD%E9%AB%98%E6%AF%94%E4%B8%BA21)
+  - [css 实现瀑布流](#css%E5%AE%9E%E7%8E%B0%E7%80%91%E5%B8%83%E6%B5%81)
   - [标准盒子模型和怪异盒模型](#%E6%A0%87%E5%87%86%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%92%8C%E6%80%AA%E5%BC%82%E7%9B%92%E6%A8%A1%E5%9E%8B)
   - [设置元素不可见](#%E8%AE%BE%E7%BD%AE%E5%85%83%E7%B4%A0%E4%B8%8D%E5%8F%AF%E8%A7%81)
-  - [Defer和async的区别](#defer%E5%92%8Casync%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [css实现按比例显示](#css%E5%AE%9E%E7%8E%B0%E6%8C%89%E6%AF%94%E4%BE%8B%E6%98%BE%E7%A4%BA)
-  - [addEventListener第三个参数,addEventlistenterto，capture，事件捕获，冒泡](#addeventlistener%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0addeventlistentertocapture%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%86%92%E6%B3%A1)
+  - [Defer 和 async 的区别](#defer%E5%92%8Casync%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [css 实现按比例显示](#css%E5%AE%9E%E7%8E%B0%E6%8C%89%E6%AF%94%E4%BE%8B%E6%98%BE%E7%A4%BA)
+  - [addEventListener 第三个参数,addEventlistenterto，capture，事件捕获，冒泡](#addeventlistener%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0addeventlistentertocapture%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E5%86%92%E6%B3%A1)
   - [hybrid](#hybrid)
-  - [1px问题](#1px%E9%97%AE%E9%A2%98)
-  - [Ts工具,ts实用工具](#ts%E5%B7%A5%E5%85%B7ts%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7)
+  - [1px 问题](#1px%E9%97%AE%E9%A2%98)
+  - [Ts 工具,ts 实用工具](#ts%E5%B7%A5%E5%85%B7ts%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7)
   - [栈模拟队列，队列模拟栈](#%E6%A0%88%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97%E9%98%9F%E5%88%97%E6%A8%A1%E6%8B%9F%E6%A0%88)
-  - [Mvvm，mvc，mvp区别](#mvvmmvcmvp%E5%8C%BA%E5%88%AB)
-  - [什么是VirtualDOM？为什么VirtualDOM比原生DOM快？](#%E4%BB%80%E4%B9%88%E6%98%AFvirtualdom%E4%B8%BA%E4%BB%80%E4%B9%88virtualdom%E6%AF%94%E5%8E%9F%E7%94%9Fdom%E5%BF%AB)
-  - [为什么要用transform而不用margin](#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8transform%E8%80%8C%E4%B8%8D%E7%94%A8margin)
-  - [Href和src的区别](#href%E5%92%8Csrc%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [Positionto，布局to，](#positionto%E5%B8%83%E5%B1%80to)
-  - [前端如何进行seo优化](#%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8Cseo%E4%BC%98%E5%8C%96)
+  - [Mvvm，mvc，mvp 区别](#mvvmmvcmvp%E5%8C%BA%E5%88%AB)
+  - [什么是 VirtualDOM？为什么 VirtualDOM 比原生 DOM 快？](#%E4%BB%80%E4%B9%88%E6%98%AFvirtualdom%E4%B8%BA%E4%BB%80%E4%B9%88virtualdom%E6%AF%94%E5%8E%9F%E7%94%9Fdom%E5%BF%AB)
+  - [为什么要用 transform 而不用 margin](#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8transform%E8%80%8C%E4%B8%8D%E7%94%A8margin)
+  - [Href 和 src 的区别](#href%E5%92%8Csrc%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [Positionto，布局 to，](#positionto%E5%B8%83%E5%B1%80to)
+  - [前端如何进行 seo 优化](#%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8Cseo%E4%BC%98%E5%8C%96)
   - [eslint](#eslint)
   - [短路求值，不利用第三个值来交换值](#%E7%9F%AD%E8%B7%AF%E6%B1%82%E5%80%BC%E4%B8%8D%E5%88%A9%E7%94%A8%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%80%BC%E6%9D%A5%E4%BA%A4%E6%8D%A2%E5%80%BC)
   - [图片二值化，图形算法，正片叠底](#%E5%9B%BE%E7%89%87%E4%BA%8C%E5%80%BC%E5%8C%96%E5%9B%BE%E5%BD%A2%E7%AE%97%E6%B3%95%E6%AD%A3%E7%89%87%E5%8F%A0%E5%BA%95)
   - [阻止页面滚动](#%E9%98%BB%E6%AD%A2%E9%A1%B5%E9%9D%A2%E6%BB%9A%E5%8A%A8)
-  - [移动端初始化样式，完美阻止ios回弹效果，inobounce](#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A0%B7%E5%BC%8F%E5%AE%8C%E7%BE%8E%E9%98%BB%E6%AD%A2ios%E5%9B%9E%E5%BC%B9%E6%95%88%E6%9E%9Cinobounce)
-  - [sass循环](#sass%E5%BE%AA%E7%8E%AF)
+  - [移动端初始化样式，完美阻止 ios 回弹效果，inobounce](#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A0%B7%E5%BC%8F%E5%AE%8C%E7%BE%8E%E9%98%BB%E6%AD%A2ios%E5%9B%9E%E5%BC%B9%E6%95%88%E6%9E%9Cinobounce)
+  - [sass 循环](#sass%E5%BE%AA%E7%8E%AF)
   - [按顺序执行命令脚本，串行命令](#%E6%8C%89%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E8%84%9A%E6%9C%AC%E4%B8%B2%E8%A1%8C%E5%91%BD%E4%BB%A4)
-  - [DOCTYPE的作用是什么？标准模式与兼容模式的区别](#doctype%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [SGML、HTML、XML和XHTML的区别？](#sgmlhtmlxml%E5%92%8Cxhtml%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [DOCTYPE 的作用是什么？标准模式与兼容模式的区别](#doctype%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%87%E5%87%86%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%85%BC%E5%AE%B9%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [SGML、HTML、XML 和 XHTML 的区别？](#sgmlhtmlxml%E5%92%8Cxhtml%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [行内元素与块级元素的区别？](#%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E4%B8%8E%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [link和@import有什么区别](#link%E5%92%8Cimport%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [重绘与回流，重绘和回流to，](#%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81to)
-  - [DOMContentLoaded事件和Load事件的区别？](#domcontentloaded%E4%BA%8B%E4%BB%B6%E5%92%8Cload%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [link 和@import 有什么区别](#link%E5%92%8Cimport%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [重绘与回流，重绘和回流 to，](#%E9%87%8D%E7%BB%98%E4%B8%8E%E5%9B%9E%E6%B5%81%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81to)
+  - [DOMContentLoaded 事件和 Load 事件的区别？](#domcontentloaded%E4%BA%8B%E4%BB%B6%E5%92%8Cload%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [浏览器内核](#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8)
   - [让页面里的字体变清晰](#%E8%AE%A9%E9%A1%B5%E9%9D%A2%E9%87%8C%E7%9A%84%E5%AD%97%E4%BD%93%E5%8F%98%E6%B8%85%E6%99%B0)
   - [图片格式](#%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F)
-  - [html5新增了那些特性，HTML5有哪些新特性、移除了那些元素？](#html5%E6%96%B0%E5%A2%9E%E4%BA%86%E9%82%A3%E4%BA%9B%E7%89%B9%E6%80%A7html5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E7%A7%BB%E9%99%A4%E4%BA%86%E9%82%A3%E4%BA%9B%E5%85%83%E7%B4%A0)
-  - [HTML5新增的表单元素有？](#html5%E6%96%B0%E5%A2%9E%E7%9A%84%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E6%9C%89)
-  - [html5离线缓存，离线存储](#html5%E7%A6%BB%E7%BA%BF%E7%BC%93%E5%AD%98%E7%A6%BB%E7%BA%BF%E5%AD%98%E5%82%A8)
-  - [增删查改dom，dom操作，domto](#%E5%A2%9E%E5%88%A0%E6%9F%A5%E6%94%B9domdom%E6%93%8D%E4%BD%9Cdomto)
+  - [html5 新增了那些特性，HTML5 有哪些新特性、移除了那些元素？](#html5%E6%96%B0%E5%A2%9E%E4%BA%86%E9%82%A3%E4%BA%9B%E7%89%B9%E6%80%A7html5%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7%E7%A7%BB%E9%99%A4%E4%BA%86%E9%82%A3%E4%BA%9B%E5%85%83%E7%B4%A0)
+  - [HTML5 新增的表单元素有？](#html5%E6%96%B0%E5%A2%9E%E7%9A%84%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E6%9C%89)
+  - [html5 离线缓存，离线存储](#html5%E7%A6%BB%E7%BA%BF%E7%BC%93%E5%AD%98%E7%A6%BB%E7%BA%BF%E5%AD%98%E5%82%A8)
+  - [增删查改 dom，dom 操作，domto](#%E5%A2%9E%E5%88%A0%E6%9F%A5%E6%94%B9domdom%E6%93%8D%E4%BD%9Cdomto)
   - [移动端为什么点击事件的有延迟，时间是多久，为什么？](#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%9C%89%E5%BB%B6%E8%BF%9F%E6%97%B6%E9%97%B4%E6%98%AF%E5%A4%9A%E4%B9%85%E4%B8%BA%E4%BB%80%E4%B9%88)
-  - [offsetWidth/offsetHeight,clientWidth/clientHeight与scrollWidth/scrollHeight的区别？](#offsetwidthoffsetheightclientwidthclientheight%E4%B8%8Escrollwidthscrollheight%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [offsetWidth/offsetHeight,clientWidth/clientHeight 与 scrollWidth/scrollHeight 的区别？](#offsetwidthoffsetheightclientwidthclientheight%E4%B8%8Escrollwidthscrollheight%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [v8to](#v8to)
-  - [v8运行机制](#v8%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6)
-  - [V8的垃圾回收机制，内存机制，内存to，](#v8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6%E5%86%85%E5%AD%98to)
-  - [v8优化](#v8%E4%BC%98%E5%8C%96)
-  - [v8代码优化实践](#v8%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5)
+  - [v8 运行机制](#v8%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6)
+  - [V8 的垃圾回收机制，内存机制，内存 to，](#v8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6%E5%86%85%E5%AD%98to)
+  - [v8 优化](#v8%E4%BC%98%E5%8C%96)
+  - [v8 代码优化实践](#v8%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5)
 - [webpackto，](#webpackto)
-  - [自定义loaderto](#%E8%87%AA%E5%AE%9A%E4%B9%89loaderto)
-  - [webpack原理，实现webpack](#webpack%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
-  - [自定义插件，自定义pluginto](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89pluginto)
-  - [webpack如何工作，工作流程](#webpack%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
-  - [babel-pollyfillto和babel-transform-runtimeto区别](#babel-pollyfillto%E5%92%8Cbabel-transform-runtimeto%E5%8C%BA%E5%88%AB)
-  - [匹配文件夹下所有特定后缀的文件，webpackCopy复制前先压缩所有的js](#%E5%8C%B9%E9%85%8D%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6webpackcopy%E5%A4%8D%E5%88%B6%E5%89%8D%E5%85%88%E5%8E%8B%E7%BC%A9%E6%89%80%E6%9C%89%E7%9A%84js)
-  - [Webpack热更新](#webpack%E7%83%AD%E6%9B%B4%E6%96%B0)
-  - [webpack优化](#webpack%E4%BC%98%E5%8C%96)
-  - [Webpack5和webpack4的区别](#webpack5%E5%92%8Cwebpack4%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [自定义 loaderto](#%E8%87%AA%E5%AE%9A%E4%B9%89loaderto)
+  - [webpack 原理，实现 webpack](#webpack%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
+  - [自定义插件，自定义 pluginto](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89pluginto)
+  - [webpack 如何工作，工作流程](#webpack%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
+  - [babel-pollyfillto 和 babel-transform-runtimeto 区别](#babel-pollyfillto%E5%92%8Cbabel-transform-runtimeto%E5%8C%BA%E5%88%AB)
+  - [匹配文件夹下所有特定后缀的文件，webpackCopy 复制前先压缩所有的 js](#%E5%8C%B9%E9%85%8D%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8B%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E5%90%8E%E7%BC%80%E7%9A%84%E6%96%87%E4%BB%B6webpackcopy%E5%A4%8D%E5%88%B6%E5%89%8D%E5%85%88%E5%8E%8B%E7%BC%A9%E6%89%80%E6%9C%89%E7%9A%84js)
+  - [Webpack 热更新](#webpack%E7%83%AD%E6%9B%B4%E6%96%B0)
+  - [webpack 优化](#webpack%E4%BC%98%E5%8C%96)
+  - [Webpack5 和 webpack4 的区别](#webpack5%E5%92%8Cwebpack4%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [Nodeto，](#nodeto)
-  - [node单线程，node特性，事件驱动，非阻塞I/O](#node%E5%8D%95%E7%BA%BF%E7%A8%8Bnode%E7%89%B9%E6%80%A7%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E9%9D%9E%E9%98%BB%E5%A1%9Eio)
-  - [node性能调优](#node%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98)
-  - [node的readFile和readFileSync的区别](#node%E7%9A%84readfile%E5%92%8Creadfilesync%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [fs和fs-extra](#fs%E5%92%8Cfs-extra)
-  - [node实现多进程](#node%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BF%9B%E7%A8%8B)
-  - [node进程间通信](#node%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1)
-  - [exports.xxx=xxx和Module.exports={}有什么区别吗](#exportsxxxxxx%E5%92%8Cmoduleexports%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%90%97)
-  - [Nodejs加载模块机制，模块加载机制，require加载机制](#nodejs%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9D%97%E6%9C%BA%E5%88%B6%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6require%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6)
-  - [node调用java,node调用接口](#node%E8%B0%83%E7%94%A8javanode%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3)
-  - [使用过的koa中间件](#%E4%BD%BF%E7%94%A8%E8%BF%87%E7%9A%84koa%E4%B8%AD%E9%97%B4%E4%BB%B6)
-  - [实现koa，compose,中间件to](#%E5%AE%9E%E7%8E%B0koacompose%E4%B8%AD%E9%97%B4%E4%BB%B6to)
-  - [实现限量重启，比如我最多让其在1分钟内重启5次，超过了就报警给运维](#%E5%AE%9E%E7%8E%B0%E9%99%90%E9%87%8F%E9%87%8D%E5%90%AF%E6%AF%94%E5%A6%82%E6%88%91%E6%9C%80%E5%A4%9A%E8%AE%A9%E5%85%B6%E5%9C%A81%E5%88%86%E9%92%9F%E5%86%85%E9%87%8D%E5%90%AF5%E6%AC%A1%E8%B6%85%E8%BF%87%E4%BA%86%E5%B0%B1%E6%8A%A5%E8%AD%A6%E7%BB%99%E8%BF%90%E7%BB%B4)
-  - [实现一个node子进程被杀死，然后自动重启代码的思路](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAnode%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80%E6%AD%BB%E7%84%B6%E5%90%8E%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E4%BB%A3%E7%A0%81%E7%9A%84%E6%80%9D%E8%B7%AF)
-  - [buffer模块](#buffer%E6%A8%A1%E5%9D%97)
-  - [node的问题](#node%E7%9A%84%E9%97%AE%E9%A2%98)
-  - [用nodejs，将base64转化成png文件](#%E7%94%A8nodejs%E5%B0%86base64%E8%BD%AC%E5%8C%96%E6%88%90png%E6%96%87%E4%BB%B6)
-  - [node开发脚手架](#node%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6)
-  - [基于vue-cli3创建自己的UI组件库，开发npm包，开发脚手架](#%E5%9F%BA%E4%BA%8Evue-cli3%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84ui%E7%BB%84%E4%BB%B6%E5%BA%93%E5%BC%80%E5%8F%91npm%E5%8C%85%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6)
-  - [开发Node脚手架](#%E5%BC%80%E5%8F%91node%E8%84%9A%E6%89%8B%E6%9E%B6)
+  - [node 单线程，node 特性，事件驱动，非阻塞 I/O](#node%E5%8D%95%E7%BA%BF%E7%A8%8Bnode%E7%89%B9%E6%80%A7%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E9%9D%9E%E9%98%BB%E5%A1%9Eio)
+  - [node 性能调优](#node%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98)
+  - [node 的 readFile 和 readFileSync 的区别](#node%E7%9A%84readfile%E5%92%8Creadfilesync%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [fs 和 fs-extra](#fs%E5%92%8Cfs-extra)
+  - [node 实现多进程](#node%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BF%9B%E7%A8%8B)
+  - [node 进程间通信](#node%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1)
+  - [exports.xxx=xxx 和 Module.exports={}有什么区别吗](#exportsxxxxxx%E5%92%8Cmoduleexports%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%90%97)
+  - [Nodejs 加载模块机制，模块加载机制，require 加载机制](#nodejs%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9D%97%E6%9C%BA%E5%88%B6%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6require%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6)
+  - [node 调用 java,node 调用接口](#node%E8%B0%83%E7%94%A8javanode%E8%B0%83%E7%94%A8%E6%8E%A5%E5%8F%A3)
+  - [使用过的 koa 中间件](#%E4%BD%BF%E7%94%A8%E8%BF%87%E7%9A%84koa%E4%B8%AD%E9%97%B4%E4%BB%B6)
+  - [实现 koa，compose,中间件 to](#%E5%AE%9E%E7%8E%B0koacompose%E4%B8%AD%E9%97%B4%E4%BB%B6to)
+  - [实现限量重启，比如我最多让其在 1 分钟内重启 5 次，超过了就报警给运维](#%E5%AE%9E%E7%8E%B0%E9%99%90%E9%87%8F%E9%87%8D%E5%90%AF%E6%AF%94%E5%A6%82%E6%88%91%E6%9C%80%E5%A4%9A%E8%AE%A9%E5%85%B6%E5%9C%A81%E5%88%86%E9%92%9F%E5%86%85%E9%87%8D%E5%90%AF5%E6%AC%A1%E8%B6%85%E8%BF%87%E4%BA%86%E5%B0%B1%E6%8A%A5%E8%AD%A6%E7%BB%99%E8%BF%90%E7%BB%B4)
+  - [实现一个 node 子进程被杀死，然后自动重启代码的思路](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAnode%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%A2%AB%E6%9D%80%E6%AD%BB%E7%84%B6%E5%90%8E%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E4%BB%A3%E7%A0%81%E7%9A%84%E6%80%9D%E8%B7%AF)
+  - [buffer 模块](#buffer%E6%A8%A1%E5%9D%97)
+  - [node 的问题](#node%E7%9A%84%E9%97%AE%E9%A2%98)
+  - [用 nodejs，将 base64 转化成 png 文件](#%E7%94%A8nodejs%E5%B0%86base64%E8%BD%AC%E5%8C%96%E6%88%90png%E6%96%87%E4%BB%B6)
+  - [node 开发脚手架](#node%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6)
+  - [基于 vue-cli3 创建自己的 UI 组件库，开发 npm 包，开发脚手架](#%E5%9F%BA%E4%BA%8Evue-cli3%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84ui%E7%BB%84%E4%BB%B6%E5%BA%93%E5%BC%80%E5%8F%91npm%E5%8C%85%E5%BC%80%E5%8F%91%E8%84%9A%E6%89%8B%E6%9E%B6)
+  - [开发 Node 脚手架](#%E5%BC%80%E5%8F%91node%E8%84%9A%E6%89%8B%E6%9E%B6)
   - [移除脚手架，脚手架删除，脚手架查找](#%E7%A7%BB%E9%99%A4%E8%84%9A%E6%89%8B%E6%9E%B6%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%A0%E9%99%A4%E8%84%9A%E6%89%8B%E6%9E%B6%E6%9F%A5%E6%89%BE)
 - [Eggjs](#eggjs)
 - [微信开发](#%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91)
   - [鉴权](#%E9%89%B4%E6%9D%83)
   - [微信开发流程](#%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B)
 - [Reactto，](#reactto)
-  - [react16.17,18新增的优化点以及区别](#react161718%E6%96%B0%E5%A2%9E%E7%9A%84%E4%BC%98%E5%8C%96%E7%82%B9%E4%BB%A5%E5%8F%8A%E5%8C%BA%E5%88%AB)
-  - [setState原理](#setstate%E5%8E%9F%E7%90%86)
+  - [react16.17,18 新增的优化点以及区别](#react161718%E6%96%B0%E5%A2%9E%E7%9A%84%E4%BC%98%E5%8C%96%E7%82%B9%E4%BB%A5%E5%8F%8A%E5%8C%BA%E5%88%AB)
+  - [setState 原理](#setstate%E5%8E%9F%E7%90%86)
   - [合成事件](#%E5%90%88%E6%88%90%E4%BA%8B%E4%BB%B6)
-  - [react浅比较，pureComponent的原理](#react%E6%B5%85%E6%AF%94%E8%BE%83purecomponent%E7%9A%84%E5%8E%9F%E7%90%86)
+  - [react 浅比较，pureComponent 的原理](#react%E6%B5%85%E6%AF%94%E8%BE%83purecomponent%E7%9A%84%E5%8E%9F%E7%90%86)
   - [fiberto](#fiberto)
   - [scheduler](#scheduler)
-  - [如何保证Update不丢失](#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81update%E4%B8%8D%E4%B8%A2%E5%A4%B1)
+  - [如何保证 Update 不丢失](#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81update%E4%B8%8D%E4%B8%A2%E5%A4%B1)
   - [如何保证状态依赖的连续性](#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%8A%B6%E6%80%81%E4%BE%9D%E8%B5%96%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7)
   - [hooksto](#hooksto)
-  - [react性能优化，react优化](#react%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96react%E4%BC%98%E5%8C%96)
+  - [react 性能优化，react 优化](#react%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96react%E4%BC%98%E5%8C%96)
   - [JSX](#jsx)
-  - [React复用，组件逻辑复用，react各组件比较](#react%E5%A4%8D%E7%94%A8%E7%BB%84%E4%BB%B6%E9%80%BB%E8%BE%91%E5%A4%8D%E7%94%A8react%E5%90%84%E7%BB%84%E4%BB%B6%E6%AF%94%E8%BE%83)
-  - [React16后的生命周期，react16to，](#react16%E5%90%8E%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Freact16to)
-  - [react16版本的reconciliation阶段和commit阶段是什么](#react16%E7%89%88%E6%9C%AC%E7%9A%84reconciliation%E9%98%B6%E6%AE%B5%E5%92%8Ccommit%E9%98%B6%E6%AE%B5%E6%98%AF%E4%BB%80%E4%B9%88)
-  - [React.children.map迭代出来的节点是不能直接修改属性的，可以配合React.cloneElement进行扩展修改](#reactchildrenmap%E8%BF%AD%E4%BB%A3%E5%87%BA%E6%9D%A5%E7%9A%84%E8%8A%82%E7%82%B9%E6%98%AF%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8F%AF%E4%BB%A5%E9%85%8D%E5%90%88reactcloneelement%E8%BF%9B%E8%A1%8C%E6%89%A9%E5%B1%95%E4%BF%AE%E6%94%B9)
-  - [ForwardingRefs有什么用](#forwardingrefs%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8)
-  - [自己封装antDesign的表单，](#%E8%87%AA%E5%B7%B1%E5%B0%81%E8%A3%85antdesign%E7%9A%84%E8%A1%A8%E5%8D%95)
-  - [类似v-html一样解析html](#%E7%B1%BB%E4%BC%BCv-html%E4%B8%80%E6%A0%B7%E8%A7%A3%E6%9E%90html)
-  - [高阶Hoc](#%E9%AB%98%E9%98%B6hoc)
+  - [React 复用，组件逻辑复用，react 各组件比较](#react%E5%A4%8D%E7%94%A8%E7%BB%84%E4%BB%B6%E9%80%BB%E8%BE%91%E5%A4%8D%E7%94%A8react%E5%90%84%E7%BB%84%E4%BB%B6%E6%AF%94%E8%BE%83)
+  - [React16 后的生命周期，react16to，](#react16%E5%90%8E%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Freact16to)
+  - [react16 版本的 reconciliation 阶段和 commit 阶段是什么](#react16%E7%89%88%E6%9C%AC%E7%9A%84reconciliation%E9%98%B6%E6%AE%B5%E5%92%8Ccommit%E9%98%B6%E6%AE%B5%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [React.children.map 迭代出来的节点是不能直接修改属性的，可以配合 React.cloneElement 进行扩展修改](#reactchildrenmap%E8%BF%AD%E4%BB%A3%E5%87%BA%E6%9D%A5%E7%9A%84%E8%8A%82%E7%82%B9%E6%98%AF%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8F%AF%E4%BB%A5%E9%85%8D%E5%90%88reactcloneelement%E8%BF%9B%E8%A1%8C%E6%89%A9%E5%B1%95%E4%BF%AE%E6%94%B9)
+  - [ForwardingRefs 有什么用](#forwardingrefs%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8)
+  - [自己封装 antDesign 的表单，](#%E8%87%AA%E5%B7%B1%E5%B0%81%E8%A3%85antdesign%E7%9A%84%E8%A1%A8%E5%8D%95)
+  - [类似 v-html 一样解析 html](#%E7%B1%BB%E4%BC%BCv-html%E4%B8%80%E6%A0%B7%E8%A7%A3%E6%9E%90html)
+  - [高阶 Hoc](#%E9%AB%98%E9%98%B6hoc)
   - [react-router](#react-router)
-  - [react生命周期](#react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
-  - [复合组件,react插槽](#%E5%A4%8D%E5%90%88%E7%BB%84%E4%BB%B6react%E6%8F%92%E6%A7%BD)
+  - [react 生命周期](#react%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+  - [复合组件,react 插槽](#%E5%A4%8D%E5%90%88%E7%BB%84%E4%BB%B6react%E6%8F%92%E6%A7%BD)
   - [reacthooks](#reacthooks)
   - [reactcontext](#reactcontext)
-  - [redux原理,react-redux原理，redux-thunk原理](#redux%E5%8E%9F%E7%90%86react-redux%E5%8E%9F%E7%90%86redux-thunk%E5%8E%9F%E7%90%86)
-  - [redux中间件机制，middleware](#redux%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9C%BA%E5%88%B6middleware)
+  - [redux 原理,react-redux 原理，redux-thunk 原理](#redux%E5%8E%9F%E7%90%86react-redux%E5%8E%9F%E7%90%86redux-thunk%E5%8E%9F%E7%90%86)
+  - [redux 中间件机制，middleware](#redux%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9C%BA%E5%88%B6middleware)
   - [reduxto，](#reduxto)
-  - [redux和mobx的区别](#redux%E5%92%8Cmobx%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [redux 和 mobx 的区别](#redux%E5%92%8Cmobx%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [react-redux](#react-redux)
   - [redux-thunk](#redux-thunk)
   - [redux-saga](#redux-saga)
   - [React 的 O(n3)和 O(n)怎么计算出来的](#react-%E7%9A%84-on3%E5%92%8C-on%E6%80%8E%E4%B9%88%E8%AE%A1%E7%AE%97%E5%87%BA%E6%9D%A5%E7%9A%84)
-  - [Rn的原理](#rn%E7%9A%84%E5%8E%9F%E7%90%86)
-  - [reactssr掘金好文](#reactssr%E6%8E%98%E9%87%91%E5%A5%BD%E6%96%87)
+  - [Rn 的原理](#rn%E7%9A%84%E5%8E%9F%E7%90%86)
+  - [reactssr 掘金好文](#reactssr%E6%8E%98%E9%87%91%E5%A5%BD%E6%96%87)
   - [Egg + React + SSR 服务端渲染](#egg--react--ssr-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93)
   - [Next](#next)
 - [tsto](#tsto)
-  - [实现ReturnType](#%E5%AE%9E%E7%8E%B0returntype)
-  - [实现Pick](#%E5%AE%9E%E7%8E%B0pick)
+  - [实现 ReturnType](#%E5%AE%9E%E7%8E%B0returntype)
+  - [实现 Pick](#%E5%AE%9E%E7%8E%B0pick)
   - [筛选出为函数类型的字段名](#%E7%AD%9B%E9%80%89%E5%87%BA%E4%B8%BA%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D)
 - [dockerto](#dockerto)
 - [Umi+Dva](#umidva)
@@ -271,24 +270,24 @@
   - [结构](#%E7%BB%93%E6%9E%84)
   - [mock](#mock)
   - [路由](#%E8%B7%AF%E7%94%B1)
-  - [umi-env配置文件区分环境](#umi-env%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8C%BA%E5%88%86%E7%8E%AF%E5%A2%83)
-  - [配合dva使用](#%E9%85%8D%E5%90%88dva%E4%BD%BF%E7%94%A8)
+  - [umi-env 配置文件区分环境](#umi-env%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8C%BA%E5%88%86%E7%8E%AF%E5%A2%83)
+  - [配合 dva 使用](#%E9%85%8D%E5%90%88dva%E4%BD%BF%E7%94%A8)
   - [按需加载](#%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD)
 - [Vueto，](#vueto)
-  - [vue在v-for时给每项元素绑定事件需要用事件代理吗？为什么？](#vue%E5%9C%A8v-for%E6%97%B6%E7%BB%99%E6%AF%8F%E9%A1%B9%E5%85%83%E7%B4%A0%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E9%9C%80%E8%A6%81%E7%94%A8%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%90%97%E4%B8%BA%E4%BB%80%E4%B9%88)
-  - [vue技巧](#vue%E6%8A%80%E5%B7%A7)
-  - [Vue.use和Vue.mixin开发插件](#vueuse%E5%92%8Cvuemixin%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6)
+  - [vue 在 v-for 时给每项元素绑定事件需要用事件代理吗？为什么？](#vue%E5%9C%A8v-for%E6%97%B6%E7%BB%99%E6%AF%8F%E9%A1%B9%E5%85%83%E7%B4%A0%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E9%9C%80%E8%A6%81%E7%94%A8%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%90%97%E4%B8%BA%E4%BB%80%E4%B9%88)
+  - [vue 技巧](#vue%E6%8A%80%E5%B7%A7)
+  - [Vue.use 和 Vue.mixin 开发插件](#vueuse%E5%92%8Cvuemixin%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6)
   - [封装插件](#%E5%B0%81%E8%A3%85%E6%8F%92%E4%BB%B6)
-  - [实现Vue-router](#%E5%AE%9E%E7%8E%B0vue-router)
+  - [实现 Vue-router](#%E5%AE%9E%E7%8E%B0vue-router)
   - [封装插件异步按需引入](#%E5%B0%81%E8%A3%85%E6%8F%92%E4%BB%B6%E5%BC%82%E6%AD%A5%E6%8C%89%E9%9C%80%E5%BC%95%E5%85%A5)
 - [自动化测试](#%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95)
 - [一些源码包的架构设计](#%E4%B8%80%E4%BA%9B%E6%BA%90%E7%A0%81%E5%8C%85%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1)
-  - [jquery的架构](#jquery%E7%9A%84%E6%9E%B6%E6%9E%84)
+  - [jquery 的架构](#jquery%E7%9A%84%E6%9E%B6%E6%9E%84)
 - [数据库](#%E6%95%B0%E6%8D%AE%E5%BA%93)
   - [mongoDB](#mongodb)
   - [mongoose](#mongoose)
-  - [微信小程序to](#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fto)
-- [算法to，排序to](#%E7%AE%97%E6%B3%95to%E6%8E%92%E5%BA%8Fto)
+  - [微信小程序 to](#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fto)
+- [算法 to，排序 to](#%E7%AE%97%E6%B3%95to%E6%8E%92%E5%BA%8Fto)
   - [排序总结](#%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93)
   - [算法复杂度](#%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6)
   - [归并排序](#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F)
@@ -296,16 +295,16 @@
   - [原地快排（省空间）](#%E5%8E%9F%E5%9C%B0%E5%BF%AB%E6%8E%92%E7%9C%81%E7%A9%BA%E9%97%B4)
   - [选择排序](#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F)
   - [冒泡排序](#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F)
-  - [动态规划to](#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92to)
+  - [动态规划 to](#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92to)
   - [最长递增子序列，稳定子序列](#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%A8%B3%E5%AE%9A%E5%AD%90%E5%BA%8F%E5%88%97)
   - [最长回文字符串，最长回文子序列](#%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E5%BA%8F%E5%88%97)
   - [插入排序](#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F)
-  - [二分to](#%E4%BA%8C%E5%88%86to)
+  - [二分 to](#%E4%BA%8C%E5%88%86to)
   - [二分查找（递归）](#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E9%80%92%E5%BD%92)
   - [查找第一个不小于的数，用二分法而不用快排,Ologn](#%E6%9F%A5%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%B0%8F%E4%BA%8E%E7%9A%84%E6%95%B0%E7%94%A8%E4%BA%8C%E5%88%86%E6%B3%95%E8%80%8C%E4%B8%8D%E7%94%A8%E5%BF%AB%E6%8E%92ologn)
   - [查找第一个大于的数，用二分法而不用快排,Ologn](#%E6%9F%A5%E6%89%BE%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%A4%A7%E4%BA%8E%E7%9A%84%E6%95%B0%E7%94%A8%E4%BA%8C%E5%88%86%E6%B3%95%E8%80%8C%E4%B8%8D%E7%94%A8%E5%BF%AB%E6%8E%92ologn)
   - [两个有序数组的中位数](#%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0)
-  - [求两个有序数组的第K⼩数](#%E6%B1%82%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%ACk%E2%BC%A9%E6%95%B0)
+  - [求两个有序数组的第 K ⼩数](#%E6%B1%82%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%ACk%E2%BC%A9%E6%95%B0)
   - [搜索旋转数组，查找旋转数组特定值，二分法，旋转数组的某个数](#%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E6%9F%A5%E6%89%BE%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%89%B9%E5%AE%9A%E5%80%BC%E4%BA%8C%E5%88%86%E6%B3%95%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9F%90%E4%B8%AA%E6%95%B0)
   - [搜索旋转排序数组，旋转数组的最小元素](#%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%85%83%E7%B4%A0)
   - [二分补齐](#%E4%BA%8C%E5%88%86%E8%A1%A5%E9%BD%90)
@@ -313,10 +312,10 @@
   - [正则解码](#%E6%AD%A3%E5%88%99%E8%A7%A3%E7%A0%81)
   - [找数组中最接近指定值得值，找最近](#%E6%89%BE%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9C%80%E6%8E%A5%E8%BF%91%E6%8C%87%E5%AE%9A%E5%80%BC%E5%BE%97%E5%80%BC%E6%89%BE%E6%9C%80%E8%BF%91)
   - [千位符分割](#%E5%8D%83%E4%BD%8D%E7%AC%A6%E5%88%86%E5%89%B2)
-  - [Eatman连续调用闭包，链式调用](#eatman%E8%BF%9E%E7%BB%AD%E8%B0%83%E7%94%A8%E9%97%AD%E5%8C%85%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8)
+  - [Eatman 连续调用闭包，链式调用](#eatman%E8%BF%9E%E7%BB%AD%E8%B0%83%E7%94%A8%E9%97%AD%E5%8C%85%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8)
   - [对象数组去重](#%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D)
-  - [转换成树,树结构，数组转树，js转部门架构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84%E6%95%B0%E7%BB%84%E8%BD%AC%E6%A0%91js%E8%BD%AC%E9%83%A8%E9%97%A8%E6%9E%B6%E6%9E%84)
-  - [实现eventListener,实现emitter,实现eventEmitter](#%E5%AE%9E%E7%8E%B0eventlistener%E5%AE%9E%E7%8E%B0emitter%E5%AE%9E%E7%8E%B0eventemitter)
+  - [转换成树,树结构，数组转树，js 转部门架构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84%E6%95%B0%E7%BB%84%E8%BD%AC%E6%A0%91js%E8%BD%AC%E9%83%A8%E9%97%A8%E6%9E%B6%E6%9E%84)
+  - [实现 eventListener,实现 emitter,实现 eventEmitter](#%E5%AE%9E%E7%8E%B0eventlistener%E5%AE%9E%E7%8E%B0emitter%E5%AE%9E%E7%8E%B0eventemitter)
   - [判断占字节大小，字节大小](#%E5%88%A4%E6%96%AD%E5%8D%A0%E5%AD%97%E8%8A%82%E5%A4%A7%E5%B0%8F%E5%AD%97%E8%8A%82%E5%A4%A7%E5%B0%8F)
   - [遍历树](#%E9%81%8D%E5%8E%86%E6%A0%91)
   - [遍历树结构](#%E9%81%8D%E5%8E%86%E6%A0%91%E7%BB%93%E6%9E%84)
@@ -330,15 +329,15 @@
   - [跳台阶，爬楼梯](#%E8%B7%B3%E5%8F%B0%E9%98%B6%E7%88%AC%E6%A5%BC%E6%A2%AF)
   - [变态跳台阶](#%E5%8F%98%E6%80%81%E8%B7%B3%E5%8F%B0%E9%98%B6)
   - [矩形覆盖](#%E7%9F%A9%E5%BD%A2%E8%A6%86%E7%9B%96)
-  - [二进制中1的个数](#%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0)
+  - [二进制中 1 的个数](#%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0)
   - [数值的整数次方](#%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9)
   - [调整数组顺序使奇数位于偶数前面](#%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2)
-  - [链表中倒数最后k个结点](#%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E6%9C%80%E5%90%8Ek%E4%B8%AA%E7%BB%93%E7%82%B9)
-  - [链表中倒数第k个结点链表双指针](#%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E7%BB%93%E7%82%B9%E9%93%BE%E8%A1%A8%E5%8F%8C%E6%8C%87%E9%92%88)
+  - [链表中倒数最后 k 个结点](#%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E6%9C%80%E5%90%8Ek%E4%B8%AA%E7%BB%93%E7%82%B9)
+  - [链表中倒数第 k 个结点链表双指针](#%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%80%92%E6%95%B0%E7%AC%ACk%E4%B8%AA%E7%BB%93%E7%82%B9%E9%93%BE%E8%A1%A8%E5%8F%8C%E6%8C%87%E9%92%88)
   - [树的子结构](#%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84)
   - [二叉树镜像](#%E4%BA%8C%E5%8F%89%E6%A0%91%E9%95%9C%E5%83%8F)
   - [顺时针打印矩阵，打印二维矩阵](#%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5%E6%89%93%E5%8D%B0%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5)
-  - [包含min的栈](#%E5%8C%85%E5%90%ABmin%E7%9A%84%E6%A0%88)
+  - [包含 min 的栈](#%E5%8C%85%E5%90%ABmin%E7%9A%84%E6%A0%88)
   - [反转链表](#%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8)
   - [合并链表并排序](#%E5%90%88%E5%B9%B6%E9%93%BE%E8%A1%A8%E5%B9%B6%E6%8E%92%E5%BA%8F)
   - [栈实现队列，栈队](#%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%E6%A0%88%E9%98%9F)
@@ -346,18 +345,18 @@
   - [树的遍历](#%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86)
   - [从上往下打印二叉树](#%E4%BB%8E%E4%B8%8A%E5%BE%80%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91)
   - [二叉搜索树的后序遍历序列](#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97)
-  - [二叉树中和为某一值的路径，树和为x的路径](#%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84%E6%A0%91%E5%92%8C%E4%B8%BAx%E7%9A%84%E8%B7%AF%E5%BE%84)
+  - [二叉树中和为某一值的路径，树和为 x 的路径](#%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84%E6%A0%91%E5%92%8C%E4%B8%BAx%E7%9A%84%E8%B7%AF%E5%BE%84)
   - [复杂链表的复制](#%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6)
   - [二叉搜索树与双向链表](#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%8E%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8)
   - [字符串的排列字符串，全排列，递归，排列组合](#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%8E%92%E5%88%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%85%A8%E6%8E%92%E5%88%97%E9%80%92%E5%BD%92%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88)
   - [数组中出现次数超过一半的数字数组，哈希](#%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E8%B6%85%E8%BF%87%E4%B8%80%E5%8D%8A%E7%9A%84%E6%95%B0%E5%AD%97%E6%95%B0%E7%BB%84%E5%93%88%E5%B8%8C)
-  - [最小的k个数，输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4。](#%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%E8%BE%93%E5%85%A5n%E4%B8%AA%E6%95%B4%E6%95%B0%E6%89%BE%E5%87%BA%E5%85%B6%E4%B8%AD%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%E4%BE%8B%E5%A6%82%E8%BE%93%E5%85%A545162738%E8%BF%998%E4%B8%AA%E6%95%B0%E5%AD%97%E5%88%99%E6%9C%80%E5%B0%8F%E7%9A%844%E4%B8%AA%E6%95%B0%E5%AD%97%E6%98%AF1234)
+  - [最小的 k 个数，输入 n 个整数，找出其中最小的 K 个数。例如输入 4,5,1,6,2,7,3,8 这 8 个数字，则最小的 4 个数字是 1,2,3,4。](#%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%E8%BE%93%E5%85%A5n%E4%B8%AA%E6%95%B4%E6%95%B0%E6%89%BE%E5%87%BA%E5%85%B6%E4%B8%AD%E6%9C%80%E5%B0%8F%E7%9A%84k%E4%B8%AA%E6%95%B0%E4%BE%8B%E5%A6%82%E8%BE%93%E5%85%A545162738%E8%BF%998%E4%B8%AA%E6%95%B0%E5%AD%97%E5%88%99%E6%9C%80%E5%B0%8F%E7%9A%844%E4%B8%AA%E6%95%B0%E5%AD%97%E6%98%AF1234)
   - [连续子数组的最大和，最大子序和，动态规划，最大字段和](#%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%9C%80%E5%A4%A7%E5%AD%97%E6%AE%B5%E5%92%8C)
   - [找零钱](#%E6%89%BE%E9%9B%B6%E9%92%B1)
   - [最大正方形](#%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2)
-  - [整数中1出现的次数（从1到n整数中1出现的次数](#%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%E4%BB%8E1%E5%88%B0n%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0)
+  - [整数中 1 出现的次数（从 1 到 n 整数中 1 出现的次数](#%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0%E4%BB%8E1%E5%88%B0n%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0)
   - [把数组排成最小的数](#%E6%8A%8A%E6%95%B0%E7%BB%84%E6%8E%92%E6%88%90%E6%9C%80%E5%B0%8F%E7%9A%84%E6%95%B0)
-  - [从小到大的顺序的第N个丑数](#%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%E7%9A%84%E9%A1%BA%E5%BA%8F%E7%9A%84%E7%AC%ACn%E4%B8%AA%E4%B8%91%E6%95%B0)
+  - [从小到大的顺序的第 N 个丑数](#%E4%BB%8E%E5%B0%8F%E5%88%B0%E5%A4%A7%E7%9A%84%E9%A1%BA%E5%BA%8F%E7%9A%84%E7%AC%ACn%E4%B8%AA%E4%B8%91%E6%95%B0)
   - [第一个只出现一次的字符位置](#%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E5%AD%97%E7%AC%A6%E4%BD%8D%E7%BD%AE)
   - [数组中的逆序对](#%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9)
   - [数字在排序数组中出现的次数](#%E6%95%B0%E5%AD%97%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0)
@@ -365,12 +364,12 @@
   - [二叉树的深度，二叉树深度](#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6)
   - [是不是平衡二叉树](#%E6%98%AF%E4%B8%8D%E6%98%AF%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91)
   - [指定和的连续正数序列](#%E6%8C%87%E5%AE%9A%E5%92%8C%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%AD%A3%E6%95%B0%E5%BA%8F%E5%88%97)
-  - [和为S的两个数字](#%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97)
+  - [和为 S 的两个数字](#%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97)
   - [翻转单词顺序列](#%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F%E5%88%97)
   - [扑克牌](#%E6%89%91%E5%85%8B%E7%89%8C)
   - [儿童节礼物](#%E5%84%BF%E7%AB%A5%E8%8A%82%E7%A4%BC%E7%89%A9)
   - [不用运算符实现两数之和](#%E4%B8%8D%E7%94%A8%E8%BF%90%E7%AE%97%E7%AC%A6%E5%AE%9E%E7%8E%B0%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C)
-  - [实现parsetInt，将字符串转换成整数](#%E5%AE%9E%E7%8E%B0parsetint%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%88%90%E6%95%B4%E6%95%B0)
+  - [实现 parsetInt，将字符串转换成整数](#%E5%AE%9E%E7%8E%B0parsetint%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%88%90%E6%95%B4%E6%95%B0)
   - [数组中重复的数字](#%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97)
   - [给定数组，不能用除法](#%E7%BB%99%E5%AE%9A%E6%95%B0%E7%BB%84%E4%B8%8D%E8%83%BD%E7%94%A8%E9%99%A4%E6%B3%95)
   - [正则表达式匹配，实现正则表达式种的.和\*匹配](#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%E5%AE%9E%E7%8E%B0%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%A7%8D%E7%9A%84%E5%92%8C%5C%E5%8C%B9%E9%85%8D)
@@ -384,30 +383,30 @@
   - [之字形打印二叉树](#%E4%B9%8B%E5%AD%97%E5%BD%A2%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91)
   - [从上到下打印二叉树](#%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91)
   - [序列化和反序列化二叉树](#%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91)
-  - [二叉搜索树种第k个大的节点](#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%A7%8D%E7%AC%ACk%E4%B8%AA%E5%A4%A7%E7%9A%84%E8%8A%82%E7%82%B9)
+  - [二叉搜索树种第 k 个大的节点](#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%A7%8D%E7%AC%ACk%E4%B8%AA%E5%A4%A7%E7%9A%84%E8%8A%82%E7%82%B9)
   - [滑动窗口的最大值](#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC)
   - [矩阵包含指定路径](#%E7%9F%A9%E9%98%B5%E5%8C%85%E5%90%AB%E6%8C%87%E5%AE%9A%E8%B7%AF%E5%BE%84)
-  - [机器人不同路径1](#%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%841)
-  - [机器人不同路径2，有障碍物，动态规划](#%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%842%E6%9C%89%E9%9A%9C%E7%A2%8D%E7%89%A9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92)
-  - [不同路径3，不能进入大于K](#%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%843%E4%B8%8D%E8%83%BD%E8%BF%9B%E5%85%A5%E5%A4%A7%E4%BA%8Ek)
+  - [机器人不同路径 1](#%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%841)
+  - [机器人不同路径 2，有障碍物，动态规划](#%E6%9C%BA%E5%99%A8%E4%BA%BA%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%842%E6%9C%89%E9%9A%9C%E7%A2%8D%E7%89%A9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92)
+  - [不同路径 3，不能进入大于 K](#%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%843%E4%B8%8D%E8%83%BD%E8%BF%9B%E5%85%A5%E5%A4%A7%E4%BA%8Ek)
   - [打家劫舍](#%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D)
   - [最小路径和](#%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C)
   - [转换成树,树结构](#%E8%BD%AC%E6%8D%A2%E6%88%90%E6%A0%91%E6%A0%91%E7%BB%93%E6%9E%84)
   - [取中间数，取中位数，长度不等](#%E5%8F%96%E4%B8%AD%E9%97%B4%E6%95%B0%E5%8F%96%E4%B8%AD%E4%BD%8D%E6%95%B0%E9%95%BF%E5%BA%A6%E4%B8%8D%E7%AD%89)
-  - [两个长度相等的数组求中位数,ON,空间O1](#%E4%B8%A4%E4%B8%AA%E9%95%BF%E5%BA%A6%E7%9B%B8%E7%AD%89%E7%9A%84%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0on%E7%A9%BA%E9%97%B4o1)
-  - [手动实现filter](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0filter)
+  - [两个长度相等的数组求中位数,ON,空间 O1](#%E4%B8%A4%E4%B8%AA%E9%95%BF%E5%BA%A6%E7%9B%B8%E7%AD%89%E7%9A%84%E6%95%B0%E7%BB%84%E6%B1%82%E4%B8%AD%E4%BD%8D%E6%95%B0on%E7%A9%BA%E9%97%B4o1)
+  - [手动实现 filter](#%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0filter)
   - [数组乱序](#%E6%95%B0%E7%BB%84%E4%B9%B1%E5%BA%8F)
   - [驼峰命名](#%E9%A9%BC%E5%B3%B0%E5%91%BD%E5%90%8D)
-  - [解析urlquery为对象](#%E8%A7%A3%E6%9E%90urlquery%E4%B8%BA%E5%AF%B9%E8%B1%A1)
+  - [解析 urlquery 为对象](#%E8%A7%A3%E6%9E%90urlquery%E4%B8%BA%E5%AF%B9%E8%B1%A1)
   - [统计出现最多的单词](#%E7%BB%9F%E8%AE%A1%E5%87%BA%E7%8E%B0%E6%9C%80%E5%A4%9A%E7%9A%84%E5%8D%95%E8%AF%8D)
   - [遍历树，深度优先，广度优先](#%E9%81%8D%E5%8E%86%E6%A0%91%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88)
   - [接雨水问题](#%E6%8E%A5%E9%9B%A8%E6%B0%B4%E9%97%AE%E9%A2%98)
   - [遍历树结构](#%E9%81%8D%E5%8E%86%E6%A0%91%E7%BB%93%E6%9E%84-1)
-  - [实现http拦截器](#%E5%AE%9E%E7%8E%B0http%E6%8B%A6%E6%88%AA%E5%99%A8)
+  - [实现 http 拦截器](#%E5%AE%9E%E7%8E%B0http%E6%8B%A6%E6%88%AA%E5%99%A8)
   - [是否循环引用](#%E6%98%AF%E5%90%A6%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8)
   - [有效括号](#%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7)
   - [最长有效括号](#%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7)
-  - [x的n次方，不能用库函数，考察二分法](#x%E7%9A%84n%E6%AC%A1%E6%96%B9%E4%B8%8D%E8%83%BD%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0%E8%80%83%E5%AF%9F%E4%BA%8C%E5%88%86%E6%B3%95)
+  - [x 的 n 次方，不能用库函数，考察二分法](#x%E7%9A%84n%E6%AC%A1%E6%96%B9%E4%B8%8D%E8%83%BD%E7%94%A8%E5%BA%93%E5%87%BD%E6%95%B0%E8%80%83%E5%AF%9F%E4%BA%8C%E5%88%86%E6%B3%95)
   - [编辑距离，最少操作数](#%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0)
   - [无重复的最长子串](#%E6%97%A0%E9%87%8D%E5%A4%8D%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2)
 
@@ -415,7 +414,7 @@
 
 # 基础
 
-## Js数据类型，js基本类型和复杂类型
+## Js 数据类型，js 基本类型和复杂类型
 
 基本数据类型：Boolean, String, Number, Null, Undefine, Symbol（代表创建后独一无二且不可变的数据类型，它的出现我认为主 要是为了解决可能出现的全局变量冲突的问题。）
 引用数据类型：Object, Array, Function
@@ -443,7 +442,7 @@ isEmpty(val) {
 },
 ```
 
-## 数组to，改变数组
+## 数组 to，改变数组
 
 改变数组：splice,push,pop,unshift,shift,sort,reverse,fill,copyWithin
 不改变数组：slice,map,forEach,filter,some,reduce,find,concat,every,some,entries
@@ -469,7 +468,7 @@ arr.flatMap（i） 打平几层
 
 Object.prototype.toString 适用于任何变量，instanceof，isArray 只能判断对象类型，原始类型不可，isArray 性能会稍微高点
 
-## instanceofto,实现instanceof
+## instanceofto,实现 instanceof
 
 instanceof 运算符用于判断构造函数的 prototype 属性是否出现在对象的原型链中的任 何位置。
 
@@ -510,7 +509,7 @@ getType(val) {
 },
 ```
 
-## newto，实现new，new做了什么
+## newto，实现 new，new 做了什么
 
 new 做了三步
 
@@ -612,7 +611,7 @@ function throttle(fn, delay = 5000) {
 }
 ```
 
-## react实现防抖输入框
+## react 实现防抖输入框
 
 ```js
 function debounce(fn, wait) {
@@ -665,7 +664,7 @@ class SearchInput extends React.Component {
 }
 ```
 
-## 正则to，
+## 正则 to，
 
 1. 只有正则表达式才有 exec,和 test 的方法，字符串才有 match
 2. exec 和 replace 的结果用...args 打印出来都可以知道第一个结果是总体的匹配结果，后面是$1 和$2 之类的
@@ -730,7 +729,7 @@ function test() {
 test()
 ```
 
-## this指向问题，点调用问题
+## this 指向问题，点调用问题
 
 1. 普通函数
    a. 直接看有没有 new 或挥洒后端返者 call 绑定 this，没有的话下一步
@@ -801,7 +800,7 @@ console.log("TCL:箭头 ", shape.arrow()) NaN
 const c = new shape.normal() shape.normal is not a constructor，应该吧normal改写成普通的normal：function(){}而不能用简写的normal()
 ```
 
-## 经典foo问题
+## 经典 foo 问题
 
 [https://www.cnblogs.com/laojun/p/8287399.html](https://www.cnblogs.com/laojun/p/8287399.html)
 
@@ -876,7 +875,7 @@ Foo.a();
 -- 4  2  1
 ```
 
-## 手动实现bind
+## 手动实现 bind
 
 ```js
 Function.prototype.bind = function (ctx) {
@@ -887,7 +886,7 @@ Function.prototype.bind = function (ctx) {
 };
 ```
 
-## 实现实现call
+## 实现实现 call
 
 ```js
 Function.prototype.call = function(context) {
@@ -906,7 +905,7 @@ Function.prototype.call = function(context) {
 }
 ```
 
-## 实现apply
+## 实现 apply
 
 ```js
 Function.prototype.apply2 = function(context, arr) {
@@ -927,18 +926,18 @@ Function.prototype.apply2 = function(context, arr) {
 
 ```
 
-## 继承to，原型链to，原型to
+## 继承 to，原型链 to，原型 to
 
 [继承](https://segmentfault.com/a/1190000015766680)
 
-## JavaScript的作⽤域链理解吗？✨
+## JavaScript 的作⽤域链理解吗？✨
 
 JavaScript 属于静态作⽤域，即声明的作⽤域是根据程序正⽂在编译时就确定的，有时也称为词法作⽤域。
 其本质是 JavaScript 在执⾏过程中会创造可执⾏上下⽂，可执⾏上下⽂中的词法环境中含有外部词法环境的引⽤，我们
 可以通过这个引⽤获取外部词法环境的变量、声明等，这些引⽤串联起来⼀直指向全局的词法环境，因此形成了作⽤域
 链。
 
-## es5的主要继承方式
+## es5 的主要继承方式
 
 寄生组合式继承
 
@@ -1018,14 +1017,14 @@ function inherit(subType, superType){
   思想：本质上，就是使用寄生式继承来继承超类型的原型，然后再将结果指定给子类型的原型
   只调用了一次 supertype 构造函数，因此避免在 subtype.prototype 上创建不必要的，多余的属性，与此同时，原型链还能保持不变，还能正常使用 instanceof 和 isPrototypeOf()，因此，寄生组合式继承被认为是引用类型最理想的继承范式。
 
-## ES5的继承和ES6的继承有什么区别
+## ES5 的继承和 ES6 的继承有什么区别
 
 1. ES5 主要通过，借用父类构造函数或者原型链对象或者寄生组合式继承来共修改原型，从而实现继承和共享
 2. ES6 先创建父类，在实例化子集中通过调用 super 方法直接用父类进行初始化，再在构造器里面修改属性
    【在 class extend 后，子的 constructor 里面需要 super（）一下，这个过程其实是 super 先实例化父类，然后再用子类自己的构造器去修改这个对象，
    所以如果不 super，子类是获取不到 this 的，因为 this 的前提是要 super 出来这个父类实例，此外，因为是直接实例父类的，所以这也就决定了 class 的继承可以直接继承内置对象】
 
-## 实现promise,promiseto，
+## 实现 promise,promiseto，
 
 ```js
 const PENDING = 1;
@@ -1089,7 +1088,7 @@ let promise = new KPromise((resolve, reject) => {
 );
 ```
 
-## 手动实现promise.race,实现promise.all,promise.catch,promise.finally,promise.allSettled
+## 手动实现 promise.race,实现 promise.all,promise.catch,promise.finally,promise.allSettled
 
 这些方法接受一个数组作为参数，p1、p2、p3 都是 Promise 实例，如果不是，
 就会先调用下面讲到的 Promise.resolve 方法，将参数转为 Promise 实例，再进一步处理。
@@ -1169,7 +1168,7 @@ Promise.prototype.allSettled = (funcArr) => {
 }
 ```
 
-## 实现async/await
+## 实现 async/await
 
 Async await 如何通过同步实现异步， async 包住的函数实际上相当于一个 Generator 函数，通过 yield 和 next 实现暂停和继续向下调用
 
@@ -1219,7 +1218,7 @@ function run(gen) {
 }
 ```
 
-## 豪华版实现promise，可链式调用prosmise
+## 豪华版实现 promise，可链式调用 prosmise
 
 ```js
 Promise/A+规定的三种状态
@@ -1347,7 +1346,7 @@ console.log(it.next({ value: "我是第二步的初始值" }))
 输出 { value:'我是第二步的初始值' }
 输出{ value: undefined, done: true }
 
-## 手动实现generator
+## 手动实现 generator
 
 原理是 yield 会将代码大概转换成下面三个步骤，用 switch 来执行不同步骤的函数，核心点在于每次运行
 后对上下文的保存，下次再使用时直接根据上下文执行下一步的函数，所以 yield 看起来想挂载了，其实并没有，只是保存了上下文
@@ -1412,7 +1411,7 @@ let gen = function () {
 };
 ```
 
-## 微任务，宏任务，先微再宏，只不过一开始的script块也可以算是宏任务
+## 微任务，宏任务，先微再宏，只不过一开始的 script 块也可以算是宏任务
 
 宏任务：script 中代码、setTimeout、setInterval、I/O、UI render。
 微任务: promise.then、nexttick, Object.observe、MutationObserver。
@@ -1428,7 +1427,7 @@ let gen = function () {
 
 <!-- todo -->
 
-## node的事件循环机制，浏览器的循环机制和区别
+## node 的事件循环机制，浏览器的循环机制和区别
 
 Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。
 
@@ -1482,7 +1481,7 @@ new Promise(function (resolve) {
 console.log("script end");
 ```
 
-## 实现flatten，打平数组,数组扁平化
+## 实现 flatten，打平数组,数组扁平化
 
 - 普通实现
 
@@ -1535,30 +1534,30 @@ return a - b （降序是 b - a）
 
 `基本思想是采用将两个数相乘，然后除以它们的最大公约数 function getMinCommonMultiple(a, b){ return a * b / getMaxCommonDivisor(a, b);}`
 
-## js内置对象
+## js 内置对象
 
 （1）值属性，这些全局属性返回一个简单值，这些值没有自己的属性和方法。例如 Infinity、 NaN、undefined、null 字面量 （2）函数属性，全局函数可以直接调用，不需要在调用时指定所属对象，执行结束后会将结果 直接返回给调用者。例如 eval()、parseFloat()、parseInt() 等 （3）基本对象，基本对象是定义或使用其他对象的基础。基本对象包括一般对象、函数对象和 错误对象。例如 Object、Function、Boolean、Symbol、Error 等 （4）数字和日期对象，用来表示数字、日期和执行数学计算的对象。例如 Number、Math、Date
 （5）字符串，用来表示和操作字符串的对象。例如 String、RegExp （6）可索引的集合对象，这些对象表示按照索引值来排序的数据集合，包括数组和类型数组， 以及类数组结构的对象。例如 Array （7）使用键的集合对象，这些集合对象在存储数据时会使用到键，支持按照插入顺序来迭代元 素。例如 Map、Set、WeakMap、WeakSet （8）矢量集合，SIMD 矢量集合中的数据会被组织为一个数据序列。例如 SIMD 等 （9）结构化数据，这些对象用来表示和操作结构化的缓冲区数据，或使用 JSON 编码的数据。 例如 JSON 等 （10）控制抽象对象例如 Promise、Generator 等 （11）反射，例如 Reflect、Proxy （12）国际化，为了支持多语言处理而加入 ECMAScript 的对象。例如 Intl、Intl.Collator 等（13）WebAssembly （14）其他 例如 arguments
 
-## js中整数的安全范围是多少？
+## js 中整数的安全范围是多少？
 
 安全整数指的是，在这个范围内的整数转化为二进制存储的时候不会出现精度丢失，能够被 “安全”呈现的最大整数是 2^53 - 1，即 9007199254740991，在 ES6 中被定义为 Number.MAX_SAFE_INTEGER。最小整数是-9007199254740991，在 ES6 中被定义为 Number.MIN_SAFE_INTEGER。 如果某次计算的结果得到了一个超过 JavaScript 数值范围的值，那么这个值会被自动转 换为特殊的 Infinity 值。如果某次计算返回了正或负的 Infinity 值，那么该值将无法参与 下一次的计算。判断一个数是不是有穷的，可以使用 isFinite 函数来判断。
 
-## escape,encodeURI,encodeURIComponent有什么区别？
+## escape,encodeURI,encodeURIComponent 有什么区别？
 
 encodeURI 是对整个 URI 进行转义，将 URI 中的非法字符转换为合法字符，所以对于一些在 URI 中有特殊意义的字符不会进行转义。
 encodeURIComponent 是对 URI 的组成部分进行转义，所以一些特殊字符也会得到转义。 escape 和 encodeURI 的作用相同，不过它们对于 unicode 编码为 0xff 之外字符的时候会 有区别，escape 是直接在字符的 unicode 编码前加上 %u，而 encodeURI 首先会将字符转 换为
 
-## set和weakset，map和weakmap
+## set 和 weakset，map 和 weakmap
 
 set 类似于数组，但无重复，map，类似于对象，但键值不限定，包括对象也可以做键值
 weakset 和 weakMap 能存放的只能是引用类型，好处是 weakSet 和 weakMap 是弱集的意思，就是存放的东西只能是引用类型，且集合里的引用类型数据没被引用到的话会被直接回收掉，可以自动释放内存，避免很多内存泄漏的问题，所以说用 weakSet 和 weakMap 主要是可以方便自动化释放内存，而不用我们手动去清理一下内从销毁
 
-## Reflect对象创建目的
+## Reflect 对象创建目的
 
 简单来说就是将对象最原始默认的一些方法和行为对应备份起来，这样我在后面即使用 proxy 去改变拦截高阶化原始默认事件后，我还是可以通过 reflect 来找到并调用最原先的代码
 
-## 使用闭包实现每隔一秒打印1,2,3,4
+## 使用闭包实现每隔一秒打印 1,2,3,4
 
 ```js
 for (var i = 0; i < 5; i++) {
@@ -1577,7 +1576,7 @@ for (let i = 0; i < 5; i++) {
 
 <!-- endjs -->
 
-# 亮点to，hejieto
+# 亮点 to，hejieto
 
 - webp 优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件
 
@@ -1632,7 +1631,7 @@ function VideoList(props) {
 export default VideoList;
 ```
 
-## 性能优化to
+## 性能优化 to
 
 1. wepack 打包层面
    打包层面：webpack: babel-import,svg 化为组件后按需导入，bundle-analyzer 打包分析，babel-transform-runtime 代替 babel-pollyfill，treeShaking,cache-loader，threadLoader 和 happypack
@@ -1798,23 +1797,23 @@ export function measure(target,name,descriptor){
   可以调节重新渲染，大幅提高网页性能。其中最重要的，它可以将某些代码放到下一次重新渲染时执行。避免短时间内触发大量 reflow
 - 图片处理，用 canvas,drawImage，绘制水印，操作然后 toDataUrl 转为 base64，canvas.drawImage,然后 getImageData 可以获得一个二维矩阵，矩阵有四个数组，代表 RGBA 四个通道的数组，对像素点的通道进行处理, background-blend-mode
 
-## 实现webpack
+## 实现 webpack
 
 1. 先实现一个解析器单独分析一个模块，读取配置，找入口依赖文件，babel-parser 解析成 ast 抽语法树，然后用 babel-traverse 遍历所有的依赖，生成该模块的依赖数组，然后用 babel-core 和 babel-preset-env 把 ast 转为 code，至此一个模块就解析完成了，返回{filename, code, dependiences}
 2. 开始递归分析依赖数组并递归解析，解析所有模块
 3. 开始输出代码，按照 webpack 的最终 IIFE 的输出格式，将生成的对象直接 JSON.stringify 字符串然后拼接上去，eval 执行即可
 
-## 开发插件，开发pluginto
+## 开发插件，开发 pluginto
 
 hint: 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tiny 发起请求，下载图片后直接上传到 oss 后再删除
 
 一个类，apply 入口，可以拿到 compiler 参数，compiler.plugin('done', (compilation 编译结果) => {}),常用的钩子有 emit 即将打包，compile 编译中，done 打包完成，
 
-## 自定义loader
+## 自定义 loader
 
 hint: 用来检查判断 addEventlistner 后有没 removeEventListener 以及其他的一些规则就是一个函数，可以解析到 source 对象，然后对 source 进行操作后 return 出去就是了，
 
-## 开发脚手架to
+## 开发脚手架 to
 
 https://mp.weixin.qq.com/s/4h-PnP-kCWvq05ejLCBiGg
 用 oclif 开发脚手架
@@ -1831,7 +1830,7 @@ npm init,package.json 里面 bin 指向脚本文件，npm link 进行关联，�
 4. 生成文件，这时的 package.json 和模板文件还是在内存中要用 writeFileSync 生成写入
 5. 下载依赖，用 execa 调用子进程
 
-## 开发npm包，组件库
+## 开发 npm 包，组件库
 
 1. yarn add @vue/cli -D 安装 vuecli3 最新的脚手架
 2. npx vue create mycli
@@ -1856,7 +1855,7 @@ npm init,package.json 里面 bin 指向脚本文件，npm link 进行关联，�
 打包风格
 commonJs 的 require 风格
 
-## 传输to，断点传输，分片传输
+## 传输 to，断点传输，分片传输
 
 - 普通上传 ctx.request.files，ranameSync 进行上传
 - 多文件，input 标签 multiple，ctx.request.files.forEach
@@ -1966,7 +1965,7 @@ xhr.onreadystatechange = function () {
   构建 form-data form-data
   上传文件 node-fetch
 
-## webpack优化，webpackto
+## webpack 优化，webpackto
 
 - babelrc 里面配置开发环境 dynamic-import-node 动态引入
 - alias: 缓存目录，避免重复寻址；
@@ -1999,7 +1998,7 @@ xhr.onreadystatechange = function () {
 - 4、将编译后的所有代码包装成一个个代码块 (Chuck)， 并按依赖和配置确定 输出内容。这个步骤，仍然可以通过 Plugin 进行文件的修改;
 - 5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；
 
-## babel插件to，babelto
+## babel 插件 to，babelto
 
 babelType：类似 lodash 那样的工具集，主要用来操作 AST 节点，比如创建、校验、转变等。举例：判断某个节点是不是标识符(identifier)。
 path：AST 中有很多节点，每个节点可能有不同的属性，并且节点之间可能存在关联。path 是个对象，它代表了两个节点之间的关联。你可以在 path 上访问到节点的属性，也可以通过 path 来访问到关联的节点（比如父节点、兄弟节点等）
@@ -2034,7 +2033,7 @@ module.exports = function({ types: babelTypes }) {
 };
 ```
 
-## babel-import-node按需加载原理，使用它按需加载自己的组件库
+## babel-import-node 按需加载原理，使用它按需加载自己的组件库
 
 ```js
 <!-- 原理：  -->
@@ -2073,7 +2072,7 @@ plugins: [
 配置完后就可以按需加载了
 `import { Button } from 'hejie-lego';`
 
-## 微前端to，乾坤
+## 微前端 to，乾坤
 
 https://mp.weixin.qq.com/s/HG8yxYCYIX6-TA_vBim0ag
 
@@ -2138,11 +2137,11 @@ output: {
 
 1. plugin,大致分为自定义 plugin，hmr,htmlRewrite,moduleRewrite,vue,esbuild,assetPath,serveState,cssPlugin 这些，利用 koa 中间件的机制，进行处理
 
-## 自动化测试BDD风格
+## 自动化测试 BDD 风格
 
 - 测试框架 mocha + 断言库 chai（expect-toBe) + sinon(mock 库) + karma（模拟运行环境）+ istanbul(覆盖率)
 
-## node处理高并发
+## node 处理高并发
 
 - 原理：java 多线程是每个请求开个线程连接，开关连接都需要开销，一个人干一件事，node 单线程，所有的请求都是在一条线程上发起，只不过 node 通过事件轮询机制，将异步操作放在一个单独的线程去轮询，且 V8 提供的接口可以很高效地同时处理多个异步操作，其他同步的代码同步执行，等到哪个异步操作完成后立刻执行对应的回调，以此达到无缝镶接类似多线程，一个人干全部的事
 - 单线程的好处就是：
@@ -2215,7 +2214,7 @@ key 的作用是用在 sameNode 里面，type 和 key 相同才是可复用的�
   新：dacb
   建立 newIndexToOldIndexMap： [3,0,2,1],然后找最长递增子序列，可以得出是[0,1],也就代表着老节点树的 0,1 也就是 ab 不用动，然后 c,d 参照着进行移动，从而得出最小的操作数
 
-## Vue原理，Vueto
+## Vue 原理，Vueto
 
 1. new Vue 的时候对 data 的对象进行遍历，将 data 代理给虚拟机，在 Vue 类里面的 observe 方法里面进行观察每个可变数据都进行监听响应，响应函数如下
    对每个数据新建一个依赖类对象,总观察者用来通知 dep，dep 再去通知所有订阅的 watch 进行更新
@@ -2344,7 +2343,7 @@ function reactive(obj) {
 
 ```
 
-## 前端日志监控，异常上报，性能监控,异常to
+## 前端日志监控，异常上报，性能监控,异常 to
 
 - 错误类型
   Error
@@ -2416,7 +2415,7 @@ window.frames[0].onerror = function (message, source, lineno, colno, error) {
   }
 - 可以延迟合并上报，用 navigator.sendBeacon(url, data)上报
 
-# 设计模式to，
+# 设计模式 to，
 
 ## 单例模式，单一职责模式，中介者模式，策略模式，代理模式（中间件），
 
@@ -2429,7 +2428,7 @@ let getSingle = function (fn) {
 };
 ```
 
-## 高阶函数实现AOP（面向切面编程，即各种中间件）,函数中间件
+## 高阶函数实现 AOP（面向切面编程，即各种中间件）,函数中间件
 
 ```js
 Function.prototype.before = function (beforeFn) {
@@ -2626,7 +2625,7 @@ if else 优化
 
 # httpto，
 
-## 网络模型，7层模型，tcp,udp,socket
+## 网络模型，7 层模型，tcp,udp,socket
 
 TCP,UDP 是运输层的(TCP 连接需要保证数据完整性和有序性,UDP 不需要保证完整有序性，只管发送就好)
 TCP 拥塞控制
@@ -2639,7 +2638,7 @@ HTTP 是应用层协议，定义的是传输数据的内容的规范，
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/http-modal.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/http-modal.png
 
-## 三次握手，HTTPS握手过程中，客户端如何验证证书的合法性
+## 三次握手，HTTPS 握手过程中，客户端如何验证证书的合法性
 
 https://blog.csdn.net/qq_39057033/article/details/91361464
 
@@ -2891,13 +2890,13 @@ PATCH: ⽤于对资源进⾏部分修改
 CONNECT: HTTP/1.1 协议中预留给能够将连接改为管道⽅式的代理服务器
 TRACE: 回显服务器收到的请求，主要⽤于测试或诊断
 
-## 301和302
+## 301 和 302
 
 http 状态码 301 永久重定向，302 临时重定向
 301 重定向是永久的重定向，a 到 b, 搜索引擎抓取的地址和内容会完全变成 b
 302 重定向只是暂时的重定向，a 到 b，搜索引擎识别的是旧地址，但内容是新地址的内容，即会认为链接是 a，但内容是 b 的内容
 
-## GET和POST有什么区别？
+## GET 和 POST 有什么区别？
 
 - GET 请求在浏览器回退和刷新时是无害的，而 POST 请求会告知用户数据会被重新提交；
 - GET 请求可以收藏为书签，POST 请求不可以收藏为书签；
@@ -2922,7 +2921,7 @@ http 状态码 301 永久重定向，302 临时重定向
 4. 将文本内容进行展示层加密，利用字体的引用特点，把拿给爬虫的数据变成“乱码”
    > [《Web 端反爬虫技术方案》](https://juejin.im/post/5b6d579cf265da0f6e51a7e0)
 
-## https用哪些端口进行通信，这些端口分别有什么用
+## https 用哪些端口进行通信，这些端口分别有什么用
 
 - 443 端口用来验证服务器端和客户端的身份，比如验证证书的合法性
 - 80 端口用来传输数据（在验证身份合法的情况下，用来数据传输）
@@ -2968,7 +2967,7 @@ source.cancel("Operation canceled by the user.");
 
 `function format(number) { return number && number.replace(/(?!^)(?=(\d{3})+\.)/g, ",");}`
 
-## 从输入URL到页面加载全过程，敲下url发生了什么
+## 从输入 URL 到页面加载全过程，敲下 url 发生了什么
 
 1. 首先做 DNS 查询，如果这一步做了智能 DNS 解析的话，会提供访问速度最快的 IP 地址回来
 2. 接下来是 TCP 握手，应用层会下发数据给传输层，这里 TCP 协议会指明两端的端口号，然后下发给网络层。网络层中的 IP 协议会确定 IP 地址，并且指示了数据传输中如何跳转路由器。然后包会再被封装到数据链路层的数据帧结构中，最后就是物理层面的传输了
@@ -2985,7 +2984,7 @@ source.cancel("Operation canceled by the user.");
 
 flex 实现左右宽度固定，中间用 flex1 的时候，如果要处理文本溢出，需要加上 min-width:0 以及 width:0 设置宽度
 
-## 为什么for性能高于forEach
+## 为什么 for 性能高于 forEach
 
 - for 循环没有任何额外的函数调用栈和上下文；
 - forEach 函数签名实际上是
@@ -3025,7 +3024,7 @@ flex 实现左右宽度固定，中间用 flex1 的时候，如果要处理文�
 - 用户界面 _ 主进程 _ 内核* 渲染引擎 * JS 引擎* 执行栈 * 事件触发线程 _ 消息队列 _ 微任务 \* 宏任务
 - 网络异步线程 \* 定时器线程
 
-## 常用meta
+## 常用 meta
 
 常用的 meta 标签 <meta> 元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度 的描述和关键词。 <meta> 标签位于文档的头部，不包含任何内容。<meta> 标签的属性定义了与文档相关联 的名称/值对。
 
@@ -3050,7 +3049,7 @@ flex 实现左右宽度固定，中间用 flex1 的时候，如果要处理文�
 <meta name=”msapplication-tap-highlight” content=”no”> windows phone 点击无高光 
 <meta http-equiv=”pragma” content=”no-cache”> <meta http-equiv=”cache-control” content=”no-cache”> <meta http-equiv=”expires” content=”0″>设置页面不缓存
 
-## 为什么for性能高于forEach
+## 为什么 for 性能高于 forEach
 
 - for 循环没有任何额外的函数调用栈和上下文；
 - forEach 函数签名实际上是
@@ -3072,7 +3071,7 @@ flex 实现左右宽度固定，中间用 flex1 的时候，如果要处理文�
 
 null 和 undefined 和谁 == 都是 false，除了 null == undefined :true,这个比较特殊，不过 null === undefined 为 false
 
-## 隐式转换，隐式转换会调用本类型toString或valueOf方法.
+## 隐式转换，隐式转换会调用本类型 toString 或 valueOf 方法.
 
 这题考察的应该是类型的隐式转换,考引用类型在比较运算符时候,
 valueOf 优于 toString,有 valueOf 就不会执行 toString
@@ -3141,7 +3140,7 @@ Number.prototype.minus = function(n) {
 return this.valueOf() - n
 }
 
-## proxy实现数据绑定,Object.defindProperty与proxy
+## proxy 实现数据绑定,Object.defindProperty 与 proxy
 
 Object.defineProperty 与 proxy
 
@@ -3225,7 +3224,7 @@ console.log(webSite.siteUrl)
 www.baidu.com
 ```
 
-## input框中文输入问题
+## input 框中文输入问题
 
 其实看过 elementui 框架源码的童鞋都应该知道，elementui 是通过 compositionstart & compositionend 做的中文输入处理：
 to，代码：
@@ -3239,7 +3238,7 @@ ref="input"
 > \*/
 > }
 
-## 递归实现翻转,颠倒数组，实现reverse
+## 递归实现翻转,颠倒数组，实现 reverse
 
 ```js
 function fun(num) {
@@ -3286,7 +3285,7 @@ a 的地址变成 ex2 ： a => ex2 => {n: 2}, 把结果赋给上面的 x
 最终 b => ex1【{n: 1, x: { n : 2}}】
 a => ex2 【{ n: 2 }】
 
-## pwa原理
+## pwa 原理
 
 https:blog.csdn.net/weixin_33692284/article/details/88027509
 
@@ -3330,7 +3329,7 @@ map(parseInt) 相当于 map((item,index) => parseInt(item,index))
 5<<2 相当于 5 乘以 2 的 2 次方也就是 5\*4
 5 & 1 相当于 5 摩 2
 
-## 解决ios手机fixed问题键盘
+## 解决 ios 手机 fixed 问题键盘
 
 https://blog.csdn.net/zyg1515330502/article/details/79207334
 
@@ -3346,11 +3345,11 @@ inputLoseFocus () {
 },
 ```
 
-## 前端图片转base64，转格式，转blob，上传的总结
+## 前端图片转 base64，转格式，转 blob，上传的总结
 
 https://blog.csdn.net/wangzhanzheng/article/details/78923013
 
-## URL截取URLto，
+## URL 截取 URLto，
 
 https://www.cnblogs.com/zhabayi/p/6419938.html
 
@@ -3365,7 +3364,7 @@ function getQueryString(name) {
 }
 ```
 
-## 存储cookie存储对象
+## 存储 cookie 存储对象
 
 https://www.cnblogs.com/DSC1991/p/9232325.html
 
@@ -3400,7 +3399,7 @@ delCookie(name) { 
 
 ```
 
-## rem适配，class匹配
+## rem 适配，class 匹配
 
 `[class^="iconfont-"], [class*=" iconfont-"]`
 这份 rem.js 可以完美兼容所有的机型，如果是简易版计算字体大小的话，会出现一些系统字体设置到从而带来的问题
@@ -3509,7 +3508,7 @@ res: {
 }
 ```
 
-## redux和vuex的区别和设计思想
+## redux 和 vuex 的区别和设计思想
 
 1. 第一层都是 dispatch，redux dispatch 直接派发到 reducer，vuex dispatch 是派发 actions,commit 才是最终提交
 
@@ -3540,7 +3539,7 @@ actions: {
 }
 ```
 
-## 为什么Vuex的mutation和Redux的reducer中不能做异步操作
+## 为什么 Vuex 的 mutation 和 Redux 的 reducer 中不能做异步操作
 
 因为更改 state 的函数必须是纯函数，纯函数既是统一输入就会统一输出，没有任何副作用；如果是异步则会引入额外的副作用，导致更改后的 state 不可预测；
 
@@ -3575,7 +3574,7 @@ function jsonp(url, params, callback) {
 }
 ```
 
-## 模块化发展amd,cmd,commonjs,esmodule
+## 模块化发展 amd,cmd,commonjs,esmodule
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png
 
@@ -3602,7 +3601,7 @@ cmd 示例
   b.doSomething(); });
 ```
 
-## 缓存to，浏览器缓存，缓存机制
+## 缓存 to，浏览器缓存，缓存机制
 
 https://juejin.im/post/5c22ee806fb9a049fb43b2c5?utm_source=gold_browser_extension
 
@@ -3662,16 +3661,16 @@ IFC 的 line box（线框）高度由其包含行内元素中最高的实际高�
 5. 相比 XMLHttpRequest 对象发送 GET 请求，性能上更好
 6. GIF 的最低合法体积最小（最小的 BMP 文件需要 74 个字节，PNG 需要 67 个字节，而合法的 GIF，只需要 43 个字节
 
-## js按引用传参，js传参
+## js 按引用传参，js 传参
 
 Js 传对象时，按共享传递，本质上还是按值传递，如果传入一个对象，会复制对象的引用地址然后传进来，在函数内改变对象的某一个属性，则外部对象也会改变，但是如果直接把对象赋值为另一个值，则外部对象不会改变，这种现象是，复杂类型的传递其实本质上也是传的值，不过传的是引用的内存地址值，如果改变的是栈内同一个地址，则会同步变化，如果是直接改成别的值，地址不一样自然不相互影响，
 
-## call和apply,bind的区别是什么，哪个性能更好一些
+## call 和 apply,bind 的区别是什么，哪个性能更好一些
 
 1. apply 传数组，call 不固定, bind 作用一样，不过是返回一个新的函数
 2. call 比 apply 的性能要好，平常可以多用 call, call 传入参数的格式正是内部所需要的格式
 
-## 动态挂载节点,动态添加节点，js创建节点
+## 动态挂载节点,动态添加节点，js 创建节点
 
 - 第一种，直接用 render 渲染组件
 
@@ -3721,7 +3720,7 @@ function resolve(dir) {
 
 ```
 
-## cdn原理
+## cdn 原理
 
 分布式，就近原则取资源，
 此外，一般同源情况下发送请求都会带上 cookie，这会导致数据量很大，但非同源下 cookie 就不会携带过去，这叫 cookie 隔离，所以静态资源之类放在 cdn，请求就不用带 cookie，这就是 cdn 的优势
@@ -3744,7 +3743,7 @@ function resolve(dir) {
 
 # HTMLto,h5to
 
-## 让div水平垂直居中
+## 让 div 水平垂直居中
 
 ```
 <div class="parent">
@@ -3808,12 +3807,12 @@ div.child {
 /_三角形的实现原理是利用了元素边框连接处的等分原理。_/
 .triangle { width: 0; height: 0; border-width: 100px; border-style: solid; border-color: tomatotransparenttransparenttransparent; }
 
-## 一个自适应矩形，水平垂直居中，且宽高比为2:1
+## 一个自适应矩形，水平垂直居中，且宽高比为 2:1
 
 /_实现原理参考自适应正方形和水平居中方式_/
 .box { position: absolute; top: 0; right: 0; left: 0; bottom: 0; margin: auto; width: 10%; height: 0; padding-top: 20%; background: tomato; }
 
-## css实现瀑布流
+## css 实现瀑布流
 
 两行 css 如下:
 
@@ -3847,13 +3846,13 @@ div.child {
 分析比较 opacity: 0、visibility: hidden、display: none
 Display:none 会导致重排，其他两个只是改变可见度，其中 visibility: hidden 没有连带性，也就是说最外层即使设置 visibility: hidden，只要子孙设置 visibility: visable，照样可以看到，其他两个的话只要设置那么子孙怎样都不会显示
 
-## Defer和async的区别
+## Defer 和 async 的区别
 
 加了 defer 和 async 的脚本会和 dom 渲染同时下载，区别点在于 defer（异步）会下载后 dom 渲染完后再执行，而 asycn 则加载完后立即执行
 默认： dom 加载 — 加载脚本 — 运行脚本 — 再进行接下来的 dom 加载
 而加载 defer 和 async 后，代表脚本加载和 dom 渲染操作并行执行，dom 加载和脚本加载同时进行，不同点是，defer 下，脚本加载后会等到 dom 完全加载完后再执行，而 async 则脚本加载完后立即执行
 
-## css实现按比例显示
+## css 实现按比例显示
 
 ```js
 vw 会把视口的宽度平均分为100份
@@ -3872,7 +3871,7 @@ vw 会把视口的宽度平均分为100份
 
 ```
 
-## addEventListener第三个参数,addEventlistenterto，capture，事件捕获，冒泡
+## addEventListener 第三个参数,addEventlistenterto，capture，事件捕获，冒泡
 
 https://www.jianshu.com/p/9a75744b523d
 
@@ -3895,7 +3894,7 @@ https://www.jianshu.com/p/9a75744b523d
 
 https://juejin.im/post/5cc26dfef265da037b611738#heading-7
 
-## 1px问题
+## 1px 问题
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-1px.png
 
@@ -3908,7 +3907,7 @@ box-shadow
 - 第二种，不适用 border 画出来 1px 高的线，在标准模式和怪异模式下都一致效果
   `<div style="height:1px;overflow:hidden;background:red"></div>`
 
-## Ts工具,ts实用工具
+## Ts 工具,ts 实用工具
 
 http://www.typescriptlang.org/docs/handbook/utility-types.html#partialt
 
@@ -3939,25 +3938,25 @@ http://www.typescriptlang.org/docs/handbook/utility-types.html#partialt
    入栈在 q1,。q2 作为一个缓冲队列。
    出栈时，将 q1 除最后一个外，全部入队列 q2。q1 出队即是出栈。
 
-## Mvvm，mvc，mvp区别
+## Mvvm，mvc，mvp 区别
 
 mvc：视图层，model 层处理数据业务，这两层都用了观察者模式，model 层改变后会通知 view 层更新，而 controller 处理用户点击交互事件，并触发 model，model 更改后再通知 view，controller 不能直接对接 view 更新，只能对接 model
 mvp：将 controller 改为 presenter，presenter 可以同时对接 model 和 view，负责将 model 和 view 的绑定起来，从而解耦
 mvvm：其实就是 mvp 的自动化，相当于将 mvp 中 p 层数据双向绑定的事变成自动化完成，比如 vue 用的数据劫持来完成响应
 
-## 什么是VirtualDOM？为什么VirtualDOM比原生DOM快？
+## 什么是 VirtualDOM？为什么 VirtualDOM 比原生 DOM 快？
 
 我认为 Virtual DOM 这种方法对于我们需要有大量的 DOM 操作的时候，能够很好的提高我们 的操作效率，通过在操作前确定需要做的最小修改，尽可能的减少 DOM 操作带来的重流和重绘 的影响。其实 Virtual DOM 并不一定比我们真实的操作 DOM 要快，这种方法的目的是为了提 高我们开发时的可维护性，在任意的情况下，都能保证一个尽量小的性能消耗去进行操作。
 
-## 为什么要用transform而不用margin
+## 为什么要用 transform 而不用 margin
 
 transform 不会发生重绘，是用重新复合生成一个新的帧，而 margin 会，比较耗性能
 
-## Href和src的区别
+## Href 和 src 的区别
 
 Href 只是代表文件内关联关系，src 则是加载目标资源，会卡住进程直至下载完
 
-## Positionto，布局to，
+## Positionto，布局 to，
 
 1. position: static
    static(没有定位)是 position 的默认值，元素处于正常的文档流中，会忽略 left、top、right、bottom 和 z-index 属性。
@@ -3976,7 +3975,7 @@ Href 只是代表文件内关联关系，src 则是加载目标资源，会卡�
 5. Sticky
    position 属性中最有意思的就是 sticky 了，设置了 sticky 的元素，在屏幕范围（viewport）时该元素的位置并不受到定位影响（设置是 top、left 等属性无效），当该元素的位置将要移出偏移范围时，定位又会变成 fixed，根据设置的 left、top 等属性成固定位置的效果。
 
-## 前端如何进行seo优化
+## 前端如何进行 seo 优化
 
 - 合理的 title、description、keywords：搜索对着三项的权重逐个减小，title 值强调重点即可；description 把页面内容高度概括，不可过分堆砌关键词；keywords 列举出重要关键词。
 - 语义化的 HTML 代码，符合 W3C 规范：语义化代码让搜索引擎容易理解网页
@@ -4187,7 +4186,7 @@ shouldPageScroll(can = true) {
 }
 ```
 
-## 移动端初始化样式，完美阻止ios回弹效果，inobounce
+## 移动端初始化样式，完美阻止 ios 回弹效果，inobounce
 
 **最佳实践是方案一和方案二一起使用，可以解决所有 ios 机型的回弹以及滚动之类的问题**
 
@@ -4242,7 +4241,7 @@ body {
 }
 ```
 
-## sass循环
+## sass 循环
 
 ```scss
 @for $i from 1 through 4 {
@@ -4270,14 +4269,14 @@ body {
 
 ```
 
-## DOCTYPE的作用是什么？标准模式与兼容模式的区别
+## DOCTYPE 的作用是什么？标准模式与兼容模式的区别
 
 1. <!DOCTYPE>声明位于 HTML 文档中的第一行，处于 <html> 标签之前。告知浏览器的 解析器用什么文档标准解析这个文档。 DOCTYPE 不存在或格式不正确会导致文档以兼容模式呈现。 <!DOCTYPE> 声明一般位于文档的第一行，它的作用主要是告诉浏览器以什么样的模 式来解析文档。一般指定了之后会以标准模式来 进行文档解析，否则就以兼容模式进行解析。在标准模式下，浏览器的解析规则都是按 照最新的标准进行解析的。而在兼容模式下，浏 览器会以向后兼容的方式来模拟老式浏览器的行为，以保证一些老的网站的正确访问。
 2. 在 html5 之后不再需要指定 DTD 文档，因为 html5 以前的 html 文档都是基于 SGML 的，所以需要通过指定 DTD 来定义文 档中允许的属性以及一些规则。而 html5 不再基于 SGML 了，所以不再需要使用 DTD。
 
 3. 标准模式的渲染方式和 JS 引擎的解析方式都是以该浏览器支持的最高标准运行。在兼 容模式中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作。
 
-## SGML、HTML、XML和XHTML的区别？
+## SGML、HTML、XML 和 XHTML 的区别？
 
 SGML 是标准通用标记语言，是一种定义电子文档结构和描述其内容的国际标准语言， 是所有电子文档标记语言的起源。 HTML 是超文本标记语言，主要是用于规定怎么显示网页。 XML 是可扩展标记语言是未来网页语言的发展方向，XML 和 HTML 的最大区别就在于 XML 的标签是可以自己创建的，数量无限多，而 HTML 的标签都是固定的而且数量有限。 XHTML 也是现在基本上所有网页都在用的标记语言，他其实和 HTML 没什么本质的区 别，标签都一样，用法也都一样，就是比 HTML 更严格，比如标签必须都用小写，标签都 必须有闭合标签等。
 
@@ -4285,14 +4284,14 @@ SGML 是标准通用标记语言，是一种定义电子文档结构和描述其
 
 HTML4 中，元素被分成两大类：inline （内联元素）与 block （块级元素）。 （1） 格式上，默认情况下，行内元素不会以新行开始，而块级元素会新起一行。 （2） 内容上，默认情况下，行内元素只能包含文本和其他行内元素。而块级元素可以 包含行内元素和其他块级元素。 （3） 行内元素与块级元素属性的不同，主要是盒模型属性上：行内元素设置 width 无 效，height 无效（可以设置 line-height），设置 margin 和 padding 的上下不会对其他元素 产生影响。
 
-## link和@import有什么区别
+## link 和@import 有什么区别
 
 1. 从属关系区别。 @import 是 CSS 提供的语法规则，只有导入样式表的作用；link 是 HTML 提供的标签，不仅可以加载 CSS 文件，还可以定义 RSS、rel 连接属性、引入网 站图标等。
 2. link 同时加载，@import 页面加载完后才加载
 3. 兼容性区别。@import 是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；link 标 签作为 HTML 元素，不存在兼容性问题。
 4. DOM 可控性区别。可以通过 JS 操作 DOM ，插入 link 标签来改变样式；由于 DOM 方法是基于文档的，无法使用 @import 的方式插入样式。
 
-## 重绘与回流，重绘和回流to，
+## 重绘与回流，重绘和回流 to，
 
 重绘: 只是影响元素的外观、风格，而不会影响布局，比如 background color，我们将这样的操作称为重绘。
 回流：当渲染树中的一部分（或全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新构建的操作，会影响到布局
@@ -4314,7 +4313,7 @@ HTML4 中，元素被分成两大类：inline （内联元素）与 block （块
 - 大量操作时，可将 dom 脱离文档流或者隐藏，待操作完成后再重新恢复；
 - 使用 DocumentFragment / cloneNode / replaceChild 进行操作；
 
-## DOMContentLoaded事件和Load事件的区别？
+## DOMContentLoaded 事件和 Load 事件的区别？
 
 当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发， 而无需等待样式表、图像和子框架的加载完成。Load 事件是当所有资源加载完成后触发的。
 
@@ -4334,7 +4333,7 @@ webkit 内核的私有属性：-webkit-font-smoothing，用于字体抗锯齿，
 4. png,无损压缩，体积比 jpeg 大比 gif 小
 5. webp 又小又好，就是兼容性不好
 
-## html5新增了那些特性，HTML5有哪些新特性、移除了那些元素？
+## html5 新增了那些特性，HTML5 有哪些新特性、移除了那些元素？
 
 HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能 的增加。新增的有：
 
@@ -4345,11 +4344,11 @@ HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存�
 5. 新的文档属性 document.visibilityState 移除的元素有： 纯表现的元素：basefont，big，center，font, s，strike，tt，u; 对可用性产生负面影响的元素：frame，frameset，noframes；
 6. getCurrentPosition()获取用户当前位置
 
-## HTML5新增的表单元素有？
+## HTML5 新增的表单元素有？
 
 datalist 规定输入域的选项列表，通过 option 创建！ keygen 提供一种验证用户的可靠方法，密钥对生成器，私钥存于客户端，公钥发到服务器， 用于之后验证客户端证书！ output 元素用于不同类型的输出！
 
-## html5离线缓存，离线存储
+## html5 离线缓存，离线存储
 
 后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。
 
@@ -4376,7 +4375,7 @@ FALLBACK: 表示如果访问第一个资源失败，那么就使用第二个资�
 - 站点中的其他页面即使没有设置 manifest 属性，请求的资源如果在缓存中也从缓存 中访问。
 - 当 manifest 文件发生改变时，资源请求本身也会触发更新。
 
-## 增删查改dom，dom操作，domto
+## 增删查改 dom，dom 操作，domto
 
 1. 创建新节点
    `createDocumentFragment(node);createElement(node);createTextNode(text); `
@@ -4396,7 +4395,7 @@ FALLBACK: 表示如果访问第一个资源失败，那么就使用第二个资�
 2. 通过 meta 标签将网页的 viewport 设置为 ideal viewport。
 3. 调用一些 js 库，比如 FastClick
 
-## offsetWidth/offsetHeight,clientWidth/clientHeight与scrollWidth/scrollHeight的区别？
+## offsetWidth/offsetHeight,clientWidth/clientHeight 与 scrollWidth/scrollHeight 的区别？
 
 - clientWidth/clientHeight 返回的是元素的内部宽度，它的值只包含 content + padding， 如果有滚动条，不包含滚动条。
 - clientTop/left 返回的是上边、左边框的宽度。
@@ -4408,7 +4407,7 @@ FALLBACK: 表示如果访问第一个资源失败，那么就使用第二个资�
 
 # v8to
 
-## v8运行机制
+## v8 运行机制
 
 源代码-→ 抽象语法树-→ 字节码-→JIT-→ 本地代码(V8 引擎没有中间字节码)
 
@@ -4416,9 +4415,35 @@ Script 类编译 js 后生成本地代码 -- Compile 类协调负责调用相应
 
 在 V8 中，函数是一个基本单位，当某个 JavaScript 函数被调用时，V8 会查找该函数是否已经生成本地代码，如果已经生成，则直接调用该函数。否则，V8 引擎会生成属于该函数的本地代码。这就节约了时间，减少了处理那些使用不到的代码的时间。其次 Runtime 类提供来辅组创建对象，分配内存以及一些辅助函数来完成功能，最后，将不用的空间进行标记清除和垃圾回收。
 
-## V8的垃圾回收机制，内存机制，内存to，
+## V8 的垃圾回收机制，内存机制，内存 to，
 
-V8 的内存图内存机制,主要将内存分为新生代和老生代两代。新生代中的对象存活时间较短的对象，老生代中的对象存活时间较长，或常驻内存的对象。
+1. 前端的内存处理
+
+- 内存的生命周期
+- 内存分配：声明变量函数的时候，js 自动分配内存
+- 内存使用：调用，使用的时候
+- 内存回收：
+  以前： 引用计数，缺陷：a 引用 b，b 引用 a 时循环引用就出问题了，都会被保留下来了
+  现在： 标记清除：清理无法达到的对象
+  a. 运行时给存储在内存的所有变量加上标记
+  b. 从根部出发，能触及的就把标记清掉
+  c. 哪些还被标记的就代表即将要被删除
+
+2. 怎么更好地处理内存问题
+
+- 全局变量 window.a =
+- 未清除的计时器 clearTimeout()
+- 闭包
+- dom 的引用
+  const element = {
+  image: document.getElementById('asd')
+  }
+  document.body.removeChild(document.getElementById('asd'))
+  element.image = null
+- 避免内存泄漏
+  减少不必要的全局变量，及时清除引用
+
+3. V8 的内存图内存机制,主要将内存分为新生代和老生代两代。新生代中的对象存活时间较短的对象，老生代中的对象存活时间较长，或常驻内存的对象。
 
 【 新生代内存空间： semi space (from) | semi space(to) | 老生代内存空间：---------- | 大对象空间 】
 
@@ -4456,7 +4481,7 @@ V8 的内存图内存机制,主要将内存分为新生代和老生代两代。�
 
 1. 局部变量当程序执行结束是，且没有引用的话就会随着一起消失
 
-## v8优化
+## v8 优化
 
 - 优化回滚：因为 V8 是基于 AST 直接生成本地代码，没有经过中间表示层的优化，所以本地代码尚未经过很好的优化。于是，V8 引入了新的编译器-Crankshaft。它主要针对热点函数进行优化，它是基于 JS 源码分析的，预测这些代码比较稳定，变量类型不会发生变化，所以能够生成高效的本地代码；但是，js 是一个弱类型的语言，变量类型也可能在执行的过程中进行改变，鉴于这种情况，V8 会将该编译器做的想当然的优化进行回滚，称为优化回滚，优化回滚很耗时，所以应该尽量避免
 
@@ -4481,7 +4506,7 @@ function test() {
 
 - 绑定和扩展：V8 提供两种机制来扩展引擎的能力，第一是 Extension 机制，就是通过 V8 提供的基类 Extension 来达到扩展 JavaScript 能力的目的；第二是绑定，使用 IDL 文件或者接口文件来生成绑定文件，然后将这些文件同 V8 引擎代码一起编译。
 
-## v8代码优化实践
+## v8 代码优化实践
 
 - 创建对象隐藏类的优化，不要破坏隐藏类，尽量在构造函数中初始化所有对象成员，不要在以后更改类型，以保证对象的结构不变，从而让 V8 可以优化对象。
 - 以相同的顺序初始化对象成员
@@ -4500,7 +4525,7 @@ const obj = {a:1} 隐藏类被创建   const obj2 = { a: 1} 复用前面那个�
 
 # webpackto，
 
-## 自定义loaderto
+## 自定义 loaderto
 
 Schema-utils 校验入参，loderUtils 获取 loader 的 options 参数
 
@@ -4549,11 +4574,11 @@ test: /[\\/]node_modules[\\/]/,
 // 当 webpack 处理文件路径时，它们始终包含/在 Unix 系统和\Windows 上。这就是为什么[\\/]在{cacheGroup}
 // .test 字段中使用 in 来表示路径分隔符的原因。/ 或\in { cacheGroup }.test 会在跨平台使用时引起问题。
 
-## webpack原理，实现webpack
+## webpack 原理，实现 webpack
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
-## 自定义插件，自定义pluginto
+## 自定义插件，自定义 pluginto
 
 插件系统是 Webpack 成功的一个关键性因素。在编译的整个生命周期中，Webpack 会触发许多事件钩子，Plugin 可以监听这些事件，根据需求在相应的时间点对打包内容进行定向的修改。
 
@@ -4584,7 +4609,7 @@ new Plugin(options),
 
 ```
 
-## webpack如何工作，工作流程
+## webpack 如何工作，工作流程
 
 工作流程 (加载 - 编译 - 输出)
 
@@ -4597,7 +4622,7 @@ new Plugin(options),
 打包风格
 commonJs 的 require 风格
 
-## babel-pollyfillto和babel-transform-runtimeto区别
+## babel-pollyfillto 和 babel-transform-runtimeto 区别
 
 pollyfill：优点全局受用，新增属性会作用在原型链上，全能，能避免一些不必要的错误，不过比较大
 Babel-transform-runtime: 按需动态引入，比较小，不过不会污染全局，不会影响原型
@@ -4610,7 +4635,7 @@ transform-runtime 使用：
 1. 引入 babel-plugin-tranform-runtime 包；
 2. 在.babelrc 文件 plugins 中添加 babel-plugin-tranform-runtime: "plugins": ["transform-runtime"];
 
-## 匹配文件夹下所有特定后缀的文件，webpackCopy复制前先压缩所有的js
+## 匹配文件夹下所有特定后缀的文件，webpackCopy 复制前先压缩所有的 js
 
 chainWebpack 中有时会有一种场景，比如复制前先压缩所有特定文件夹下的 js 文件，可用**代替所有子目录，
 skeleton/**/\*.js 代表匹配所有 skeleton 文件夹下所有的 js 文件
@@ -4632,19 +4657,19 @@ config.plugin("copy").tap((args) => {
 });
 ```
 
-## Webpack热更新
+## Webpack 热更新
 
 1. 当修改了一个或多个文件； 2.文件系统接收更改并通知 webpack；
 2. webpack 重新编译构建一个或多个模块，并通知 HMR 服务器进行更新；
 3. HMR Server 使用 webSocket 通知 HMR runtime 需要更新，HMR 运行时通过 HTTP 请求更新 jsonp；
 4. HMR 运行时替换更新中的模块，如果确定这些模块无法更新，则触发整个页面刷新。
 
-## webpack优化
+## webpack 优化
 
 https://webpack.js.org/configuration/optimization/#optimizationusedexports
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-optimize.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-optimize.png
 
-## Webpack5和webpack4的区别
+## Webpack5 和 webpack4 的区别
 
 webpack5 做了哪些事情？
 
@@ -4678,7 +4703,7 @@ module.exports = {
 
 # Nodeto，
 
-## node单线程，node特性，事件驱动，非阻塞I/O
+## node 单线程，node 特性，事件驱动，非阻塞 I/O
 
 Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。
 Node.js 几乎每一个 API 都是支持回调函数的。
@@ -4689,7 +4714,7 @@ node 单线程
 特性：事件驱动（event loop）非阻塞 I/O
 Js 都是单线程的，node 也是单线程的，只是底层还是多线程 I/O 实现非阻塞的，同时，也支持 cluster 多核多进程处理，但多进程处理的话有一个问题，每个进程都是相互独立的，这也就意味着 token 什么的不能放在内存中而应该在 redis 里面，因为每个进程相互独立，内存自然不能共享
 
-## node性能调优
+## node 性能调优
 
 - 处理 JSON，只读取 json 里面的某些数据，用 JSONStream
 
@@ -4788,7 +4813,7 @@ autocannon http://localhost:3000
 
 ```
 
-## node的readFile和readFileSync的区别
+## node 的 readFile 和 readFileSync 的区别
 
 node 的所有方法都有自带的普通的异步和 Sync 后缀的同步的写法，同步的写法需要 try catch 捕获错误
 
@@ -4809,7 +4834,7 @@ try {
 
 ```
 
-## fs和fs-extra
+## fs 和 fs-extra
 
 fs-extra 包含 fs 所有功能，封装成 promise 形式的，同时还扩展了一些新功能
 copy
@@ -4828,7 +4853,7 @@ readJson
 remove
 writeJson
 
-## node实现多进程
+## node 实现多进程
 
 我们都知道 Node.js 是以单线程的模式运行的，但它使用的是事件驱动来处理并发，这样有助于我们在多核 cpu 的系统上创建多个子进程，从而提高性能。
 
@@ -4872,7 +4897,7 @@ if (cluster.isMaster) {
 }
 ```
 
-## node进程间通信
+## node 进程间通信
 
 node 多进程状态共享，数据共享
 可以主进程 send 消息，然后 cluster 的进程 on 监听消息
@@ -4887,11 +4912,11 @@ worker_process.on("message", function (msg) {
 });
 ```
 
-## exports.xxx=xxx和Module.exports={}有什么区别吗
+## exports.xxx=xxx 和 Module.exports={}有什么区别吗
 
 结论 如果要输出一个键值对象{}，可以利用 exports 这个已存在的空对象{}，并继续在上面添加新的键值； 如果要输出一个函数或数组，必须直接对 module.exports 对象赋值。 所以我们可以得出结论：直接对 module.exports 赋值，可以应对任何情况
 
-## Nodejs加载模块机制，模块加载机制，require加载机制
+## Nodejs 加载模块机制，模块加载机制，require 加载机制
 
 编译：
 js 文件。通过 fs 模块同步读取文件后编译执行。
@@ -4907,7 +4932,7 @@ json 文件。通过 fs 模块同步读取文件后，用 JSON.parse()解析返�
 3.  Node 会按.js、.node、.json 的顺序补全扩展名，依次尝试。在传递给 require()的标识符中带上扩展名会快一些。另一个小诀窍，同步配合缓存，可以大幅度缓解 Node 单线程中阻塞性调用的缺陷。
 4.  在分析标识符的过程中，require()通过分析文件扩展名之后，可能没有查找到对应的文件，但却得到一个目录，这是很常见的事，此时 Node 会将目录当做一个包来处理。包处理的话首先会到 package.json 里面用 json.parse 去解析，然后找入口，如果没有 package.json 或者出错，则找它的 index.js，index.node，index.json，如果还是没有找到就找下一个，到最后全部遍历完后没找到就抛错
 
-## node调用java,node调用接口
+## node 调用 java,node 调用接口
 
 1. 直接调用后端 java 接口进行操作，然后回调里面操作
 2. RPC 同步调用（远程进程调用）实时性高
@@ -4965,7 +4990,7 @@ router.get("/testNodeDubbo", async (ctx, next) => {
 });
 ```
 
-## 使用过的koa中间件
+## 使用过的 koa 中间件
 
 koa.js 并没有内置 Request Body 的解析器，当我们需要解析请求体时需要加载额外的中间件，官方提供的 koa-bodyparser 是个很不错的选择，支持 x-www-form-urlencoded, application/json 等格式的请求体，但不支持 form-data 的请求体，需要借助 formidable 这个库，也可以直接使用 koa-body 或 koa-better-body
 Koa-views 支持模板引擎
@@ -4974,7 +4999,7 @@ Koa-helmet 增加头盔
 Koa-compress 类 gzip 一样的压缩
 koa-convert 用来兼容 koa2 以下版本的写法
 
-## 实现koa，compose,中间件to
+## 实现 koa，compose,中间件 to
 
 将函数串联起来, [A,B,C] => A(B(C()))
 
@@ -5043,13 +5068,13 @@ const finalFn = compose(middlewares);
 finalFn();
 ```
 
-## 实现限量重启，比如我最多让其在1分钟内重启5次，超过了就报警给运维
+## 实现限量重启，比如我最多让其在 1 分钟内重启 5 次，超过了就报警给运维
 
 - 思路大概是在创建 worker 的时候，就判断创建的这个 worker 是否在 1 分钟内重启次数超过 5 次
 - 所以每一次创建 worker 的时候都要记录这个 worker 创建时间，放入一个数组队列里面，每次创建 worker 都去取队列里前 5 条记录
 - 如果这 5 条记录的时间间隔小于 1 分钟，就说明到了报警的时候了
 
-## 实现一个node子进程被杀死，然后自动重启代码的思路
+## 实现一个 node 子进程被杀死，然后自动重启代码的思路
 
 在创建子进程的时候就让子进程监听 exit 事件，如果被杀死就重新 fork 一下
 
@@ -5066,12 +5091,12 @@ createWorker()
 
 ```
 
-## buffer模块
+## buffer 模块
 
 buffer 乱码问题
 读取一份中文文件出现乱码，一般情况下，只需要设置 rs.setEncoding('utf8')即可解决乱码问题
 
-## node的问题
+## node 的问题
 
 在 nodejs 开发的时候 处理过什么 windows 和 mac 的平台兼容性问题
 
@@ -5081,7 +5106,7 @@ buffer 乱码问题
 - 不要直接用官网的 fs.readFileSync，用 fs-extra 去代替
 - 拼接路径要用 path.join，Unix 系是/，Windows 是\
 
-## 用nodejs，将base64转化成png文件
+## 用 nodejs，将 base64 转化成 png 文件
 
 ```js
 const fs = require("fs");
@@ -5109,7 +5134,7 @@ const imagePrefix = "data:image/png;base64,";
 console.log(imagePrefix + imageBase64);
 ```
 
-## node开发脚手架
+## node 开发脚手架
 
 1. Npm init -y
 2. 在 package.json 里面加入 bin 选项指向脚本文件
@@ -5120,7 +5145,7 @@ console.log(imagePrefix + imageBase64);
    nrm use npm 源，然后账号 hejie3920，密码常规，
 6. Npm publish
 
-## 基于vue-cli3创建自己的UI组件库，开发npm包，开发脚手架
+## 基于 vue-cli3 创建自己的 UI 组件库，开发 npm 包，开发脚手架
 
 用 vue-cli3 创建一个空壳项目
 
@@ -5197,9 +5222,9 @@ import hejie from hejie-plugin-demo
 Vue.use(hejie)
 ```
 
-## 开发Node脚手架
+## 开发 Node 脚手架
 
-[node开发脚手架命令行好文](https://www.kancloud.cn/outsider/clitool/313189#_0)
+[node 开发脚手架命令行好文](https://www.kancloud.cn/outsider/clitool/313189#_0)
 
 - 路径处理 path
 - 文件处理 fs，用 fs-extra 是强化的工具 https://www.kancloud.cn/outsider/clitool/313189#_0
@@ -5325,7 +5350,7 @@ router.get('/auth/github/userinfo', jwtAuth({
 
 [思维导图](https://www.processon.com/mindmap/5d593b3fe4b06e4919173d3b)
 
-## react16.17,18新增的优化点以及区别
+## react16.17,18 新增的优化点以及区别
 
 - 15: 15 的痛点，React15 实现了 batchedUpdates（批量更新），因为 React15 的更新流程是同步执行的，一旦开始更新直到页面渲染前都不能中断，所以单次更新就很耗时，页面还是会卡顿（这在一个维护时间很长的大应用中是很常见的）。
 - 16：协程架构，启发式更新，节点 fiber 的 update 根据 expirationTimes 过期时间设置优先级，过期时间离当前时间越近，优先级越高，
@@ -5361,7 +5386,7 @@ const Comp = () => {
 1. 车道模型，指定一个连续的优先级区间，每次更新都会以区间内包含的优先级生成对应页面快照，购物中心每一层（不同优先级）都有一个露天停车场（lanes），停车场有多个车位（lane）。我们先开车到顶楼找车位（lane），如果没有车位优先级就下降到一楼继续找。直到找到空余车位
 2. 事件不直接挂载在 document 顶层了，而是直接 addEventListener 到组件根部
 
-## setState原理
+## setState 原理
 
 setState —> 更新器.addState(nextState) —> 更新队列（updateQueue）添加更新器 —> updateQueue.batchUpdate()批量更新 —> 更新器.updateComponent —> shouldUpdate —> 组件的周期（shouldComponentUpdate, fourceUpdate, componentWillUpdate , render, 虚拟节点 domdiff，didUpdate）
 On 监听的事件，生命周期里面的事件到最后才会触发 batchUpdate 批量更新这个操作（异步），其他情况下都不会触发，这也就解答了之前为什么原生事件或者 setState 回调里面的东西是可以直接同步拿到最新值得
@@ -5493,7 +5518,7 @@ export default StateCop;
 2. 而是在 document 处监听所有支持的事件，当事件发生并冒泡至 document 处时，React 将事件内容封装交给中间层 SyntheticEvent（负责所有事件合成）
 3. 所以当事件触发的时候，对使用统一的分发函数 dispatchEvent 将指定函数执行。
 
-## react浅比较，pureComponent的原理
+## react 浅比较，pureComponent 的原理
 
 比较两个 props 的步骤：
 关键的一个 is 方法只能精准判断基本数据类型，对于引用类型的话直接都是不等的
@@ -5802,7 +5827,7 @@ channel.port1.onmessage = handleMessage;
 
 - 优先级调度
 
-## 如何保证Update不丢失
+## 如何保证 Update 不丢失
 
 在 render 阶段，shared.pending 的环被剪开并连接在 updateQueue.lastBaseUpdate 后面。
 实际上 shared.pending 会被同时连接在 workInProgress updateQueue.lastBaseUpdate 与 current updateQueue.lastBaseUpdate 后面。
@@ -5979,7 +6004,7 @@ useMemo(
 );
 ```
 
-## react性能优化，react优化
+## react 性能优化，react 优化
 
 - 浅比较，pureComponent,或者 memo
   原理就是 shouldComponentUpdate 里面做，只是大多数情况下 PureComponent 和 memo 已经够用，实际上就是对基本值进行比较，
@@ -6052,7 +6077,7 @@ const Counter = React.memo((props) => {
 
 是 react 的语法糖，会被 babel-loader 编译成 React.createElement(JSX)得到一个虚拟 dom 树
 
-## React复用，组件逻辑复用，react各组件比较
+## React 复用，组件逻辑复用，react 各组件比较
 
 - 高阶组件:
   - 属性代理
@@ -6068,22 +6093,22 @@ const Counter = React.memo((props) => {
 - render props 解决了 hoc 的这些问题，但是它使用繁琐，嵌套也深，
 - hook 解决了 hoc 和 render props 的问题，也更简洁，解耦也更好，缺点是内部是闭包可能值会引用到旧值，而且 memo 也不能完全像 pureComponent 一样，因为 memo 只针对 props 监听，监听不了内部 state
 
-## React16后的生命周期，react16to，
+## React16 后的生命周期，react16to，
 
-## react16版本的reconciliation阶段和commit阶段是什么
+## react16 版本的 reconciliation 阶段和 commit 阶段是什么
 
 - reconciliation 阶段包含的主要工作是对 current tree 和 new tree 做 diff 计算，找出变化部分。进行遍历、对比等是可以中断，歇一会儿接着再来。
 - commit 阶段是对上一阶段获取到的变化部分应用到真实的 DOM 树中，是一系列的 DOM 操作。不仅要维护更复杂的 DOM 状态，而且中断后再继续，会对用户体验造成影响。在普遍的应用场景下，此阶段的耗时比 diff 计算等耗时相对短。
 
-## React.children.map迭代出来的节点是不能直接修改属性的，可以配合React.cloneElement进行扩展修改
+## React.children.map 迭代出来的节点是不能直接修改属性的，可以配合 React.cloneElement 进行扩展修改
 
 - React.cloneElement 克隆并返回一个新的 ReactElement （内部子元素也会跟着克隆），新返回的元素会保留有旧元素的 props、ref、key，也会集成新的 props（只要在第二个参数中有定义）
 
-## ForwardingRefs有什么用
+## ForwardingRefs 有什么用
 
 是父组件用来获取子组件的 dom 元素的
 
-## 自己封装antDesign的表单，
+## 自己封装 antDesign 的表单，
 
 ```js
 
@@ -6118,11 +6143,11 @@ return InputComp => (
 };
 ```
 
-## 类似v-html一样解析html
+## 类似 v-html 一样解析 html
 
 `<div id='htmlStr' dangerouslySetInnerHTML={{ __html: htmlStr }}##</div##`
 
-## 高阶Hoc
+## 高阶 Hoc
 
 - 有函数式高阶以及类组件高阶，其中在装饰器语法下
 - 自定义 withState，状态提升高阶组件封装 input 框,实现双向绑定
@@ -6154,7 +6179,7 @@ export const search = () => (dispatch) => {
 };
 ```
 
-## react生命周期
+## react 生命周期
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-life.jpg):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-life.jpg
 
@@ -6201,7 +6226,7 @@ export default class Lifecycle extends Component {
 }
 ```
 
-## 复合组件,react插槽
+## 复合组件,react 插槽
 
 ```js
 
@@ -6333,19 +6358,19 @@ static contextType = ThemeContext
 <ThemeContext.Consumer##{value =## <Button##{value}</Button##}</ThemeContext.Consumer##
 ```
 
-## redux原理,react-redux原理，redux-thunk原理
+## redux 原理,react-redux 原理，redux-thunk 原理
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-all.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-all.png
 
 <!-- todo -->
 
-## redux中间件机制，middleware
+## redux 中间件机制，middleware
 
 ## reduxto，
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-redux.jpg):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-redux.jpg
 
-## redux和mobx的区别
+## redux 和 mobx 的区别
 
 两者对比:
 
@@ -6454,11 +6479,11 @@ sagaMiddleware.run(mySaga);
 确切地说，树的最小距离编辑算法的时间复杂度是 O(n^2m(1+logmn)),
 我们假设 m 与 n 同阶， 就会变成 O(n^3)。
 
-## Rn的原理
+## Rn 的原理
 
 通过 bridge 将 js 映射转换成各平台的原生代码
 
-## reactssr掘金好文
+## reactssr 掘金好文
 
 [总结分析 react 系所有的 ssr](https://juejin.im/post/5d9b57e35188252af43b7a4a)
 [从 0 到 1 实现 react ssr](https://juejin.im/post/5d7deef6e51d453bb13b66cd)
@@ -6508,13 +6533,13 @@ Router.beforePopState(({ url, as, options }) => {
 
 # tsto
 
-## 实现ReturnType
+## 实现 ReturnType
 
 ```ts
 type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
 ```
 
-## 实现Pick
+## 实现 Pick
 
 ```ts
 type MyPick<T, K> = {
@@ -6619,7 +6644,7 @@ export default {
 6. 跳转，<Link to="/list">Go to list page</Link> 或者 router.push('/list');
    }
 
-## umi-env配置文件区分环境
+## umi-env 配置文件区分环境
 
 ```js
 // .umirc.js
@@ -6633,7 +6658,7 @@ export default { c: 'local' };
 
 ```
 
-## 配合dva使用
+## 配合 dva 使用
 
 1. 在 umi 的 plugin 里面加入 dva，使用 immer 模式，写得会很舒服
 2. /src/models/写 model
@@ -6715,11 +6740,11 @@ import {connect} from 'dva';
 
 # Vueto，
 
-## vue在v-for时给每项元素绑定事件需要用事件代理吗？为什么？
+## vue 在 v-for 时给每项元素绑定事件需要用事件代理吗？为什么？
 
 vue 并没有自动做事件代理，也是每个节点绑一个，同时事件代理在节点非常多的情况下才会看到优势，不然平常的话其实没什么大影响
 
-## vue技巧
+## vue 技巧
 
 1.  vue watch 设置 imediate 可以立刻触发，watch 立刻触发
 
@@ -6806,7 +6831,7 @@ export default new Router({
 
 6. Vue.prototype 在原型上添加属性，v-directive 添加自定义指令
 
-## Vue.use和Vue.mixin开发插件
+## Vue.use 和 Vue.mixin 开发插件
 
 Vue.use(args) 如果 args 是个 function，则会直接调用，如果是个对象，则会调用 install 方法
 
@@ -6852,7 +6877,7 @@ Vue.use(plugins);
 
 2. 同上面全局组件引用，require
 
-## 实现Vue-router
+## 实现 Vue-router
 
 ```js
 class HistoryRouter {
@@ -6975,7 +7000,7 @@ TDD 测试驱动开发 => 先写测试案例，然后写预期测试结果然后
 
 # 一些源码包的架构设计
 
-## jquery的架构
+## jquery 的架构
 
 ```js
 @1
@@ -7063,7 +7088,7 @@ db.test.drop()
 
 对于 mongoDB 的进一步封装，将其封装成方便异步操作 async await 风格的
 
-## 微信小程序to
+## 微信小程序 to
 
 - 小程序是双线程执行的,wxml 模块个 wxss 样式再渲染层进行运行。渲染层使用 webView 线程进行渲染.一个程序有多个页面,会使用多个 webView 的线程
   js 脚本运行与=于逻辑层,逻辑层使用 jscore 进行 js 脚本
@@ -7073,7 +7098,7 @@ db.test.drop()
    3.数据变化时，逻辑层提供最新的变化数据，JS 对象发生变化比较进行 diff 算法对比；
    4.将最新变化的内容反映到真实的 DOM 树中，更新 UI
 
-# 算法to，排序to
+# 算法 to，排序 to
 
 剑指 offer
 https://www.nowcoder.com/ta/coding-interviews
@@ -7262,7 +7287,7 @@ function BubbleSort(array) {
 }
 ```
 
-## 动态规划to
+## 动态规划 to
 
 [动态规划推文](https://mp.weixin.qq.com/s/pg-IJ8rA1duIzt5hW1Cycw)
 
@@ -7438,7 +7463,7 @@ function binaryInsertionSort(array) {
 }
 ```
 
-## 二分to
+## 二分 to
 
 ## 二分查找（递归）
 
@@ -7525,7 +7550,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
 };
 ```
 
-## 求两个有序数组的第K⼩数
+## 求两个有序数组的第 K ⼩数
 
 【题⽬】
 给定两个有序数组 arr1 和 arr2，已知两个数组的⻓度分别为 m1 和 m2，求两个数组中的第 K ⼩数。要
@@ -7794,7 +7819,7 @@ console.log(
 );
 ```
 
-## Eatman连续调用闭包，链式调用
+## Eatman 连续调用闭包，链式调用
 
 ```js
 function EatMan(name) {
@@ -7854,7 +7879,7 @@ return ids.includes(cur.id) ? acc : [...acc, cur];
 }, []);
 console.log(result); -> [ { id: 1, a: 1}, {id: 2, a: 2}, {id: 3, a: 3} ]
 
-## 转换成树,树结构，数组转树，js转部门架构
+## 转换成树,树结构，数组转树，js 转部门架构
 
 以下数据结构中，id 代表部门编号，name 是部门名称，parentId 是父部门编号，为 0 代表一级部门，现在要求实现一个 convert 方法，把原始 list 转换成树形结构，parentId 为多少就挂载在该 id 的属性 children 数组下，结构如下：
 原始 list 如下
@@ -7941,7 +7966,7 @@ function convert(data = "a_b_c") {
 convert();
 ```
 
-## 实现eventListener,实现emitter,实现eventEmitter
+## 实现 eventListener,实现 emitter,实现 eventEmitter
 
 触发名为 type 的事件
 
@@ -8423,7 +8448,7 @@ module.exports = {
 };
 ```
 
-## 二进制中1的个数
+## 二进制中 1 的个数
 
 输入一个整数，输出该数 32 位二进制表示中 1 的个数。其中负数用补码表示
 
@@ -8473,7 +8498,7 @@ module.exports = {
 };
 ```
 
-## 链表中倒数最后k个结点
+## 链表中倒数最后 k 个结点
 
 ```js
 function FindKthToTail(pHead, k) {
@@ -8496,7 +8521,7 @@ function FindKthToTail(pHead, k) {
 }
 ```
 
-## 链表中倒数第k个结点链表双指针
+## 链表中倒数第 k 个结点链表双指针
 
 输入
 1,{1,2,3,4,5}
@@ -8614,7 +8639,7 @@ function printMatrix(matrix) {
 }
 ```
 
-## 包含min的栈
+## 包含 min 的栈
 
 定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的 min 函数（时间复杂度应为 O（1））
 
@@ -8869,7 +8894,7 @@ function VerifySquenceOfBST(sequence) {
 }
 ```
 
-## 二叉树中和为某一值的路径，树和为x的路径
+## 二叉树中和为某一值的路径，树和为 x 的路径
 
 输入一颗二叉树的根节点和一个整数，按字典序打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
 示例 1
@@ -9031,7 +9056,7 @@ function MoreThanHalfNum_Solution(numbers) {
 }
 ```
 
-## 最小的k个数，输入n个整数，找出其中最小的K个数。例如输入4,5,1,6,2,7,3,8这8个数字，则最小的4个数字是1,2,3,4。
+## 最小的 k 个数，输入 n 个整数，找出其中最小的 K 个数。例如输入 4,5,1,6,2,7,3,8 这 8 个数字，则最小的 4 个数字是 1,2,3,4。
 
 ```js
 function GetLeastNumbers_Solution(input, k) {
@@ -9217,7 +9242,7 @@ pre 相当于 dp[i-1][j-1]。
 
 ```
 
-## 整数中1出现的次数（从1到n整数中1出现的次数
+## 整数中 1 出现的次数（从 1 到 n 整数中 1 出现的次数
 
 ```js
 function NumberOf1Between1AndN_Solution(n) {
@@ -9251,9 +9276,9 @@ module.exports = {
 };
 ```
 
-## 从小到大的顺序的第N个丑数
+## 从小到大的顺序的第 N 个丑数
 
-把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。例如 6、8 都是丑数，但 14 不是，因为它包含因子 7。 习惯上我们把 1 当做是第一个丑数。求按从小到大的顺序的第N个丑数。
+把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。例如 6、8 都是丑数，但 14 不是，因为它包含因子 7。 习惯上我们把 1 当做是第一个丑数。求按从小到大的顺序的第 N 个丑数。
 
 ```js
 function GetUglyNumber_Solution(index) {
@@ -9481,7 +9506,7 @@ function FindContinuousSequence(sum) {
 }
 ```
 
-## 和为S的两个数字
+## 和为 S 的两个数字
 
 输入一个递增排序的数组和一个数字 S，在数组中查找两个数，使得他们的和正好是 S，如果有多对数字的和等于 S，输出两个数的乘积最小的。
 
@@ -9585,7 +9610,7 @@ function Add(num1, num2) {
 }
 ```
 
-## 实现parsetInt，将字符串转换成整数
+## 实现 parsetInt，将字符串转换成整数
 
 ```js
 function StrToInt(str) {
@@ -10066,7 +10091,7 @@ function Deserialize(str) {
 }
 ```
 
-## 二叉搜索树种第k个大的节点
+## 二叉搜索树种第 k 个大的节点
 
 给定一颗二叉搜索树，请找出其中的第 k 大的结点。例如， 5 / \ 3 7 /\ /\ 2 4 6 8 中，按结点数值大小顺序第三个结点的值为 4
 
@@ -10164,7 +10189,7 @@ function hasPath(matrix, rows, cols, path){
 }
 ```
 
-## 机器人不同路径1
+## 机器人不同路径 1
 
 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
@@ -10245,7 +10270,7 @@ return dp[n-1];
 
 ```
 
-## 机器人不同路径2，有障碍物，动态规划
+## 机器人不同路径 2，有障碍物，动态规划
 
 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
 
@@ -10289,7 +10314,7 @@ const uniquePathsWithObstacles = (obstacleGrid) => {
 };
 ```
 
-## 不同路径3，不能进入大于K
+## 不同路径 3，不能进入大于 K
 
 地上有一个 m 行和 n 列的方格。一个机器人从坐标 0,0 的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于 k 的格子。 例如，当 k 为 18 时，机器人能够进入方格（35,37），因为 3+5+3+7 = 18。但是，它不能进入方格（35,38），因为 3+5+3+8 = 19。请问该机器人能够达到多少个格子？
 
@@ -10540,7 +10565,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
 };
 ```
 
-## 两个长度相等的数组求中位数,ON,空间O1
+## 两个长度相等的数组求中位数,ON,空间 O1
 
 二分法不断比对两个数组的中位数
 
@@ -10572,7 +10597,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
 
 ```
 
-## 手动实现filter
+## 手动实现 filter
 
 ```js
 Array.prototype.filter = function (fn, context) {
@@ -10617,7 +10642,7 @@ var f = function (s) {
 };
 ```
 
-## 解析urlquery为对象
+## 解析 urlquery 为对象
 
 ```js
 function parseParam(url) {
@@ -10805,7 +10830,7 @@ function findMultiChildPerson(data) {
 }
 ```
 
-## 实现http拦截器
+## 实现 http 拦截器
 
 ```js
 class XhrHook {
@@ -10989,7 +11014,7 @@ const longestValidParentheses = (s) => {
 };
 ```
 
-## x的n次方，不能用库函数，考察二分法
+## x 的 n 次方，不能用库函数，考察二分法
 
 ```
 为了方便讨论，假设指数exponent是正数。那么递归式如下：
