@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [基础](#%E5%9F%BA%E7%A1%80)
   - [Js数据类型，js基本类型和复杂类型](#js%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8Bjs%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B)
   - [JavaScript 的基本类型和复杂类型存在哪⾥的？(基站复堆)](#javascript-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%AD%98%E5%9C%A8%E5%93%AA%E2%BE%A5%E7%9A%84%E5%9F%BA%E7%AB%99%E5%A4%8D%E5%A0%86)
@@ -199,7 +198,8 @@
   - [Webpack5和webpack4的区别](#webpack5%E5%92%8Cwebpack4%E7%9A%84%E5%8C%BA%E5%88%AB)
 - [Nodeto，](#nodeto)
   - [node单线程，node特性，事件驱动，非阻塞I/O](#node%E5%8D%95%E7%BA%BF%E7%A8%8Bnode%E7%89%B9%E6%80%A7%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E9%9D%9E%E9%98%BB%E5%A1%9Eio)
-  - [node性能调优](#node%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98)
+  - [node性能优化，node优化](#node%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96node%E4%BC%98%E5%8C%96)
+  - [pm2to](#pm2to)
   - [node的readFile和readFileSync的区别](#node%E7%9A%84readfile%E5%92%8Creadfilesync%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [fs和fs-extra](#fs%E5%92%8Cfs-extra)
   - [node实现多进程](#node%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BF%9B%E7%A8%8B)
@@ -247,11 +247,11 @@
   - [复合组件,react插槽](#%E5%A4%8D%E5%90%88%E7%BB%84%E4%BB%B6react%E6%8F%92%E6%A7%BD)
   - [reacthooks](#reacthooks)
   - [reactcontext](#reactcontext)
+- [reduxto](#reduxto)
   - [redux原理,react-redux原理，redux-thunk原理](#redux%E5%8E%9F%E7%90%86react-redux%E5%8E%9F%E7%90%86redux-thunk%E5%8E%9F%E7%90%86)
-  - [redux中间件机制，middleware](#redux%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%9C%BA%E5%88%B6middleware)
-  - [reduxto，](#reduxto)
+  - [redux原理，订阅者模式，composeto](#redux%E5%8E%9F%E7%90%86%E8%AE%A2%E9%98%85%E8%80%85%E6%A8%A1%E5%BC%8Fcomposeto)
+  - [react-redux,](#react-redux)
   - [redux和mobx的区别](#redux%E5%92%8Cmobx%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [react-redux](#react-redux)
   - [redux-thunk](#redux-thunk)
   - [redux-saga](#redux-saga)
   - [React 的 O(n3)和 O(n)怎么计算出来的](#react-%E7%9A%84-on3%E5%92%8C-on%E6%80%8E%E4%B9%88%E8%AE%A1%E7%AE%97%E5%87%BA%E6%9D%A5%E7%9A%84)
@@ -265,6 +265,7 @@
   - [筛选出为函数类型的字段名](#%E7%AD%9B%E9%80%89%E5%87%BA%E4%B8%BA%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D)
 - [dockerto](#dockerto)
 - [Umi+Dva](#umidva)
+  - [dvato](#dvato)
   - [所有配置](#%E6%89%80%E6%9C%89%E9%85%8D%E7%BD%AE)
   - [运行时配置](#%E8%BF%90%E8%A1%8C%E6%97%B6%E9%85%8D%E7%BD%AE)
   - [start](#start)
@@ -272,7 +273,6 @@
   - [mock](#mock)
   - [路由](#%E8%B7%AF%E7%94%B1)
   - [umi-env配置文件区分环境](#umi-env%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8C%BA%E5%88%86%E7%8E%AF%E5%A2%83)
-  - [配合dva使用](#%E9%85%8D%E5%90%88dva%E4%BD%BF%E7%94%A8)
   - [按需加载](#%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD)
 - [Vueto，](#vueto)
   - [vue在v-for时给每项元素绑定事件需要用事件代理吗？为什么？](#vue%E5%9C%A8v-for%E6%97%B6%E7%BB%99%E6%AF%8F%E9%A1%B9%E5%85%83%E7%B4%A0%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E9%9C%80%E8%A6%81%E7%94%A8%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%90%97%E4%B8%BA%E4%BB%80%E4%B9%88)
@@ -2994,6 +2994,59 @@ flex 实现左右宽度固定，中间用 flex1 的时候，如果要处理文�
 
 ## webSocketto,
 
+**使用**
+
+```js
+// server.js
+var app = require("express")();
+var http = require("http").Server(app);
+var io = require("socket.io")(http);
+
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
+
+io.on("connection", function (socket) {
+  console.log("a user connected");
+
+  //响应某用户发送消息
+  socket.on("chat message", function (msg) {
+    console.log("chat message:" + msg);
+    // 广播给所有人
+    io.emit("chat message", msg);
+    // 广播给除了发送者外所有人
+    // socket.broadcast.emit('chat message', msg)
+  });
+
+  socket.on("disconnect", function () {
+    console.log("user disconnected");
+  });
+});
+
+http.listen(3000, function () {
+  console.log("listening on *:3000");
+});
+
+// client.html
+<script
+  src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+  integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+  crossorigin="anonymous"
+></script>;
+var socket = io();
+$("form").submit(function (e) {
+  e.preventDefault(); // 避免表单提交行为
+  // 发送
+  socket.emit("chat message", $("#m").val());
+  $("#m").val("");
+  return false;
+});
+// 接收
+socket.on("chat message", function (msg) {
+  $("#messages").append($("<li>").text(msg));
+});
+```
+
 - 跨页面通信方式，多页面通信，页面间通信
 
 1. window.open window.postMessage
@@ -4715,7 +4768,15 @@ node 单线程
 特性：事件驱动（event loop）非阻塞 I/O
 Js 都是单线程的，node 也是单线程的，只是底层还是多线程 I/O 实现非阻塞的，同时，也支持 cluster 多核多进程处理，但多进程处理的话有一个问题，每个进程都是相互独立的，这也就意味着 token 什么的不能放在内存中而应该在 redis 里面，因为每个进程相互独立，内存自然不能共享
 
-## node性能调优
+## node性能优化，node优化
+
+1. 处理 JSON，JSONStream 只读取部分 json 数据并直接以流形式传输
+2. 使用 fast-json-stringify 加速 JSON 序列化
+3. 尽量使用 redis 而不用大对象做缓存，因为会导致老生代的垃圾回收变慢
+4. 使用流直接读写，可以用 stream 包里的 pipeline 管理流
+5. 使用 node-clinic 快速定位性能问题
+6. 利用多核，多进程共享端口，故障恢复
+7. Keymetrics 在线监控 pm2 运行 https://id.keymetrics.io
 
 - 处理 JSON，只读取 json 里面的某些数据，用 JSONStream
 
@@ -4814,6 +4875,72 @@ autocannon http://localhost:3000
 
 ```
 
+- 尽可能利用多核，多进程共享端口，故障恢复，forkto,cluster
+  **原理**
+  net 模块会对进程进行判断，是 worker 还是 master, 是 worker 的话进行 hack net.Server 实例的 listen 方法
+  worker 调用的 listen 方法是 hack 掉的，直接 return 0,不过会向 master 注册一个 connection 接手的事件
+  master 收到客户端 connection 事件后，会轮询向 worker 发送 connection 上来的客户端句柄
+  worker 收到 master 发送过来客户端的句柄，这时候就可以处理客户端请求了
+  **实现**
+
+```js
+var cluster = require("cluster");
+var os = require("os");
+// 获取CPU 的数量
+var numCPUs = os.cpus().length;
+var process = require("process");
+console.log("numCPUs:", numCPUs);
+var workers = {};
+if (cluster.isMaster) {
+  // 主进程分支
+  cluster.on("death", function (worker) {
+    // 当一个工作进程结束时，重启工作进程
+    delete workers[worker.pid];
+    worker = cluster.fork();
+    workers[worker.pid] = worker;
+  });
+  // 初始开启与CPU 数量相同的工作进程
+  for (var i = 0; i < numCPUs; i++) {
+    var worker = cluster.fork();
+    workers[worker.pid] = worker;
+  }
+} else {
+  // 工作进程分支，启动服务器
+  var app = require("./app");
+  app.use(async (ctx, next) => {
+    console.log("worker" + cluster.worker.id + ",PID:" + process.pid);
+    next();
+  });
+  app.listen(3000);
+}
+// 当主进程被终止时，关闭所有工作进程
+process.on("SIGTERM", function () {
+  for (var pid in workers) {
+    process.kill(pid);
+  }
+  process.exit(0);
+});
+```
+
+## pm2to
+
+**使用**
+
+```bash
+npm install -g
+pm2 pm2 start app.js --watch -i 2 // watch 监听文件变化 // -i 启动多少个实例
+pm2 stop all
+pm2 list
+pm2 start app.js -i max # 根据机器CPU核数，开启对应数目的进程
+# 配置process.yml
+apps:
+  - script : app.js
+    instances: 2
+    watch : true
+    env :
+      NODE_ENV: production
+```
+
 ## node的readFile和readFileSync的区别
 
 node 的所有方法都有自带的普通的异步和 Sync 后缀的同步的写法，同步的写法需要 try catch 捕获错误
@@ -4874,29 +5001,6 @@ PM2 本质上还是用的原生的这些，只是内置了处理上述的逻辑�
 如果有任何工作线程意外挂掉了，PM2 会立即重启他们，当前你可以在任何时候重启，只需 pm2 restart all
 pm2 scale app +3 会在当前基础上加 3 个工作线程
 Pm2 restart app 名字，可以保证程序永不停止
-
-fork
-
-```js
-var cluster = require("cluster");
-var http = require("http");
-var os = require("os");
-
-var numCPUs = os.cpus().length;
-
-if (cluster.isMaster) {
-  for (var i = 0; i < numCPUs; ++i) {
-    cluster.fork();
-  }
-} else {
-  http
-    .createServer(function (req, res) {
-      res.writeHead(200);
-      res.end("hello world");
-    })
-    .listen(8080);
-}
-```
 
 ## node进程间通信
 
@@ -6158,14 +6262,36 @@ return InputComp => (
 ## react-router
 
 - render/children/component,互斥的，
-  优先执行 children > component > render exact 表明是独占路由
+  优先执行 children > component > render
+  exact 表明是独占路由
   children 是匹配与否都会执行，
   render 和 component 就是匹配才执行，
   component 适合直接 component={组件名}而不适合 component={ () => z 组件}，会引起重复装载，这也就决定了它适合渲染写死不需要初始化给参数的组件，render 适合渲染动态要传参的组件
   children 应用场景：有时候你可能只想知道访问地址是否被匹配，然后一旦匹 �� 就改变下样式之类，比如所有的页面我都会渲染导航，然后如果匹配到的话某个导航就高亮，这是一种典型的应用场景
-- 在 redux 里面动态地改变路径查询参数
+
+**原理**
+
+1. BrowserRouter：history 初始化及向下传递，对 location 变更监听
+2. Route：路由配置，匹配检测，内容渲染
+3. Link.js: 跳转链接，处理点击事件
+
+**使用**
 
 ```js
+// 1. 设定路由视图，相当于router-view
+<BrowserRouter>content...</BrowserRouter>
+
+// 2. 导航
+<Link to="/">水果列表</Link>| <Link to="/add">添加水果</Link>
+
+// 3. 路由
+<Route exact path="/"
+render={props => loading ?
+ <div>数据加载中...</div> :
+<FruitList fruits={fruits} /> } />
+<Route path="/add" component={FruitAdd} />
+
+// 在 redux 里面动态地改变路径查询参数
 import { push } from "react-router-redux";
 import qs from "query-string";
 
@@ -6178,6 +6304,7 @@ export const search = () => (dispatch) => {
     })
   );
 };
+
 ```
 
 ## react生命周期
@@ -6359,17 +6486,212 @@ static contextType = ThemeContext
 <ThemeContext.Consumer##{value =## <Button##{value}</Button##}</ThemeContext.Consumer##
 ```
 
+# reduxto
+
 ## redux原理,react-redux原理，redux-thunk原理
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-all.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-all.png
 
-<!-- todo -->
-
-## redux中间件机制，middleware
-
-## reduxto，
-
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-redux.jpg):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-redux.jpg
+
+## redux原理，订阅者模式，composeto
+
+1. createStore 创建 store 对象，里面有 subscribe 订阅器还有包装好了 dispatch 之类
+2. !!!下面的 compose 方法是核心，applyMiddleware 允许对 dispatch 进行更进一步中间件处理，对 dispatch 中间件进行串行化
+3. bindActionCreator
+
+```js
+export function createStore(reducer, enhancer) {
+  if (enhancer) {
+    return enhancer(createStore)(reducer);
+  }
+  let currentState = {};
+  let currentListeners = [];
+  function getState() {
+    return currentState;
+  }
+  function subscribe(listener) {
+    currentListeners.push(listener);
+  }
+  function dispatch(action) {
+    currentState = reducer(currentState, action);
+    currentListeners.forEach((v) => v());
+    return action;
+  }
+  dispatch({ type: "@IMOOC/KKB-REDUX" });
+  return { getState, subscribe, dispatch };
+}
+export function applyMiddleware(...middlewares) {
+  return (createStore) =>
+    (...args) => {
+      const store = createStore(...args);
+      let dispatch = store.dispatch;
+      const midApi = {
+        getState: store.getState,
+        dispatch: (...args) => dispatch(...args),
+      };
+      const middlewareChain = middlewares.map((middleware) =>
+        middleware(midApi)
+      );
+      dispatch = compose(...middlewareChain)(store.dispatch);
+      return { ...store, dispatch };
+    };
+}
+// reduxcomposeto,传参是柯里化形式的，需要对比koacomposeto，传参是数组形式的
+export function compose(...funcs) {
+  if (funcs.length == 0) {
+    return (arg) => arg;
+  }
+  if (funcs.length == 1) {
+    return funcs[0];
+  }
+  return funcs.reduce(
+    (left, right) =>
+      (...args) =>
+        right(left(...args))
+  );
+}
+
+function a(args) {
+  console.log("TCL: 调用a");
+  return "111:" + args;
+}
+function b(args) {
+  console.log("TCL: 调用b");
+  return "222:" + args;
+}
+const c = compose(a, b);
+console.log("TCL: heji", c("name"));
+// TCL: 调用a
+// TCL: 调用b
+// TCL: heji 222:111:name
+
+function bindActionCreator(creator, dispatch) {
+  return (...args) => dispatch(creator(...args));
+}
+export function bindActionCreators(creators, dispatch) {
+  return Object.keys(creators).reduce((ret, item) => {
+    ret[item] = bindActionCreator(creators[item], dispatch);
+    return ret;
+  }, {});
+}
+```
+
+## react-redux,
+
+> react-redux 只是针对 redux 更进一层的封装,方便开发者使用
+> **原理**
+
+1. provider 提供 store
+2. Connect 连接 react 和 redux，是个高阶函数，高阶目的：redux 的 subscribe 订阅器开始订阅组件的更新器函数
+3. connect 后的组件监听 store 变化，connect 有缓存 state 属性的，有变化时就会触发 setState 操作使其子组件重新渲染
+
+**使用**
+
+```js
+// 1. 安装： npm i redux react-redux -S
+// 2. store.js 创建 store 实例
+import { createStore } from "redux";
+function fruitReducer(state = initial, action) {}
+const store = createStore(fruitReducer);
+export default store;
+
+// 3. 注册该实例 Provider
+import { Provider } from "react-redux";
+import store from "./store";
+import ReduxTest from "./ReduxTest";
+<Provider store={store}>
+  <App />
+</Provider>;
+
+// 4. 组件中使用状态 connect
+import {connect} from 'react-redux';
+// 简洁
+// connect返回一个高阶组件，可以把redux状态作为属性注入到包装组件
+@connect(
+  state => ({
+    tags: state.goods.tags,
+    courses: state.goods.courses,
+    loading: state.loading
+  }),
+  {
+    getList: () => ({
+      type: "goods/getList"
+    }),
+    addCart: (payload) => ({
+      type: "cart/addCart",
+      payload
+    }),
+  }
+)
+class Goods extends Component {
+}
+
+// 常规
+// 子组件
+const mapStateToProps = state => ({
+list: state.goods.list
+})
+// 函数式
+const mapDispatchToProps = dispatch => ({
+add: payload => dispatch({ type: "add", payload }),
+})
+// 对象式
+const mapDispatchToProps = {
+add,
+asyncFetch
+}
+@connect(mapStateToProps, mapDispatchToProps)
+
+```
+
+**源码**
+
+```js
+export const connect =
+  (mapStateToProps = (state) => state, mapDispatchToProps = {}) =>
+  (WrapComponent) => {
+    return class ConnectComponent extends React.Component {
+      static contextTypes = { store: PropTypes.object };
+      constructor(props, context) {
+        super(props, context);
+        this.state = { props: {} };
+      }
+      componentDidMount() {
+        const { store } = this.context;
+        store.subscribe(() => this.update());
+        this.update();
+      }
+      update() {
+        const { store } = this.context;
+        const stateProps = mapStateToProps(store.getState());
+        const dispatchProps = bindActionCreators(
+          mapDispatchToProps,
+          store.dispatch
+        );
+        this.setState({
+          props: { ...this.state.props, ...stateProps, ...dispatchProps },
+        });
+      }
+      render() {
+        return <WrapComponent {...this.state.props}></WrapComponent>;
+      }
+    };
+  };
+export class Provider extends React.Component {
+  static childContextTypes = { store: PropTypes.object };
+  getChildContext() {
+    return { store: this.store };
+  }
+  constructor(props, context) {
+    super(props, context);
+    this.store = props.store;
+  }
+  render() {
+    return this.props.children;
+  }
+}
+```
 
 ## redux和mobx的区别
 
@@ -6385,40 +6707,39 @@ static contextType = ThemeContext
   redux 适合有回溯需求的应用: 比如一个画板应用、一个表格应用，很多时候需要撤销、重做等操作，由于 redux 不可变的特性，天然支持这些操作.
   当然，两者也可以配合工作
 
-## react-redux
-
-1. provider 提供 store
-2. Connect 连接 react 和 redux，高阶组件使其拥有 dispatch 和能访问到 store
-3. connect 后的组件监听 store 变化，connect 有缓存 state 属性的，有变化时就会触发 setState 操作使其子组件重新渲染
-
-```js
-
-根组件用<Provider store={store}##传 store 后
-
-子组件
-const mapStateToProps = state =## ({
-list: state.goods.list
-})
-函数式
-const mapDispatchToProps = dispatch =## ({
-add: payload =## dispatch({ type: "add", payload }),
-})
-对象式
-const mapDispatchToProps = {
-add,
-asyncFetch
-}
-@connect(mapStateToProps, mapDispatchToProps)
-
-```
-
 ## redux-thunk
 
 使得可以写异步 action，而且参数自带可以解析出 dispatch 和 getState，如果还要别的参数比如 axios，可以用 withExtraArgument 把 axios 传给 action
 applyMiddleware(thunk.withExtraArgument(serverAxios))
 
+**原理**
+
+- 判断如果是纯 action 对象则直接使用，如果是函数的话，将 state 作为参数传进去然后调用
+
 ```js
-这样这个action就能解析出来dispatch, $axios;
+const thunk =
+  ({ dispatch, getState }) =>
+  (next) =>
+  (action) => {
+    if (typeof action == "function") {
+      return action(dispatch, getState);
+    }
+    return next(action);
+  };
+export default thunk;
+```
+
+**使用**
+
+```js
+// 1. 引入
+import { createStore, applyMiddleware } from "redux";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
+const store = createStore(fruitReducer, applyMiddleware(logger, thunk));
+
+// 2. 定义异步方法，在store.js里面
+// 这样这个action就能解析出来dispatch, $axios;
 export const asyncFetch = (payload) => {
   return (dispatch, $axios) => {
     setTimeout(() => {
@@ -6426,54 +6747,67 @@ export const asyncFetch = (payload) => {
     }, 1000);
   };
 };
+
+// 3. 使用
+import { asyncFetch } from "./store";
+const mapDispatchToProps = { asyncFetch };
+function ReduxTestContainer({ asyncFetch }) {}
 ```
 
 ## redux-saga
 
-原理：![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-saga.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-saga.png
+**比较**
+redux-thunk 的缺点在于 api 层与 store 耦合，优点是可以获取到各个异步操作时期状态的值，比较灵活，易于控制
+redux-promise 的优点是 api 层与 store 解耦，缺点是对请求失败，请求中的情形没有很好的处理
+redux-saga 的优点是 api 层与 store 解耦，对请求中，请求失败都有完善的处理，缺点是代码量较大
 
-1. 创建任务清单
+![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-saga.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-saga.png
+
+**简介**
+
+- 就是个 redux 的中间价，如果过来的 action 在 saga 清单里面，则执行 saga 的方法，不在的话直接按原生执行
+
+**使用**
 
 ```js
-// 任务清单
-import { call, put, takeEvery } from "redux-saga/effects";
+// 1. 创建任务清单
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+// call请求，put派发，takeEvery执行每个请求，takeLatest,并发有多个action时，只处理最后一个，类防抖
 
 const UserService = {
-login(uname) {
-return new Promise((resolve, reject) => {
-  ...
-});
-}};
-// worker Saga
+  login(uname) {
+    return new Promise((resolve, reject) => {});
+  },
+};
 
 function* login(action) {
-try {
-  yield put({ type: "requestLogin" });
-  //这些put的名字派发者都是saga了，派发的这些事务也在user.redux.js里面写进去
-  const result = yield call(UserService.login, action.uname);
-  yield put({ type: "loginSuccess", result });
-} catch (message) {
-  yield put({ type: "loginFailure", message });
-}
+  try {
+    yield put({ type: "requestLogin" });
+    //这些put的名字派发者都是saga了，派发的这些事务也在user.redux.js里面写进去
+    const result = yield call(UserService.login, action.uname);
+    yield put({ type: "loginSuccess", result });
+  } catch (message) {
+    yield put({ type: "loginFailure", message });
+  }
 }
 
 function* mySaga() {
   yield takeEvery("login", login);
 }
 export default mySaga;
-```
 
-2. 注册
+// 2. 注册
+import createSagaMiddleware from "redux-saga";
+import mySaga from "./sagas";
 
-```js
 const store = createStore(
   combineReducers({ fruit: fruitReducer, user }),
   applyMiddleware(logger, thunk, sagaMiddleware)
 );
 sagaMiddleware.run(mySaga);
-```
 
-3. 使用 saga 后，原来所有的 redux 都采用最纯粹的写法，直接 action 都是派发一个对象，不用函数了，所有的异步事务都在 saga 清单里面做
+// 3. 使用 saga 后，原来所有的 redux 都采用最纯粹的写法，直接 action 都是派发一个对象，不用函数了，所有的异步事务都在 saga 清单里面做
+```
 
 ## React 的 O(n3)和 O(n)怎么计算出来的
 
@@ -6561,6 +6895,59 @@ type PickFuncProp<T> = {
 https://mp.weixin.qq.com/s/Qp9jSzUNsJJrHeImXD9w6Q
 
 # Umi+Dva
+
+## dvato
+
+1. 在 umi 的 plugin 里面加入 dva，使用 immer 模式，写得会很舒服
+2. /src/models/写 model
+3. 写法
+
+**使用**
+
+```js
+// 1. 编写dva文件
+import * as api from '../until/getpro';
+export default{
+	//命名空间
+	namespace:'info',
+	state:{
+		name:'和杰',
+		age:24,
+		des:"真帅呀！！！",
+		list:[]
+	},
+	//处理state－－同步
+	reducers:{
+		change(state,{payload}){
+			return {...state,...payload}
+		}
+	},
+	// 异步
+	// yield表示后面的方法执行完以后 call表示调用一个api接口
+	// put表示一个派发
+	effects:{
+		*getData(payload,{call,put}){
+			console.log(payload)
+			const result=yield call(api.getProList,payload.payload)
+			console.log(result)
+			yield put({
+				type:'change',
+				payload:{
+					list:result.data.data
+				}
+			})
+		}
+}
+
+// 2. 使用，跟redux一样**
+import { connect } from "dva";
+@connect((state) => ({
+  goodsList: state.goods,
+  // 获取指定命名空间的模型状态
+}))
+class Goods extends Component {}
+
+```
 
 ## 所有配置
 
@@ -6657,80 +7044,6 @@ export default { b: 'cloud', c: 'cloud' };
 // .umirc.local.js
 export default { c: 'local' };
 
-```
-
-## 配合dva使用
-
-1. 在 umi 的 plugin 里面加入 dva，使用 immer 模式，写得会很舒服
-2. /src/models/写 model
-3. 写法
-
-```js
-import * as api from '../until/getpro';
-export default{
-	//命名空间
-	namespace:'info',
-	state:{
-		name:'和杰',
-		age:24,
-		des:"真帅呀！！！",
-		list:[]
-	},
-	//处理state－－同步
-	reducers:{
-		change(state,{payload}){
-			return {...state,...payload}
-		}
-	},
-	// 异步
-	// yield表示后面的方法执行完以后 call表示调用一个api接口
-	// put表示一个派发
-	effects:{
-		*getData(payload,{call,put}){
-			console.log(payload)
-			const result=yield call(api.getProList,payload.payload)
-			console.log(result)
-			yield put({
-				type:'change',
-				payload:{
-					list:result.data.data
-				}
-			})
-		}
-}
-
-use:
-import {connect} from 'dva';
- function Index(props) {
-  return (
-    <div>
-      <h1>Page index</h1>
-	  <Button type="primary"
-		onClick={()=>props.dispatch({
-			type:'info/change',
-			payload:{
-				age:props.age-1
-			}
-		})}
-	  >设置年龄</Button>
-	  <h2>{props.name}</h2>
-	  <Button type="primary"
-		onClick={()=>props.dispatch({
-			type:'info/getData',
-			payload:{
-				uid:19802,
-				pagesize:50
-			}
-		})}
-	  >获取数据</Button>
-	  {
-		  props.list.map((item)=>{
-			  return(<div key={item.pid}>{item.pname}</div>)
-		  })
-	  }
-    </div>
-  );
-}
 ```
 
 ## 按需加载

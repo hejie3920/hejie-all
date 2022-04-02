@@ -2152,3 +2152,28 @@ function toTree(list, parId) {
 let result = toTree(arr, "root");
 
 console.log("TCL: res1", res1, result);
+
+function compose(...funcs) {
+  if (funcs.length == 0) {
+    return (arg) => arg;
+  }
+  if (funcs.length == 1) {
+    return funcs[0];
+  }
+  return funcs.reduce(
+    (left, right) =>
+      (...args) =>
+        right(left(...args))
+  );
+}
+
+function a(args) {
+  console.log("TCL: 调用a");
+  return "111:" + args;
+}
+function b(args) {
+  console.log("TCL: 调用b");
+  return "222:" + args;
+}
+const c = compose(a, b);
+console.log("TCL: heji", c("name"));
