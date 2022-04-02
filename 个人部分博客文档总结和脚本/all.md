@@ -45,7 +45,9 @@
   - [Reflect对象创建目的](#reflect%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E7%9B%AE%E7%9A%84)
   - [使用闭包实现每隔一秒打印1,2,3,4](#%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%94%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B01234)
 - [亮点to，hejieto](#%E4%BA%AE%E7%82%B9tohejieto)
-  - [懒加载，视图内加载，可视区内加载](#%E6%87%92%E5%8A%A0%E8%BD%BD%E8%A7%86%E5%9B%BE%E5%86%85%E5%8A%A0%E8%BD%BD%E5%8F%AF%E8%A7%86%E5%8C%BA%E5%86%85%E5%8A%A0%E8%BD%BD)
+  - [流式渲染](#%E6%B5%81%E5%BC%8F%E6%B8%B2%E6%9F%93)
+  - [懒加载to，视图内加载，可视区内加载](#%E6%87%92%E5%8A%A0%E8%BD%BDto%E8%A7%86%E5%9B%BE%E5%86%85%E5%8A%A0%E8%BD%BD%E5%8F%AF%E8%A7%86%E5%8C%BA%E5%86%85%E5%8A%A0%E8%BD%BD)
+  - [动态加载to，importthento，异步加载原理](#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDtoimportthento%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86)
   - [性能优化to](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96to)
   - [常用优化代码块](#%E5%B8%B8%E7%94%A8%E4%BC%98%E5%8C%96%E4%BB%A3%E7%A0%81%E5%9D%97)
   - [编辑器](#%E7%BC%96%E8%BE%91%E5%99%A8)
@@ -252,6 +254,7 @@
   - [redux原理，订阅者模式，composeto](#redux%E5%8E%9F%E7%90%86%E8%AE%A2%E9%98%85%E8%80%85%E6%A8%A1%E5%BC%8Fcomposeto)
   - [react-redux,](#react-redux)
   - [redux和mobx的区别](#redux%E5%92%8Cmobx%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [MobXto](#mobxto)
   - [redux-thunk](#redux-thunk)
   - [redux-saga](#redux-saga)
   - [React 的 O(n3)和 O(n)怎么计算出来的](#react-%E7%9A%84-on3%E5%92%8C-on%E6%80%8E%E4%B9%88%E8%AE%A1%E7%AE%97%E5%87%BA%E6%9D%A5%E7%9A%84)
@@ -1579,9 +1582,58 @@ for (let i = 0; i < 5; i++) {
 
 # 亮点to，hejieto
 
+- 编辑器，可视区加载【interaction】，并发限制，传输，弹幕，canvas
+- 预览器，流式渲染结合 express 的缓存中间件，renderToNodeStream,懒加载，预加载，分时
+- 性能优化，时序上，资源上，感观体验上，代码上，指标
+- SDK，位运算，订阅者模式，观察者模式，单例模式
+- webpack 插件，压缩图片，babel，自定义组件库按需加载 babel-import-node
+- devops
+- 异常监控系统
+
+```
+- 错误类型
+  Error
+  EvalError
+  RangeError
+  ReferenceError
+  SyntaxError（语法错误）
+  TypeError
+  URIError
+
+1. trycath 只能抓同步的运行时错误，语法错误抓不了，异步请求错误也抓不了，比如 setTimeout 里面的错误抓不了
+2. Promise.catch()抓异步错误，所以改写 Promise.catch 可以进行错误上报，但 promise.catch 同样抓不了语法错误和异步任务
+3. unhandledrejection unhandledrejection：当 Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事件
+4. Iframe,onerror,
+5. 跨端脚本，对 script 标签增加一个 crossorigin=”anonymous”
+6. sourceMap 定位错误文件
+```
+
 - webp 优化，传输，骨架屏，高并发，流程上传工作的自动化，脚手架，图像处理，全景，组件
 
-## 懒加载，视图内加载，可视区内加载
+## 流式渲染
+
+```js
+app.use("*", (request, response) => {
+  // 通过过滤器（transform streams）创建了缓存
+  let cacheStream = createCacheStream(request.path);
+  // cachesStream接上Response
+  cacheStream.pipe(response);
+  //先把首部分写到cacheStream
+  cacheStream.write(
+    '<html><head><title>Page</title></head><body><div id="root">'
+  );
+  // 创建了渲染流
+  const renderStream = renderToNodeStream(<Frontend />);
+  // 渲染流接上cacheStream
+  renderStream.pipe(cacheStream, { end: false });
+  renderStream.on("end", () => {
+    // 一旦结束渲染则做剩余部分的输出
+    cacheStream.end("</div></body></html>");
+  });
+});
+```
+
+## 懒加载to，视图内加载，可视区内加载
 
 https://mp.weixin.qq.com/s/XIuINjn6t0uY6kALqEQMaQ
 
@@ -1631,6 +1683,24 @@ function VideoList(props) {
 
 export default VideoList;
 ```
+
+## 动态加载to，importthento，异步加载原理
+
+**原理**
+本质上就是调用 require.ensure
+
+> webpack 在编译时，会静态地解析代码中的 require.ensure()，同时将模块添加到一个分开的 chunk 当中。这个新的 chunk 会被 webpack 通过 jsonp 来按需加载。
+> 首先，webpack 遇到 import 方法时，会将其当成一个代码分割点，也就是说碰到 import 方法了，那么就去解析 import 方法。
+
+然后，import 引用的文件，webpack 会将其编译成一个 jsonp，也就是一个自执行函数，然后函数内部是引用的文件的内容，因为到时候是通过 jsonp 的方法去加载的。
+
+具体就是，import 引用文件，会先调用 require.ensure 方法(打包的结果来看叫 require.e)，这个方法主要是构造一个 promise，会将 resolve，reject 和 promise 放到一个数组中，将 promise 放到一个队列中。
+
+然后，调用 require.load(打包结果来看叫 require.l)方法，这个方法主要是创建一个 jsonp，也就是创建一个 script 标签，标签的 url 就是文件加载地址，然后塞到 document.head 中，一塞进去，就会加载该文件了。
+
+加载完，就去执行这段 jsonp，主要就是把 moduleId 和 module 内容存到 modules 数组中，然后再去走 webpack 内置的 require。
+
+webpack 内置的 require，主要是先判断缓存，这个 moduleId 是否缓存过了，如果缓存过了，就直接返回。如果没有缓存，再继续往下走，也就是加载 module 内容，然后最终内容会挂在都 module,exports 上，返回 module.exports 就返回了引用文件的最终执行结果。
 
 ## 性能优化to
 
@@ -6706,6 +6776,74 @@ export class Provider extends React.Component {
   mobx 更适合数据不复杂的应用: mobx 难以调试,很多状态无法回溯,面对复杂度高的应用时,往往力不从心.
   redux 适合有回溯需求的应用: 比如一个画板应用、一个表格应用，很多时候需要撤销、重做等操作，由于 redux 不可变的特性，天然支持这些操作.
   当然，两者也可以配合工作
+
+## MobXto
+
+```js
+// 1. 定义store.js
+//homeStore.js
+import { observable,action} from "mobx";
+class HomeStore {
+  @observable homeNum = 0;
+  @action addNum() {
+   this.homeNum += 1;
+  }
+  @action lessNum() {
+   this.homeNum -= 1;
+  }
+}
+export default HomeStore;
+
+// 2. 融合导出
+import HomeStore from "./homeStore";
+import OneStore from "./oneStore";
+let oneStore = new OneStore();
+let homeStore = new HomeStore();
+const stores = {
+  oneStore,
+  homeStore
+};
+/// 默认导出接口
+export default stores;
+
+// 3. 入口引入
+import React from "react";
+import { Provider } from "mobx-react";
+import stores from "./store";
+ReactDOM.render(
+  <Provider {...stores}>
+    <Router />
+  </Provider>,
+  document.getElementById("root")
+);
+
+// 4. 使用
+import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
+@inject("homeStore")
+@observer
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <div>
+        <h1>首页数据源的number为:{this.props.homeStore.homeNum}</h1>
+         <button onClick={() => {this.props.homeStore.addNum()}} >
+           点击添加
+         </button>
+         <button  onClick={() => {this.props.homeStore.lessNum()}}>
+          点击删除
+         </button>
+      </div>
+    );
+  }
+}
+export default Home;
+
+```
 
 ## redux-thunk
 
