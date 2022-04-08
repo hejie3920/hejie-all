@@ -265,7 +265,6 @@
 - [tsto](#tsto)
   - [实现ReturnType](#%E5%AE%9E%E7%8E%B0returntype)
   - [实现Pick](#%E5%AE%9E%E7%8E%B0pick)
-  - [筛选出为函数类型的字段名](#%E7%AD%9B%E9%80%89%E5%87%BA%E4%B8%BA%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AD%97%E6%AE%B5%E5%90%8D)
 - [dockerto](#dockerto)
 - [Umi+Dva](#umidva)
   - [dvato](#dvato)
@@ -7006,6 +7005,86 @@ Router.beforePopState(({ url, as, options }) => {
 
 # tsto
 
+```ts
+// any、unknown 和 void 类型
+// 函数传参可以用unknown配合类型断言
+function divide(param: unknown) {
+  return param as number / 2;
+}
+
+// 函数类型的定义
+// 普通
+function add(x:number, y:number = 100):number {
+    return x + y
+}
+// 函数表达式
+const add = (x: number, y: number): number => {
+    return x + y
+}
+
+// interface
+// 1. 表达函数
+interface add {
+  (x:number,y:number):number
+}
+const a:add3 = (x,y) => {
+  return x * y
+}
+
+// 2. 定义组件类型
+interface FunctionComponent<P = {}> {
+  // 这一句相当于上面的interface表示函数
+  (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null;
+
+  propTypes?: WeakValidationMap<P> | undefined;
+  defaultProps?: Partial<P> | undefined;
+  displayName?: string | undefined;
+}
+
+// 3. 枚举
+const enum Direction {
+    Up = 1,
+    Down,
+    Left,
+    Right
+}
+
+// 拿出枚举值的所有键
+type key =  keyof typeof Direction // "Up" | "Down" | "Left" | "Right"
+// 拿出所有枚举值的值
+type value = `${Direction}` // "1" | "2" | "3" | "4"
+// 为了这个功能，老爷子在 TS 中新增了 uppercase, lowercase, capitalize, uncapitalize 这些关键字，用于对模板粒度字符串变量进行处理。
+type value2 = `${Direction}-Haha` // "1-Haha" | "2-Haha" | "3-Haha" | "4-Haha"
+type Cases<T extends string> = `${uppercase T} ${lowercase T} ${capitalize T} ${uncapitalize T}`;
+type T11 = Cases<'bar'>;  // 'BAR bar Bar bar'
+
+// 模板串配合infer使用
+type MatchPair<S extends string> = S extends `[${infer A},${infer B}]` ? [A, B] : unknown;
+type T20 = MatchPair<'[1,2]'>;  // ['1', '2']
+type T21 = MatchPair<'[foo,bar]'>;  // ['foo', 'bar']
+
+// type和interface区别
+// interface（接口） 是 TS 设计出来用于定义对象类型的，可以对对象的形状进行描述。
+// type 是类型别名，用于给各种类型定义别名，让 TS 写起来更简洁、清晰。
+// type 可以声明基本类型、联合类型、交叉类型、元组，interface 不行
+// interface可以合并重复声明，type 不行
+
+// 取出一个类型中满足特定条件的键
+type PickFuncProp<T> = {
+  [P in keyof T]: T[P] extends Function ? P : never;
+}[keyof T];
+
+interface tt {
+  fn: function;
+  name: string;
+  age: number;
+}
+type jin = PickFuncProp<tt>;
+
+// extends用来约束传入的泛型
+
+```
+
 ## 实现ReturnType
 
 ```ts
@@ -7018,14 +7097,6 @@ type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
 type MyPick<T, K> = {
   [k in K]: k extends keyof T ? T[k] : never;
 };
-```
-
-## 筛选出为函数类型的字段名
-
-```ts
-type PickFuncProp<T> = {
-  [P in keyof T]: T[P] extends Function ? P : never;
-}[keyof T];
 ```
 
 # dockerto
