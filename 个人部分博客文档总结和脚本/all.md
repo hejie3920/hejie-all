@@ -80,6 +80,7 @@
   - [代理模式，缓存代理](#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F%E7%BC%93%E5%AD%98%E4%BB%A3%E7%90%86)
   - [观察者和发布订阅模式的区别](#%E8%A7%82%E5%AF%9F%E8%80%85%E5%92%8C%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [常见设计模式](#%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
+  - [拦截器to](#%E6%8B%A6%E6%88%AA%E5%99%A8to)
 - [httpto，](#httpto)
   - [网络模型，7层模型，tcp,udp,socket](#%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B7%E5%B1%82%E6%A8%A1%E5%9E%8Btcpudpsocket)
   - [三次握手，HTTPS握手过程中，客户端如何验证证书的合法性](#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8Bhttps%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%A6%82%E4%BD%95%E9%AA%8C%E8%AF%81%E8%AF%81%E4%B9%A6%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7)
@@ -190,7 +191,7 @@
   - [v8代码优化实践](#v8%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5)
 - [webpackto，](#webpackto)
   - [自定义loaderto](#%E8%87%AA%E5%AE%9A%E4%B9%89loaderto)
-  - [webpack 原理，实现webpack](#webpack-%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
+  - [webpack原理，实现webpack](#webpack%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0webpack)
   - [自定义插件，自定义pluginto](#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8F%92%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89pluginto)
   - [webpack如何工作，工作流程](#webpack%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B)
   - [babel-pollyfillto和babel-transform-runtimeto区别](#babel-pollyfillto%E5%92%8Cbabel-transform-runtimeto%E5%8C%BA%E5%88%AB)
@@ -2693,6 +2694,88 @@ if else 优化
 
 <!-- endshejimoshi -->
 
+## 拦截器to
+```js
+// 1. 任务的注册
+// 首先以下面的代码为例，通过use将方法注册到拦截器中
+// request interceptor
+axios.interceptors.request.use(
+  config => {
+    console.log('config', config);
+    return config;
+  },
+  err => Promise.reject(err),
+);
+
+// response interceptor
+axios.interceptors.response.use(response => {
+  console.log('response', response);
+  return response;
+});
+
+// axios/lib/core/InterceptorManager.js
+// 在拦截器管理类中通过use方法向任务列表中添加任务
+InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+  this.handlers.push({
+    fulfilled: fulfilled,
+    rejected: rejected
+  });
+  return this.handlers.length - 1;
+};
+
+// 2. 任务的编排
+// 先看lib/axios.js(入口文件) 中的创建实例的方法
+function createInstance(defaultConfig) {
+  var context = new Axios(defaultConfig);
+
+  // REVIEW[epic=interceptors,seq=0] 在axios对象上绑定request方法，使得axios({option})这样的方式即可调用request方法
+  var instance = bind(Axios.prototype.request, context);
+
+  // Copy axios.prototype to instance
+  utils.extend(instance, Axios.prototype, context);
+
+  // Copy context to instance
+  utils.extend(instance, context);
+
+  return instance;
+}
+// 重点在于Axios.prototype.request
+Axios.prototype.request = function request(config) {
+	// ...已省略部分代码
+  // Hook up interceptors middleware
+  // REVIEW[epic=interceptors,seq=2] dispatchRequest 为我们使用axios时，项目中调用的请求
+  var chain = [dispatchRequest, undefined];
+  var promise = Promise.resolve(config);
+
+  // REVIEW[epic=interceptors,seq=4] 向拦截器任务列表的头部注册 request任务
+  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+  });
+
+  // REVIEW[epic=interceptors,seq=5] 向拦截器任务列表的尾部注册 response任务
+  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+    chain.push(interceptor.fulfilled, interceptor.rejected);
+  });
+  // 通过上面的注册方式，我们可以知道最后的chain数组会长成的样子是：
+  // [ ...requestInterceptor, dispatchRequest,undefined, ...responseInterceptor ]
+  // 这样就保证了拦截器执行的顺序
+
+  while (chain.length) {
+    // 因为是成对注册的任务（fulfilled, rejected）所以执行的时候也是shift2次
+    promise = promise.then(chain.shift(), chain.shift());
+  }
+  return promise;
+};
+
+// 3. 任务的调度
+
+  var promise = Promise.resolve(config);
+  while (chain.length) {
+    // 因为是成对注册的任务（fulfilled, rejected）所以执行的时候也是shift2次
+    promise = promise.then(chain.shift(), chain.shift());
+  }
+
+```
 # httpto，
 
 ## 网络模型，7层模型，tcp,udp,socket
@@ -4697,7 +4780,7 @@ test: /[\\/]node_modules[\\/]/,
 // 当 webpack 处理文件路径时，它们始终包含/在 Unix 系统和\Windows 上。这就是为什么[\\/]在{cacheGroup}
 // .test 字段中使用 in 来表示路径分隔符的原因。/ 或\in { cacheGroup }.test 会在跨平台使用时引起问题。
 
-## webpack 原理，实现webpack
+## webpack原理，实现webpack
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
