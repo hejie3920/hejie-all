@@ -2098,82 +2098,204 @@ ref="input"
 // console.log("TCL: hejie", hejie);
 
 // console.log("TCL: con", convert(list));
-let arr = [
-  { id: 2, name: "部门B", parentId: "root" },
-  { id: 3, name: "部门C", parentId: 1 },
-  { id: 1, name: "部门A", parentId: 2 },
-  { id: 4, name: "部门D", parentId: 1 },
-  { id: 5, name: "部门E", parentId: 2 },
-  { id: 6, name: "部门F", parentId: 3 },
-  { id: 7, name: "部门G", parentId: 2 },
-  { id: 8, name: "部门H", parentId: 4 },
-];
-/** * 数组转树 非递归求解 * 利用数组和对象相互引用 时间复杂度O(n) * @param {Object} list */
-function totree(list, parId) {
-  let obj = {};
-  let result = {};
-  //将数组中数据转为键值对结构 (这里的数组和obj会相互引用)
-  list.map((el) => {
-    obj[el.id] = el;
-  });
-  for (let i = 0; i < list.length; i++) {
-    let id = list[i].parentId;
-    if (id == parId) {
-      // result.push(list[i]);
-      result = list[i];
-      continue;
-    }
-    if (obj[id].children) {
-      obj[id].children.push(list[i]);
-    } else {
-      obj[id].children = [list[i]];
-    }
-  }
-  return result;
-}
-let res1 = totree(arr, "root");
-/** * 数组转树 递归求解 */
-function toTree(list, parId) {
-  let len = list.length;
-  function loop(parId) {
-    let res = {};
-    for (let i = 0; i < len; i++) {
-      let item = list[i];
-      if (item.parentId === parId) {
-        item.children = loop(item.id);
-        // res.push(item);
-        res = item;
-      }
-    }
-    return res;
-  }
-  return loop(parId);
-}
-let result = toTree(arr, "root");
+// let arr = [
+//   { id: 2, name: "部门B", parentId: "root" },
+//   { id: 3, name: "部门C", parentId: 1 },
+//   { id: 1, name: "部门A", parentId: 2 },
+//   { id: 4, name: "部门D", parentId: 1 },
+//   { id: 5, name: "部门E", parentId: 2 },
+//   { id: 6, name: "部门F", parentId: 3 },
+//   { id: 7, name: "部门G", parentId: 2 },
+//   { id: 8, name: "部门H", parentId: 4 },
+// ];
+// /** * 数组转树 非递归求解 * 利用数组和对象相互引用 时间复杂度O(n) * @param {Object} list */
+// function totree(list, parId) {
+//   let obj = {};
+//   let result = {};
+//   //将数组中数据转为键值对结构 (这里的数组和obj会相互引用)
+//   list.map((el) => {
+//     obj[el.id] = el;
+//   });
+//   for (let i = 0; i < list.length; i++) {
+//     let id = list[i].parentId;
+//     if (id == parId) {
+//       // result.push(list[i]);
+//       result = list[i];
+//       continue;
+//     }
+//     if (obj[id].children) {
+//       obj[id].children.push(list[i]);
+//     } else {
+//       obj[id].children = [list[i]];
+//     }
+//   }
+//   return result;
+// }
+// let res1 = totree(arr, "root");
+// /** * 数组转树 递归求解 */
+// function toTree(list, parId) {
+//   let len = list.length;
+//   function loop(parId) {
+//     let res = {};
+//     for (let i = 0; i < len; i++) {
+//       let item = list[i];
+//       if (item.parentId === parId) {
+//         item.children = loop(item.id);
+//         // res.push(item);
+//         res = item;
+//       }
+//     }
+//     return res;
+//   }
+//   return loop(parId);
+// }
+// let result = toTree(arr, "root");
 
-console.log("TCL: res1", res1, result);
+// console.log("TCL: res1", res1, result);
 
-function compose(...funcs) {
-  if (funcs.length == 0) {
-    return (arg) => arg;
-  }
-  if (funcs.length == 1) {
-    return funcs[0];
-  }
-  return funcs.reduce(
-    (left, right) =>
-      (...args) =>
-        right(left(...args))
-  );
-}
+// function compose(...funcs) {
+//   if (funcs.length == 0) {
+//     return (arg) => arg;
+//   }
+//   if (funcs.length == 1) {
+//     return funcs[0];
+//   }
+//   return funcs.reduce(
+//     (left, right) =>
+//       (...args) =>
+//         right(left(...args))
+//   );
+// }
 
-function a(args) {
-  console.log("TCL: 调用a");
-  return "111:" + args;
-}
-function b(args) {
-  console.log("TCL: 调用b");
-  return "222:" + args;
-}
-const c = compose(a, b);
-console.log("TCL: heji", c("name"));
+// function a(args) {
+//   console.log("TCL: 调用a");
+//   return "111:" + args;
+// }
+// function b(args) {
+//   console.log("TCL: 调用b");
+//   return "222:" + args;
+// }
+// const c = compose(a, b);
+// console.log("TCL: heji", c("name"));
+
+// class Middleware {
+//   constructor() {
+//     this.middleware = (next) => {
+//       //console.log("this.middleware: "+next)
+//       /*this.middleware: () =>{
+//               console.log("use: "+fn.call(this, next));
+//               return fn.call(this, next)*/
+//       return next();
+//     };
+//   }
+
+//   run(fn) {
+//     // console.log(this)
+//     this.middleware(() => fn.call(this, "参数"));
+//   }
+
+//   use(fn) {
+//     const previousFn = this.middleware;
+//     this.middleware = (next) => {
+//       // console.log(next)
+//       /*() =>{
+//               console.log("fetch: "+fn.call(this, next));
+//               return fn.call(this, next)
+//           }*/
+//       previousFn.call(this, () => {
+//         // console.log("use: "+fn.call(this, next));
+//         return fn.call(this, next);
+//       });
+//     };
+//   }
+//   fetch(fn) {
+//     const previousFn = this.middleware;
+//     this.middleware = (next) => {
+//       // console.log(next)//() => fn.call(this,"nihaoafddsf")
+//       previousFn.call(this, () => {
+//         // console.log("fetch: "+fn)
+//         return fn.call(this, next);
+//       });
+//     };
+//   }
+// }
+
+// let bnm = new Middleware();
+
+// bnm.use((next) => {
+//   console.log("2");
+//   next();
+// });
+// bnm.use((next) => {
+//   console.log(3);
+//   // console.log(next)
+//   next();
+// });
+// bnm.use((next) => {
+//   console.log(4);
+//   // console.log(next)
+//   next();
+// });
+// bnm.use((next) => {
+//   console.log(5);
+//   // console.log(next)
+//   next();
+// });
+
+// bnm.run((canshu) => {
+//   console.log(1);
+//   console.log('123'+canshu);
+// });
+
+// const http = require("http");
+// const context = require("./context");
+// const request = require("./request");
+// const response = require("./response");
+// class KKB {
+//   // 初始化中间件数组
+//   constructor() {
+//     this.middlewares = [];
+//   }
+//   listen(...args) {
+//     const server = http.createServer(async (req, res) => {
+//       const ctx = this.createContext(req, res);
+//       // 中间件合成
+//       const fn = this.compose(this.middlewares);
+//       // 执行合成函数并传入上下文
+//       await fn(ctx);
+//       res.end(ctx.body);
+//     });
+//     server.listen(...args);
+//   }
+//   use(middleware) {
+//     // 将中间件加到数组里
+//     this.middlewares.push(middleware);
+//   } // 合成函数
+//   compose(middlewares) {
+//     return function (ctx) {
+//       // 传入上下文
+//       return dispatch(0);
+//       function dispatch(i) {
+//         let fn = middlewares[i];
+//         if (!fn) {
+//           return Promise.resolve();
+//         }
+//         return Promise.resolve(
+//           fn(ctx, function next() {
+//             // 将上下文传入中间件，mid(ctx, next)
+//             return dispatch(i + 1);
+//           })
+//         );
+//       }
+//     };
+//   }
+//   createContext(req, res) {
+//     // let ctx = Object.create(context);
+//     // ctx.request = Object.create(request);
+//     // ctx.response = Object.create(response);
+//     // ctx.req = ctx.request.req = req;
+//     // ctx.res = ctx.response.res = res;
+//     return {};
+//   }
+// }
+// module.exports = KKB;

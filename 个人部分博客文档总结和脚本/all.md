@@ -2696,84 +2696,125 @@ if else 优化
 
 ## 拦截器to
 ```js
-// 1. 任务的注册
-// 首先以下面的代码为例，通过use将方法注册到拦截器中
-// request interceptor
-axios.interceptors.request.use(
-  config => {
-    console.log('config', config);
-    return config;
-  },
-  err => Promise.reject(err),
-);
 
-// response interceptor
-axios.interceptors.response.use(response => {
-  console.log('response', response);
-  return response;
+class InterceptorManager {
+  constructor() {
+    this.handlers = [];
+  }
+  use(fulfilled, rejected) {
+    this.handlers.push({
+      fulfilled,
+      rejected,
+    });
+  }
+}
+
+class Axios {
+  constructor(config) {
+    this.axios = config;
+    this.interceptors = {
+      request: new InterceptorManager(),
+      response: new InterceptorManager(),
+    };
+  }
+  dispatchRequest(config) {
+    // 返回一个 promise 队列
+    return new Promise((resolve, reject) => {
+      resolve({
+        status: 200,
+        statusText: "OK",
+      });
+    });
+  }
+  request = (config) => {
+    // 创建一个 promise 对象
+    let promise = Promise.resolve(config);
+    // 创建一个数组
+    const chains = [this.dispatchRequest, undefined];
+    // 处理拦截器
+    // 请求拦截器 将请求拦截器的回调 压入到 chains 的前面  request.handles = []
+    this.interceptors.request.handlers.forEach((item) => {
+      chains.unshift(item.fulfilled, item.rejected);
+    });
+
+    // 响应拦截器
+    this.interceptors.response.handlers.forEach((item) => {
+      chains.push(item.fulfilled, item.rejected);
+    });
+
+    // console.log(chains);
+    // 遍历
+    while (chains.length > 0) {
+      promise = promise.then(chains.shift(), chains.shift());
+    }
+    return promise;
+  };
+}
+
+// 创建实例
+let _axios = new Axios({});
+// 创建 axios 函数
+let axios = _axios.request;
+//将 context 属性 config interceptors 添加至 axios 函数对象身上
+Object.keys(_axios).forEach((key) => {
+  axios[key] = _axios[key];
 });
 
-// axios/lib/core/InterceptorManager.js
-// 在拦截器管理类中通过use方法向任务列表中添加任务
-InterceptorManager.prototype.use = function use(fulfilled, rejected) {
-  this.handlers.push({
-    fulfilled: fulfilled,
-    rejected: rejected
-  });
-  return this.handlers.length - 1;
-};
+// 拦截器管理器构造函数
 
-// 2. 任务的编排
-// 先看lib/axios.js(入口文件) 中的创建实例的方法
-function createInstance(defaultConfig) {
-  var context = new Axios(defaultConfig);
-
-  // REVIEW[epic=interceptors,seq=0] 在axios对象上绑定request方法，使得axios({option})这样的方式即可调用request方法
-  var instance = bind(Axios.prototype.request, context);
-
-  // Copy axios.prototype to instance
-  utils.extend(instance, Axios.prototype, context);
-
-  // Copy context to instance
-  utils.extend(instance, context);
-
-  return instance;
-}
-// 重点在于Axios.prototype.request
-Axios.prototype.request = function request(config) {
-	// ...已省略部分代码
-  // Hook up interceptors middleware
-  // REVIEW[epic=interceptors,seq=2] dispatchRequest 为我们使用axios时，项目中调用的请求
-  var chain = [dispatchRequest, undefined];
-  var promise = Promise.resolve(config);
-
-  // REVIEW[epic=interceptors,seq=4] 向拦截器任务列表的头部注册 request任务
-  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
-    chain.unshift(interceptor.fulfilled, interceptor.rejected);
-  });
-
-  // REVIEW[epic=interceptors,seq=5] 向拦截器任务列表的尾部注册 response任务
-  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
-    chain.push(interceptor.fulfilled, interceptor.rejected);
-  });
-  // 通过上面的注册方式，我们可以知道最后的chain数组会长成的样子是：
-  // [ ...requestInterceptor, dispatchRequest,undefined, ...responseInterceptor ]
-  // 这样就保证了拦截器执行的顺序
-
-  while (chain.length) {
-    // 因为是成对注册的任务（fulfilled, rejected）所以执行的时候也是shift2次
-    promise = promise.then(chain.shift(), chain.shift());
+axios.interceptors.request.use(
+  function one(config) {
+    console.log("请求拦截器成功 1");
+    return config;
+  },
+  function (error) {
+    console.log("请求拦截器失败 1");
+    return Promise.reject(error);
   }
-  return promise;
-};
+);
 
-// 3. 任务的调度
-
-  var promise = Promise.resolve(config);
-  while (chain.length) {
-    // 因为是成对注册的任务（fulfilled, rejected）所以执行的时候也是shift2次
-    promise = promise.then(chain.shift(), chain.shift());
+axios.interceptors.request.use(
+  function two(config) {
+    console.log("请求拦截器成功 2");
+    return config;
+  },
+  function (error) {
+    console.log("请求拦截器失败 2");
+    return Promise.reject(error);
   }
+);
+
+// 设置响应拦截器
+axios.interceptors.response.use(
+  function (response) {
+    console.log("响应拦截器成功 1");
+    return response;
+  },
+  function (error) {
+    console.log("响应拦截器失败 1");
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  function (response) {
+    console.log("响应拦截器成功 2");
+    return response;
+  },
+  function (error) {
+    console.log("响应拦截器失败 2");
+    return Promise.reject(error);
+  }
+);
+
+// 发送请求
+axios({
+  method: "GET",
+  url: "http://localhost:3000/posts",
+}).then((response) => {
+  console.log(response);
+});
+
 
 ```
 # httpto，
@@ -5323,6 +5364,61 @@ function delay() {
 const middlewares = [fn1, fn2, fn3];
 const finalFn = compose(middlewares);
 finalFn();
+
+// 实现简易版koa
+const http = require("http");
+const context = require("./context");
+const request = require("./request");
+const response = require("./response");
+class KKB {
+  // 初始化中间件数组
+  constructor() {
+    this.middlewares = [];
+  }
+  listen(...args) {
+    const server = http.createServer(async (req, res) => {
+      const ctx = this.createContext(req, res);
+      // 中间件合成
+      const fn = this.compose(this.middlewares);
+      // 执行合成函数并传入上下文
+      await fn(ctx);
+      res.end(ctx.body);
+    });
+    server.listen(...args);
+  }
+  use(middleware) {
+    // 将中间件加到数组里
+    this.middlewares.push(middleware);
+  } // 合成函数
+  compose(middlewares) {
+    return function (ctx) {
+      // 传入上下文
+      return dispatch(0);
+      function dispatch(i) {
+        let fn = middlewares[i];
+        if (!fn) {
+          return Promise.resolve();
+        }
+        return Promise.resolve(
+          fn(ctx, function next() {
+            // 将上下文传入中间件，mid(ctx, next)
+            return dispatch(i + 1);
+          })
+        );
+      }
+    };
+  }
+  createContext(req, res) {
+    // let ctx = Object.create(context);
+    // ctx.request = Object.create(request);
+    // ctx.response = Object.create(response);
+    // ctx.req = ctx.request.req = req;
+    // ctx.res = ctx.response.res = res;
+    return {};
+  }
+}
+module.exports = KKB;
+
 ```
 
 ## 实现限量重启，比如我最多让其在1分钟内重启5次，超过了就报警给运维
