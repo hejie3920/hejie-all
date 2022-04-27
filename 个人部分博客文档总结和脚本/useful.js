@@ -1,3 +1,4 @@
+import _ from "lodash";
 // 实现可选链,可以方便开发直接取出一个特定属性的值，确保取值时如果遇到某一层没数据不会报错，直接返回false
 // 第三个参数是强化功能，如果目标值转布尔后是false，或者是空值，比如空数组或者空对象时会自动过滤转成false
 // 直接获取某个object，可以是数组里面的特定的值，一层层解开属性，一旦遇到空集便返回空字符串
@@ -526,3 +527,6 @@ export function compareVersion(version, target) {
   }
   return true;
 }
+
+// lodash
+// isEmpty,isEqual(["123"], ["123"]),debounce,throttle
