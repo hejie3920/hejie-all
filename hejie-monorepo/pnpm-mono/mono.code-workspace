@@ -1,0 +1,13 @@
+{
+  "folders": [
+    {
+      "path": "packages/common",
+      "name": "common"
+    },
+    // ...
+    {
+      "path": "packages/pk1",
+      "name": "pkg1"
+    },
+  ]
+}

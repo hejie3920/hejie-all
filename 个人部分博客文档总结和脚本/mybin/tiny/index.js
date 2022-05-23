@@ -14,7 +14,7 @@ program.version(packageConfig.version, '-v,--version').usage('<command> [options
 
 let target = program.args[0] || 'tmp'
 if (!target) return
-const filePath = target.includes('/') ? target : `/Users/zhanghejie/Desktop/${target}`
+const filePath = target.includes('/') ? target : `/Users/game-netease/Desktop/${target}`
 const TINYIMG_URL = ['tinyjpg.com', 'tinypng.com']
 console.log('TCL: 路径', filePath)
 

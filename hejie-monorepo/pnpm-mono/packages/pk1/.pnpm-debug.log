@@ -1,0 +1,89 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 3,
+    "total": 3,
+    "workspacePrefix": "/Users/game-netease/Desktop/hejie-all/hejie-monorepo/pnpm-mono"
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "version": "1.0.0",
+      "dependencies": {
+        "husky": "^8.0.1",
+        "lodash": "^4.17.21",
+        "moment": "^2.29.3",
+        "typescript": "^4.6.4"
+      },
+      "scripts": {
+        "clean": "pnpm -r exec rm -rf node_modules"
+      }
+    },
+    "prefix": "/Users/game-netease/Desktop/hejie-all/hejie-monorepo/pnpm-mono"
+  },
+  "2 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "@monorepo/common",
+      "version": "2.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+        "axios": "^0.27.2",
+        "qs": "^6.10.3"
+      }
+    },
+    "prefix": "/Users/game-netease/Desktop/hejie-all/hejie-monorepo/pnpm-mono/packages/common"
+  },
+  "3 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "@monorepo/pk1",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "start": "nodemon ./src/main.js"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+        "@monorepo/common": "workspace:1.0.0",
+        "dayjs": "^1.11.2"
+      }
+    },
+    "prefix": "/Users/game-netease/Desktop/hejie-all/hejie-monorepo/pnpm-mono/packages/pk1"
+  },
+  "4 debug pnpm:context": {
+    "currentLockfileExists": true,
+    "storeDir": "/Users/game-netease/.pnpm-store/v3",
+    "virtualStoreDir": "/Users/game-netease/Desktop/hejie-all/hejie-monorepo/pnpm-mono/node_modules/.pnpm"
+  },
+  "5 debug pnpm:stage": {
+    "prefix": "/Users/game-netease/Desktop/hejie-all/hejie-monorepo/pnpm-mono",
+    "stage": "resolution_started"
+  },
+  "6 error pnpm": {
+    "message": {
+      "code": "ERR_PNPM_NO_MATCHING_VERSION_INSIDE_WORKSPACE",
+      "pkgsStack": []
+    },
+    "err": {
+      "name": "Error",
+      "message": "In : No matching version found for @monorepo/common@1.0.0 inside the workspace",
+      "code": "ERR_PNPM_NO_MATCHING_VERSION_INSIDE_WORKSPACE",
+      "stack": "Error: In : No matching version found for @monorepo/common@1.0.0 inside the workspace\n    at tryResolveFromWorkspace (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:72995:13)\n    at resolveNpm (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:72904:37)\n    at Object.resolve (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:73098:38)\n    at ctx.requestsQueue.add (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:83646:73)\n    at run (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:83435:88)\n    at PQueue._tryToStartAnother (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:83389:11)\n    at Promise (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:83448:14)\n    at new Promise (<anonymous>)\n    at PQueue.add (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:83430:14)\n    at resolveAndFetch (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:83646:53)"
+    }
+  },
+  "7 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/dayjs/1.11.2",
+    "wanted": {
+      "dependentId": "packages/pk1",
+      "name": "dayjs",
+      "rawSpec": "^1.11.2"
+    }
+  }
+}

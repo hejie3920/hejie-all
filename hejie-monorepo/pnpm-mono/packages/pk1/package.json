@@ -1,0 +1,16 @@
+{
+  "name": "@monorepo/pk1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@monorepo/common": "workspace:^2.0.0",
+    "dayjs": "^1.11.2"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/game-netease/Desktop/hejie-all/hejie-monorepo/pnpm-mono"
+  },
+  "1 error pnpm": {
+    "message": {
+      "code": "ERR_PNPM_ADDING_TO_ROOT"
+    },
+    "err": {
+      "name": "Error",
+      "message": "Running this command will add the dependency to the workspace root, which might not be what you want - if you really meant it, make it explicit by running this command again with the -w flag (or --workspace-root). If you don't want to see this warning anymore, you may set the ignore-workspace-root-check setting to true.",
+      "code": "ERR_PNPM_ADDING_TO_ROOT",
+      "stack": "Error: Running this command will add the dependency to the workspace root, which might not be what you want - if you really meant it, make it explicit by running this command again with the -w flag (or --workspace-root). If you don't want to see this warning anymore, you may set the ignore-workspace-root-check setting to true.\n    at Object.handler [as add] (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:113732:13)\n    at Timeout.setTimeout [as _onTimeout] (/usr/local/lib/node_modules/pnpm/dist/pnpm.js:122829:84)\n    at ontimeout (timers.js:436:11)\n    at tryOnTimeout (timers.js:300:5)\n    at listOnTimeout (timers.js:263:5)\n    at Timer.processTimers (timers.js:223:10)"
+    }
+  }
+}
