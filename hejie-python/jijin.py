@@ -5,31 +5,34 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 # Enter your fund codes here
-fund_codes = ['005827', '161725','004854',
-'165520',
-'013943',
-'501058',
-'004753',
-'161726',
-'001027',
-'000596',
-'012769',
-'001856',
-'001500',
-'260108',
-'009571',
-'320007',
-'003096',
-'014130',
-'014978',
-]
+fund_codes = ['005827', '161725', '004854',
+              '165520',
+              '013943',
+              '501058',
+              '004753',
+              '161726',
+              '001027',
+              '000596',
+              '012769',
+              '001856',
+              '001500',
+              '260108',
+              '009571',
+              '320007',
+              '003096',
+              '014130',
+              # '014978',
+              ]
+
+
 def get_fund_estimation(fund_code):
     try:
         url = f'http://fundgz.1234567.com.cn/js/{fund_code}.js'
         response = requests.get(url)
         parts = response.text.split('jsonpgz(')
         if len(parts) < 2:
-            print(f"Unexpected response for fund code {fund_code}: {response.text}")
+            print(
+                f"Unexpected response for fund code {fund_code}: {response.text}")
             return None
         data = parts[1][:-2]
         data = data.rstrip(');')  # remove trailing ");"
@@ -38,18 +41,22 @@ def get_fund_estimation(fund_code):
     except:
         print(fund_code+'请求错误')
 
+
 fund_estimations = {}
 for fund_code in fund_codes:
     result = get_fund_estimation(fund_code)
     if result is not None:
         name, estimation = result
-        fund_estimations[fund_code] = (name, estimation)  # store both name and estimation
+        # store both name and estimation
+        fund_estimations[fund_code] = (name, estimation)
 # sort fund_estimations by estimation
-sorted_funds = sorted(fund_estimations.items(), key=lambda x: x[1][1], reverse=True)
+sorted_funds = sorted(fund_estimations.items(),
+                      key=lambda x: x[1][1], reverse=True)
 
 # print results
 for fund_code, (name, estimation) in sorted_funds:
-    print(f'{fund_code} -- {name} ===== {str(estimation)}')  # print with "--" as separator
+    # print with "--" as separator
+    print(f'{fund_code} -- {name} ===== {str(estimation)}')
 
 # import re
 # import requests
