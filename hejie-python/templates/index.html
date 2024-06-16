@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A股股票筛选展示</title>
+</head>
+<style>
+    body {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+<body>
+    <h1>符合条件的A股股票及其K线图</h1>
+    <div style="display:flex; flex-wrap: wrap; font-size: 10px;">
+        {% for stock in stocks %}
+        <div style="margin: 2px; padding: 2px; border: 1px solid #ccc;">
+            <h2>{{ stock.name }} ({{ stock.code }})</h2>
+            <p>最新单价: {{ stock.price }}</p>
+            <p>涨跌幅: {{ stock.change }}</p>
+            <div>
+                <img src="{{ url_for('static', filename=stock.img_path.split('/')[-1]) }}" alt="K线图" style="width: 120px;">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

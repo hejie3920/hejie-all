@@ -1,3 +1,7 @@
+import sys
+from urllib.parse import quote
+import webbrowser
+import logging
 import pyperclip
 import requests
 from http import client as httpclient
@@ -16,11 +20,11 @@ import zipfile
 
 a = 'start'
 
-# for filename in Path.cwd().glob('*.py'):
-#     # os.unlink(filename)
-#     print(filename)
+for filename in Path.cwd().glob('*.py'):
+    # os.unlink(filename)
+    print(filename)
 
-a = Path.cwd()
+# a = Path.cwd()
 # a = os.path.abspath(os.path.join(os.getcwd(), '../../'))
 # shutil.copytree('lib', 'lib2')
 # shutil.move('test.txt', Path.cwd() / 'hejie/zone/aaa.txt')
@@ -140,3 +144,57 @@ a = Path.joinpath(Path.cwd(), 'hejie')
 # -*- coding: UTF-8 -*-
 
 print(a)
+
+# market_2nd = {'ns': 'green', 'ew': 'red'}
+# mission_16th = {'ns': 'red', 'ew': 'green'}
+# print(market_2nd.keys())
+
+
+# # def switchLights(stoplight):
+# #     for key in stoplight.keys():
+# #         if stoplight[key] == 'green':
+# #             stoplight[key] = 'yellow'
+# #         if stoplight[key] == 'yellow':
+# #             stoplight[key] = 'red'
+# #         if stoplight[key] == 'red':
+# #             stoplight[key] = 'green'
+# #     assert 'red' in stoplight.values(), 'Neither light is red! ' + str(stoplight)
+
+
+# # switchLights(market_2nd)
+# # print(market_2nd)
+
+
+# FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+# logging.basicConfig(level=logging.DEBUG, format=FORMAT)
+
+# logging.debug('Start of program')
+
+
+# def factorial(n):
+#     logging.debug('Start of factorial({})'.format(n))
+#     total = 1
+#     for i in range(n + 1):
+#         total *= i
+#         logging.debug('i is ' + str(i) + ', total is ' + str(total))
+#     logging.debug('End of factorial({})'.format(n))
+#     return total
+
+
+# print(factorial(5))
+# logging.debug('End of program')
+# import logging
+
+# 项目的完整代码如下
+print(sys.argv)
+
+if len(sys.argv) > 1:
+    # Get address from command line.
+    address = ' '.join(sys.argv[1:])
+else:
+    # Get address from clipboard.
+    address = pyperclip.paste()
+
+address = quote(address)
+
+# webbrowser.open('https://ditu.amap.com/search?query=' + address)
