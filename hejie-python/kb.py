@@ -30,7 +30,7 @@ if namespace == '' or deployment_name == '':
 
 
 # 指定kubeconfig文件路径
-kubeconfig_path = '/Users/game-netease/Library/Application Support/Lens/kubeconfigs/d8cc05bd-a4c3-4565-8f33-b108f38d01d4'
+kubeconfig_path = '/Users/game-netease/Library/Application Support/Lens/kubeconfigs/f0d07dd0-7d6e-4fb7-935c-191cad0749c0'
 
 # 载入kubeconfig文件
 config.load_kube_config(config_file=kubeconfig_path)
@@ -50,6 +50,7 @@ client.Configuration.set_default(configuration)
 api = client.AppsV1Api()
 
 
+print(namespace)
 # 获取当前的Deployment
 deployment = api.read_namespaced_deployment(deployment_name, namespace)
 
