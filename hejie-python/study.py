@@ -1,11 +1,8 @@
 import sys
-from urllib.parse import quote
 import webbrowser
 import logging
 import pyperclip
-import requests
 from http import client as httpclient
-import time
 import json
 from random import *
 import re
@@ -17,17 +14,232 @@ import pprint
 import test
 import shutil
 import zipfile
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import quote, urljoin, urlparse
+import openpyxl
+import subprocess
+import time
+import threading
+import requests
+import pyautogui
+# from selenium import webdriver
+# from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+
+# # logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s-　%(message)s') 
 
 a = 'start'
+# wh =  pyautogui.size() 
+# print(wh[0])
 
-for filename in Path.cwd().glob('*.py'):
-    # os.unlink(filename)
-    print(filename)
+# for i in range(10):
+#     pyautogui.move(100, 0, duration=0.25)  # right
+#     pyautogui.move(0, 100, duration=0.25)  # down
+#     pyautogui.move(-100, 0, duration=0.25) # left
+#     pyautogui.move(0, -100, duration=0.25) # up
+# pyautogui.mouseInfo()
+b = pyautogui.getActiveWindow()
+
+# def takeANap(stime):
+#     print('sleep %s seconds...' % (stime))
+#     time.sleep(stime)
+#     print('Wake up!')
+
+# # threadObj = threading.Thread(target=print, args=['Cats', 'Dogs', 'Frogs'],
+# # kwargs={'sep': ' ———— ', 'end':'hejie'})
+# # threadObj.start()
+
+# downloadThreads = []               # a list of all the Thread objects
+# for i in range(0, 14):      # loops 14 times, creates 14 threads
+#     downloadThread = threading.Thread(target=takeANap, args=([i]))
+#     downloadThreads.append(downloadThread)
+#     downloadThread.start()
+# # Wait for all threads to end.
+# for downloadThread in downloadThreads:
+#     downloadThread.join()
+# print('全部线程完成')
+
+# wb = openpyxl.load_workbook('demoexcel.xlsx')
+# sheet = wb['test']
+# for i in sheet['A:D']:
+#     for j in i:
+#         print(j.value)
+
+# a = sheet.max_column
+# a = sheet.max_row
+# a = sheet.cell(row=1, column=2)
+print(a)
+
+# 调用浏览器进行自动化脚本
+# 检查是否有 Chrome 实例在调试端口运行
+# def is_chrome_running(port):
+#     try:
+#         response = requests.get(f"http://127.0.0.1:{port}/json")
+#         return response.status_code == 200
+#     except requests.ConnectionError:
+#         return False
+
+# # 调试端口号
+# DEBUGGING_PORT = 9230
+
+# # 启动 Chrome 并启用远程调试端口（如果没有已运行的实例）
+# chrome_process = None
+# if not is_chrome_running(DEBUGGING_PORT):
+#     chrome_path = "/Applications/Google Chrome Dev.app/Contents/MacOS/Google Chrome Dev"
+#     user_data_dir = "/Users/game-netease/Library/Application Support/Google/Chrome"
+
+    # chrome_command = [
+    #     chrome_path,
+    #     f"--remote-debugging-port={DEBUGGING_PORT}",
+    #     f"--user-data-dir={user_data_dir}",
+    #     "--disable-gpu",
+    #     "--disable-software-rasterizer"
+    # ]
+
+    # # 启动 Chrome
+    # chrome_process = subprocess.Popen(chrome_command)
+
+#     # 等待一段时间以确保 Chrome 启动完成
+#     time.sleep(2)
+
+# try:
+#     print('开始执行')
+
+#     # 设置Chrome浏览器选项
+#     chrome_options = Options()
+#     chrome_options.add_experimental_option("debuggerAddress", f"127.0.0.1:{DEBUGGING_PORT}")  # 连接到远程调试端口
+
+#     # 指定ChromeDriver路径
+#     chrome_driver_path = "/usr/local/bin/chromedriver/chromedriver"  # 确保路径正确
+#     driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
+
+#     # 打开本地页面
+#     local_url = "http://127.0.0.1:3000/homepage"
+#     driver.get(local_url)
+
+#     # 等待一段时间以观察是否重定向
+#     time.sleep(2)
+
+#     print(driver.current_url, local_url)
+
+#     # 检查当前URL是否仍然是本地URL
+#     if driver.current_url != local_url:
+#         print("登录信息过期了，开始执行覆写操作")
+        
+#         # 打开指定的URL以获取cookies
+#         url = "https://dreammaker-test.netease.com/homepage"
+#         driver.get(url)
+
+#         # 等待页面加载
+#         time.sleep(2)  # 根据实际情况调整等待时间
+
+#         # 获取当前的所有 cookies
+#         cookies = driver.get_cookies()
+#         # 修改特定的 cookies 的 domain 为 127.0.0.1 并设置
+#         for cookie in cookies:
+#             if cookie['name'] in ['ACCESS_TOKEN', 'AUTH_TOKEN', 'AUTH_USER']:
+#                 new_cookie = cookie.copy()
+#                 print(new_cookie)
+#                 new_cookie['domain'] = '127.0.0.1'
+#                 # 使用 JavaScript 创建和设置 cookie
+#                 # driver.execute_script(f"document.cookie = '{new_cookie['name']}={new_cookie['value']}; domain={new_cookie['domain']}; path=/';")
+#                 driver.add_cookie(new_cookie)
+#         driver.get(local_url)
+
+#         # 验证 cookie 是否设置成功
+#         # for cookie in driver.get_cookies():
+#         #     print(cookie)
+#     else:
+#         print("登录信息未过期，无需覆写")
+
+#     # 关闭并退出浏览器
+#     driver.quit()
+
+# except Exception as e:
+#     print(f"An error occurred: {e}")
+
+# finally:
+#     # 如果新启动了 Chrome 进程，关闭它
+#     if chrome_process is not None:
+#         chrome_process.terminate()
+
+
+# 抓取图片
+# 指定要抓取的URL
+# url = "https://www.58pic.com/tupian/ceshiyongtu.html"
+
+# # 发送HTTP请求并获取响应
+# response = requests.get(url)
+# response.raise_for_status()  # 检查请求是否成功
+
+# # 解析HTML内容
+# soup = BeautifulSoup(response.text, 'html.parser')
+
+# # 创建保存图片的文件夹
+# output_folder = Path.cwd() / "pachong"
+# output_folder.mkdir(exist_ok=True)
+
+# # 找到所有的img标签
+# img_tags = soup.select('img')
+
+# try:
+#     for img in img_tags:
+#         # 获取img标签中的src属性
+#         img_url = img.get('src')
+#         if img_url:
+#             # 处理相对URL
+#             img_url = urljoin(url, img_url)
+            
+#             # 解析URL以获取图片名称
+#             img_name = Path(urlparse(img_url).path).name
+            
+#             # 下载图片并保存
+#             img_response = requests.get(img_url)
+#             img_response.raise_for_status()  # 检查请求是否成功
+            
+#             img_path = output_folder / img_name
+#             with open(img_path, 'wb') as img_file:
+#                 img_file.write(img_response.content)
+#             print(f"Downloaded {img_name}")
+#     print("All images have been downloaded.")
+# except Exception as e:
+#     print(e)
+
+# try:
+#     res = requests.get('https://www.epubit.com/onlineEbookReader?id=3c3aed65-eea0-4ba1-b0e2-4443333c1dc2&pid=df8d2065-0652-4c04-9043-1b8a80c49e68&isFalls=true&src=normal')
+#     res.raise_for_status()
+#     file = open('testhejie.txt', 'wb')
+#     for chunk in res.iter_content(100000):
+#         file.write(chunk)
+#     file.close()
+# except Exception as e:
+#     print(e)
+
+
+# 　&lt;class 'requests.models.Response'>
+# ❷ >>> res.status_code == requests.codes.ok
+
+
+# webbrowser.open('http://inventwithpython.com/')
+
+# logging.debug('start')
+# logging.disable()
+
+# # for filename in Path().resolve().glob('*.py'):
+# #     # os.unlink(filename)
+# #     print(filename)
 
 # a = Path.cwd()
-# a = os.path.abspath(os.path.join(os.getcwd(), '../../'))
-# shutil.copytree('lib', 'lib2')
+# a = os.path.abspath(os.path.join(a, '../../'))
+# # 约等于
+# print(Path.cwd())
+# shutil.copytree(a / 'lib', a /'lib2')
 # shutil.move('test.txt', Path.cwd() / 'hejie/zone/aaa.txt')
+
+
 
 # a=len(range(10))
 # a=int(100)*7
@@ -134,7 +346,7 @@ for filename in Path.cwd().glob('*.py'):
 # for i in list(Path().glob('*')):
 #     print(i)
 
-a = Path.joinpath(Path.cwd(), 'hejie')
+# a = Path.joinpath(Path.cwd(), 'hejie')
 
 # a = zipfile.ZipFile('compressor.zip')
 # print(a.namelist())
@@ -143,7 +355,7 @@ a = Path.joinpath(Path.cwd(), 'hejie')
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-print(a)
+# print(a)
 
 # market_2nd = {'ns': 'green', 'ew': 'red'}
 # mission_16th = {'ns': 'red', 'ew': 'green'}
@@ -186,15 +398,21 @@ print(a)
 # import logging
 
 # 项目的完整代码如下
-print(sys.argv)
+# print(sys.argv)
 
-if len(sys.argv) > 1:
-    # Get address from command line.
-    address = ' '.join(sys.argv[1:])
-else:
-    # Get address from clipboard.
-    address = pyperclip.paste()
+# if len(sys.argv) > 1:
+#     # Get address from command line.
+#     address = ' '.join(sys.argv[1:])
+# else:
+#     # Get address from clipboard.
+#     address = pyperclip.paste()
 
-address = quote(address)
+# address = quote(address)
 
 # webbrowser.open('https://ditu.amap.com/search?query=' + address)
+
+
+
+
+
+
