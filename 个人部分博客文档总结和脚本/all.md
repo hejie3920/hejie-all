@@ -1,5 +1,290 @@
 # 基础
 
+## 代码
+
+- 杰深拷贝
+function deepCopy(obj) {
+    if (typeof obj !== "object" || obj === null) {
+        return obj;
+    }
+
+    const newObj = Array.isArray(obj) ? [] : {};
+    Object.setPrototypeOf(newObj, Object.getPrototypeOf(obj));
+
+    for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            newObj[key] = deepCopy(obj[key]);
+        }
+    }
+
+    return newObj;
+}
+- // 两个相同的数字异或为0,0为任何数字异或为那个数字
+// 利用这点实现在一个数组里面找唯一只出现一次的数字
+function findUniqueNumber(nums) {
+    return nums.reduce((a,b) => a ^ b, 0)
+}
+
+
+
+
+## 高阶
+
+```js
+正则前瞻运算符 /(?=\B(\d{3}+$)/g，将 1000000 => 1000,000 ?= 代表匹配到的字符串中的前面一个虚拟的空格，可以将这个位置替换
+成任何你要的，需要处理什么，\b 代表单词边界，\B 非单词边界
+
+面试题 1.指向的是内存空间的地址 var a = { n: 1 }; var b = a; a.x = a = { n: 2 };
+a.x = a = { n: 2 }; 先算 a = {n:2}, 然后左边的a.x的a不会实时变，记录的是一开始a的引用，也就是和b是一样的指向
+
+console.log(`TCL: hejiea`, a.x); undefined; console.log(`TCL: hejieb`, b.x); { n: 2; }
+
+
+
+1. 对象添加属性，一般为了效率，key为字符串的会被前移，此外obj[1]和obj['1']没有任何区别，对象的key只有字符串和symbol两种
+
+const obj = {a: 0},
+obj['1'] = 0
+obj[++obj.a] = obj.a ++
+const values = Object.values(obj)
+obj[values[1]] = obj.a
+console.log(obj)
+
+!总之，赋值时obj[a++] = ++a, 两边基本都是同时执行的，所以obj[++a]那一时刻为obj[1] = 1，计算完成后a变成了2，所以obj['a'] = 2
+// ==> {'1': 1,'2': 2, a: 2}
+
+js标识符，可以break直接跳到顶层循环
+outer: for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+        if (i === j) {
+            break outer;
+        }
+    }
+}
+
+维护版权可以用零宽字符等做水印，指那些看不到但真实存在的字符 \u200d是其中一个
+
+位运算实现权限组合
+const read = 0b1; // 00001
+const write = 0b10; // 00100
+const exec = 0b100; // 01000
+const delete1 = 0b1000; // 10000
+const root = read | write | exec;
+console.log(`TCL: hejieroot`, root.toString(2)); // 0111
+
+addEventListener后，如果要阻止e的默认事件，记得第三个参数传入{passive: false} 代表可以操作e里面的默认行为
+
+鼠标事件移动距离，clientX, pageX, movementX
+
+消除函数二义性，函数内部用new.target 来判断是不是使用new fn来调用的
+
+让下面的代码成立
+const [a, b] = {a:3, b:4}
+
+正常会报错 {a: 3, b: 4}is not iterable
+可迭代对象需要满足一个条件，
+1. 对象具备[Symbol.iterator]这个属性，是一个迭代函数，
+2. 迭代函数：需要return一个迭代器对象[里面包含next方法，next方法返回一个对象，这个对象有value属性，代表当前值，done属性代表是否遍历完成]，
+数组的迭代函数调用后就可以得出一个迭代器，yield* 【可以得出一个可遍历对象的迭代器】，可以直接借用，此外也可以自定义迭代函数进行遍历，比如
+Object.prototype[Symbol.iterator] = function () {
+ let index = 0;
+ return {
+     next: () => {
+         return {
+             value: index++,
+             done: index > 3
+         }
+     }
+ }
+
+const [a, b] = arr 这种解构赋值说白了就是等同于
+const iter = arr[Symbol.iterator]
+然后iter.next().value 赋值给a, 再继续iter.next().value 赋值给b
+
+所以上诉问题的解法可以是
+Object.prototype[Symbol.iterator] = function() {
+    var arr = Object.values(this) // 这里返回对象的所有属性值的数组，数组里面自带有一个迭代器
+    const iter = arr[Symbol.iterator]()
+    return iter
+}
+
+结合yield生成器函数还可以用更简便的写法
+Object.prototype[Symbol.iterator] = function*() {
+    return yield* Object.values(this)
+}
+
+yield* 和 yield 的区别
+yield 用于在*函数内暂停和返回结果，yield 后面的值就是该函数下一次next后的值，原封不动， 调用后返回这个值，如果有值的话，done 为false，没有值done才为false标志已经迭代完成了
+yield* 用于在*函数内暂停，用于在*函数内去得到另一个对象b的迭代器然后不断迭代出b的值
+function* g1() {
+  yield 2
+  yield 3
+}
+
+function* g2() {
+  yield 1
+  yield g1()
+  yield* g1()
+  yield [4, 5]
+  yield* [6, 7]
+}
+
+const iterator = g2()
+
+console.log(iterator.next()) // { value: 1, done: false }
+console.log(iterator.next()) // { value: {}, done: false }
+console.log(iterator.next()) // { value: 2, done: false }
+console.log(iterator.next()) // { value: 3, done: false }
+console.log(iterator.next()) // { value: [4, 5], done: false }
+console.log(iterator.next()) // { value: 6, done: false }
+console.log(iterator.next()) // { value: 7, done: false }
+console.log(iterator.next()) // { value: undefined, done: true }
+
+比较字符串
+const str1 = '123-445-34-44'
+const str2 = '123-445-94-44'
+针对这些需要逐步双指针去判断的，可以先把两个字符串转为两个迭代器，然后循环比较，根据迭代器的done值判定边界
+s1 > s2 return 1, s1 < s2 return -1, s1 === s2 return 0
+
+function* walk(str) {
+    let part = ''
+    for(let i = 0; i < str.length; i++) {
+        if(str[i] !== '-') {
+            part += str[i]
+        } else {
+            yield +part
+            part = ''
+        }
+    }
+    if(part) {
+        yield +part
+    }
+}
+function compare() {
+    const iter1 = walk(str1)
+    const iter2 = walk(str2)
+    while(true) {
+        const n1 = iter1.next()
+        const n2 = iter2.next()
+        if(n1.done && n2.done) {
+            return 0 // 相等
+        } else if(n1.done) {
+            return -1 // s1 < s2
+        } else if(n2.done) {
+            return 1
+        } else if(n1.value > n2.value) {
+            return 1
+        } else if(n1.value < n2.value) {
+            return -1
+        }
+    }
+
+}
+
+
+
+递归转循环的思路模板
+const arr = [1,2,3,4] // 对数组求和，不能用循环和数组中的方法
+// 递归解法
+function sum(arr, i = 0) {
+    if(arr.length === i) return 0
+    return arr[i] + sum(arr, i + 1)
+}
+循环转递归一般思路
+for(初始条件；条件代码；循环自增) {
+    循环体
+}
+
+递归模板
+function m() {
+    初始代码
+    function _m() {
+        if(!条件) return
+        // 循环体
+        // 循环自增
+        _m()
+    }
+    _m()
+}
+
+视口观察
+const ob = new IntersectionObserver(callback, {root: null, threshold: 0.5}) 元素在窗口即将出现或即将消失一半时触发，也叫与视口交叉一半时触发
+ob.observe(dom)
+利用这个API，实现一个懒加载的图片，当图片出现在视口时，才加载图片，避免图片过多导致卡顿,也可以实现下拉加载更多之类，看到loading图标就加载下一页
+
+
+Promise.resolve(1)
+.then(res => {
+    console.log(`TCL: hejie000`)
+    return Promise.resolve(4)
+}).then(res => {
+    console.log(`TCL: hejieres`,res)
+})
+Promise.resolve().then(() => {
+    console.log(`TCL: hejie111`)
+}).then(() => {
+    console.log(`TCL: hejie222`)
+}).then(() => {
+    console.log(`TCL: hejie333`)
+}).then(() => {
+    console.log(`TCL: hejie55`)
+})
+
+output:
+TCL: hejie000
+TCL: hejie111
+TCL: hejie222
+TCL: hejie333
+TCL: hejieres 4
+TCL: hejie55
+
+
+```
+
+## CSS
+
+```css
+clientWidth 内容 + padding
+offsetWidth 内容 + padding + border等所有可见宽度
+scrollWidth offsetWidth + 滚动条超出的最真实宽度
+getBoundingClientRect() 返回元素的大小和相对于视口的位置
+
+逻辑边距，会根据排列方向自动调整
+margin-block-start,margin-block-end 距离上一个元素的边距，
+text-combine-upright: all
+
+动画暂停
+animation-play-state: paused; 暂停 running运行
+
+逐帧动画，雪碧图
+animation: move 1s steps(12) infinite; steps(12, jump-none)
+
+aspect-ratio: 4 / 3 // 保持元素宽高比
+
+js和css联动
+<p data-hejie='12px'>文本</p>
+.css {
+    font-size: attr(data-hejie);
+}
+
+scss 循环
+@for $i from 1 through 12 {
+    &:nth-of-type(#{$i}) {
+        transform: translateY(#{$i * 50px});
+    }
+}
+
+混合模式
+mix-blend-mode: difference; screen
+![](markdown/20240905015731.png)
+
+立体文字，可以text-shadow 同时设置多个阴影实现
+
+/* 可以给图片里面东西边界加阴影 */
+filter: drop-shadow(0 0 10px #000);
+
+```
+
 ## Js 数据类型，js 基本类型和复杂类型
 
 基本数据类型：Boolean, String, Number, Null, Undefine, Symbol（代表创建后独一无二且不可变的数据类型，它的出现我认为主 要
@@ -9,24 +294,32 @@ null，typeof null 结果是 object，这个是 bug），会返回 string, boole
 
 ## JavaScript 的基本类型和复杂类型存在哪⾥的？(基站复堆)
 
-基本类型：存在栈（空间小，大小固定，存放频繁需要的数据，存太多会影响运行性能），但是⼀旦被闭包引⽤则成为常住内存，会储存
-在内存堆中。复杂类型：存在堆（一个优先队列，空间大，大小不固定），会储存在内存堆中，但是指针会存在栈中，指向自身
+基本类型：存在栈（空间小，大小固定，存放频繁需要的数据，存太多会影响运行性能），但是⼀旦被闭包引⽤则成为常住内存，会储存在内存堆中。复杂类型：存在堆（一个优先队列，空间大，大小不固定），会储存在内存堆中，但是指针会存在栈中，指向自身
 
-## 判断类型，判断是不是空对象
+栈（Stack）和堆（Heap）是计算机内存管理中两种不同的区域，它们主要在数据存储和管理上有所不同。以下是栈和堆之间的一些主要区别：
 
-`Object.prototype.toString.call([1,2,1]).slice(8,-1).toLocaleLowerCase()`
+内存分配方式：
 
-判断是不是空对象
+栈：栈内存是自动管理的，其内存是由编译器在函数调用时自动分配和释放的。栈的内存分配采用的是LIFO（Last In, First Out，后进先出）原则。
+堆：堆内存是动态管理的，通常由程序员手动分配和释放（例如使用malloc和free在C语言中，new和delete在C++中）。如果程序员没有显式释放内存，可能会导致内存泄漏。
+存储内容：
 
-```js
-isEmpty(val) {
-  if (!val) {
-    return true
-  } else {
-    return Object.keys(val).length === 0
-  }
-},
-```
+栈：通常用于存储局部变量、函数参数和返回地址。栈内存的大小一般较小，但访问速度比较快。
+堆：用于存储动态分配的内存块，这些内存块在程序运行时可以改变大小。堆内存的大小一般比栈大，但由于需要手动管理，访问速度通常比栈慢。
+生命周期：
+
+栈：栈中分配的内存在函数调用结束后会自动释放，不需要程序员手动管理。
+堆：堆中分配的内存在程序员明确释放之前会一直存在，程序员需要负责管理这部分内存。
+线程安全：
+
+栈：每个线程都有自己的栈，因此是线程安全的。
+堆：堆在进程中是共享的，如果多个线程同时访问堆内存，可能需要进行同步操作。
+内存碎片：
+
+栈：由于是LIFO结构，内存不会出现碎片。
+堆：频繁的分配和释放可能导致内存碎片化，影响性能。
+
+
 
 ## 数组 to，改变数组
 
@@ -54,7 +347,7 @@ arr.flatMap（i） 打平几层
 
 Object.prototype.toString 适用于任何变量，instanceof，isArray 只能判断对象类型，原始类型不可，isArray 性能会稍微高点
 
-## instanceofto,实现 instanceof
+## 杰instanceof
 
 instanceof 运算符用于判断构造函数的 prototype 属性是否出现在对象的原型链中的任 何位置。
 
@@ -70,23 +363,6 @@ function myInstanceof(left, right) {
 }
 ```
 
-## 深拷贝
-
-```js
-function deepClone(obj) {
-    let res = null;
-    if (typeof obj === "object") {
-        res = obj.construct === "Array" ? [] : {};
-        for (const i in obj) {
-            res[i] = deepClone(obj[i]);
-        }
-    } else {
-        res = obj;
-    }
-    return res;
-}
-```
-
 ## 判断类型，获取类型
 
 ```js
@@ -95,7 +371,7 @@ getType(val) {
 },
 ```
 
-## newto，实现 new，new 做了什么
+## 杰new，实现 new，new 做了什么
 
 new 做了三步
 
@@ -115,7 +391,7 @@ let newMethod = function (Parent, ...rest) {
 };
 ```
 
-## 分时，渲染大量节点优化
+## 杰分时函数，杰分片，渲染大量节点优化
 
 分时函数,把 一次性渲染 1000 个拆分分成每 200 毫秒渲染其中 8 个
 
@@ -155,7 +431,7 @@ renderFriendList()
 
 ```
 
-## 防抖,debounceto
+## 杰防抖,debounceto
 
 ```js
 <!-- 自用 -->
@@ -180,7 +456,7 @@ export function debounce(func, wait = 200, needRunAtFirst = false) {
 }
 ```
 
-## 节流
+## 杰节流
 
 ```js
 //  这种时间时间的定时器，可以自带runAtFirst，完美解决第一次需要运行的问题，用setTimeout实现的话要处理首次运行的问题比较多
@@ -244,7 +520,7 @@ class SearchInput extends React.Component {
 }
 ```
 
-## 正则 to，
+## 杰正则，
 
 1. 只有正则表达式才有 exec,和 test 的方法，字符串才有 match
 2. exec 和 replace 的结果用...args 打印出来都可以知道第一个结果是总体的匹配结果，后面是$1 和$2 之类的
@@ -267,6 +543,13 @@ let ret = []
 let res = []
 while((res = reg.exec(a))) {
   console.log('TCL: res',res)
+//   [
+//   'name=hejie',
+//   'hejie',
+//   index: 32,
+//   input: '/name=hahah&geg=erwer&e=fsdfsfd&name=hejie',
+//   groups: undefined
+// ]
   ret.push(res[1])
 }
 console.log('TCL: hevall',ret)
@@ -452,7 +735,7 @@ Foo.a();
 -- 4  2  1
 ```
 
-## 手动实现 bind
+## 杰bind
 
 ```js
 Function.prototype.bind = function (ctx) {
@@ -463,7 +746,8 @@ Function.prototype.bind = function (ctx) {
 };
 ```
 
-## 实现实现 call
+call传多个，apply传数组
+## 杰call
 
 ```js
 Function.prototype.call = function(context) {
@@ -482,7 +766,7 @@ Function.prototype.call = function(context) {
 }
 ```
 
-## 实现 apply
+## 杰apply
 
 ```js
 Function.prototype.apply2 = function(context, arr) {
@@ -503,7 +787,7 @@ Function.prototype.apply2 = function(context, arr) {
 
 ```
 
-## 继承 to，原型链 to，原型 to
+## 杰继承 to，原型链 to，原型 to
 
 [继承](https://segmentfault.com/a/1190000015766680)
 
@@ -588,79 +872,196 @@ function inherit(subType, superType){
     supertype 构造函数，因此避免在 subtype.prototype 上创建不必要的，多余的属性，与此同时，原型链还能保持不变，还能正常
     使用 instanceof 和 isPrototypeOf()，因此，寄生组合式继承被认为是引用类型最理想的继承范式。
 
-## ES5 的继承和 ES6 的继承有什么区别
+## 杰继承， ES5 的继承和 ES6 的继承有什么区别
 
-1. ES5 主要通过，借用父类构造函数或者原型链对象或者寄生组合式继承来共修改原型，从而实现继承和共享
-2. ES6 先创建父类，在实例化子集中通过调用 super 方法直接用父类进行初始化，再在构造器里面修改属性【在 class extend 后，子
-   的 constructor 里面需要 super（）一下，这个过程其实是 super 先实例化父类，然后再用子类自己的构造器去修改这个对象，所
-   以如果不 super，子类是获取不到 this 的，因为 this 的前提是要 super 出来这个父类实例，此外，因为是直接实例父类的，所以
-   这也就决定了 class 的继承可以直接继承内置对象】
+1. ES5继承
+通过构造函数和原型链实现：
 
-## 实现 promise,promiseto，
+在ES5中，继承通常是通过构造函数和原型链来实现的。你需要手动设置子类的原型为父类的一个实例，并使用call或apply方法在子类的构造函数中调用父类的构造函数。
+实现步骤：
 
+创建父类构造函数。
+创建子类构造函数，并在其中调用父类构造函数。
+使用Object.create设置子类的原型为父类的原型。
+手动设置子类构造函数的prototype.constructor为子类自身。
 ```js
-const PENDING = 1;
-const FULFILLED = 2;
-const REJECTED = 3;
-class KPromise {
-    constructor(cb) {
-        this.state = PENDING; // 完成后的传值
-        this.value = null;
-        // 失败后的原因
-        this.reason = null;
-        this.fulfilledCbs = [];
-        this.rejectCbs = [];
-        // this.fn = fn
-        let reslove = (data) => {
-            setTimeout(() => {
-                // 这个执行后，修改状态
-                if (this.state == PENDING) {
-                    this.state = FULFILLED;
-                    this.value = data;
-                    this.fulfilledCbs.forEach((v) => v(data));
-                }
-            });
-        };
-        let reject = (reason) => {
-            setTimeout(() => {
-                // 这个执行后，修改状态
-                if (this.state == PENDING) {
-                    this.state = REJECTED;
-                    this.reason = reason;
-                    this.rejectCbs.forEach((v) => v(reason));
-                }
-            });
-        };
-        cb(reslove, reject);
-    }
-    then(onFufilled, onRejected) {
-        if (typeof onFufilled == "function") {
-            // 成功回掉
-            this.fulfilledCbs.push(onFufilled);
-        }
-        if (typeof onRejected == "function") {
-            // 失败回掉
-            this.rejectCbs.push(onRejected);
-        }
-    }
+function Parent(name) {
+  this.name = name;
 }
-let promise = new KPromise((resolve, reject) => {
-    if (2 < 4) {
-        resolve("hi");
-    } else {
-        reject("出错了");
-    }
-}).then(
-    (data) => {
-        console.log(data);
-    },
-    (reason) => {
-        throw new Error(reason);
-    }
-);
+
+Parent.prototype.sayName = function() {
+  console.log(this.name);
+};
+
+function Child(name, age) {
+  Parent.call(this, name); // 调用父类构造函数
+  this.age = age;
+}
+
+Child.prototype = Object.create(Parent.prototype);
+Child.prototype.constructor = Child;
+
+var child = new Child('Alice', 10);
+child.sayName(); // Alice
 ```
 
-## 手动实现 promise.race,实现 promise.all,promise.catch,promise.finally,promise.allSettled
+2. ES6继承
+使用class和extends关键字：
+
+ES6引入了class语法，用于更简洁地创建类和实现继承。extends关键字用于实现子类继承父类，super关键字用于调用父类的构造函数及其方法。
+实现步骤：
+
+使用class关键字定义父类。
+使用extends关键字定义子类，并在子类构造函数中使用super调用父类构造函数。
+```js
+class Parent {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayName() {
+    console.log(this.name);
+  }
+}
+
+class Child extends Parent {
+  constructor(name, age) {
+    super(name); // 调用父类构造函数
+    this.age = age;
+  }
+
+  sayAge() {
+    console.log(this.age);
+  }
+}
+
+let child = new Child('Alice', 10);
+child.sayName(); // Alice
+child.sayAge();  // 10
+```
+
+## 杰promise，可链式调用 prosmise
+
+```js
+
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
+
+class MyPromise {
+    constructor(executor) {
+      // 初始化状态
+      this.state = 'pending'; // pending, fulfilled, or rejected，Promise/A+规定的三种态
+      this.value = undefined; // resolved value or rejection reason
+      this.callbacks = []; // 存储待处理的回调函数集
+  
+      // resolve函数用于将Promise状态变为fulfilled
+      const resolve = (value) => {
+        if (this.state === 'pending') {
+          this.state = 'fulfilled';
+          this.value = value;
+          this.callbacks.forEach(callback => {
+            callback.onFulfilled(value);
+          });
+        }
+      };
+  
+      // reject函数用于将Promise状态变为rejected
+      const reject = (reason) => {
+        if (this.state === 'pending') {
+          this.state = 'rejected';
+          this.value = reason;
+          this.callbacks.forEach(callback => {
+            callback.onRejected(reason);
+          });
+        }
+      };
+  
+      // 执行executor并捕获异常
+      try {
+        executor(resolve, reject);
+      } catch (error) {
+        reject(error);
+      }
+    }
+  
+    // then方法用于注册fulfilled和rejected的回调
+    then(onFulfilled, onRejected) {
+      // 默认回调函数，如果没有传递
+      onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value;
+      onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason; };
+  
+      // 返回一个新的Promise以支持链式调用
+      return new MyPromise((resolve, reject) => {
+        // 处理成功态
+        const handleFulfilled = (value) => {
+          try {
+            const result = onFulfilled(value);
+            if (result instanceof MyPromise) {
+              result.then(resolve, reject);
+            } else {
+              resolve(result);
+            }
+          } catch (error) {
+            reject(error);
+          }
+        };
+  
+        // 处理失败态
+        const handleRejected = (reason) => {
+          try {
+            const result = onRejected(reason);
+            if (result instanceof MyPromise) {
+              result.then(resolve, reject);
+            } else {
+              resolve(result);
+            }
+          } catch (error) {
+            reject(error);
+          }
+        };
+  
+        if (this.state === 'fulfilled') {
+          // 异步执行以保持一致性
+          setTimeout(() => handleFulfilled(this.value), 0);
+        } else if (this.state === 'rejected') {
+          setTimeout(() => handleRejected(this.value), 0);
+        } else {
+          // 如果pending则推入队列
+          this.callbacks.push({
+            onFulfilled: handleFulfilled,
+            onRejected: handleRejected
+          });
+        }
+      });
+    }
+  
+    // catch方法只是then方法的语法糖
+    catch(onRejected) {
+      return this.then(null, onRejected);
+    }
+  }
+  
+  // 用法示例
+  let promise = new MyPromise((resolve, reject) => {
+    setTimeout(() => resolve("Hello, World!"), 1000);
+  });
+  
+  promise
+    .then(result => {
+      console.log(result);
+      return result + " Chained.";
+    })
+    .then(result => {
+      console.log(result);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+```
+
+
+## 杰promise.race,实现 promise.all,promise.catch,promise.finally,promise.allSettled
 
 这些方法接受一个数组作为参数，p1、p2、p3 都是 Promise 实例，如果不是，就会先调用下面讲到的 Promise.resolve 方法，将参数
 转为 Promise 实例，再进一步处理。
@@ -740,7 +1141,7 @@ Promise.prototype.allSettled = (funcArr) => {
 }
 ```
 
-## 实现 async/await
+## 杰async/await
 
 Async await 如何通过同步实现异步， async 包住的函数实际上相当于一个 Generator 函数，通过 yield 和 next 实现暂停和继续向
 下调用
@@ -791,126 +1192,8 @@ function run(gen) {
 }
 ```
 
-## 豪华版实现 promise，可链式调用 prosmise
 
-```js
-Promise/A+规定的三种状态
-const PENDING = 'pending'
-const FULFILLED = 'fulfilled'
-const REJECTED = 'rejected'
-
-class MyPromise {
-  构造方法接收一个回调
-  constructor(executor) {
-    this._status = PENDING Promise状态
-    this._value = undefined 储存then回调return的值
-    this._resolveQueue = [] 成功队列, resolve时触发
-    this._rejectQueue = [] 失败队列, reject时触发
-
-    由于resolve/reject是在executor内部被调用, 因此需要使用箭头函数固定this指向, 否则找不到this._resolveQueue
-    let _resolve = (val) => {
-      把resolve执行回调的操作封装成一个函数,放进setTimeout里,以兼容executor是同步代码的情况
-      const run = () => {
-        if (this._status !== PENDING) return 对应规范中的"状态只能由pending到fulfilled或rejected"
-        this._status = FULFILLED 变更状态
-        this._value = val 储存当前value
-
-        这里之所以使用一个队列来储存回调,是为了实现规范要求的 "then 方法可以被同一个 promise 调用多次"
-        如果使用一个变量而非队列来储存回调,那么即使多次p1.then()也只会执行一次回调
-        while (this._resolveQueue.length) {
-          const callback = this._resolveQueue.shift()
-          callback(val)
-        }
-      }
-      setTimeout(run)
-    }
-    实现同resolve
-    let _reject = (val) => {
-      const run = () => {
-        if (this._status !== PENDING) return 对应规范中的"状态只能由pending到fulfilled或rejected"
-        this._status = REJECTED 变更状态
-        this._value = val 储存当前value
-        while (this._rejectQueue.length) {
-          const callback = this._rejectQueue.shift()
-          callback(val)
-        }
-      }
-      setTimeout(run)
-    }
-    new Promise()时立即执行executor,并传入resolve和reject
-    executor(_resolve, _reject)
-  }
-
-  then方法,接收一个成功的回调和一个失败的回调
-  then(resolveFn, rejectFn) {
-    <!-- 根据规范，如果then的参数不是function，则我们需要忽略它, 让链式调用继续往下执行 -->
-    typeof resolveFn !== 'function' ? (resolveFn = (value) => value) : null
-    typeof rejectFn !== 'function'
-      ? (rejectFn = (reason) => {
-          throw new Error(reason instanceof Error ? reason.message : reason)
-        })
-      : null
-
-    <!-- return一个新的promise -->
-    return new MyPromise((resolve, reject) => {
-      // 把resolveFn重新包装一下,再push进resolve执行队列,这是为了能够获取回调的返回值进行分类讨论
-      const fulfilledFn = (value) => {
-        try {
-          执行第一个(当前的)Promise的成功回调,并获取返回值
-          let x = resolveFn(value)
-          分类讨论返回值,如果是Promise,那么等待Promise状态变更,否则直接resolve
-          x instanceof MyPromise ? x.then(resolve, reject) : resolve(x)
-        } catch (error) {
-          reject(error)
-        }
-      }
-
-      <!-- reject同理 -->
-      const rejectedFn = (error) => {
-        try {
-          let x = rejectFn(error)
-          x instanceof MyPromise ? x.then(resolve, reject) : resolve(x)
-        } catch (error) {
-          reject(error)
-        }
-      }
-
-      switch (this._status) {
-        当状态为pending时,把then回调push进resolve/reject执行队列,等待执行
-        case PENDING:
-          this._resolveQueue.push(fulfilledFn)
-          this._rejectQueue.push(rejectedFn)
-          break
-        当状态已经变为resolve/reject时,直接执行then回调
-        case FULFILLED:
-          fulfilledFn(this._value) this._value是上一个then回调return的值(见完整版代码)
-          break
-        case REJECTED:
-          rejectedFn(this._value)
-          break
-      }
-    })
-  }
-}
-
-```
-
-## yieldto，
-
-func.next(),next 可以指定 yield 语句初始值，也就是直接相当于把整个 yield 后面的东西替换成这个值就是了 function\* say() {
-let a = yield "1" console.log(a) let b = yield "2" console.log(b) }
-
-let it = say() 返回迭代器
-
-console.log(it.next()) 输出 { value: '1', done: false } a 的值并非该返回值，而是下次 next 参数
-
-console.log(it.next({ value: "我是第一步的初始值" })) 输出 { value:'我是第一步的初始值' } 输出{ value: '2', done: false
-}
-
-console.log(it.next({ value: "我是第二步的初始值" })) 输出 { value:'我是第二步的初始值' } 输出{ value: undefined, done:
-true }
-
-## 手动实现 generator
+## 杰generator
 
 原理是 yield 会将代码大概转换成下面三个步骤，用 switch 来执行不同步骤的函数，核心点在于每次运行后对上下文的保存，下次再
 使用时直接根据上下文执行下一步的函数，所以 yield 看起来想挂载了，其实并没有，只是保存了上下文从而知道该执行哪一块的函数
@@ -977,7 +1260,7 @@ let gen = function () {
 };
 ```
 
-## 微任务，宏任务，先微再宏，只不过一开始的 script 块也可以算是宏任务
+## 杰微任务，宏任务，先微再宏，只不过一开始的 script 块也可以算是宏任务
 
 宏任务：script 中代码、setTimeout、setInterval、I/O、UI render。微任务: promise.then、nexttick,
 Object.observe、MutationObserver。
@@ -997,9 +1280,40 @@ Object.observe、MutationObserver。
 
 Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。
 
-Node.js 几乎每一个 API 都是支持回调函数的。 Node.js 基本上所有的事件机制都是用设计模式中观察者模式实现。 Node.js 单线程
-类似进入一个 while(true)的事件循环，直到没有事件观察者退出，每个异步事件都生成一个事件观察者，如果有事件发生就调用该回调
-函数.
+Node.js和浏览器中的事件循环机制有很多相似之处，因为它们都遵循ECMAScript规范中的事件循环模型。然而，由于Node.js和浏览器的运行环境及其需求不同，它们在具体实现上也存在一些关键区别。以下是Node.js与浏览器事件循环机制的主要区别：
+
+- 共同点
+单线程模型：JavaScript在Node.js和浏览器中都是单线程的，这意味着它们的事件循环都是围绕单个线程设计的。
+宏任务和微任务：在Node.js和浏览器中，任务分为宏任务（如setTimeout）和微任务（如Promise的回调）。微任务优先于宏任务执行。
+
+- 不同点
+
+1. 在浏览器中，微任务会在每个宏任务后执行，UI渲染之前。
+在Node.js中，微任务会在每个事件循环阶段完成后执行，而不是在每个宏任务后。
+
+2. Node.js的环境：
+
+Node.js没有UI渲染的概念，因此不需要处理浏览器中涉及的UI更新。
+Node.js的事件循环需要处理更多与文件系统、网络I/O相关的任务，这些任务在浏览器中通常由Web APIs处理。
+
+
+事件循环阶段：
+
+浏览器：事件循环在每个轮次中处理完微任务后，会检查UI渲染以及处理宏任务。
+Node.js：事件循环分为多个阶段，每个阶段处理特定类型的回调。常见的阶段包括：
+Timers：执行setTimeout和setInterval的回调。
+I/O callbacks：处理一些之前的I/O操作的回调。
+Idle, prepare：系统内部使用。
+Poll：检索新的I/O事件；执行I/O回调。
+Check：执行setImmediate的回调。
+Close callbacks：执行一些关闭操作的回调，如socket.on('close', ...)。
+**setImmediate vs setTimeout**：
+在Node.js中，setImmediate是设计为在当前事件循环的check阶段执行的回调，因此通常会在当前循环结束后立即执行。
+setTimeout的回调是在事件循环的timers阶段被处理的，可能会有一些延迟，即使是setTimeout(..., 0)。
+微任务的执行时机：
+
+
+
 
 -   浏览器的很简单，直接先执行同步代码，然后再去执行异步栈里面的任务，先微再宏，【一个代码块里先微再宏，setTimeout 的回
     调也算是一个代码块】
@@ -1648,8 +1962,8 @@ xhr.onreadystatechange = function () {
 
 -   1、读取配置文件，按命令 初始化 配置参数，创建 Compiler 对象；
 -   2、调用 plugin 的 apply 方法 挂载插件 监听，然后从入口文件开始执行编译；
--   3、按文件类型，调用相应的 Loader 对模块进行 编译，并在合适的时机点触发对应的事件，调用 Plugin 执行，最后再根据模块
-    依赖查找 到所依赖的模块，递归执行第三步；
+-   3、按文件类型，调用相应的 Loader 对模块进行 编译，并在合适的时机点触发对应的事件，调用 Plugin 执行，最后再根据模块依
+    赖查找 到所依赖的模块，递归执行第三步；
 -   4、将编译后的所有代码包装成一个个代码块 (Chuck)， 并按依赖和配置确定 输出内容。这个步骤，仍然可以通过 Plugin 进行文
     件的修改;
 -   5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；
@@ -2038,8 +2352,7 @@ window.frames[0].onerror = function (message, source, lineno, colno, error) {
 6. react ErrorBoundary,可以处理任务 js 错误
 7. vue Vue.config.errorHandler 同上，可以处理 promise 链错误
 8. 跨端脚本无法准确捕获异常解决方案：对 script 标签增加一个 crossorigin=”anonymous”，并且服务器添加
-Access-Control-Allow-Origin。
- <script src="http://cdn.xxx.com/index.js" crossorigin="anonymous"></script>
+   Access-Control-Allow-Origin。 <script src="http://cdn.xxx.com/index.js" crossorigin="anonymous"></script>
 9. 开发环境下开启 source-map 可以定位错误文件
 
 ## 性能监控
@@ -2849,6 +3162,7 @@ socket.on("chat message", function (msg) {
 ## 常用 meta
 
 常用的 meta 标签 <meta> 元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度 的描述和关键词。
+
 <meta> 标签位于文档的头部，不包含任何内容。<meta> 标签的属性定义了与文档相关联 的名称/值对。
 
 <!DOCTYPE html> H5 标准声明，使用 HTML5 doctype，不区分大小写 <head lang=”en”> 标准的 lang 属性写法 <meta charset=’utf-8′> 声明文档使用的字符编码
@@ -4193,7 +4507,7 @@ datalist 规定输入域的选项列表，通过 option 创建！ keygen 提供�
 后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。
 
 1. 创建一个和 html 同名的 manifest 文件，然后在页面头部像下面一样加入一个 manifest 的属性。
-   <html lang="en" manifest="index.manifest">
+ <html lang="en" manifest="index.manifest">
 2. 在如下 cache.manifest 文件的编写离线存储的资源。
 
 ```js
@@ -4203,8 +4517,8 @@ CACHE MANIFEST #v0.11 CACHE: js/app.js css/style.css NETWORK: resourse/logo.png 
 CACHE: 表示需要离线存储的资源列表，由于包含 manifest 文件的页面将被自动离线 存储，所以不需要把页面自身也列出来。
 NETWORK: 表示在它下面列出来的资源只有在在线的情况下才能访问，他们不会被离 线存储，所以在离线情况下无法使用这些资源。不过
 ，如果在 CACHE 和 NETWORK 中有一 个相同的资源，那么这个资源还是会被离线存储，CACHE 的优先级更高。 FALLBACK: 表示如果访问
-第一个资源失败，那么就使用第二个资源来替换他，比如上 面 这 个 文 件 表 示 的 就 是 如 果 访 问 根 目 录 下 任 何 一 个
-资 源 失 败 了 ， 那 么 就 去 访 问 offline.html 。
+第一个资源失败，那么就使用第二个资源来替换他，比如上 面 这 个 文 件 表 示 的 就 是 如 果 访 问 根 目 录 下 任 何 一 个资
+源 失 败 了 ， 那 么 就 去 访 问 offline.html 。
 
 3. 在离线状态时，操作 window.applicationCache 进行离线缓存的操作。
 
@@ -4459,8 +4773,8 @@ new Plugin(options),
 
 -   1、读取配置文件，按命令 初始化 配置参数，创建 Compiler 对象；
 -   2、调用插件的 apply 方法 挂载插件 监听，然后从入口文件开始执行编译；
--   3、按文件类型，调用相应的 Loader 对模块进行 编译，并在合适的时机点触发对应的事件，调用 Plugin 执行，最后再根据模块
-    依赖查找 到所依赖的模块，递归执行第三步；
+-   3、按文件类型，调用相应的 Loader 对模块进行 编译，并在合适的时机点触发对应的事件，调用 Plugin 执行，最后再根据模块依
+    赖查找 到所依赖的模块，递归执行第三步；
 -   4、将编译后的所有代码包装成一个个代码块 (Chuck)， 并按依赖和配置确定 输出内容。这个步骤，仍然可以通过 Plugin 进行文
     件的修改;
 -   5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；

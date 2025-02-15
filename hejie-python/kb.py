@@ -24,6 +24,12 @@ elif type == 'sftest':
 elif type == 'sfgray':
     namespace = 'dreammaker-system-test'
     deployment_name = 'dreammaker-pipeline-ui-cloud-gray'
+elif type == 'psdtest':
+    namespace = 'dreammaker-system-test'
+    deployment_name = 'dreammaker-psd-editor-test'
+elif type == 'psdgray':
+    namespace = 'dreammaker-system-test'
+    deployment_name = 'dreammaker-psd-editor-gray'
 
 if namespace == '' or deployment_name == '':
     print("找不到指定的容器")

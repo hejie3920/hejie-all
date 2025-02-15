@@ -5,11 +5,12 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 # Enter your fund codes here
-fund_codes = ['005827', '161725', '004854',
+fund_codes = ['005827',
+ '161725', '004854',
               '165520',
               '013943',
               '501058',
-              '004753',
+            #   '004753',
               '161726',
               '001027',
               '000596',
