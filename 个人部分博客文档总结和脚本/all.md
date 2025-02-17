@@ -3519,6 +3519,24 @@ https://blog.csdn.net/qq_39057033/article/details/91361464
 6. 攻击者得逞，因为它拿到 key 了，可以为所欲为了
 
 ## 杰http1,http1.1,http2,http1/2,http3，
+核心区别：
+
+HTTP 1.1:
+- 持久连接
+- 管道化请求
+- 队头阻塞问题
+
+HTTP 2:
+- 二进制分帧
+- 多路复用
+- 服务器推送
+- Header压缩
+
+HTTP 3:
+- 基于QUIC协议(UDP)
+- 0-RTT建连
+- 连接迁移
+- 更好的丢包恢复
 
 TLS: 一种安全协议，TLS 保护的 http 通信叫做 https
 
@@ -3556,8 +3574,7 @@ HTTP 1.0 的性能问题。比如请求头增加 host 字段标志来源，这�
 > 大缩短连接建立时间改进的拥塞控制无线头阻塞的多路复用前向纠错连接迁移
 
 > SSL/TLS SSL:安全套接层(Secure Sockets Layer) TLS:传输层安全协议(Transport Layer Security) SSL 标准化后叫做 TLS 只是不
-> 同阶段的叫法，用来解决 http 明文传出问题 SSL 直接在传输控制协议 (TCP) 基础上高效运行 TLS 与 SSL 在传输层与应用层之间对
-> 网络连接进行加密
+> 同阶段的叫法，用来解决 http 明文传出问题 SSL 直接在传输控制协议 (TCP) 基础上高效运行 TLS 与 SSL 在传输层与应用层之间对网络连接进行加密
 
 ## 杰网络攻击，网络安全，网络攻击，网络防御
 
@@ -3626,7 +3643,32 @@ CSRF 攻击	CSRF Token、SameSite Cookie、验证 Referer
 -   OAuth 授权
 -   sessionId 加密处理
 
-## 网络防御，加密算法
+## 杰网络防御，加密算法
+
+核心防御手段：
+
+XSS防御:
+- 转义特殊字符
+- CSP内容安全策略
+- HttpOnly Cookie
+
+CSRF防御:
+- CSRF Token
+- Same-site Cookie
+- 验证Origin/Referer
+
+点击劫持:
+- X-Frame-Options
+- frame-ancestors
+
+其他:
+- 输入验证
+- 限制请求频率
+- HTTPS
+- 密码加盐存储
+- 敏感信息加密传输
+
+注：以上大部分需要配合后端实现
 
 1. 设置头部信息
 
@@ -4439,7 +4481,7 @@ actions: {
 因为更改 state 的函数必须是纯函数，纯函数既是统一输入就会统一输出，没有任何副作用；如果是异步则会引入额外的副作用，导致
 更改后的 state 不可预测；
 
-## JSONP
+## 杰JSONP
 
 可以解决跨域，用 script src 去发请求，然后在 query 加上一个 callback 回调函数（也可以不叫 callback，只是约定），这样请求
 后端就会最后运行 callback 函数
@@ -4471,7 +4513,7 @@ function jsonp(url, params, callback) {
 }
 ```
 
-## 模块化发展 amd,cmd,commonjs,esmodule
+## 杰cmd，模块化发展 amd,cmd,commonjs,esmodule
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png
 
@@ -5363,7 +5405,7 @@ Script 类编译 js 后生成本地代码 -- Compile 类协调负责调用相应
 调用该函数。否则，V8 引擎会生成属于该函数的本地代码。这就节约了时间，减少了处理那些使用不到的代码的时间。其次 Runtime 类
 提供来辅组创建对象，分配内存以及一些辅助函数来完成功能，最后，将不用的空间进行标记清除和垃圾回收。
 
-## V8 的垃圾回收机制，内存机制，内存 to，
+## 杰垃圾回收机制，内存机制，内存 to，
 
 1. 前端的内存处理
 
@@ -5417,7 +5459,7 @@ Script 类编译 js 后生成本地代码 -- Compile 类协调负责调用相应
 
 1. 局部变量当程序执行结束是，且没有引用的话就会随着一起消失
 
-## v8 优化
+## 杰v8优化
 
 -   优化回滚：因为 V8 是基于 AST 直接生成本地代码，没有经过中间表示层的优化，所以本地代码尚未经过很好的优化。于是，V8 引
     入了新的编译器-Crankshaft。它主要针对热点函数进行优化，它是基于 JS 源码分析的，预测这些代码比较稳定，变量类型不会发
@@ -5557,7 +5599,7 @@ new Plugin(options),
 
 ```
 
-## webpack 如何工作，工作流程
+## 杰webpack如何工作，工作流程
 
 工作流程 (加载 - 编译 - 输出)
 
@@ -5604,12 +5646,35 @@ config.plugin("copy").tap((args) => {
 });
 ```
 
-## Webpack 热更新
+## 杰热更新
 
-1. 当修改了一个或多个文件； 2.文件系统接收更改并通知 webpack；
-2. webpack 重新编译构建一个或多个模块，并通知 HMR 服务器进行更新；
-3. HMR Server 使用 webSocket 通知 HMR runtime 需要更新，HMR 运行时通过 HTTP 请求更新 jsonp；
-4. HMR 运行时替换更新中的模块，如果确定这些模块无法更新，则触发整个页面刷新。
+Webpack的热更新机制：
+
+文件监控：Webpack-dev-server监控项目文件的变化。当检测到文件变化时，触发重新编译过程。
+
+WebSocket通信：Webpack-dev-server与浏览器之间建立WebSocket连接，实时通信。当编译完成后，服务器通过WebSocket向浏览器发送更新信号。
+
+模块替换：浏览器接收到更新信号后，执行热更新逻辑，通过Hot Module Replacement（HMR）机制加载新的模块，替换旧的模块。
+
+HMR实现：HMR允许在运行时替换、添加或删除模块。Webpack生成的代码中包含HMR runtime，用于处理模块的加载和替换。
+
+Vite的热更新机制：
+
+文件监控：Vite的开发服务器监控项目文件的变化，当检测到文件变化时，触发更新。
+
+WebSocket通信：Vite通过WebSocket与浏览器保持通信。当文件变化后，服务器发送更新信号到浏览器。
+
+ES模块动态加载：Vite利用浏览器对ES模块的支持，动态导入新的模块。浏览器接收到更新信号后，加载变化的模块，并替换旧的模块。
+
+简化的更新过程：由于Vite基于ES模块，不需要像Webpack那样进行复杂的打包和HMR配置，更新过程更加简洁高效。
+
+对比总结：
+
+共同点：Webpack和Vite都采用文件监控和WebSocket通信来实现热更新。
+不同点：
+模块系统：Vite基于ES模块，更新更高效；Webpack基于HMR，需要更多配置和runtime支持。
+打包过程：Vite无需打包，直接运行；Webpack需要打包过程，增加了复杂性。
+更新速度：Vite通常更快，因其基于ES模块的特性和简化的流程。
 
 ## webpack 优化
 
@@ -5648,6 +5713,16 @@ module.exports = {
 7. 还有很多，具体看https://github.com/webpack/changelog-v5/blob/master/README.md7
  <!-- endwebpack -->
 
+## 杰treeshaking
+Webpack 和 Vite 的 Tree-Shaking 对比
+特性	        Webpack	                     Vite
+默认支持	生产模式下默认启用	                 生产模式下默认启用
+配置方式	通过 optimization.usedExports 配置	通过 build.rollupOptions 配置
+依赖模块语法	ES6 模块（import/export）   	ES6 模块（import/export）
+副作用处理	通过 sideEffects 属性标记	    通过 sideEffects 属性标记
+适用场景	适用于复杂项目，支持多种优化	    适用于现代项目，开发体验更佳
+
+
 # Nodeto，
 
 ## node 单线程，node 特性，事件驱动，非阻塞 I/O
@@ -5661,15 +5736,43 @@ node 单线程特性：事件驱动（event loop）非阻塞 I/O Js 都是单线
 的，同时，也支持 cluster 多核多进程处理，但多进程处理的话有一个问题，每个进程都是相互独立的，这也就意味着 token 什么的不
 能放在内存中而应该在 redis 里面，因为每个进程相互独立，内存自然不能共享
 
-## node 性能优化，node 优化
 
-1. 处理 JSON，JSONStream 只读取部分 json 数据并直接以流形式传输
-2. 使用 fast-json-stringify 加速 JSON 序列化
-3. 尽量使用 redis 而不用大对象做缓存，因为会导致老生代的垃圾回收变慢
-4. 使用流直接读写，可以用 stream 包里的 pipeline 管理流
-5. 使用 node-clinic 快速定位性能问题
-6. 利用多核，多进程共享端口，故障恢复
-7. Keymetrics 在线监控 pm2 运行 https://id.keymetrics.io
+### 杰node性能优化
+
+1. **代码层面**
+- 异步编程：使用async/await
+- 合理使用缓存：Redis/Memory Cache
+- 数据库优化：索引/连接池/SQL优化
+- Stream流处理大文件
+
+2. **进程管理**
+- PM2多进程管理
+- cluster模块开启多核
+- 合理使用子进程child_process
+
+3. **系统层面**
+- nginx反向代理/负载均衡
+- CDN加速静态资源
+- gzip压缩响应内容
+- 合理设置请求超时时间
+
+4. **监控告警**
+- 错误日志收集
+- 性能监控APM
+- 内存泄漏检测
+
+5. **架构层面**
+- 微服务拆分  按服务拆分模块
+- 消息队列削峰  kafka
+- 合理设置并发数
+
+11. 处理 JSON，JSONStream 只读取部分 json 数据并直接以流形式传输
+12. 使用 fast-json-stringify 加速 JSON 序列化
+13. 尽量使用 redis 而不用大对象做缓存，因为会导致老生代的垃圾回收变慢
+14. 使用流直接读写，可以用 stream 包里的 pipeline 管理流
+15. 使用 node-clinic 快速定位性能问题
+16. 利用多核，多进程共享端口，故障恢复
+17. Keymetrics 在线监控 pm2 运行 https://id.keymetrics.io
 
 -   处理 JSON，只读取 json 里面的某些数据，用 JSONStream
 
@@ -5806,8 +5909,264 @@ process.on("SIGTERM", function () {
     process.exit(0);
 });
 ```
+### 错误日志收集
+- Winston/Log4js记录日志
+- ELK Stack存储分析
+- Sentry实时错误追踪
+- 按级别分类：error/warn/info
+- 记录关键信息：时间/接口/参数/堆栈
 
-## pm2to
+### 性能监控APM
+- New Relic/Datadog商业方案
+- Prometheus + Grafana开源方案
+- 监控指标：
+  - CPU/内存使用率
+  - 请求响应时间
+  - 吞吐量QPS
+  - 错误率
+  - GC情况
+
+### 内存泄漏检测
+- node-heapdump生成堆快照
+- Chrome DevTools分析
+- node --inspect调试
+- 常见泄漏：
+  - 全局变量未释放
+  - 闭包引用
+  - 事件监听未解绑
+  - 缓存无上限
+```js
+// 可以在低峰的时候结合监控系统，当内存使用超过阈值时生成快照
+// 生成快照会暂停 V8 引擎
+// 快照文件可能很大
+// 建议在低峰期进行
+// 及时清理旧的快照文件
+const schedule = require('node-schedule');
+
+const monitor = require('your-monitor-system');
+if (process.memoryUsage().heapUsed > threshold) {
+  heapdump.writeSnapshot();
+  monitor.alert('High memory usage detected');
+}
+
+```
+
+### 微服务拆分
+- 按业务域拆分
+- 服务独立部署/扩展
+- 服务间通信：
+  - RPC(gRPC) 
+  - REST API
+  - 消息队列
+- 服务治理：注册/发现/熔断
+在Node.js中，实现服务间的RPC（Remote Procedure Call）通信，我们可以使用`grpc`库，它是一个高性能、开源和通用的RPC框架，由Google主导开发。以下是一个简要的示例，展示了如何在Node.js中设置一个简单的客户端和服务端进行RPC通信。
+
+### 安装gRPC
+
+首先，你需要安装`grpc`和`@grpc/proto-loader`。运行以下命令安装它们：
+
+```sh
+npm install grpc @grpc/proto-loader
+```
+
+### 定义服务协议（Protocol Buffers）
+
+创建一个名为`helloworld.proto`的文件，定义服务接口和消息格式。
+
+```proto
+// helloworld.proto
+syntax = "proto3";
+
+package helloworld;
+
+// 定义Greeter服务
+service Greeter {
+  // 定义一个SayHello RPC方法
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// HelloRequest消息格式
+message HelloRequest {
+  string name = 1;
+}
+
+// HelloReply消息格式
+message HelloReply {
+  string message = 1;
+}
+```
+
+### 创建服务端
+
+创建一个名为`server.js`的文件，编写服务端代码。
+
+```javascript
+// server.js
+const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
+const packageDefinition = protoLoader.loadSync('helloworld.proto');
+const helloProto = grpc.loadPackageDefinition(packageDefinition).helloworld;
+
+// 实现Greeter服务
+function sayHello(call, callback) {
+  callback(null, {message: 'Hello, ' + call.request.name});
+}
+
+// 主函数
+function main() {
+  const server = new grpc.Server();
+  server.addService(helloProto.Greeter.service, {sayHello: sayHello});
+  server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
+  console.log('Server running at http://0.0.0.0:50051');
+  server.start();
+}
+
+main();
+```
+
+### 创建客户端
+
+创建一个名为`client.js`的文件，编写客户端代码。
+
+```javascript
+// client.js
+const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
+const packageDefinition = protoLoader.loadSync('helloworld.proto');
+const helloProto = grpc.loadPackageDefinition(packageDefinition).helloworld;
+
+function main() {
+  const client = new helloProto.Greeter('localhost:50051', grpc.credentials.createInsecure());
+  client.sayHello({name: 'World'}, function(err, response) {
+    console.log('Greeting:', response.message);
+  });
+}
+
+main();
+```
+
+### 运行示例
+
+首先，启动服务端：
+
+```sh
+node server.js
+```
+
+然后，在另一个终端窗口运行客户端：
+
+```sh
+node client.js
+```
+
+客户端将发送一个`SayHello` RPC请求到服务端，服务端将响应一个消息，客户端接收到这个消息并打印出来。
+
+这个例子简要展示了在Node.js中如何使用gRPC进行服务间的RPC通信。你可以根据实际需要调整`.proto`文件和服务逻辑。
+
+
+
+### 消息队列削峰
+- RabbitMQ/Kafka
+- 应用场景：
+  - 异步处理
+  - 流量削峰
+  - 解耦服务
+  - 日志处理
+- 保证消息可靠性
+在Node.js服务中结合Kafka实现消息队列的削峰和数据流管理，主要涉及到与Kafka的交互，包括生产者（Producer）发送消息和消费者（Consumer）接收消息。这里以`kafkajs`这个库为例来展示如何在Node.js中实现Kafka的基本使用。`kafkajs`是一个广受欢迎的Node.js库，用于与Kafka交互。
+
+### 1. 安装 `kafkajs`
+
+首先，你需要安装`kafkajs`库：
+
+```bash
+npm install kafkajs
+```
+
+### 2. 创建Kafka生产者
+
+生产者负责发送消息到Kafka中。
+
+```javascript
+const { Kafka } = require('kafkajs')
+
+const kafka = new Kafka({
+  clientId: 'my-app',
+  brokers: ['kafka1:9092', 'kafka2:9092']
+})
+
+const producer = kafka.producer()
+
+const produce = async () => {
+  await producer.connect()
+  try {
+    await producer.send({
+      topic: 'test-topic',
+      messages: [
+        { value: 'Hello KafkaJS user!' },
+      ],
+    })
+    console.log("Message sent successfully");
+  } catch (err) {
+    console.error("Failed to send message", err);
+  } finally {
+    await producer.disconnect()
+  }
+}
+
+produce();
+```
+
+这段代码创建了一个生产者，连接到了Kafka集群，并向`test-topic`主题发送了一个消息。
+
+### 3. 创建Kafka消费者
+
+消费者负责从Kafka中接收消息。
+
+```javascript
+const kafka = new Kafka({
+  clientId: 'my-app',
+  brokers: ['kafka1:9092', 'kafka2:9092']
+})
+
+const consumer = kafka.consumer({ groupId: 'test-group' })
+
+const consume = async () => {
+  await consumer.connect()
+  await consumer.subscribe({ topic: 'test-topic', fromBeginning: true })
+
+  await consumer.run({
+    eachMessage: async ({ topic, partition, message }) => {
+      console.log({
+        value: message.value.toString(),
+      })
+    },
+  })
+}
+
+consume();
+```
+
+这段代码创建了一个消费者，它连接到Kafka集群，订阅了`test-topic`主题，并打印接收到的每条消息。
+
+### 注意事项
+
+- 确保你的Kafka集群运行正常，并且`brokers`数组中的地址和端口号与你的Kafka集群匹配。
+- 在生产环境中，可能需要根据Kafka集群的认证和加密方式配置更多的连接选项。
+- Kafka中的topic需要提前创建，或者配置Kafka允许自动创建topic。
+
+通过这种方式，Node.js服务可以利用Kafka进行消息的生产和消费，实现削峰、负载均衡等目的。
+
+### 并发控制
+- 连接池管理
+- 队列任务处理
+- 限流策略：
+  - 令牌桶
+  - 漏桶算法
+  - 计数器
+- 根据服务器配置调整
+
+## 杰pm2to
 
 **使用**
 
