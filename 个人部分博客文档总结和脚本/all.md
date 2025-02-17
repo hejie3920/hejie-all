@@ -1301,6 +1301,7 @@ Node.js的事件循环需要处理更多与文件系统、网络I/O相关的任�
 
 浏览器：事件循环在每个轮次中处理完微任务后，会检查UI渲染以及处理宏任务。
 Node.js：事件循环分为多个阶段，每个阶段处理特定类型的回调。常见的阶段包括：
+
 Timers：执行setTimeout和setInterval的回调。
 I/O callbacks：处理一些之前的I/O操作的回调。
 Idle, prepare：系统内部使用。
@@ -1313,8 +1314,6 @@ setTimeout的回调是在事件循环的timers阶段被处理的，可能会有�
 微任务的执行时机：
 
 
-
-
 -   浏览器的很简单，直接先执行同步代码，然后再去执行异步栈里面的任务，先微再宏，【一个代码块里先微再宏，setTimeout 的回
     调也算是一个代码块】
 -   node 的 eventLoop https://blog.csdn.net/xgangzai/article/details/89647029
@@ -1325,7 +1324,7 @@ setTimeout的回调是在事件循环的timers阶段被处理的，可能会有�
 -   进入次轮循环，开始 timers --> IO 回调(普通的回调) --> poll 阶段（读取文件，网络操作等） --> check(执行
     setImmediate，其中 immediate 可能慢过 setTimeout()，因为 setTimeout 默认是 1ms 那样) --> 关闭回调
 
-1. 同步代码 — 任务 loop
+1. 同步代码 — 任务 loop【上一轮的then回调函数】
 2. Timers（执行到点的 setTimeout()、setInterval()的回调 ）
 3. I/O 回调
 4. poll 轮询阶段，会适当阻塞执行 I/O 事件以及事件回调，但如果等待超过了某个 timer 的极限等待时间，就会返回 timers 阶段去
@@ -1362,7 +1361,7 @@ new Promise(function (resolve) {
 console.log("script end");
 ```
 
-## 实现 flatten，打平数组,数组扁平化
+## 杰flatten，打平数组,数组扁平化
 
 -   普通实现
 
@@ -1692,7 +1691,7 @@ function getWebpImageUrl(url) {
 <!-- 二维数组 -->
 Array.from(new Array(20),() => [1,2,3]（一个填充函数）)
 
-<!-- 并发限制to，并发加载，请求限制 -->
+<!-- 杰并发限制，杰高并发 -->
 高并发控制，promise.race结合链式调用
 
 function limitLoad(urls, handler, limit) {
@@ -1728,7 +1727,7 @@ function loadImg(url) {
 let tmp = new Array(19).fill(0).map((i, d) => d)
 limitLoad(tmp, loadImg, 3)
 
-<!-- 耗时装饰器 -->
+<!-- 杰计时装饰器 -->
 export function measure(target,name,descriptor){
   const oldValue = descriptor.value
   descriptor.value = async function(){
@@ -1769,7 +1768,7 @@ export function measure(target,name,descriptor){
 -   图片处理，用 canvas,drawImage，绘制水印，操作然后 toDataUrl 转为 base64，canvas.drawImage,然后 getImageData 可以获得
     一个二维矩阵，矩阵有四个数组，代表 RGBA 四个通道的数组，对像素点的通道进行处理, background-blend-mode
 
-## 实现 webpack,webpack 原理
+## 杰webpack,webpack 原理
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
@@ -1791,7 +1790,7 @@ hint: 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tin
 hint: 用来检查判断 addEventlistner 后有没 removeEventListener 以及其他的一些规则就是一个函数，可以解析到 source 对象，然
 后对 source 进行操作后 return 出去就是了，
 
-## 开发脚手架 to
+## 杰开发脚手架 to
 
 https://mp.weixin.qq.com/s/4h-PnP-kCWvq05ejLCBiGg 用 oclif 开发脚手架
 
@@ -1835,7 +1834,7 @@ npm init,package.json 里面 bin 指向脚本文件，npm link 进行关联，�
 
 打包风格 commonJs 的 require 风格
 
-## 传输 to，断点传输，分片传输
+## 杰断点传输，杰分片传输
 
 -   普通上传 ctx.request.files，ranameSync 进行上传
 -   多文件，input 标签 multiple，ctx.request.files.forEach
@@ -1928,7 +1927,7 @@ xhr.onreadystatechange = function () {
 
 -   node 上传图片读取文件 buffer fs 构建 form-data form-data 上传文件 node-fetch
 
-## webpack 优化，webpackto
+## 杰优化，杰webpack优化，webpackto
 
 -   babelrc 里面配置开发环境 dynamic-import-node 动态引入
 -   alias: 缓存目录，避免重复寻址；
@@ -1968,7 +1967,54 @@ xhr.onreadystatechange = function () {
     件的修改;
 -   5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；
 
-## babel 插件 to，babelto
+## 杰babel 插件 to，babelto
+
+Babel 是一个广泛使用的 JavaScript 编译器，它的主要功能是将现代 JavaScript 代码（比如 ECMAScript 6/7/8/9 等语法）转译成向后兼容的 JavaScript 代码，能够在老旧的浏览器或 JavaScript 环境中运行。Babel 还支持插件机制，可以扩展其功能。
+
+开发 Babel 插件的步骤：
+安装 Babel 相关依赖： 首先，需要安装 Babel 的开发依赖（比如 @babel/core 和 @babel/preset-
+
+创建插件文件： Babel 插件是一个 JavaScript 文件，通常是一个返回对象的函数。这个对象定义了插件的行为，最基本的结构如下：
+
+module.exports = function () {
+  return {
+    visitor: {
+      // 你可以在这里定义如何转换代码
+    }
+  };
+};
+编写插件逻辑： Babel 插件的核心是“访问者（visitor）”对象，visitor 对象中可以定义不同的钩子方法（如 enter、exit），每个钩子会在抽象语法树（AST）遍历过程中触发。你可以在这些钩子中定义如何修改节点。
+
+例如，假设你想创建一个插件，把 console.log 调用转换成 alert：
+
+javascript
+module.exports = function () {
+  return {
+    visitor: {
+      CallExpression(path) {
+        if (path.node.callee.name === 'console' && path.node.arguments[0].value === 'log') {
+          path.node.callee.name = 'alert';
+        }
+      }
+    }
+  };
+};
+在上面的代码中，CallExpression 访问者会捕捉到所有函数调用的节点，然后判断是否是 console.log，如果是，就将其转换成 alert。
+
+配置 Babel 使用插件： 如果你在项目中使用 Babel，你可以通过配置文件 .babelrc 或者 babel.config.js 来指定你的插件。示例配置如下：
+
+json
+{
+  "plugins": ["./path/to/your/plugin.js"]
+}
+这样，当 Babel 编译代码时，它会加载并使用你创建的插件。
+
+运行 Babel 转译： 你可以通过命令行运行 Babel 来转译你的代码：
+
+bash
+npx babel src --out-dir lib
+这个命令会将 src 目录下的文件转译并输出到 lib 目录。
+
 
 babelType：类似 lodash 那样的工具集，主要用来操作 AST 节点，比如创建、校验、转变等。举例：判断某个节点是不是标识符
 (identifier)。 path：AST 中有很多节点，每个节点可能有不同的属性，并且节点之间可能存在关联。path 是个对象，它代表了两个节
@@ -2005,7 +2051,7 @@ module.exports = function({ types: babelTypes }) {
 };
 ```
 
-## babel-import-node 按需加载原理，使用它按需加载自己的组件库
+## 杰按需加载插件，babel-import-node 按需加载原理，使用它按需加载自己的组件库
 
 ```js
 <!-- 原理：  -->
@@ -2015,35 +2061,91 @@ import { Button } from 'antd';
 var _button = require('antd/lib/button');
 
 <!-- 实现：  -->
- // 编译添加，将自己的组件库包添加到编译
-include: [
-  path.resolve(appDirectory, 'node_modules/hejie-lego'),
-  //...others
-]
+1. 创建 UI 库项目
+创建一个基础的 UI 组件库结构：
 
-// 按需加载支持
-// npm/yarn 安装依赖 `babel-plugin-import` 详细参见该插件使用
-// 配置如下
-plugins: [
-    ['import', {
-      'libraryName': 'hejie-lego',
-      // libraryDirectory: 'lib',
-      camel2DashComponentName: false, // 是否需要驼峰转短线
-      camel2UnderlineComponentName: false, // 是否需要驼峰转下划线
-      customName: (name) => {
-        return `hejie-lego/lib/components/${name}` // 核心配置 根据你自己的组件目录配置
-      },
-      style: () => {
-        return false
+bash
+my-ui-library/
+  ├── src/
+  │   ├── Button/
+  │   │   ├── Button.js
+  │   │   └── index.js
+  │   ├── Input/
+  │   │   ├── Input.js
+  │   │   └── index.js
+  │   └── index.js
+  ├── package.json
+  ├── babel.config.js
+  └── rollup.config.js (或者 webpack 配置)
+2. 组件开发
+在 src 目录下创建每个组件的目录和文件，比如 Button 组件：
+export default {
+  input: 'src/index.js',
+  output: {
+    file: 'dist/my-ui-library.js',
+    format: 'esm',
+  },
+  external: ['react', 'react-dom'],
+};
+3.2 配置 package.json
+在 package.json 中配置主入口和按需加载的入口：
+
+json
+{
+  "main": "dist/my-ui-library.js",
+  "module": "dist/my-ui-library.esm.js",
+  "exports": {
+    ".": "./dist/my-ui-library.js",
+    "./Button": "./src/Button"
+  }
+}
+4. 开发 Babel 插件支持按需引入
+可以通过编写 Babel 插件来支持按需引入（通常需要 babel-plugin-import 插件来实现）。
+
+4.1 安装 babel-plugin-import
+bash
+npm install babel-plugin-import --save-dev
+4.2 配置 babel-plugin-import
+在你的项目的 .babelrc 或 babel.config.js 中添加配置：
+
+json
+{
+  "plugins": [
+    [
+      "babel-plugin-import",
+      {
+        "libraryName": "my-ui-library",
+        "libraryDirectory": "src",
+        "camel2DashComponentName": false
       }
-    }],
-    //...others
+    ]
   ]
+}
+5. 打包和发布
+使用 Rollup 或 Webpack 来打包你的 UI 库，并发布到 npm：
+
+bash
+npm run build
+npm publish
+6. 使用 UI 库并按需引入
+在你的应用中，安装并按需引入组件：
+
+bash
+npm install my-ui-library
+javascript
+import { Button } from 'my-ui-library';
+// 只引入了 Button 组件，其他组件不会被打包进来
+总结
+组件开发：按文件和目录结构独立开发每个组件。
+按需引入：通过 babel-plugin-import 实现按需加载，减小打包体积。
+打包配置：使用 Rollup 或 Webpack 打包组件库，支持 esm 格式。
+配置 Babel：使用 babel-plugin-import 插件来支持按需引入功能。
+通过这些步骤，你就能创建自己的业务 UI 库，并支持按需引入，优化最终打包的大小。
 ```
 
 配置完后就可以按需加载了 `import { Button } from 'hejie-lego';`
 
-## 微前端 to，乾坤
+## 杰微前端 to，乾坤
 
 https://mp.weixin.qq.com/s/HG8yxYCYIX6-TA_vBim0ag
 
@@ -2086,12 +2188,15 @@ output: {
 ## viteto,esbuildto
 
 内核：esbuild
+- Go 语言编写：esbuild 使用 Go 语言开发，Go 的并发性能和编译速度优于 JavaScript，适合处理高并发任务。
 
--   go 语言编写，语言可以编译为本地代码
--   解析，和生成文件和 sourcemap 全部完全并行化
--   无需昂贵的数据转换和处理，只需很少几步可完成所有操作
--   以提高编译速度为编写代码时的第一原则，避免不必要的内存分配和配置优点：本质上就是启动一台静态页面服务器，文件代码不打
-    包，直接拦截请求加载不同的模块，即时的模块热更新，快速的冷启动，真正的按需编译缺点：
+- 并行处理：esbuild 充分利用多核 CPU，将解析、转换、打包等任务并行化，大幅提升构建速度。
+
+- 最小化 AST 操作：esbuild 避免复杂的 AST 操作，直接生成代码，减少中间步骤，提升效率。
+
+- 零运行时依赖：esbuild 不依赖第三方库，所有功能内置，减少加载和初始化开销。
+
+- 缓存机制：esbuild 通过缓存已处理文件，避免重复工作，加快后续构建速度。
 
 1. 生产环境下，还是需要打包才能运行的（因为 vue-cli 脚手架基于 webpack 的热更新，所以必须打包才能在生产环境上运行，而
    vite 基于缓存的热更新，立即编译当前修改文件，还会使用 http 缓存机制来加载内容）
@@ -2114,7 +2219,7 @@ output: {
 
 -   测试框架 mocha + 断言库 chai（expect-toBe) + sinon(mock 库) + karma（模拟运行环境）+ istanbul(覆盖率)
 
-## node 处理高并发
+## node处理高并发
 
 -   原理：java 多线程是每个请求开个线程连接，开关连接都需要开销，一个人干一件事，node 单线程，所有的请求都是在一条线程上
     发起，只不过 node 通过事件轮询机制，将异步操作放在一个单独的线程去轮询，且 V8 提供的接口可以很高效地同时处理多个异步
@@ -2125,13 +2230,125 @@ output: {
     cluster：child_process）大量计算占用 CPU 会导致应用阻塞(即不适用 CPU 密集型) 错误会引起整个应用的退出（nginx 负载均
     衡，错误捕捉，崩溃重启,pm2）
 
--   高并发架构 nginx 负载均衡，多个 node 服务，然后数据先到 redis 上取（在内存池里面操作，开销比较高），没有的话再去 sql
-    里面取
--   处理高并发
+处理高并发：
+- 事件驱动架构：
 
-1. let ep = new EventProxy(),发送完成后 ep.emit('ok'),然后 ep.after('ok'，()=>{派发下一个})
-2. async.mapLimit(fetchUrlArr, 5,执行函数，回调函数)
-3. let q = async.queue(执行函数，最大并发数)，q.push(执行函数（参数上下文）)，q.drain = ()=> {全部执行完成}
+基于事件循环（Event Loop），非阻塞 I/O 操作，避免线程等待，高效处理大量请求。
+
+- 异步 I/O：
+
+文件读写、网络请求等操作异步执行，不阻塞主线程，提升吞吐量。
+
+- 单线程 + Worker Threads：
+
+主线程处理 I/O 密集型任务，CPU 密集型任务通过 Worker Threads 分配到多线程执行，避免阻塞。
+
+- 集群模式（Cluster）：
+
+利用多核 CPU，启动多个进程（通过 cluster 模块），共享端口，提升并发能力。
+```js
+const cluster = require('cluster');
+const os = require('os');
+const http = require('http');
+
+if (cluster.isMaster) {
+  // 主进程：根据 CPU 核心数创建子进程
+  const numCPUs = os.cpus().length;
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+} else {
+  // 子进程：创建 HTTP 服务器
+  http.createServer((req, res) => {
+    res.end('Hello from worker ' + process.pid);
+  }).listen(3000);
+}
+
+cpu密集型任务
+const { Worker, isMainThread, parentPort } = require('worker_threads');
+
+if (isMainThread) {
+  // 主线程：创建 Worker
+  const worker = new Worker(__filename);
+  worker.on('message', (result) => {
+    console.log('Worker result:', result);
+  });
+  worker.postMessage('start'); // 发送任务给 Worker
+} else {
+  // Worker 线程：处理 CPU 密集型任务
+  parentPort.on('message', (message) => {
+    if (message === 'start') {
+      let sum = 0;
+      for (let i = 0; i < 1e9; i++) sum += i; // 模拟 CPU 密集型任务
+      parentPort.postMessage(sum); // 返回结果
+    }
+  });
+}
+```
+
+- 负载均衡：
+
+使用 Nginx 或 PM2 等工具分发请求，避免单点压力过大。
+```js
+pm2 start app.js -i max
+```
+
+核心优势：事件驱动 + 异步 I/O 是 Node.js 高并发的关键，适合 I/O 密集型场景。
+
+1. async.mapLimit(fetchUrlArr, 5,执行函数，回调函数)
+ async.mapLimit
+作用：限制并发数，批量处理数组中的异步任务。
+
+适用场景：需要控制并发数量的批量任务（如批量请求 API）。
+```js
+const async = require('async');
+
+const data = [1, 2, 3, 4, 5]; // 数据数组
+const concurrency = 2; // 并发数
+
+// 异步任务函数
+const asyncTask = (item, callback) => {
+  setTimeout(() => {
+    console.log('Processing:', item);
+    callback(null, item * 2); // 返回处理结果
+  }, 1000);
+};
+
+// 使用 mapLimit 控制并发
+async.mapLimit(data, concurrency, asyncTask, (err, results) => {
+  if (err) console.error(err);
+  else console.log('Results:', results); // 输出所有结果
+});
+
+```
+
+2. async.queue
+作用：创建一个任务队列，按顺序处理异步任务，支持并发控制。
+
+适用场景：需要按顺序处理任务，同时限制并发数（如文件上传、爬虫）。
+```js
+const async = require('async');
+
+// 创建队列，并发数为 2
+const queue = async.queue((task, callback) => {
+  console.log('Processing task:', task);
+  setTimeout(() => {
+    callback(); // 任务完成
+  }, 1000);
+}, 2);
+
+// 监听队列空事件
+queue.drain(() => {
+  console.log('All tasks completed');
+});
+
+// 添加任务到队列
+queue.push(1);
+queue.push(2);
+queue.push(3);
+queue.push(4);
+
+```
 
 -   做中间层用 dubbo 远程进程共享，对数据进行进一层封装，解决跨域，处理高并发
 
@@ -2150,11 +2367,98 @@ stage: PIXI.Application({
 3. 调用 vue/runtime-core 的 h 函数进行绘制，其实就是 createElement，页面里面调用 vue3 的各种复合式 api， h, ref,
    defineComponent, watch，onMounted，onUnmounted，setup 进行开发
 
-## domdiffto
+## 杰domdiffto
+以下是 **React 18** 和 **Vue 3** 的 Diff 算法的详细对比，以 Markdown 文本格式呈现：
 
-1. 同级比较
-2. 组件类型比较
-3. 元素比较，domdiff
+### **React 18 的 Diff 算法**
+
+#### **核心机制**
+1. **基于 Fiber 架构**：
+   - React 18 使用 Fiber 架构，将渲染任务拆分为多个小任务，支持可中断的异步渲染。
+   - Fiber 节点是一个链表结构，包含组件的类型、props、state 等信息。
+
+2. **双缓存机制**：
+   - React 维护两棵 Fiber 树：当前树（Current）和工作树（WorkInProgress）。
+   - Diff 算法在工作树上进行，完成后替换当前树，减少页面闪烁。
+
+3. **Diff 策略**：
+   - **同级比较**：只比较同一层级的节点。
+   - **类型不同直接替换**：如果节点类型不同，直接销毁旧节点，创建新节点。
+   - *类型相同则更换属性*
+   - **Key 值优化**：通过 `key` 标识节点，识别节点的移动、添加或删除。
+
+4. **批量更新**：
+   - React 将多次状态更新合并为一次，减少 DOM 操作。
+
+---
+
+### **Vue 3 的 Diff 算法**
+
+#### **核心机制**
+1. **基于 Proxy 的响应式系统**：
+   - Vue 3 使用 Proxy 实现响应式，比 Vue 2 的 `Object.defineProperty` 更高效。
+
+2. **静态标记（Patch Flag）**：
+   - Vue 3 在编译阶段对模板进行静态分析，标记动态节点（如 `class`、`style`、`props`）。
+   - Diff 时只比较动态部分，减少不必要的操作。
+
+3. **Diff 策略**：
+   - **双端比较**：从列表的头和尾同时开始比较，减少移动次数。
+   - **最长递增子序列（LIS）**：通过 LIS 算法找到最少的节点移动次数。
+
+4. **Block Tree**：
+   - Vue 3 将模板划分为多个 Block，每个 Block 是一个独立的更新单元。
+   - Diff 时只更新变化的 Block，提升性能。
+
+#### **示例**
+```vue
+<template>
+  <ul>
+    <li v-for="item in items" :key="item">{{ item }}</li>
+  </ul>
+  <button @click="reverseItems">Reverse</button>
+</template>
+
+<script>
+import { ref } from 'vue';
+
+export default {
+  setup() {
+    const items = ref([1, 2, 3]);
+
+    const reverseItems = () => {
+      items.value = [...items.value].reverse();
+    };
+
+    return {
+      items,
+      reverseItems,
+    };
+  },
+};
+</script>
+```
+- **解释**：点击按钮后，Vue 通过 `key` 和双端比较算法，高效更新 DOM。
+
+---
+
+### **React 18 和 Vue 3 Diff 算法的对比**
+
+| **特性**               | **React 18**                          | **Vue 3**                          |
+|------------------------|---------------------------------------|-------------------------------------|
+| **架构**               | Fiber 架构，支持异步渲染              | 基于 Proxy 的响应式系统            |
+| **Diff 策略**           | 同级比较，类型不同直接替换            | 双端比较，最长递增子序列（LIS）    |
+| **优化手段**           | Key 值优化，批量更新                  | 静态标记（Patch Flag），Block Tree  |
+| **适用场景**           | 复杂应用，需要精细控制渲染            | 中小型应用，开发效率高             |
+
+---
+
+### **总结**
+- **React 18**：通过 Fiber 架构和 Key 值优化，适合复杂应用，支持精细控制。
+- **Vue 3**：通过静态标记和双端比较，适合中小型应用，开发效率高。
+
+---
+
 
 -   react15 https://blog.csdn.net/qq_36407875/article/details/84965311 游标，新旧两个数组，遍历新数组，默认游标是 0，如
     果发现有同样可以复用的元素则直接移动老元素到新的位置，并且将游标记录标志位老元素的索引，游标名为 LastIndex（结果数组
@@ -2311,7 +2615,119 @@ function reactive(obj) {
 
 ```
 
-## 前端日志监控，异常上报，性能监控,异常 to
+### **React Hook 的原理**
+
+React Hook 是 React 16.8 引入的特性，允许在函数组件中使用状态（state）和其他 React 特性（如生命周期、上下文等）。以下是其核心原理：
+
+---
+
+#### **1. Hook 的实现原理**
+- **链表结构**：
+  - React 使用链表来管理 Hook。每个 Hook 都有一个对应的节点，节点中存储了 Hook 的状态（如 `useState` 的值）和指向下一个 Hook 的指针。
+  - 例如：
+    ```javascript
+    const [state1, setState1] = useState(0); // Hook 节点 1
+    const [state2, setState2] = useState(1); // Hook 节点 2
+    ```
+    - React 会按照 Hook 的调用顺序，将这些节点连接成一个链表。
+
+- **当前 Hook 指针**：
+  - React 内部维护一个“当前 Hook 指针”，指向当前正在处理的 Hook 节点。
+  - 每次调用 Hook 时，React 会根据指针找到对应的节点，并更新指针。
+
+- **状态存储**：
+  - Hook 的状态存储在 Fiber 节点中。Fiber 是 React 的渲染单元，每个组件对应一个 Fiber 节点。
+
+---
+
+#### **2. Hook 的工作流程**
+1. **首次渲染**：
+   - React 初始化 Hook 链表，并将状态存储在 Fiber 节点中。
+2. **更新渲染**：
+   - React 根据 Hook 的调用顺序，从 Fiber 节点中读取状态，并更新 Hook 链表。
+3. **提交阶段**：
+   - React 将更新后的状态应用到 DOM。
+
+---
+
+#### **3. 为什么 Hook 前面不能写逻辑？**
+- **Hook 的调用顺序必须一致**：
+  - React 依赖 Hook 的调用顺序来管理状态。如果在条件语句或循环中使用 Hook，可能会导致 Hook 的调用顺序不一致，从而引发错误。
+  - 例如：
+    ```javascript
+    if (condition) {
+      const [state1, setState1] = useState(0); // 可能不会每次都调用
+    }
+    const [state2, setState2] = useState(1); // 调用顺序可能被打乱
+    ```
+    - 如果 `condition` 为 `false`，`state1` 不会被调用，导致 `state2` 的 Hook 节点错位。
+
+- **React 的规则**：
+  - React 要求 Hook 必须在函数组件的顶层调用，不能在条件语句、循环或嵌套函数中使用。
+  - 这是为了确保每次渲染时，Hook 的调用顺序一致。
+
+---
+
+#### **4. 如何解决条件逻辑问题？**
+- **将条件逻辑移到 Hook 内部**：
+  ```javascript
+  const useCustomHook = (condition) => {
+    const [state1, setState1] = useState(0);
+    if (condition) {
+      // 条件逻辑
+    }
+    return state1;
+  };
+  ```
+
+- **使用 `useEffect` 处理副作用**：
+  ```javascript
+  useEffect(() => {
+    if (condition) {
+      // 条件逻辑
+    }
+  }, [condition]);
+  ```
+
+---
+
+#### **5. 示例代码**
+```javascript
+function App() {
+  const [count, setCount] = useState(0);
+
+  // 错误示例：Hook 不能在条件语句中使用
+  // if (count > 0) {
+  //   const [state2, setState2] = useState(1);
+  // }
+
+  // 正确示例：将条件逻辑移到 useEffect 中
+  useEffect(() => {
+    if (count > 0) {
+      console.log('Count is greater than 0');
+    }
+  }, [count]);
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+---
+
+### **总结**
+- **Hook 的原理**：基于链表结构管理状态，依赖调用顺序。
+- **Hook 的规则**：必须在函数组件的顶层调用，不能有条件逻辑。
+- **解决方法**：将条件逻辑移到 Hook 内部或使用 `useEffect`。
+
+---
+
+
+## 杰日志监控，前端日志监控，异常上报，性能监控,异常 to
 
 -   错误类型 Error EvalError RangeError ReferenceError SyntaxError（语法错误） TypeError URIError
 
@@ -2334,6 +2750,7 @@ window.onerror = function (message, source, lineno, colno, error) {
 };
 ```
 
+
 5. iframe 异常
 
 ```js
@@ -2354,6 +2771,291 @@ window.frames[0].onerror = function (message, source, lineno, colno, error) {
 8. 跨端脚本无法准确捕获异常解决方案：对 script 标签增加一个 crossorigin=”anonymous”，并且服务器添加
    Access-Control-Allow-Origin。 <script src="http://cdn.xxx.com/index.js" crossorigin="anonymous"></script>
 9. 开发环境下开启 source-map 可以定位错误文件
+### **实现一个异常监控系统**
+
+异常监控系统用于捕获前端应用中的各种错误（如 JavaScript 错误、资源加载错误、Promise 异常等），并将错误信息上报到服务器。以下是实现步骤：
+
+---
+
+#### **1. 捕获 JavaScript 错误**
+使用 `window.onerror` 和 `window.addEventListener('error')` 捕获全局 JavaScript 错误。
+
+```javascript
+// 捕获同步错误
+window.onerror = function (message, source, lineno, colno, error) {
+  const errorInfo = {
+    type: 'JavaScript Error',
+    message,
+    source,
+    lineno,
+    colno,
+    stack: error?.stack,
+  };
+  reportError(errorInfo);
+  return true; // 阻止默认错误提示
+};
+
+// 捕获资源加载错误（如图片、脚本加载失败）
+window.addEventListener('error', (event) => {
+  if (event.target && (event.target.src || event.target.href)) {
+    const errorInfo = {
+      type: 'Resource Error',
+      message: `Failed to load resource: ${event.target.src || event.target.href}`,
+      source: event.target.src || event.target.href,
+    };
+    reportError(errorInfo);
+  }
+}, true); // 使用捕获模式
+```
+
+---
+
+#### **2. 捕获 Promise 异常**
+使用 `window.onunhandledrejection` 捕获未处理的 Promise 异常。
+
+```javascript
+window.onunhandledrejection = function (event) {
+  const errorInfo = {
+    type: 'Promise Error',
+    message: event.reason?.message || 'Unhandled Promise Rejection',
+    stack: event.reason?.stack,
+  };
+  reportError(errorInfo);
+};
+```
+
+---
+
+#### **3. 捕获 React 错误边界**
+在 React 中，使用 `Error Boundary` 捕获组件树中的错误。
+
+```javascript
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    const errorData = {
+      type: 'React Error',
+      message: error.message,
+      stack: error.stack,
+      componentStack: errorInfo.componentStack,
+    };
+    reportError(errorData);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+    return this.props.children;
+  }
+}
+
+// 使用 ErrorBoundary 包裹组件
+<ErrorBoundary>
+  <MyComponent />
+</ErrorBoundary>
+```
+
+---
+
+#### **4. 捕获跨域脚本错误**
+跨域脚本错误无法通过 `window.onerror` 捕获完整信息，需要在脚本标签上添加 `crossorigin` 属性，并确保服务器返回正确的 CORS 头。
+
+```html
+<script src="https://example.com/script.js" crossorigin></script>
+```
+
+---
+
+#### **5. 上报错误信息**
+将捕获的错误信息通过 HTTP 请求上报到服务器。
+
+```javascript
+function reportError(errorInfo) {
+  const url = 'https://your-server.com/api/log-error';
+  const data = {
+    timestamp: new Date().toISOString(),
+    ...errorInfo,
+  };
+
+  // 使用 fetch 上报
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  }).catch((err) => {
+    console.error('Failed to report error:', err);
+  });
+
+  // 或者使用 navigator.sendBeacon（适合页面卸载时上报）
+  if (navigator.sendBeacon) {
+    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+    navigator.sendBeacon(url, blob);
+  }
+}
+```
+
+---
+
+#### **6. 捕获用户行为**
+为了辅助排查问题，可以记录用户的操作行为（如点击、输入等）。
+
+```javascript
+function trackUserAction(event) {
+  const actionInfo = {
+    type: 'User Action',
+    eventType: event.type,
+    target: event.target?.tagName,
+    timestamp: new Date().toISOString(),
+  };
+  reportError(actionInfo);
+}
+
+document.addEventListener('click', trackUserAction);
+document.addEventListener('input', trackUserAction);
+```
+
+---
+
+#### **7. 防止循环上报**
+如果上报逻辑本身出错，可能会导致循环上报。可以通过标记或限制上报频率来避免。
+
+```javascript
+let isReporting = false;
+
+function reportError(errorInfo) {
+  if (isReporting) return;
+  isReporting = true;
+
+  const url = 'https://your-server.com/api/log-error';
+  const data = {
+    timestamp: new Date().toISOString(),
+    ...errorInfo,
+  };
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .finally(() => {
+      isReporting = false;
+    })
+    .catch((err) => {
+      console.error('Failed to report error:', err);
+    });
+}
+```
+
+---
+
+#### **8. 完整的异常监控系统**
+将以上代码整合到一个模块中：
+
+```javascript
+class ErrorMonitor {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    // 捕获 JavaScript 错误
+    window.onerror = this.handleError.bind(this);
+    window.addEventListener('error', this.handleResourceError.bind(this), true);
+
+    // 捕获 Promise 异常
+    window.onunhandledrejection = this.handlePromiseError.bind(this);
+
+    // 捕获用户行为
+    document.addEventListener('click', this.trackUserAction.bind(this));
+    document.addEventListener('input', this.trackUserAction.bind(this));
+  }
+
+  handleError(message, source, lineno, colno, error) {
+    const errorInfo = {
+      type: 'JavaScript Error',
+      message,
+      source,
+      lineno,
+      colno,
+      stack: error?.stack,
+    };
+    this.reportError(errorInfo);
+    return true;
+  }
+
+  handleResourceError(event) {
+    if (event.target && (event.target.src || event.target.href)) {
+      const errorInfo = {
+        type: 'Resource Error',
+        message: `Failed to load resource: ${event.target.src || event.target.href}`,
+        source: event.target.src || event.target.href,
+      };
+      this.reportError(errorInfo);
+    }
+  }
+
+  handlePromiseError(event) {
+    const errorInfo = {
+      type: 'Promise Error',
+      message: event.reason?.message || 'Unhandled Promise Rejection',
+      stack: event.reason?.stack,
+    };
+    this.reportError(errorInfo);
+  }
+
+  trackUserAction(event) {
+    const actionInfo = {
+      type: 'User Action',
+      eventType: event.type,
+      target: event.target?.tagName,
+      timestamp: new Date().toISOString(),
+    };
+    this.reportError(actionInfo);
+  }
+
+  reportError(errorInfo) {
+    const url = 'https://your-server.com/api/log-error';
+    const data = {
+      timestamp: new Date().toISOString(),
+      ...errorInfo,
+    };
+
+    if (navigator.sendBeacon) {
+      const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      navigator.sendBeacon(url, blob);
+    } else {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      }).catch((err) => {
+        console.error('Failed to report error:', err);
+      });
+    }
+  }
+}
+
+// 初始化异常监控
+new ErrorMonitor();
+```
+
+---
+
+### **总结**
+通过以上步骤，可以实现一个完整的异常监控系统，能够捕获 JavaScript 错误、资源加载错误、Promise 异常、React 错误以及用户行为，并将错误信息上报到服务器。
+
 
 ## 性能监控
 
@@ -2698,6 +3400,84 @@ TCP,UDP 是运输层的(TCP 连接需要保证数据完整性和有序性,UDP �
 
 HTTP 是应用层协议，定义的是传输数据的内容的规范，
 
+### **网络七层模型（OSI 模型）**
+
+OSI（Open Systems Interconnection）模型是一个标准化的网络通信框架，将网络通信过程分为七层。每一层都有特定的功能和协议。以下是七层的详细说明：
+
+---
+
+#### **1. 物理层（Physical Layer）**
+- **功能**：负责在物理介质上传输原始比特流（0 和 1）。
+- **协议**：以太网、光纤、电缆等。
+- **设备**：网线、集线器（Hub）、中继器（Repeater）。
+
+---
+
+#### **2. 数据链路层（Data Link Layer）**
+- **功能**：将比特流组织成帧（Frame），并提供物理地址（MAC 地址）寻址和错误检测。
+- **协议**：以太网（Ethernet）、Wi-Fi（802.11）、PPP（点对点协议）。
+- **设备**：交换机（Switch）、网桥（Bridge）。
+
+---
+
+#### **3. 网络层（Network Layer）**
+- **功能**：负责数据包的路由和转发，实现不同网络之间的通信。
+- **协议**：IP（Internet Protocol）、ICMP（Internet Control Message Protocol）、ARP（Address Resolution Protocol）。
+- **设备**：路由器（Router）。
+
+---
+
+#### **4. 传输层（Transport Layer）**
+- **功能**：提供端到端的可靠数据传输，负责流量控制、错误恢复和数据分段。
+- **协议**：TCP（Transmission Control Protocol）、UDP（User Datagram Protocol）。
+- **设备**：无特定设备，由操作系统实现。
+
+---
+
+#### **5. 会话层（Session Layer）**
+- **功能**：管理应用程序之间的会话（Session），负责建立、维护和终止会话。
+- **协议**：RPC（Remote Procedure Call）、NetBIOS。
+- **设备**：无特定设备，由应用程序实现。
+
+---
+
+#### **6. 表示层（Presentation Layer）**
+- **功能**：负责数据的格式化、加密、解密和压缩，确保数据能够被接收方正确解析。
+- **协议**：SSL/TLS（加密）、JPEG（图像压缩）、ASCII（字符编码）。
+- **设备**：无特定设备，由应用程序实现。
+
+---
+
+#### **7. 应用层（Application Layer）**
+- **功能**：为应用程序提供网络服务接口，直接与用户交互。
+- **协议**：HTTP（Web）、FTP（文件传输）、SMTP（电子邮件）、DNS（域名解析）。
+- **设备**：无特定设备，由应用程序实现。
+
+---
+
+### **七层模型的总结**
+
+| **层数** | **名称**       | **功能**                                   | **协议示例**                     | **设备示例**         |
+|----------|----------------|--------------------------------------------|----------------------------------|----------------------|
+| 1        | 物理层         | 传输原始比特流                             | 以太网、光纤                     | 网线、集线器         |
+| 2        | 数据链路层     | 组织帧、MAC 地址寻址、错误检测             | 以太网、Wi-Fi、PPP               | 交换机、网桥         |
+| 3        | 网络层         | 数据包路由、转发                           | IP、ICMP、ARP                    | 路由器               |
+| 4        | 传输层         | 端到端可靠传输、流量控制、错误恢复         | TCP、UDP                         | 无                   |
+| 5        | 会话层         | 管理应用程序会话                           | RPC、NetBIOS                     | 无                   |
+| 6        | 表示层         | 数据格式化、加密、解密、压缩               | SSL/TLS、JPEG、ASCII             | 无                   |
+| 7        | 应用层         | 提供网络服务接口                           | HTTP、FTP、SMTP、DNS             | 无                   |
+
+---
+
+### **实际应用中的简化模型（TCP/IP 模型）**
+在实际应用中，通常使用 TCP/IP 模型，它将 OSI 模型的七层简化为四层：
+1. **网络接口层**（对应 OSI 的物理层和数据链路层）。
+2. **网络层**（对应 OSI 的网络层）。
+3. **传输层**（对应 OSI 的传输层）。
+4. **应用层**（对应 OSI 的会话层、表示层和应用层）。
+
+--
+
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/http-modal.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/http-modal.png
 
 ## 三次握手，HTTPS 握手过程中，客户端如何验证证书的合法性
@@ -2708,7 +3488,7 @@ https://blog.csdn.net/qq_39057033/article/details/91361464
 2. 【 你好，我小 B 收到了，你可以开始连接了，我把我的认证报文给你，里面有公钥 key-pub【公钥私钥是非对称算法】和证书】web
    服务器收到客户端请求后, 会将网站的证书(包含公钥)传送一份给客户端
 3. 【 好，我确认了证书了，没问题，我先用对称加密算法生成我的关键会话秘钥 key1，然后用你给我的公钥 key-pub 进行加密生成
-   hash 发给你】客户端收到网站证书后会检查证书的颁发机构以及过期时间, 如果没有问题就随机产生一个秘钥，利用公钥将会话秘钥
+   hash 发给你】客户端收到网站证书后会使用公钥检查证书的颁发机构以及过期时间, 如果没有问题就随机产生一个秘钥，利用公钥将会话秘钥
    加密, 并传送给服务端
 4. 【服务器用私钥解密那个发送过来的随机串，如果能解密成功就代表成功，之后用秘钥串 key1 通信】服务端利用自己的私钥解密出
    会话秘钥，之后服务器与客户端使用秘钥加密传输
@@ -2738,7 +3518,7 @@ https://blog.csdn.net/qq_39057033/article/details/91361464
 5. 服务端收到后，用 s 可以解出来，从而代表这个 key 是合法的，所以开启通道，用 key 进行通信
 6. 攻击者得逞，因为它拿到 key 了，可以为所欲为了
 
-## http1,http1.1,http2,http1/2,http3，
+## 杰http1,http1.1,http2,http1/2,http3，
 
 TLS: 一种安全协议，TLS 保护的 http 通信叫做 https
 
@@ -2779,7 +3559,17 @@ HTTP 1.0 的性能问题。比如请求头增加 host 字段标志来源，这�
 > 同阶段的叫法，用来解决 http 明文传出问题 SSL 直接在传输控制协议 (TCP) 基础上高效运行 TLS 与 SSL 在传输层与应用层之间对
 > 网络连接进行加密
 
-## 网络安全，网络攻击，网络防御
+## 杰网络攻击，网络安全，网络攻击，网络防御
+
+DDoS 攻击	流量清洗、限流、高防服务器
+SQL 注入	参数化查询、输入验证、最小权限原则
+XSS 攻击	输入输出过滤、CSP、HttpOnly Cookie
+CSRF 攻击	CSRF Token、SameSite Cookie、验证 Referer
+中间人攻击	HTTPS、证书校验、HSTS
+钓鱼攻击	用户教育、域名验证、多因素认证
+暴力破解	强密码策略、登录限制、双因素认证
+零日漏洞攻击	及时更新、入侵检测系统、最小化攻击面
+社会工程学攻击	安全意识培训、验证身份、信息保护
 
 1. xss 攻击
 
@@ -11679,3 +12469,9 @@ function convert(data = "a_b_c") {
 }
 convert();
 ```
+
+## 亮点
+- 流式渲染 ， createCacheStream， renderToNodeStream
+- 懒加载，视图内加载 IntersectionObserver
+- oclif开发脚手架
+- 开发UI库以及babel按需加载插件
