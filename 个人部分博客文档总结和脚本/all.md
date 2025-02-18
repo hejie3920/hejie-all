@@ -1,5 +1,473 @@
 # 基础
 
+
+## 亮点
+
+项目上
+- 低代码编辑器，处理多人协同，时间仓，语法树，selecto，页面渲染器，流式渲染，可视区渲染，分时分片，懒加载，xtpl模板引擎，包含弹幕组件，抽奖组件
+- 数据可视化，echarts，爬虫解析，埋点监控，echarts进行分片渲染largeThresholud，渐进渲染progressive，包含小程序商城各种商城
+- 传输：分片，断点，切片啥的
+- 管线节点编辑器【react flow + zustand，customNode自定义节点，addNode动态添加节点，Handle负责控制输入输出端口和规则】，低代码转小程序平台，也有各种丰富的组件，涂鸦，对比，全景，运动轨迹，复杂联动之类，AI创作平台，一开始用的stable diffusion后面升级复刻,复刻即梦，Mj【双向滑动列表】，可灵之类，生图/视频【FFmpeg】/3d[threeJs]/音频生成平台还有编辑平台[openArt]，也是比较大型复杂的，可以涂鸦重绘扩图，智能切割，对象识别【智能切割为二维点阵数组】之类，镜头控制等，此外还有创收的Psd编辑器
+- 自动训练管线平台
+- 360可视化插件，弹幕，角子老虎机，水印啥的
+- 客户端上云，操作文件夹，File System Access API，存储文件夹句柄，
+```js
+getDirectoryHandle，
+createWritable，
+if ('showDirectoryPicker' in window) {
+  // 支持现代API
+} else {
+  // 降级方案
+  alert('请使用最新版Chrome/Edge浏览器');
+}
+// 文件夹操作耗时监控
+const observer = new PerformanceObserver((list) => {
+  list.getEntries().forEach(entry => {
+    if (entry.initiatorType === 'filesystem') {
+      console.log(`文件操作耗时: ${entry.duration}ms`);
+    }
+  });
+});
+observer.observe({ entryTypes: ['resource'] });
+
+用户隐私保护：所有文件操作必须经过用户明确授权
+数据持久化：重要数据需自行实现备份机制
+性能优化：大文件操作建议使用流式处理
+错误恢复：实现操作日志和撤销/重做功能
+
+大文件流式写入：
+async function writeLargeFile(dirHandle, filename, contentStream) {
+  const fileHandle = await dirHandle.getFileHandle(filename, { create: true });
+  const writable = await fileHandle.createWritable();
+  
+  const reader = contentStream.getReader();
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    await writable.write(value);
+  }
+  
+  await writable.close();
+}
+
+
+```
+- SDK，  Error
+  EvalError
+  RangeError
+  ReferenceError
+  SyntaxError（语法错误）
+  TypeError
+  URIError
+
+1. trycath 只能抓同步的运行时错误，语法错误抓不了，异步请求错误也抓不了，比如 setTimeout 里面的错误抓不了
+2. Promise.catch()抓异步错误，所以改写 Promise.catch 可以进行错误上报，但 promise.catch 同样抓不了语法错误和异步任务
+3. unhandledrejection unhandledrejection：当 Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事件
+4. Iframe,onerror,
+5. 跨端脚本，对 script 标签增加一个 crossorigin=”anonymous”
+6. sourceMap 定位错误文件
+
+-   webpack 插件，压缩图片【 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tiny 发起请求，下载图片后直接上传到 oss 后再删除
+】，babel，自定义组件库按需加载 babel-import-node，
+以前webpack优化开启可以直接加 **cacheDirectory** 缓存下来
+-   多核多线程：**threadLoader 和 happypack**，
+  
+基建上：
+- oclif开发脚手架，组件库配置按需加载，rush monorepo, CI、CD打包部署优化
+- 各种处理打包的loader插件和plugin插件，require.context自动引入组件
+  
+代码编程上: 
+- 时序上，资源上，感观体验上，代码上，懒加载，按需加载，提高请求优先级，Transform之类开启硬件加速
+- 
+
+## 杰多人协同
+- 快速上线：选 Liveblocks，2小时即可完成集成 【逻辑上最后一次写入的有效】
+【Presence API：实时用户状态（光标位置等）
+Storage API：文档数据存储（JSON/CRDT）
+Broadcast API：自定义事件推送
+History API：操作历史管理】 
+原理： A发送操作 到LiveBlocks Server ，LS转化为操作，再广播给其他用户，其他用户收到后，应用A的变更后合并后返回给LS，Ls返回合并后的状态给A
+离线时可以先把操作包放到indexDB里面
+
+createClient进入同一个房间，
+时间仓：
+```js
+// 回退到历史版本
+room.history.seek(timestamp, {
+  onUpdate: (snapshot) => {
+    documentView.render(snapshot);
+  }
+});
+
+```
+
+- 隐私优先：选 Yjs + WebRTC，数据完全P2P传输   【CRDT去中心化，最终一致，适合离线优先应用】
+
+- 大规模应用：选 ShareDB + OT，支持万人级别协同 【OT，需要中心服务器当裁判，适合小规模实时协作】
+- 已有云服务：直接使用 Firebase 实时数据库
+
+### 杰Yjs
+  原理：
+Y.Text	富文本编辑	insert(), delete()	维护文本顺序和格式
+Y.Array	列表型数据（评论、待办）	push(), unshift()	保持元素顺序
+Y.Map	键值元数据	set(), get()	快速键值访问
+Y.Xml	结构化文档	createElement()	XML格式数据支持
+Y.Number	数值类型	add(), subtract()	自动合并数值修改
+
+
+需要解释Yjs的核心数据结构，如Y.Doc、Y.Text、Y.Array、Y.Map，以及它们各自的适用场景。例如，Y.Text适用于富文本编辑，而Y.Array适合列表类型的结构。新增的数据应根据类型选择合适的数据结构存储。
+
+然后，具体实现步骤可能需要代码示例，比如如何初始化Y.Doc，如何通过WebRTC同步数据，如何绑定到编辑器界面。同时，要强调WebRTC的使用需要处理信令服务器，但Y-WebRTC可能简化了这一过程。
+
+存储方面，需要注意Yjs的数据结构是共享的，所有操作都会自动同步到其他客户端。新增的数据应该直接通过Yjs的数据结构进行操作，比如使用insert来添加内容，而不是传统的数组push，因为CRDT需要确保操作的顺序和合并正确。
+
+可能还需要提到离线支持，Yjs允许离线编辑，并在重新连接时自动同步。数据持久化方面，可能需要将Yjs的状态保存到数据库，并在加载时恢复。
+
+用户可能关心性能问题，比如大量数据时的处理，或者如何优化同步效率。需要说明Yjs的数据结构经过优化，适合实时协同，而WebRTC的点对点传输减少了服务器负担。
+
+最后，要总结步骤，明确存储新增数据的方法，确保用户理解如何选择正确的Yjs数据结构和操作方式。同时，提醒潜在的注意事项，比如信令服务器的设置、数据持久化的处理，以及如何处理可能出现的网络问题。
+
+
+在使用 **Yjs + WebRTC** 实现多人协同文档编辑时，数据存储和同步机制是其核心。以下是详细实现方案和新增数据的存储形式：
+
+---
+
+### 一、技术架构原理
+```mermaid
+graph TD
+    A[客户端A] -->|WebRTC直连| B[客户端B]
+    A -->|WebRTC直连| C[客户端C]
+    B -->|WebRTC直连| C
+    D[信令服务器] -->|协调连接| A
+    D -->|协调连接| B
+    D -->|协调连接| C
+```
+
+#### 核心组件：
+- **Y.Doc**: 协同文档的CRDT数据结构容器
+- **Y.Text**: 处理富文本协同的专业类型
+- **WebRTC Provider**: 实现P2P数据同步
+- **CRDT算法**: 自动解决操作冲突
+
+---
+
+### 二、新增数据的存储形式
+#### 1. **文本内容** - 使用 `Y.Text`
+```javascript
+import { Y } from 'yjs';
+
+// 创建文本类型
+const ydoc = new Y.Doc();
+const ytext = ydoc.getText('content');
+
+// 插入新内容（自动同步）
+ytext.insert(0, 'Hello World'); 
+
+// 监听修改
+ytext.observe(event => {
+  event.delta.forEach(op => {
+    if (op.insert) {
+      console.log('新增文本:', op.insert);
+    }
+  });
+});
+```
+
+#### 2. **结构化数据** - 使用 `Y.Array`
+```javascript
+const yarray = ydoc.getArray('comments');
+
+// 新增评论
+yarray.push([{ 
+  id: Date.now(),
+  author: 'user1',
+  content: '这是新评论'
+}]);
+
+// 查询数据
+console.log(yarray.toJSON()); 
+// 输出: [{id: 1629..., author: 'user1', content: '...'}]
+```
+
+#### 3. **键值对数据** - 使用 `Y.Map`
+```javascript
+const ymap = ydoc.getMap('metadata');
+
+// 新增元数据
+ymap.set('version', '1.0.0');
+ymap.set('lastModified', Date.now());
+
+// 获取数据
+console.log(ymap.get('version')); // 输出: 1.0.0
+```
+
+---
+
+### 三、完整实现流程
+
+#### 步骤1：初始化协同文档
+```javascript
+import * as Y from 'yjs';
+import { WebrtcProvider } from 'y-webrtc';
+
+// 创建文档实例
+const ydoc = new Y.Doc();
+
+// 连接WebRTC Provider
+const provider = new WebrtcProvider('my-room', ydoc, {
+  password: 'room-password',  // 房间密码
+  signaling: ['wss://yjs-signal.example.com'] // 信令服务器
+});
+```
+
+#### 步骤2：绑定UI编辑器
+```javascript
+import { MonacoBinding } from 'y-monaco';
+import * as monaco from 'monaco-editor';
+
+// 创建Monaco编辑器
+const editor = monaco.editor.create(document.getElementById('editor'), {
+  value: '',
+  language: 'plaintext'
+});
+
+// 绑定Yjs文本类型
+const ytext = ydoc.getText('content');
+new MonacoBinding(
+  ytext,
+  editor.getModel(),
+  new Set([editor]),
+  provider.awareness
+);
+```
+
+#### 步骤3：数据同步流程
+```mermaid
+sequenceDiagram
+    participant ClientA
+    participant ClientB
+    participant SignalServer
+
+    ClientA->>SignalServer: 请求加入房间
+    SignalServer->>ClientB: 通知新成员加入
+    ClientB->>ClientA: 发送WebRTC连接请求
+    ClientA->>ClientB: 建立P2P连接
+    ClientA->>ClientB: 发送Yjs文档更新
+    ClientB->>ClientA: 确认更新并合并
+```
+
+---
+
+### 四、数据类型选择指南
+| 数据类型       | 适用场景                 | 示例操作                | 存储特点               |
+|----------------|--------------------------|-------------------------|-----------------------|
+| **Y.Text**     | 富文本编辑               | `insert()`, `delete()`  | 维护文本顺序和格式    |
+| **Y.Array**    | 列表型数据（评论、待办） | `push()`, `unshift()`   | 保持元素顺序          |
+| **Y.Map**      | 键值元数据               | `set()`, `get()`        | 快速键值访问          |
+| **Y.Xml**      | 结构化文档               | `createElement()`       | XML格式数据支持       |
+| **Y.Number**   | 数值类型                 | `add()`, `subtract()`   | 自动合并数值修改      |
+
+---
+
+### 五、冲突处理机制
+#### 1. 插入冲突解决
+```javascript
+// 客户端A在位置0插入"A"
+ytext.insert(0, 'A'); 
+
+// 客户端B在位置0插入"B"
+ytext.insert(0, 'B');
+
+// 最终结果: "BA" (基于向量时钟排序)
+```
+
+#### 2. 属性冲突解决
+```javascript
+const ymap = ydoc.getMap('config');
+
+// 客户端A设置
+ymap.set('theme', 'dark');
+
+// 客户端B设置 
+ymap.set('theme', 'light');
+
+// 最终结果: 最后一次有效设置
+```
+
+---
+
+### 六、性能优化策略
+#### 1. 数据分片存储
+```javascript
+// 按章节分片
+const chapters = ydoc.getMap('chapters');
+chapters.set('chap1', new Y.Text());
+chapters.set('chap2', new Y.Text());
+
+// 独立同步不同分片
+provider.setSyncedHandler((encodedState, origin) => {
+  if (origin !== 'chap1') return;
+  // 处理指定分片同步
+});
+```
+
+#### 2. 操作批处理
+```javascript
+ydoc.transact(() => {
+  ytext.insert(0, 'Hello');
+  ytext.insert(5, ' World');
+  ymap.set('version', 2.0);
+});
+```
+
+#### 3. 二进制编码优化
+```javascript
+// 使用Uint8Array传输
+const encoder = new encoding.createEncoder();
+encoding.writeVarUint(encoder, ytext.length);
+provider.send(encoding.toUint8Array(encoder));
+```
+
+---
+
+### 七、数据持久化方案
+#### 1. 浏览器端存储
+```javascript
+// 保存到IndexedDB
+const updateHandler = update => {
+  indexedDB.put('yjs-data', update);
+};
+ydoc.on('update', updateHandler);
+
+// 恢复数据
+const savedUpdate = await indexedDB.get('yjs-data');
+Y.applyUpdate(ydoc, savedUpdate);
+```
+
+#### 2. 服务端持久化
+```javascript
+import { LeveldbPersistence } from 'y-leveldb';
+
+// 服务端存储
+const persistence = new LeveldbPersistence('./db', 'my-room');
+
+// 保存文档
+persistence.storeUpdate(ydoc, update);
+
+// 加载文档
+const savedState = await persistence.getStateVector('my-room');
+const update = await persistence.getDiff('my-room', savedState);
+Y.applyUpdate(ydoc, update);
+```
+
+---
+
+### 八、安全防护措施
+#### 1. 数据加密传输
+```javascript
+const provider = new WebrtcProvider('my-room', ydoc, {
+  password: 'secret',
+  signalingEncryption: true,  // 启用信令加密
+  crypto: new Y.encryption.AesGcmCrypto() // AES-GCM加密
+});
+```
+
+#### 2. 权限控制
+```javascript
+provider.awareness.setLocalState({
+  user: 'alice',
+  permissions: {
+    edit: true,
+    comment: false
+  }
+});
+
+provider.awareness.on('change', changes => {
+  // 检查其他用户的权限
+  const states = provider.awareness.getStates();
+  states.forEach(state => {
+    if (!state.permissions.edit) {
+      disableEditingForUser(state.user);
+    }
+  });
+});
+```
+
+---
+
+### 九、完整示例代码
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/yjs@latest/yjs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/y-webrtc@latest/dist/y-webrtc.js"></script>
+</head>
+<body>
+  <textarea id="editor"></textarea>
+
+  <script>
+    const ydoc = new Y.Doc();
+    const provider = new Y.WebrtcProvider('demo-room', ydoc);
+    const ytext = ydoc.getText('content');
+    
+    // 绑定textarea
+    const editor = document.getElementById('editor');
+    ytext.observe(event => {
+      editor.value = ytext.toString();
+    });
+    
+    editor.addEventListener('input', () => {
+      ytext.delete(0, ytext.length);  // 先清空
+      ytext.insert(0, editor.value);  // 插入新内容
+    });
+  </script>
+</body>
+</html>
+```
+
+---
+
+### 十、常见问题解决
+#### 1. **数据不同步问题**
+- 检查信令服务器连接状态
+- 验证WebRTC穿透是否成功
+```javascript
+provider.on('status', event => {
+  console.log('连接状态:', event.status); // connected/disconnected
+});
+```
+
+#### 2. **大文档性能优化**
+- 使用分页加载 (`y-pagination`)
+- 启用增量同步 (`provider.enableIncrementalSync = true`)
+
+#### 3. **离线恢复策略**
+```javascript
+// 保存最后同步状态
+const lastSyncedState = Y.encodeStateAsUpdate(ydoc);
+localStorage.setItem('lastState', lastSyncedState);
+
+// 恢复时合并变更
+const savedState = localStorage.getItem('lastState');
+const newState = Y.encodeStateAsUpdate(ydoc);
+const mergedUpdate = Y.mergeUpdates([savedState, newState]);
+Y.applyUpdate(ydoc, mergedUpdate);
+```
+
+---
+
+通过以上方案，Yjs + WebRTC 可实现：
+1. **去中心化协同**：无需中央服务器
+2. **自动冲突解决**：基于CRDT算法
+3. **低延迟传输**：P2P直连架构
+4. **离线编辑支持**：本地存储自动合并
+5. **灵活数据模型**：支持多种数据结构
+
+新增数据的存储应根据具体场景选择 `Y.Text`、`Y.Array` 或 `Y.Map`，通过标准的API操作数据，所有变更会自动同步到其他客户端。
+
+
+
 ## 代码
 
 - 杰深拷贝
@@ -13132,3 +13600,474 @@ convert();
 - 懒加载，视图内加载 IntersectionObserver
 - oclif开发脚手架
 - 开发UI库以及babel按需加载插件
+
+## 杰在线文档编辑器
+
+### 架构方案设计
+
+#### 1. 技术栈选择
+```
+Vue3 + TypeScript + Vite + Pinia + Tiptap/Yjs + IndexedDB + 
+```
+
+#### 2. 核心架构模块
+```markdown
+### 架构图
+前端
+├── 编辑器核心 (Tiptap/ProseMirror)
+├── 实时协作层 (Yjs/WebSocket)
+├── 状态管理 (Pinia)
+├── 数据持久化 (CRDT + IndexedDB)
+└── 用户系统 (Firebase Auth/Auth0)
+```
+
+### 具体实现方案
+
+#### 3. 模块分解
+```markdown
+### 3.1 编辑器核心
+使用 **Tiptap**（基于 ProseMirror 的 Vue 封装）：
+- 支持 Markdown 快捷输入
+- 多光标协作
+- 版本历史（类似 Notion）
+
+### 3.2 实时协作
+采用 **Yjs CRDT** 协议栈：
+- `y-websocket` 实现实时同步
+- `y-indexeddb` 离线缓存
+- 与 Tiptap 集成：`@tiptap/extension-collaboration`
+
+### 3.3 状态管理
+Pinia 模块划分：
+```js
+// store/document.js
+export const useDocumentStore = defineStore('document', {
+  state: () => ({
+    content: {},
+    collaborators: new Map(), // 实时协作用户
+    revisionHistory: []
+  }),
+  actions: {
+    async loadFromIndexedDB() { /*...*/ }
+  }
+})
+```
+
+#### 4. 数据流设计
+```mermaid
+graph TD
+  A[用户操作] --> B(Tiptap Editor)
+  B --> C[Yjs CRDT]
+  C --> D[WebSocket 广播]
+  C --> E[IndexedDB 持久化]
+  D --> F[其他客户端]
+```
+
+### 代码实现示例
+
+#### 简洁版初始化代码
+```vue
+<script setup>
+// 编辑器初始化
+import { Editor } from '@tiptap/vue-3'
+import { Collaboration } from '@tiptap/extension-collaboration'
+import { WebsocketProvider } from 'y-websocket'
+
+const provider = new WebsocketProvider('wss://your-websocket-server', 'room1', ydoc)
+const editor = new Editor({
+  extensions: [
+    Collaboration.configure({ document: ydoc })
+  ]
+})
+</script>
+
+<template>
+  <editor-content :editor="editor" />
+</template>
+```
+
+#### 注释详解版
+```vue
+<script setup>
+// 1. 引入依赖
+import { Editor } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
+import { Collaboration } from '@tiptap/extension-collaboration'
+import { WebsocketProvider } from 'y-websocket'
+import * as Y from 'yjs'
+
+// 2. 创建共享文档实例
+const ydoc = new Y.Doc()
+
+// 3. 建立WebSocket连接（生产环境需加密处理）
+const provider = new WebsocketProvider(
+  'wss://doc.yourdomain.com', // WebSocket服务器地址
+  'document-room-123',         // 文档唯一房间ID
+  ydoc                        // Yjs文档实例
+)
+
+// 4. 初始化编辑器
+const editor = new Editor({
+  extensions: [
+    StarterKit,
+    Collaboration.configure({
+      document: ydoc,        // 绑定共享文档
+      field: 'content'       // 文档存储字段名
+    })
+  ],
+  content: '<p>Start editing...</p>'
+})
+
+// 5. 清理资源
+onBeforeUnmount(() => {
+  editor.destroy()
+  provider.destroy()
+})
+</script>
+```
+
+#### 性能优化方案
+```markdown
+1. **增量更新**：Yjs 的 CRDT 算法实现 O(1) 复杂度变更传播
+2. **节流策略**：本地操作立即响应，网络同步设置 200ms 缓冲
+3. **内存优化**：超过 100KB 的图片自动转存对象存储
+4. **加载策略**：分块加载文档内容，首屏仅加载可视区域
+```
+
+#### 扩展建议
+```markdown
+1. **插件系统**：参考 Monaco Editor 的插件机制
+2. **移动端优化**：添加 touch 事件处理和虚拟滚动
+3. **SSR 支持**：使用 Nuxt3 实现服务端初始加载
+4. **离线模式**：Service Worker + IndexedDB 实现离线编辑
+```
+
+### 推荐技术栈版本
+```json
+{
+  "vue": "^3.3.4",
+  "pinia": "^2.1.7",
+  "yjs": "^13.6.4",
+  "tiptap": "^2.0.0-beta.200",
+  "idb": "^8.0.0"
+}
+```
+
+此方案已在开源项目 [HedgeDoc](https://hedgedoc.org/) 和 [Lotion](https://lotionjs.com/) 中验证，建议开发时：
+1. 优先实现 CRDT 数据同步层
+2. 使用 Yjs 的 UndoManager 实现历史版本
+3. 通过 CSS Containment 优化大文档渲染性能
+
+
+### IndexedDB核心作用
+IndexedDB是浏览器内置的NoSQL数据库，用于：
+1. **离线存储**：断网时继续编辑（自动同步上线后）
+2. **大容量存储**：支持GB级文档数据（相比localStorage的5MB限制）
+3. **事务支持**：保证协作编辑的原子性操作
+4. **二进制存储**：直接保存文档版本差异数据
+
+### 在文档编辑器中的具体应用
+
+#### 1. 基础使用模式
+```js
+// 简洁版（配合Yjs）
+import { IndexeddbPersistence } from 'y-indexeddb'
+
+const ydoc = new Y.Doc()
+const provider = new IndexeddbPersistence('my-document', ydoc)
+
+provider.on('synced', () => {
+  console.log('数据已加载到内存')
+})
+```
+
+#### 2. 核心操作详解
+```javascript
+// 注释详解版
+// 1. 打开数据库连接
+const openDB = () => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('DocDB', 3) // 数据库名 + 版本号
+    
+    request.onsuccess = (e) => {
+      const db = e.target.result
+      resolve(db)
+    }
+
+    request.onupgradeneeded = (e) => {
+      const db = e.target.result
+      if (!db.objectStoreNames.contains('documents')) {
+        // 创建文档存储空间
+        const store = db.createObjectStore('documents', {
+          keyPath: 'id',
+          autoIncrement: false
+        })
+        // 创建索引便于搜索
+        store.createIndex('lastModified', 'lastModified', { unique: false })
+      }
+    }
+  })
+}
+
+// 2. 保存文档变更
+const saveDocument = async (docId, content) => {
+  const db = await openDB()
+  const tx = db.transaction('documents', 'readwrite')
+  const store = tx.objectStore('documents')
+  
+  store.put({
+    id: docId,
+    content: content,
+    lastModified: Date.now()
+  })
+
+  return new Promise(resolve => {
+    tx.oncomplete = () => resolve()
+  })
+}
+
+// 3. 与Yjs集成（自动同步）
+const ydoc = new Y.Doc()
+new IndexeddbPersistence('document-123', ydoc).on('synced', () => {
+  console.log('离线数据已加载完毕')
+})
+```
+
+### 性能优化技巧
+```markdown
+1. **批量写入**：累积10次操作后批量提交（减少IO次数）
+2. **二进制编码**：将CRDT数据转为Uint8Array存储（体积减少40%）
+3. **LRU缓存**：最近使用的文档保持在内存中
+4. **增量快照**：每5分钟保存完整副本，期间只存差异
+```
+
+### 对比其他存储方案
+| 方案          | 容量上限   | 数据类型       | 同步延迟 | 适用场景           |
+|---------------|------------|----------------|----------|--------------------|
+| IndexedDB     | 50%磁盘空间| 结构化/二进制  | 异步     | 文档核心数据       |
+| localStorage  | 5MB        | 字符串         | 同步     | 用户设置           |
+| SessionStorage| 5MB        | 字符串         | 同步     | 临时编辑缓存       |
+| ServiceWorker | 动态       | 请求/响应      | 异步     | 静态资源缓存       |
+
+### 实际应用场景示例
+```javascript
+// 在Vue组件中的典型用法
+export default {
+  async mounted() {
+    // 加载离线数据
+    const cached = await this.getDocumentFromDB(this.docId)
+    if (cached) {
+      this.editor.commands.setContent(cached.content)
+    }
+    
+    // 自动保存逻辑
+    this.editor.on('update', ({ transaction }) => {
+      debounceSave(() => {
+        this.saveToDB(this.docId, this.editor.getJSON())
+      }, 500)
+    })
+  },
+  methods: {
+    async getDocumentFromDB(id) {
+      const db = await openDB()
+      return new Promise(resolve => {
+        const tx = db.transaction('documents')
+        const store = tx.objectStore('documents')
+        const request = store.get(id)
+        request.onsuccess = () => resolve(request.result)
+      })
+    }
+  }
+}
+```
+
+### 注意事项
+1. **版本迁移**：修改数据库结构时需在`onupgradeneeded`处理旧数据
+2. **内存泄漏**：页面关闭时需要手动关闭数据库连接
+3. **加密存储**：敏感内容需用`crypto.subtle`加密后存储
+4. **容量限制**：Safari移动版限制为50MB，需做容量检测
+```javascript
+// 容量检测示例
+navigator.storage.estimate().then(estimate => {
+  console.log(`可用空间：${estimate.quota - estimate.usage} bytes`)
+})
+```
+
+## 杰在线文档编辑器react
+### 在线文档编辑器开发思路与架构设计
+
+---
+
+#### **一、核心功能参考（对标成功项目）**
+- **Google Docs**: 实时协作、版本历史、评论系统
+- **Notion**: 块级编辑、多模态内容（表格/代码/嵌入）、模板系统
+- **Quip**: 轻量化协作、移动端优化
+- **Figma**: 实时光标同步、高性能渲染
+
+---
+
+### **二、技术选型与第三方库推荐**
+以下为经过验证的高质量开源方案，可大幅降低开发成本：
+
+#### **1. 核心编辑器**
+| 模块              | 推荐方案                                                                 | 优势                                                                 |
+|--------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------|
+| **富文本引擎**     | [ProseMirror](https://prosemirror.net/) 或 [Slate.js](https://docs.slatejs.org/) | 支持复杂文档结构、插件化扩展、OT协同兼容                             |
+| **公式编辑**       | [MathLive](https://mathlive.io/)                                         | 支持LaTeX实时渲染、语音输入、无障碍访问                              |
+| **表格系统**       | [Handsontable](https://handsontable.com/)                                | Excel级表格功能、大数据量优化                                        |
+| **代码块**         | [Monaco Editor](https://microsoft.github.io/monaco-editor/)              | VS Code同款引擎，支持100+语言高亮                                    |
+
+#### **2. 实时协作**
+| 模块              | 推荐方案                                                                 |
+|--------------------|--------------------------------------------------------------------------|
+| **协同算法**       | [ShareDB](https://github.com/share/sharedb) (OT算法) 或 [Yjs](https://docs.yjs.dev/) (CRDT算法) |
+| **实时通信**       | [Socket.IO](https://socket.io/) 或 [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) |
+| **冲突解决**       | 自动合并 + 用户操作历史回溯                                              |
+
+#### **3. 辅助系统**
+| 模块              | 推荐方案                                                                 |
+|--------------------|--------------------------------------------------------------------------|
+| **版本控制**       | GitLab式分支管理 或 [Differential Synchronization](https://neil.fraser.name/writing/sync/) |
+| **评论系统**       | 锚点评论 + @提醒功能                                                     |
+| **导出系统**       | [Pandoc](https://pandoc.org/) (支持Markdown/PDF/Word等格式转换)          |
+| **OCR识别**        | [Tesseract.js](https://tesseract.projectnaptha.com/)                     |
+
+---
+
+### **三、架构设计图**
+
+```mermaid
+graph TD
+    A[前端] -->|WebSocket| B[实时协作服务]
+    A -->|REST API| C[业务后端]
+    B --> D[(协作数据库)]
+    C --> E[(主数据库)]
+    C --> F[对象存储]
+    C --> G[版本控制系统]
+    C --> H[第三方服务]
+
+    subgraph 前端架构
+        A1[编辑器核心] --> A2[协同模块]
+        A1 --> A3[插件系统]
+        A2 -->|OT/CRDT| B
+        A3 --> A4[公式/表格/代码插件]
+    end
+
+    subgraph 后端架构
+        C1[API路由] --> C2[文档管理]
+        C2 --> C3[权限验证]
+        C2 --> C4[版本管理]
+        C2 --> C5[Webhook处理]
+    end
+```
+
+---
+
+### **四、关键开发步骤**
+
+#### **1. 基础编辑器搭建**
+```javascript
+// 使用ProseMirror构建核心编辑器
+import { EditorState } from "prosemirror-state";
+import { EditorView } from "prosemirror-view";
+import { schema } from "prosemirror-schema-basic";
+
+const state = EditorState.create({ schema });
+const view = new EditorView(document.querySelector("#editor"), { state });
+```
+
+#### **2. 实现实时协作（Yjs示例）**
+```javascript
+// 前端协同逻辑
+import * as Y from 'yjs';
+import { WebsocketProvider } from 'y-websocket';
+
+const doc = new Y.Doc();
+const provider = new WebsocketProvider(
+  'wss://your-collab-server.com',
+  'room-name',
+  doc
+);
+
+// 绑定ProseMirror与Yjs
+const yXmlFragment = doc.getXmlFragment('prosemirror');
+const binding = new ProsemirrorBinding(yXmlFragment, view);
+```
+
+#### **3. 版本控制系统设计**
+```python
+# 后端版本存储设计（示例伪代码）
+class DocumentVersion:
+    id: UUID
+    content: JSON  # 结构化文档数据
+    timestamp: DateTime
+    author: User
+    changeset: List[Operation]  # 操作记录
+
+    def rollback(self, target_version):
+        # 应用反向操作实现回滚
+        pass
+```
+
+#### **4. 性能优化策略**
+- **文档分块加载**：将大文档拆分为Chunk，按需加载
+- **操作压缩**：合并高频细粒度操作（如连续输入字符）
+- **前端缓存**：使用IndexedDB存储最近访问文档
+- **Web Worker**：复杂计算（如语法检查）放入后台线程
+
+---
+
+### **五、安全与权限设计**
+1. **权限粒度控制**：
+   ```javascript
+   // 基于RBAC的权限验证
+   enum Permission {
+     READ = 1 << 0,
+     WRITE = 1 << 1,
+     COMMENT = 1 << 2,
+     MANAGE = 1 << 3
+   }
+   ```
+2. **数据安全**：
+   - 文档内容加密存储（AES-256）
+   - 传输层使用WSS+SSL/TLS 1.3
+   - 敏感操作二次验证
+
+3. **防攻击措施**：
+   - 操作频率限制（如每分钟最大1000次编辑）
+   - XSS过滤（DOMPurify集成）
+   - 内容沙箱（隔离第三方嵌入内容）
+
+---
+
+### **六、推荐扩展方向**
+1. **AI集成**：
+   - GPT-3自动续写
+   - 智能语法纠错
+   - 文档摘要生成
+
+2. **企业级功能**：
+   - 水印系统
+   - 审计日志
+   - 合规性检查
+
+3. **开发者生态**：
+   - 插件市场
+   - API开放平台
+   - Webhook支持
+
+---
+
+### **七、基础设施建议**
+| 服务类型       | 推荐方案                           |
+|----------------|------------------------------------|
+| **部署架构**   | Kubernetes + Docker 微服务化部署  |
+| **数据库**     | PostgreSQL (关系型) + MongoDB (文档型) |
+| **存储**       | AWS S3/MinIO 对象存储             |
+| **监控**       | Prometheus + Grafana              |
+| **CI/CD**      | GitHub Actions + ArgoCD           |
+
+---
+
+通过以上架构和选型方案，可快速搭建一个高性能、易扩展的现代在线文档编辑器。建议优先实现核心编辑与协同功能，再逐步迭代高级特性。
+
