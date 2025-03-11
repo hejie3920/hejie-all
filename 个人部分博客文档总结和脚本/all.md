@@ -106,6 +106,61 @@ room.history.seek(timestamp, {
 - 大规模应用：选 ShareDB + OT，支持万人级别协同 【OT，需要中心服务器当裁判，适合小规模实时协作】
 - 已有云服务：直接使用 Firebase 实时数据库
 
+-   开发个扫描图片并压缩上传然后替换成云地址的插件
+
+```js
+import { createFilter } from "vite";
+import fs from "fs";
+import path from "path";
+import sharp from "sharp"; // 图片压缩工具
+import { uploadToCloud } from "./cloud-upload"; // 假设有一个上传到云存储的工具函数
+
+export default function imageUploadPlugin() {
+    const imageFilter = createFilter(/\.(png|jpg|jpeg|webp)$/); // 匹配图片文件
+
+    return {
+        name: "vite-plugin-image-upload",
+
+        async transform(code, id) {
+            if (!imageFilter(id)) return; // 只处理图片文件
+
+            try {
+                // 1. 压缩图片
+                const compressedImageBuffer = await sharp(id)
+                    .resize(800) // 调整大小
+                    .toFormat("webp") // 转换为 webp 格式
+                    .toBuffer();
+
+                // 2. 上传到云存储
+                const cloudUrl = await uploadToCloud(compressedImageBuffer, path.basename(id));
+
+                // 3. 返回替换后的代码
+                return {
+                    code: `export default "${cloudUrl}";`, // 替换为云地址
+                    map: null,
+                };
+            } catch (error) {
+                console.error(`Failed to process image ${id}:`, error);
+                return null;
+            }
+        },
+
+        async generateBundle(options, bundle) {
+            // 在生成最终 bundle 时，确保所有图片都已处理
+            for (const file in bundle) {
+                const chunk = bundle[file];
+                if (chunk.type === "asset" && imageFilter(chunk.fileName)) {
+                    // 替换 bundle 中的图片路径
+                    const compressedImageBuffer = await sharp(chunk.source).resize(800).toFormat("webp").toBuffer();
+                    const cloudUrl = await uploadToCloud(compressedImageBuffer, chunk.fileName);
+                    chunk.source = `export default "${cloudUrl}";`;
+                }
+            }
+        },
+    };
+}
+```
+
 ### 杰Yjs
   原理：
 Y.Text	富文本编辑	insert(), delete()	维护文本顺序和格式
@@ -466,6 +521,67 @@ Y.applyUpdate(ydoc, mergedUpdate);
 
 新增数据的存储应根据具体场景选择 `Y.Text`、`Y.Array` 或 `Y.Map`，通过标准的API操作数据，所有变更会自动同步到其他客户端。
 
+
+## 杰任务队列
+```js
+/**
+ * 依次顺序执行一系列任务
+ * 所有任务全部完成后可以得到每个任务的执行结果
+ * 需要返回两个方法，start用于启动任务，pause用于暂停任务
+ * 每个任务具有原子性，即不可中断，只能在两个任务之间中断
+ * @param  {...Function} tasks 任务列表，每个任务无参，异步
+ * @returns
+ */
+function processTasks(...tasks) {
+    let i = 0;
+    let isRunning = false;
+    let result = [];
+    return {
+        start() {
+            if (isRunning) return;
+            isRunning = true;
+            return new Promise(async (resolve, reject) => {
+                while (i < tasks.length) {
+                    const task = tasks[i];
+                    const r = await task();
+                    result.push(r);
+                    i++;
+                    if (!isRunning) {
+                        return;
+                    }
+                }
+                isRunning = false;
+                resolve(result);
+            });
+        },
+        pause() {
+            isRunning = false;
+        },
+    };
+}
+
+const tasks = [];
+for (let i = 0; i < 10; i++) {
+    tasks.push(() => {
+        console.log(`任务${i + 1}开始`);
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(i);
+                console.log(`任务${i + 1}结束`);
+            }, 2000);
+        });
+    });
+}
+const hejie = processTasks(...tasks);
+hejie.start();
+setTimeout(() => {
+    hejie.pause();
+}, 2000);
+setTimeout(() => {
+    hejie.start();
+}, 5000);
+
+```
 
 
 ## 代码

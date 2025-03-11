@@ -1,45 +1,109 @@
-async function fn1(next) {
-  console.log("fn1");
-  await next();
-  console.log("end fn1");
+var foo = { bar: 1 };
+var arr1 = [1, 2, foo];
+var arr2 = arr1.slice(1);
+1;
+arr2[0]++;
+arr2[1].bar++;
+foo.bar++;
+arr1[2].bar++;
+console.log(`TCL: hejiearr2`, arr1, arr2);
+console.log(`TCL: hejie11`, arr1[1] === arr2[0]);
+console.log(`TCL: hejie12`, arr1[2] === arr2[1]);
+console.log(`TCL: hejie333`, foo.bar);
+
+// async function async1() {
+//     console.log("async1 start");
+//     await async2();
+//     console.log("async1 end");
+// }
+// async function async2() {
+//     console.log("async2");
+// }
+// console.log("script start");
+// setTimeout(function () {
+//     console.log("setTimeout0");
+// }, 0);
+// setTimeout(function () {
+//     console.log("setTimeout3");
+// }, 3);
+// setImmediate(() => console.log("setImmediate"));
+// process.nextTick(() => console.log("nextTick"));
+// async1();
+// new Promise(function (resolve) {
+//     console.log("promise1");
+//     resolve();
+//     console.log("promise2");
+// }).then(function () {
+//     console.log("promise3");
+// });
+// console.log("script end");
+
+// 杰任务队列
+/**
+ * 依次顺序执行一系列任务
+ * 所有任务全部完成后可以得到每个任务的执行结果
+ * 需要返回两个方法，start用于启动任务，pause用于暂停任务
+ * 每个任务具有原子性，即不可中断，只能在两个任务之间中断
+ * @param  {...Function} tasks 任务列表，每个任务无参，异步
+ * @returns
+ */
+function processTasks(...tasks) {
+    let index = 0;
+    let isPaused = false;
+    const results = [];
+    const executeTask = () => {
+        if (index < tasks.length && !isPaused) {
+            tasks[index]().then((result) => {
+                results.push(result);
+                index++;
+                executeTask();
+            });
+        }
+    };
+    const start = () => {
+        executeTask();
+    };
+    const pause = () => {
+        isPaused = true;
+    };
+    return { start, pause };
 }
-async function fn2(next) {
-  console.log("fn2");
-  await delay();
-  await next();
-  console.log("end fn2");
+
+const tasks = [];
+for (let i = 0; i < 10; i++) {
+    tasks.push(() => {
+        console.log(`任务${i + 1}开始`);
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(i);
+                console.log(`任务${i + 1}结束`);
+            }, 2000);
+        });
+    });
 }
-function fn3(next) {
-  console.log("fn3");
-}
-function delay() {
-  return new Promise((reslove, reject) => {
-      setTimeout(() => {
-          reslove();
-      }, 2000);
-  });
-}
-const middlewares = [fn1, fn2, fn3];
-const finalFn = compose(middlewares);
-finalFn();
-// 杰koacompose
-function compose(middlewares) {
-  return function () {
-      return dispatch(0); // 执行第0个
-      function dispatch(i) {
-          let fn = middlewares[i];
-          if (!fn) {
-              return Promise.resolve();
-          }
-          return Promise.resolve(
-              fn(function next() {
-                  // promise完成后，再执行下一个
-                  return dispatch(i + 1);
-              })
-          );
-      }
-  };
-}
+const hejie = processTasks(...tasks);
+hejie.start();
+setTimeout(() => {
+    hejie.pause();
+}, 2000);
+setTimeout(() => {
+    hejie.start();
+}, 5000);
+
+// output: ==>
+// script start
+// async1 start
+// async2
+// promise1
+// promise2
+// script end
+// nextTick
+// async1 end
+// promise3
+// setTimeout0
+// setImmediate
+// setTimeout3
+
 // function deepCopy(obj) {
 //     if (typeof obj !== "object" || obj === null) {
 //         return obj;
@@ -70,7 +134,6 @@ function compose(middlewares) {
 // const delete1 = 0b1000; // 10000
 // const root = read | write | exec;
 // // console.log(`TCL: hejieroot`, root.toString(2)); // 0111
-
 
 // // Object.prototype[Symbol.iterator] = function* () {
 // //     let index = 0;
