@@ -1068,7 +1068,7 @@ C++中）。如果程序员没有显式释放内存，可能会导致内存泄�
 
 栈：由于是 LIFO 结构，内存不会出现碎片。堆：频繁的分配和释放可能导致内存碎片化，影响性能。
 
-## 数组 to，改变数组
+## 杰数组，改变数组
 
 改变数组：splice,push,pop,unshift,shift,sort,reverse,fill,copyWithin 不改变数组
 ：slice,map,forEach,filter,some,reduce,find,concat,every,some,entries
@@ -2212,7 +2212,7 @@ for (let i = 0; i < 5; i++) {
 
 <!-- endjs -->
 
-# 亮点 to，hejieto
+# 杰亮点，hejieto
 
 -   编辑器，可视区加载【interaction】，并发限制，传输，弹幕，canvas
 -   预览器，流式渲染结合 express 的缓存中间件，renderToNodeStream,懒加载，预加载，分时
@@ -2263,7 +2263,7 @@ app.use("*", (request, response) => {
 });
 ```
 
-## 懒加载 to，视图内加载，可视区内加载
+## 杰懒加载 to，视图内加载，可视区内加载
 
 https://mp.weixin.qq.com/s/XIuINjn6t0uY6kALqEQMaQ
 
@@ -2314,7 +2314,7 @@ function VideoList(props) {
 export default VideoList;
 ```
 
-## 动态加载 to，importthento，异步加载原理
+## 杰动态加载 to，importthento，异步加载原理
 
 **原理** 本质上就是调用 require.ensure
 
@@ -2336,7 +2336,7 @@ url 就是文件加载地址，然后塞到 document.head 中，一塞进去，�
 webpack 内置的 require，主要是先判断缓存，这个 moduleId 是否缓存过了，如果缓存过了，就直接返回。如果没有缓存，再继续往下
 走，也就是加载 module 内容，然后最终内容会挂在都 module,exports 上，返回 module.exports 就返回了引用文件的最终执行结果。
 
-## 性能优化 to
+## 杰性能优化 to
 
 1. wepack 打包层面打包层面：webpack: babel-import,svg 化为组件后按需导入，bundle-analyzer 打包分析
    ，babel-transform-runtime 代替 babel-pollyfill，treeShaking,cache-loader，threadLoader 和 happypack
@@ -3841,7 +3841,7 @@ new ErrorMonitor();
     设置请求头 xhr.send(JSON.stringify(errorObj)); // 发送参数 }
 -   可以延迟合并上报，用 navigator.sendBeacon(url, data)上报
 
-# 设计模式 to，
+# 杰设计模式 to，
 
 ## 单例模式，单一职责模式，中介者模式，策略模式，代理模式（中间件），
 
@@ -5328,7 +5328,7 @@ cmd 示例
   b.doSomething(); });
 ```
 
-## 缓存 to，浏览器缓存，缓存机制
+## 杰缓存 to，浏览器缓存，缓存机制
 
 https://juejin.im/post/5c22ee806fb9a049fb43b2c5?utm_source=gold_browser_extension
 
@@ -6052,7 +6052,7 @@ line-height），设置 margin 和 padding 的上下不会对其他元素 产生
 4. DOM 可控性区别。可以通过 JS 操作 DOM ，插入 link 标签来改变样式；由于 DOM 方法是基于文档的，无法使用 @import 的方式插
    入样式。
 
-## 重绘与回流，重绘和回流 to，
+## 杰重绘与回流，重绘和回流 to，
 
 重绘: 只是影响元素的外观、风格，而不会影响布局，比如 background color，我们将这样的操作称为重绘。回流：当渲染树中的一部
 分（或全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新构建的操作，会影响到布局常见引起回流属性和方法： 任何会改变元
@@ -9799,7 +9799,7 @@ db.test.drop()
 
 对于 mongoDB 的进一步封装，将其封装成方便异步操作 async await 风格的
 
-## 微信小程序 to
+## 杰微信小程序 to
 
 -   小程序是双线程执行的,wxml 模块个 wxss 样式再渲染层进行运行。渲染层使用 webView 线程进行渲染.一个程序有多个页面,会使
     用多个 webView 的线程 js 脚本运行与=于逻辑层,逻辑层使用 jscore 进行 js 脚本界面渲染整体流程：  1.在渲染层，宿主环境
@@ -10102,7 +10102,7 @@ function BubbleSort(array) {
 }
 ```
 
-## 动态规划 to
+## 杰动态规划 to
 
 [动态规划推文](https://mp.weixin.qq.com/s/pg-IJ8rA1duIzt5hW1Cycw)
 
@@ -10279,7 +10279,7 @@ function binaryInsertionSort(array) {
 }
 ```
 
-## 二分 to
+## 杰二分 to
 
 ## 二分查找（递归）
 
