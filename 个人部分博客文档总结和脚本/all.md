@@ -1,16 +1,23 @@
 # 基础
 
-
 ## 亮点
 
 项目上
-- 低代码编辑器，处理多人协同，时间仓，语法树，selecto，页面渲染器，流式渲染，可视区渲染，分时分片，懒加载，xtpl模板引擎，包含弹幕组件，抽奖组件
-- 数据可视化，echarts，爬虫解析，埋点监控，echarts进行分片渲染largeThresholud，渐进渲染progressive，包含小程序商城各种商城
-- 传输：分片，断点，切片啥的
-- 管线节点编辑器【react flow + zustand，customNode自定义节点，addNode动态添加节点，Handle负责控制输入输出端口和规则】，低代码转小程序平台，也有各种丰富的组件，涂鸦，对比，全景，运动轨迹，复杂联动之类，AI创作平台，一开始用的stable diffusion后面升级复刻,复刻即梦，Mj【双向滑动列表】，可灵之类，生图/视频【FFmpeg】/3d[threeJs]/音频生成平台还有编辑平台[openArt]，也是比较大型复杂的，可以涂鸦重绘扩图，智能切割，对象识别【智能切割为二维点阵数组】之类，镜头控制等，此外还有创收的Psd编辑器
-- 自动训练管线平台
-- 360可视化插件，弹幕，角子老虎机，水印啥的
-- 客户端上云，操作文件夹，File System Access API，存储文件夹句柄，
+
+-   低代码编辑器，处理多人协同，时间仓，语法树，selecto，页面渲染器，流式渲染，可视区渲染，分时分片，懒加载，xtpl 模板引
+    擎，包含弹幕组件，抽奖组件
+-   数据可视化，echarts，爬虫解析，埋点监控，echarts 进行分片渲染 largeThresholud，渐进渲染 progressive，包含小程序商城
+    各种商城
+-   传输：分片，断点，切片啥的
+-   管线节点编辑器【react flow + zustand，customNode 自定义节点，addNode 动态添加节点，Handle 负责控制输入输出端口和规则
+    】，低代码转小程序平台，也有各种丰富的组件，涂鸦，对比，全景，运动轨迹，复杂联动之类，AI 创作平台，一开始用的 stable
+    diffusion 后面升级复刻,复刻即梦，Mj【双向滑动列表】，可灵之类，生图/视频【FFmpeg】/3d[threeJs]/音频生成平台还有编辑
+    平台[openArt]，也是比较大型复杂的，可以涂鸦重绘扩图，智能切割，对象识别【智能切割为二维点阵数组】之类，镜头控制等，
+    此外还有创收的 Psd 编辑器
+-   自动训练管线平台
+-   360 可视化插件，弹幕，角子老虎机，水印啥的
+-   客户端上云，操作文件夹，File System Access API，存储文件夹句柄，
+
 ```js
 getDirectoryHandle，
 createWritable，
@@ -39,72 +46,212 @@ observer.observe({ entryTypes: ['resource'] });
 async function writeLargeFile(dirHandle, filename, contentStream) {
   const fileHandle = await dirHandle.getFileHandle(filename, { create: true });
   const writable = await fileHandle.createWritable();
-  
+
   const reader = contentStream.getReader();
   while (true) {
     const { done, value } = await reader.read();
     if (done) break;
     await writable.write(value);
   }
-  
+
   await writable.close();
 }
 
 
 ```
-- SDK，  Error
-  EvalError
-  RangeError
-  ReferenceError
-  SyntaxError（语法错误）
-  TypeError
-  URIError
+
+-   SDK， Error EvalError RangeError ReferenceError SyntaxError（语法错误） TypeError URIError
 
 1. trycath 只能抓同步的运行时错误，语法错误抓不了，异步请求错误也抓不了，比如 setTimeout 里面的错误抓不了
 2. Promise.catch()抓异步错误，所以改写 Promise.catch 可以进行错误上报，但 promise.catch 同样抓不了语法错误和异步任务
-3. unhandledrejection unhandledrejection：当 Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事件
+3. unhandledrejection unhandledrejection：当 Promise 被 reject 且没有 reject 处理器的时候，会触发 unhandledrejection 事
+   件
 4. Iframe,onerror,
 5. 跨端脚本，对 script 标签增加一个 crossorigin=”anonymous”
 6. sourceMap 定位错误文件
 
--   webpack 插件，压缩图片【 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tiny 发起请求，下载图片后直接上传到 oss 后再删除
-】，babel，自定义组件库按需加载 babel-import-node，
-以前webpack优化开启可以直接加 **cacheDirectory** 缓存下来
+-   webpack 插件，压缩图片【 遍历遍历图片然后压缩然后上传到 OSS，伪造请求头向 tiny 发起请求，下载图片后直接上传到 oss 后
+    再删除】，babel，自定义组件库按需加载 babel-import-node，以前 webpack 优化开启可以直接加 **cacheDirectory** 缓存下来
 -   多核多线程：**threadLoader 和 happypack**，
-  
+
 基建上：
-- oclif开发脚手架，组件库配置按需加载，rush monorepo, CI、CD打包部署优化
-- 各种处理打包的loader插件和plugin插件，require.context自动引入组件
-  
-代码编程上: 
-- 时序上，资源上，感观体验上，代码上，懒加载，按需加载，提高请求优先级，Transform之类开启硬件加速
-- 
+
+-   oclif 开发脚手架，组件库配置按需加载，rush monorepo, CI、CD 打包部署优化
+-   各种处理打包的 loader 插件和 plugin 插件，require.context 自动引入组件
+
+代码编程上:
+
+-   时序上，资源上，感观体验上，代码上，懒加载，按需加载，提高请求优先级，Transform 之类开启硬件加速
+-
+
+## react-redux, mobx, zustand 原理
+
+zustand: 使用闭包，然后用一个状态管理器，可以通过 subscribe 订阅状态变化，然后用内置 const [, forceUpdate] =
+useState({});轻质刷新相关有订阅到相关变量组件 react-redux: 使用 redux 的 connect，connect 返回一个组件，也是通过事件总集
+进行发布订阅然后通知 mobx: 使用 mobx 的 observable，observable 返回一个高阶组件，组件里面订阅变量并且执行强制刷新逻辑
+
+## 杰数据结构
+
+# 常见数据结构及其特点
+
+线性数据结构：数组、链表、栈、队列树形数据结构：二叉树、B 树、B+树、红黑树等图结构：有向图、无向图散列结构：哈希表堆：最
+大堆、最小堆
+
+## 1. 线性数据结构
+
+### 数组(Array)
+
+-   **特点**：
+    -   连续内存空间存储，支持随机访问
+    -   插入/删除需要移动元素(O(n))
+    -   查找性能高(O(1))，适合读多写少场景
+    -   大小通常固定(静态数组)
+-   **应用**：需要快速查找和索引的场景，如查表
+
+### 链表(Linked List)
+
+-   **特点**：
+    -   非连续存储，通过指针连接
+    -   插入/删除高效(O(1))，无需移动元素
+    -   查找需要遍历(O(n))
+    -   动态扩容，无空间限制
+-   **变体**：单链表、双链表、循环链表
+-   **应用**：频繁插入删除的场景、实现其他数据结构
+
+### 栈(Stack)
+
+-   **特点**：
+    -   后进先出(LIFO)原则
+    -   只允许在一端(栈顶)操作
+    -   所有操作都是 O(1)时间复杂度
+-   **应用**：函数调用、表达式求值、浏览器历史记录
+
+### 队列(Queue)
+
+-   **特点**：
+    -   先进先出(FIFO)原则
+    -   一端入队，另一端出队
+    -   基本操作时间复杂度为 O(1)
+-   **变体**：双端队列、优先队列、循环队列
+-   **应用**：任务调度、消息缓冲、广度优先搜索
+
+## 2. 树形数据结构
+
+### 二叉树(Binary Tree)
+
+-   **特点**：
+    -   每个节点最多有两个子节点
+    -   具有层次结构
+    -   平衡树的操作复杂度为 O(log n)
+-   **变体**：
+    -   二叉搜索树(BST)：左<根<右
+    -   AVL 树：自平衡的 BST
+    -   红黑树：近似平衡的 BST，插入删除效率高
+-   **应用**：搜索、排序、数据库索引
+
+### B 树与 B+树
+
+-   **特点**：
+    -   多路平衡查找树，降低树高
+    -   每个节点可以有多个子节点
+    -   B+树所有数据都在叶节点，内部节点只有索引
+    -   I/O 次数少，适合磁盘操作
+-   **应用**：数据库索引、文件系统
+
+### 堆(Heap)
+
+-   **特点**：
+    -   完全二叉树结构
+    -   最大堆：父节点值大于等于子节点值
+    -   最小堆：父节点值小于等于子节点值
+    -   插入和删除操作时间复杂度为 O(log n)
+    -   获取最值操作为 O(1)
+-   **应用**：优先队列、堆排序、事件调度
+
+### 字典树(Trie)
+
+-   **特点**：
+    -   用于存储字符串的树形结构
+    -   查找前缀效率高
+    -   空间换时间
+-   **应用**：前缀匹配、自动补全、拼写检查
+
+## 3. 图结构(Graph)
+
+### 图(Graph)
+
+-   **特点**：
+    -   由节点(顶点)和边组成
+    -   可表示复杂的关系网络
+    -   有向图/无向图、加权图/非加权图
+-   **表示方式**：
+    -   邻接矩阵：空间复杂度 O(V²)
+    -   邻接表：空间复杂度 O(V+E)
+-   **应用**：社交网络、地图导航、网络拓扑
+
+## 4. 哈希结构
+
+### 哈希表(Hash Table)
+
+-   **特点**：
+    -   通过哈希函数将键映射到数组索引
+    -   平均查找/插入/删除时间为 O(1)
+    -   可能存在哈希冲突，需要解决方案(链地址法、开放寻址法)
+    -   空间换时间的典型例子
+-   **应用**：缓存系统、数据库索引、集合实现
+
+## 5. 其他重要数据结构
+
+### 集合(Set)
+
+-   **特点**：
+    -   不重复元素的集合
+    -   常见操作：并集、交集、差集
+    -   查找效率高(通常基于哈希表实现)
+-   **应用**：去重、成员测试
+
+### 跳表(Skip List)
+
+-   **特点**：
+    -   基于链表的一种数据结构
+    -   多层索引加速查找
+    -   平均复杂度为 O(log n)
+    -   实现简单，但效率接近平衡树
+-   **应用**：Redis 中的有序集合实现
+
+### 布隆过滤器(Bloom Filter)
+
+-   **特点**：
+    -   空间效率高的概率型数据结构
+    -   用于判断元素是否在集合中
+    -   可能有假阳性，但没有假阴性
+    -   无法删除元素
+-   **应用**：缓存穿透防止、网页爬虫 URL 去重
+
+每种数据结构都有其独特的优势和适用场景，选择合适的数据结构对算法效率至关重要。
 
 ## 杰多人协同
-- 快速上线：选 Liveblocks，2小时即可完成集成 【逻辑上最后一次写入的有效】
-【Presence API：实时用户状态（光标位置等）
-Storage API：文档数据存储（JSON/CRDT）
-Broadcast API：自定义事件推送
-History API：操作历史管理】 
-原理： A发送操作 到LiveBlocks Server ，LS转化为操作，再广播给其他用户，其他用户收到后，应用A的变更后合并后返回给LS，Ls返回合并后的状态给A
-离线时可以先把操作包放到indexDB里面
 
-createClient进入同一个房间，
-时间仓：
+-   快速上线：选 Liveblocks，2 小时即可完成集成 【逻辑上最后一次写入的有效】【Presence API：实时用户状态（光标位置等）
+    Storage API：文档数据存储（JSON/CRDT） Broadcast API：自定义事件推送 History API：操作历史管理】 原理： A 发送操作到
+    LiveBlocks Server ，LS 转化为操作，再广播给其他用户，其他用户收到后，应用 A 的变更后合并后返回给 LS，Ls 返回合并后的
+    状态给 A 离线时可以先把操作包放到 indexDB 里面
+
+createClient 进入同一个房间，时间仓：
+
 ```js
 // 回退到历史版本
 room.history.seek(timestamp, {
-  onUpdate: (snapshot) => {
-    documentView.render(snapshot);
-  }
+    onUpdate: (snapshot) => {
+        documentView.render(snapshot);
+    },
 });
-
 ```
 
-- 隐私优先：选 Yjs + WebRTC，数据完全P2P传输   【CRDT去中心化，最终一致，适合离线优先应用】
+-   隐私优先：选 Yjs + WebRTC，数据完全 P2P 传输 【CRDT 去中心化，最终一致，适合离线优先应用】
 
-- 大规模应用：选 ShareDB + OT，支持万人级别协同 【OT，需要中心服务器当裁判，适合小规模实时协作】
-- 已有云服务：直接使用 Firebase 实时数据库
+-   大规模应用：选 ShareDB + OT，支持万人级别协同 【OT，需要中心服务器当裁判，适合小规模实时协作】
+-   已有云服务：直接使用 Firebase 实时数据库
 
 -   开发个扫描图片并压缩上传然后替换成云地址的插件
 
@@ -161,33 +308,36 @@ export default function imageUploadPlugin() {
 }
 ```
 
-### 杰Yjs
-  原理：
-Y.Text	富文本编辑	insert(), delete()	维护文本顺序和格式
-Y.Array	列表型数据（评论、待办）	push(), unshift()	保持元素顺序
-Y.Map	键值元数据	set(), get()	快速键值访问
-Y.Xml	结构化文档	createElement()	XML格式数据支持
-Y.Number	数值类型	add(), subtract()	自动合并数值修改
+### 杰 Yjs
 
+原理： Y.Text 富文本编辑 insert(), delete() 维护文本顺序和格式 Y.Array 列表型数据（评论、待办） push(), unshift() 保持元
+素顺序 Y.Map 键值元数据 set(), get() 快速键值访问 Y.Xml 结构化文档 createElement() XML 格式数据支持 Y.Number 数值类型
+add(), subtract() 自动合并数值修改
 
-需要解释Yjs的核心数据结构，如Y.Doc、Y.Text、Y.Array、Y.Map，以及它们各自的适用场景。例如，Y.Text适用于富文本编辑，而Y.Array适合列表类型的结构。新增的数据应根据类型选择合适的数据结构存储。
+需要解释 Yjs 的核心数据结构，如 Y.Doc、Y.Text、Y.Array、Y.Map，以及它们各自的适用场景。例如，Y.Text 适用于富文本编辑，而
+Y.Array 适合列表类型的结构。新增的数据应根据类型选择合适的数据结构存储。
 
-然后，具体实现步骤可能需要代码示例，比如如何初始化Y.Doc，如何通过WebRTC同步数据，如何绑定到编辑器界面。同时，要强调WebRTC的使用需要处理信令服务器，但Y-WebRTC可能简化了这一过程。
+然后，具体实现步骤可能需要代码示例，比如如何初始化 Y.Doc，如何通过 WebRTC 同步数据，如何绑定到编辑器界面。同时，要强调
+WebRTC 的使用需要处理信令服务器，但 Y-WebRTC 可能简化了这一过程。
 
-存储方面，需要注意Yjs的数据结构是共享的，所有操作都会自动同步到其他客户端。新增的数据应该直接通过Yjs的数据结构进行操作，比如使用insert来添加内容，而不是传统的数组push，因为CRDT需要确保操作的顺序和合并正确。
+存储方面，需要注意 Yjs 的数据结构是共享的，所有操作都会自动同步到其他客户端。新增的数据应该直接通过 Yjs 的数据结构进行操
+作，比如使用 insert 来添加内容，而不是传统的数组 push，因为 CRDT 需要确保操作的顺序和合并正确。
 
-可能还需要提到离线支持，Yjs允许离线编辑，并在重新连接时自动同步。数据持久化方面，可能需要将Yjs的状态保存到数据库，并在加载时恢复。
+可能还需要提到离线支持，Yjs 允许离线编辑，并在重新连接时自动同步。数据持久化方面，可能需要将 Yjs 的状态保存到数据库，并
+在加载时恢复。
 
-用户可能关心性能问题，比如大量数据时的处理，或者如何优化同步效率。需要说明Yjs的数据结构经过优化，适合实时协同，而WebRTC的点对点传输减少了服务器负担。
+用户可能关心性能问题，比如大量数据时的处理，或者如何优化同步效率。需要说明 Yjs 的数据结构经过优化，适合实时协同，而
+WebRTC 的点对点传输减少了服务器负担。
 
-最后，要总结步骤，明确存储新增数据的方法，确保用户理解如何选择正确的Yjs数据结构和操作方式。同时，提醒潜在的注意事项，比如信令服务器的设置、数据持久化的处理，以及如何处理可能出现的网络问题。
-
+最后，要总结步骤，明确存储新增数据的方法，确保用户理解如何选择正确的 Yjs 数据结构和操作方式。同时，提醒潜在的注意事项，
+比如信令服务器的设置、数据持久化的处理，以及如何处理可能出现的网络问题。
 
 在使用 **Yjs + WebRTC** 实现多人协同文档编辑时，数据存储和同步机制是其核心。以下是详细实现方案和新增数据的存储形式：
 
 ---
 
 ### 一、技术架构原理
+
 ```mermaid
 graph TD
     A[客户端A] -->|WebRTC直连| B[客户端B]
@@ -199,104 +349,109 @@ graph TD
 ```
 
 #### 核心组件：
-- **Y.Doc**: 协同文档的CRDT数据结构容器
-- **Y.Text**: 处理富文本协同的专业类型
-- **WebRTC Provider**: 实现P2P数据同步
-- **CRDT算法**: 自动解决操作冲突
+
+-   **Y.Doc**: 协同文档的 CRDT 数据结构容器
+-   **Y.Text**: 处理富文本协同的专业类型
+-   **WebRTC Provider**: 实现 P2P 数据同步
+-   **CRDT 算法**: 自动解决操作冲突
 
 ---
 
 ### 二、新增数据的存储形式
+
 #### 1. **文本内容** - 使用 `Y.Text`
+
 ```javascript
-import { Y } from 'yjs';
+import { Y } from "yjs";
 
 // 创建文本类型
 const ydoc = new Y.Doc();
-const ytext = ydoc.getText('content');
+const ytext = ydoc.getText("content");
 
 // 插入新内容（自动同步）
-ytext.insert(0, 'Hello World'); 
+ytext.insert(0, "Hello World");
 
 // 监听修改
-ytext.observe(event => {
-  event.delta.forEach(op => {
-    if (op.insert) {
-      console.log('新增文本:', op.insert);
-    }
-  });
+ytext.observe((event) => {
+    event.delta.forEach((op) => {
+        if (op.insert) {
+            console.log("新增文本:", op.insert);
+        }
+    });
 });
 ```
 
 #### 2. **结构化数据** - 使用 `Y.Array`
+
 ```javascript
-const yarray = ydoc.getArray('comments');
+const yarray = ydoc.getArray("comments");
 
 // 新增评论
-yarray.push([{ 
-  id: Date.now(),
-  author: 'user1',
-  content: '这是新评论'
-}]);
+yarray.push([
+    {
+        id: Date.now(),
+        author: "user1",
+        content: "这是新评论",
+    },
+]);
 
 // 查询数据
-console.log(yarray.toJSON()); 
+console.log(yarray.toJSON());
 // 输出: [{id: 1629..., author: 'user1', content: '...'}]
 ```
 
 #### 3. **键值对数据** - 使用 `Y.Map`
+
 ```javascript
-const ymap = ydoc.getMap('metadata');
+const ymap = ydoc.getMap("metadata");
 
 // 新增元数据
-ymap.set('version', '1.0.0');
-ymap.set('lastModified', Date.now());
+ymap.set("version", "1.0.0");
+ymap.set("lastModified", Date.now());
 
 // 获取数据
-console.log(ymap.get('version')); // 输出: 1.0.0
+console.log(ymap.get("version")); // 输出: 1.0.0
 ```
 
 ---
 
 ### 三、完整实现流程
 
-#### 步骤1：初始化协同文档
+#### 步骤 1：初始化协同文档
+
 ```javascript
-import * as Y from 'yjs';
-import { WebrtcProvider } from 'y-webrtc';
+import * as Y from "yjs";
+import { WebrtcProvider } from "y-webrtc";
 
 // 创建文档实例
 const ydoc = new Y.Doc();
 
 // 连接WebRTC Provider
-const provider = new WebrtcProvider('my-room', ydoc, {
-  password: 'room-password',  // 房间密码
-  signaling: ['wss://yjs-signal.example.com'] // 信令服务器
+const provider = new WebrtcProvider("my-room", ydoc, {
+    password: "room-password", // 房间密码
+    signaling: ["wss://yjs-signal.example.com"], // 信令服务器
 });
 ```
 
-#### 步骤2：绑定UI编辑器
+#### 步骤 2：绑定 UI 编辑器
+
 ```javascript
-import { MonacoBinding } from 'y-monaco';
-import * as monaco from 'monaco-editor';
+import { MonacoBinding } from "y-monaco";
+import * as monaco from "monaco-editor";
 
 // 创建Monaco编辑器
-const editor = monaco.editor.create(document.getElementById('editor'), {
-  value: '',
-  language: 'plaintext'
+const editor = monaco.editor.create(document.getElementById("editor"), {
+    value: "",
+    language: "plaintext",
 });
 
 // 绑定Yjs文本类型
-const ytext = ydoc.getText('content');
-new MonacoBinding(
-  ytext,
-  editor.getModel(),
-  new Set([editor]),
-  provider.awareness
-);
+const ytext = ydoc.getText("content");
+new MonacoBinding(ytext, editor.getModel(), new Set([editor]), provider.awareness);
 ```
 
-#### 步骤3：数据同步流程
+#### 步骤 3：数据同步流程
+
 ```mermaid
 sequenceDiagram
     participant ClientA
@@ -314,37 +469,41 @@ sequenceDiagram
 ---
 
 ### 四、数据类型选择指南
-| 数据类型       | 适用场景                 | 示例操作                | 存储特点               |
-|----------------|--------------------------|-------------------------|-----------------------|
-| **Y.Text**     | 富文本编辑               | `insert()`, `delete()`  | 维护文本顺序和格式    |
-| **Y.Array**    | 列表型数据（评论、待办） | `push()`, `unshift()`   | 保持元素顺序          |
-| **Y.Map**      | 键值元数据               | `set()`, `get()`        | 快速键值访问          |
-| **Y.Xml**      | 结构化文档               | `createElement()`       | XML格式数据支持       |
-| **Y.Number**   | 数值类型                 | `add()`, `subtract()`   | 自动合并数值修改      |
+
+| 数据类型     | 适用场景                 | 示例操作               | 存储特点           |
+| ------------ | ------------------------ | ---------------------- | ------------------ |
+| **Y.Text**   | 富文本编辑               | `insert()`, `delete()` | 维护文本顺序和格式 |
+| **Y.Array**  | 列表型数据（评论、待办） | `push()`, `unshift()`  | 保持元素顺序       |
+| **Y.Map**    | 键值元数据               | `set()`, `get()`       | 快速键值访问       |
+| **Y.Xml**    | 结构化文档               | `createElement()`      | XML 格式数据支持   |
+| **Y.Number** | 数值类型                 | `add()`, `subtract()`  | 自动合并数值修改   |
 
 ---
 
 ### 五、冲突处理机制
+
 #### 1. 插入冲突解决
+
 ```javascript
 // 客户端A在位置0插入"A"
-ytext.insert(0, 'A'); 
+ytext.insert(0, "A");
 
 // 客户端B在位置0插入"B"
-ytext.insert(0, 'B');
+ytext.insert(0, "B");
 
 // 最终结果: "BA" (基于向量时钟排序)
 ```
 
 #### 2. 属性冲突解决
+
 ```javascript
-const ymap = ydoc.getMap('config');
+const ymap = ydoc.getMap("config");
 
 // 客户端A设置
-ymap.set('theme', 'dark');
+ymap.set("theme", "dark");
 
-// 客户端B设置 
-ymap.set('theme', 'light');
+// 客户端B设置
+ymap.set("theme", "light");
 
 // 最终结果: 最后一次有效设置
 ```
@@ -352,30 +511,34 @@ ymap.set('theme', 'light');
 ---
 
 ### 六、性能优化策略
+
 #### 1. 数据分片存储
+
 ```javascript
 // 按章节分片
-const chapters = ydoc.getMap('chapters');
-chapters.set('chap1', new Y.Text());
-chapters.set('chap2', new Y.Text());
+const chapters = ydoc.getMap("chapters");
+chapters.set("chap1", new Y.Text());
+chapters.set("chap2", new Y.Text());
 
 // 独立同步不同分片
 provider.setSyncedHandler((encodedState, origin) => {
-  if (origin !== 'chap1') return;
-  // 处理指定分片同步
+    if (origin !== "chap1") return;
+    // 处理指定分片同步
 });
 ```
 
 #### 2. 操作批处理
+
 ```javascript
 ydoc.transact(() => {
-  ytext.insert(0, 'Hello');
-  ytext.insert(5, ' World');
-  ymap.set('version', 2.0);
+    ytext.insert(0, "Hello");
+    ytext.insert(5, " World");
+    ymap.set("version", 2.0);
 });
 ```
 
 #### 3. 二进制编码优化
+
 ```javascript
 // 使用Uint8Array传输
 const encoder = new encoding.createEncoder();
@@ -386,125 +549,137 @@ provider.send(encoding.toUint8Array(encoder));
 ---
 
 ### 七、数据持久化方案
+
 #### 1. 浏览器端存储
+
 ```javascript
 // 保存到IndexedDB
-const updateHandler = update => {
-  indexedDB.put('yjs-data', update);
+const updateHandler = (update) => {
+    indexedDB.put("yjs-data", update);
 };
-ydoc.on('update', updateHandler);
+ydoc.on("update", updateHandler);
 
 // 恢复数据
-const savedUpdate = await indexedDB.get('yjs-data');
+const savedUpdate = await indexedDB.get("yjs-data");
 Y.applyUpdate(ydoc, savedUpdate);
 ```
 
 #### 2. 服务端持久化
+
 ```javascript
-import { LeveldbPersistence } from 'y-leveldb';
+import { LeveldbPersistence } from "y-leveldb";
 
 // 服务端存储
-const persistence = new LeveldbPersistence('./db', 'my-room');
+const persistence = new LeveldbPersistence("./db", "my-room");
 
 // 保存文档
 persistence.storeUpdate(ydoc, update);
 
 // 加载文档
-const savedState = await persistence.getStateVector('my-room');
-const update = await persistence.getDiff('my-room', savedState);
+const savedState = await persistence.getStateVector("my-room");
+const update = await persistence.getDiff("my-room", savedState);
 Y.applyUpdate(ydoc, update);
 ```
 
 ---
 
 ### 八、安全防护措施
+
 #### 1. 数据加密传输
+
 ```javascript
-const provider = new WebrtcProvider('my-room', ydoc, {
-  password: 'secret',
-  signalingEncryption: true,  // 启用信令加密
-  crypto: new Y.encryption.AesGcmCrypto() // AES-GCM加密
+const provider = new WebrtcProvider("my-room", ydoc, {
+    password: "secret",
+    signalingEncryption: true, // 启用信令加密
+    crypto: new Y.encryption.AesGcmCrypto(), // AES-GCM加密
 });
 ```
 
 #### 2. 权限控制
+
 ```javascript
 provider.awareness.setLocalState({
-  user: 'alice',
-  permissions: {
-    edit: true,
-    comment: false
-  }
+    user: "alice",
+    permissions: {
+        edit: true,
+        comment: false,
+    },
 });
 
-provider.awareness.on('change', changes => {
-  // 检查其他用户的权限
-  const states = provider.awareness.getStates();
-  states.forEach(state => {
-    if (!state.permissions.edit) {
-      disableEditingForUser(state.user);
-    }
-  });
+provider.awareness.on("change", (changes) => {
+    // 检查其他用户的权限
+    const states = provider.awareness.getStates();
+    states.forEach((state) => {
+        if (!state.permissions.edit) {
+            disableEditingForUser(state.user);
+        }
+    });
 });
 ```
 
 ---
 
 ### 九、完整示例代码
+
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/yjs@latest/yjs.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/y-webrtc@latest/dist/y-webrtc.js"></script>
-</head>
-<body>
-  <textarea id="editor"></textarea>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/yjs@latest/yjs.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/y-webrtc@latest/dist/y-webrtc.js"></script>
+    </head>
+    <body>
+        <textarea id="editor"></textarea>
 
-  <script>
-    const ydoc = new Y.Doc();
-    const provider = new Y.WebrtcProvider('demo-room', ydoc);
-    const ytext = ydoc.getText('content');
-    
-    // 绑定textarea
-    const editor = document.getElementById('editor');
-    ytext.observe(event => {
-      editor.value = ytext.toString();
-    });
-    
-    editor.addEventListener('input', () => {
-      ytext.delete(0, ytext.length);  // 先清空
-      ytext.insert(0, editor.value);  // 插入新内容
-    });
-  </script>
-</body>
+        <script>
+            const ydoc = new Y.Doc();
+            const provider = new Y.WebrtcProvider("demo-room", ydoc);
+            const ytext = ydoc.getText("content");
+
+            // 绑定textarea
+            const editor = document.getElementById("editor");
+            ytext.observe((event) => {
+                editor.value = ytext.toString();
+            });
+
+            editor.addEventListener("input", () => {
+                ytext.delete(0, ytext.length); // 先清空
+                ytext.insert(0, editor.value); // 插入新内容
+            });
+        </script>
+    </body>
 </html>
 ```
 
 ---
 
 ### 十、常见问题解决
+
 #### 1. **数据不同步问题**
-- 检查信令服务器连接状态
-- 验证WebRTC穿透是否成功
+
+-   检查信令服务器连接状态
+-   验证 WebRTC 穿透是否成功
+
 ```javascript
-provider.on('status', event => {
-  console.log('连接状态:', event.status); // connected/disconnected
+provider.on("status", (event) => {
+    console.log("连接状态:", event.status); // connected/disconnected
 });
 ```
 
 #### 2. **大文档性能优化**
-- 使用分页加载 (`y-pagination`)
-- 启用增量同步 (`provider.enableIncrementalSync = true`)
+
+-   使用分页加载 (`y-pagination`)
+-   启用增量同步 (`provider.enableIncrementalSync = true`)
 
 #### 3. **离线恢复策略**
+
 ```javascript
 // 保存最后同步状态
 const lastSyncedState = Y.encodeStateAsUpdate(ydoc);
-localStorage.setItem('lastState', lastSyncedState);
+localStorage.setItem("lastState", lastSyncedState);
 
 // 恢复时合并变更
-const savedState = localStorage.getItem('lastState');
+const savedState = localStorage.getItem("lastState");
 const newState = Y.encodeStateAsUpdate(ydoc);
 const mergedUpdate = Y.mergeUpdates([savedState, newState]);
 Y.applyUpdate(ydoc, mergedUpdate);
@@ -513,16 +688,18 @@ Y.applyUpdate(ydoc, mergedUpdate);
 ---
 
 通过以上方案，Yjs + WebRTC 可实现：
+
 1. **去中心化协同**：无需中央服务器
-2. **自动冲突解决**：基于CRDT算法
-3. **低延迟传输**：P2P直连架构
+2. **自动冲突解决**：基于 CRDT 算法
+3. **低延迟传输**：P2P 直连架构
 4. **离线编辑支持**：本地存储自动合并
 5. **灵活数据模型**：支持多种数据结构
 
-新增数据的存储应根据具体场景选择 `Y.Text`、`Y.Array` 或 `Y.Map`，通过标准的API操作数据，所有变更会自动同步到其他客户端。
-
+新增数据的存储应根据具体场景选择 `Y.Text`、`Y.Array` 或 `Y.Map`，通过标准的 API 操作数据，所有变更会自动同步到其他客户端
+。
 
 ## 杰任务队列
+
 ```js
 /**
  * 依次顺序执行一系列任务
@@ -580,37 +757,27 @@ setTimeout(() => {
 setTimeout(() => {
     hejie.start();
 }, 5000);
-
 ```
-
 
 ## 代码
 
-- 杰深拷贝
-function deepCopy(obj) {
-    if (typeof obj !== "object" || obj === null) {
-        return obj;
-    }
+-   杰深拷贝 function deepCopy(obj) { if (typeof obj !== "object" || obj === null) { return obj; }
 
-    const newObj = Array.isArray(obj) ? [] : {};
-    Object.setPrototypeOf(newObj, Object.getPrototypeOf(obj));
+        const newObj = Array.isArray(obj) ? [] : {};
+        Object.setPrototypeOf(newObj, Object.getPrototypeOf(obj));
 
-    for (const key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            newObj[key] = deepCopy(obj[key]);
+        for (const key in obj) {
+            if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                newObj[key] = deepCopy(obj[key]);
+            }
         }
+
+        return newObj;
+
     }
 
-    return newObj;
-}
-- // 两个相同的数字异或为0,0为任何数字异或为那个数字
-// 利用这点实现在一个数组里面找唯一只出现一次的数字
-function findUniqueNumber(nums) {
-    return nums.reduce((a,b) => a ^ b, 0)
-}
-
-
-
+-   // 两个相同的数字异或为 0,0 为任何数字异或为那个数字 // 利用这点实现在一个数组里面找唯一只出现一次的数字 function
+    findUniqueNumber(nums) { return nums.reduce((a,b) => a ^ b, 0) }
 
 ## 高阶
 
@@ -878,32 +1045,28 @@ null，typeof null 结果是 object，这个是 bug），会返回 string, boole
 
 ## JavaScript 的基本类型和复杂类型存在哪⾥的？(基站复堆)
 
-基本类型：存在栈（空间小，大小固定，存放频繁需要的数据，存太多会影响运行性能），但是⼀旦被闭包引⽤则成为常住内存，会储存在内存堆中。复杂类型：存在堆（一个优先队列，空间大，大小不固定），会储存在内存堆中，但是指针会存在栈中，指向自身
+基本类型：存在栈（空间小，大小固定，存放频繁需要的数据，存太多会影响运行性能），但是⼀旦被闭包引⽤则成为常住内存，会储存
+在内存堆中。复杂类型：存在堆（一个优先队列，空间大，大小不固定），会储存在内存堆中，但是指针会存在栈中，指向自身
 
-栈（Stack）和堆（Heap）是计算机内存管理中两种不同的区域，它们主要在数据存储和管理上有所不同。以下是栈和堆之间的一些主要区别：
+栈（Stack）和堆（Heap）是计算机内存管理中两种不同的区域，它们主要在数据存储和管理上有所不同。以下是栈和堆之间的一些主要
+区别：
 
 内存分配方式：
 
-栈：栈内存是自动管理的，其内存是由编译器在函数调用时自动分配和释放的。栈的内存分配采用的是LIFO（Last In, First Out，后进先出）原则。
-堆：堆内存是动态管理的，通常由程序员手动分配和释放（例如使用malloc和free在C语言中，new和delete在C++中）。如果程序员没有显式释放内存，可能会导致内存泄漏。
-存储内容：
+栈：栈内存是自动管理的，其内存是由编译器在函数调用时自动分配和释放的。栈的内存分配采用的是 LIFO（Last In, First Out，后
+进先出）原则。堆：堆内存是动态管理的，通常由程序员手动分配和释放（例如使用 malloc 和 free 在 C 语言中，new 和 delete 在
+C++中）。如果程序员没有显式释放内存，可能会导致内存泄漏。存储内容：
 
-栈：通常用于存储局部变量、函数参数和返回地址。栈内存的大小一般较小，但访问速度比较快。
-堆：用于存储动态分配的内存块，这些内存块在程序运行时可以改变大小。堆内存的大小一般比栈大，但由于需要手动管理，访问速度通常比栈慢。
-生命周期：
+栈：通常用于存储局部变量、函数参数和返回地址。栈内存的大小一般较小，但访问速度比较快。堆：用于存储动态分配的内存块，这些
+内存块在程序运行时可以改变大小。堆内存的大小一般比栈大，但由于需要手动管理，访问速度通常比栈慢。生命周期：
 
-栈：栈中分配的内存在函数调用结束后会自动释放，不需要程序员手动管理。
-堆：堆中分配的内存在程序员明确释放之前会一直存在，程序员需要负责管理这部分内存。
-线程安全：
+栈：栈中分配的内存在函数调用结束后会自动释放，不需要程序员手动管理。堆：堆中分配的内存在程序员明确释放之前会一直存在，程
+序员需要负责管理这部分内存。线程安全：
 
-栈：每个线程都有自己的栈，因此是线程安全的。
-堆：堆在进程中是共享的，如果多个线程同时访问堆内存，可能需要进行同步操作。
-内存碎片：
+栈：每个线程都有自己的栈，因此是线程安全的。堆：堆在进程中是共享的，如果多个线程同时访问堆内存，可能需要进行同步操作。内
+存碎片：
 
-栈：由于是LIFO结构，内存不会出现碎片。
-堆：频繁的分配和释放可能导致内存碎片化，影响性能。
-
-
+栈：由于是 LIFO 结构，内存不会出现碎片。堆：频繁的分配和释放可能导致内存碎片化，影响性能。
 
 ## 数组 to，改变数组
 
@@ -931,7 +1094,7 @@ arr.flatMap（i） 打平几层
 
 Object.prototype.toString 适用于任何变量，instanceof，isArray 只能判断对象类型，原始类型不可，isArray 性能会稍微高点
 
-## 杰instanceof
+## 杰 instanceof
 
 instanceof 运算符用于判断构造函数的 prototype 属性是否出现在对象的原型链中的任 何位置。
 
@@ -955,7 +1118,7 @@ getType(val) {
 },
 ```
 
-## 杰new，实现 new，new 做了什么
+## 杰 new，实现 new，new 做了什么
 
 new 做了三步
 
@@ -1319,7 +1482,7 @@ Foo.a();
 -- 4  2  1
 ```
 
-## 杰bind
+## 杰 bind
 
 ```js
 Function.prototype.bind = function (ctx) {
@@ -1330,8 +1493,9 @@ Function.prototype.bind = function (ctx) {
 };
 ```
 
-call传多个，apply传数组
-## 杰call
+call 传多个，apply 传数组
+
+## 杰 call
 
 ```js
 Function.prototype.call = function(context) {
@@ -1350,7 +1514,7 @@ Function.prototype.call = function(context) {
 }
 ```
 
-## 杰apply
+## 杰 apply
 
 ```js
 Function.prototype.apply2 = function(context, arr) {
@@ -1458,194 +1622,194 @@ function inherit(subType, superType){
 
 ## 杰继承， ES5 的继承和 ES6 的继承有什么区别
 
-1. ES5继承
-通过构造函数和原型链实现：
+1. ES5 继承通过构造函数和原型链实现：
 
-在ES5中，继承通常是通过构造函数和原型链来实现的。你需要手动设置子类的原型为父类的一个实例，并使用call或apply方法在子类的构造函数中调用父类的构造函数。
-实现步骤：
+在 ES5 中，继承通常是通过构造函数和原型链来实现的。你需要手动设置子类的原型为父类的一个实例，并使用 call 或 apply 方法在
+子类的构造函数中调用父类的构造函数。实现步骤：
 
-创建父类构造函数。
-创建子类构造函数，并在其中调用父类构造函数。
-使用Object.create设置子类的原型为父类的原型。
-手动设置子类构造函数的prototype.constructor为子类自身。
+创建父类构造函数。创建子类构造函数，并在其中调用父类构造函数。使用 Object.create 设置子类的原型为父类的原型。手动设置子
+类构造函数的 prototype.constructor 为子类自身。
+
 ```js
 function Parent(name) {
-  this.name = name;
+    this.name = name;
 }
 
-Parent.prototype.sayName = function() {
-  console.log(this.name);
+Parent.prototype.sayName = function () {
+    console.log(this.name);
 };
 
 function Child(name, age) {
-  Parent.call(this, name); // 调用父类构造函数
-  this.age = age;
+    Parent.call(this, name); // 调用父类构造函数
+    this.age = age;
 }
 
 Child.prototype = Object.create(Parent.prototype);
 Child.prototype.constructor = Child;
 
-var child = new Child('Alice', 10);
+var child = new Child("Alice", 10);
 child.sayName(); // Alice
 ```
 
-2. ES6继承
-使用class和extends关键字：
+2. ES6 继承使用 class 和 extends 关键字：
 
-ES6引入了class语法，用于更简洁地创建类和实现继承。extends关键字用于实现子类继承父类，super关键字用于调用父类的构造函数及其方法。
-实现步骤：
+ES6 引入了 class 语法，用于更简洁地创建类和实现继承。extends 关键字用于实现子类继承父类，super 关键字用于调用父类的构造
+函数及其方法。实现步骤：
 
-使用class关键字定义父类。
-使用extends关键字定义子类，并在子类构造函数中使用super调用父类构造函数。
+使用 class 关键字定义父类。使用 extends 关键字定义子类，并在子类构造函数中使用 super 调用父类构造函数。
+
 ```js
 class Parent {
-  constructor(name) {
-    this.name = name;
-  }
+    constructor(name) {
+        this.name = name;
+    }
 
-  sayName() {
-    console.log(this.name);
-  }
+    sayName() {
+        console.log(this.name);
+    }
 }
 
 class Child extends Parent {
-  constructor(name, age) {
-    super(name); // 调用父类构造函数
-    this.age = age;
-  }
+    constructor(name, age) {
+        super(name); // 调用父类构造函数
+        this.age = age;
+    }
 
-  sayAge() {
-    console.log(this.age);
-  }
+    sayAge() {
+        console.log(this.age);
+    }
 }
 
-let child = new Child('Alice', 10);
+let child = new Child("Alice", 10);
 child.sayName(); // Alice
-child.sayAge();  // 10
+child.sayAge(); // 10
 ```
 
-## 杰promise，可链式调用 prosmise
+## 杰 promise，可链式调用 prosmise
 
 ```js
-
-const PENDING = 'pending'
-const FULFILLED = 'fulfilled'
-const REJECTED = 'rejected'
+const PENDING = "pending";
+const FULFILLED = "fulfilled";
+const REJECTED = "rejected";
 
 class MyPromise {
     constructor(executor) {
-      // 初始化状态
-      this.state = 'pending'; // pending, fulfilled, or rejected，Promise/A+规定的三种态
-      this.value = undefined; // resolved value or rejection reason
-      this.callbacks = []; // 存储待处理的回调函数集
-  
-      // resolve函数用于将Promise状态变为fulfilled
-      const resolve = (value) => {
-        if (this.state === 'pending') {
-          this.state = 'fulfilled';
-          this.value = value;
-          this.callbacks.forEach(callback => {
-            callback.onFulfilled(value);
-          });
+        // 初始化状态
+        this.state = "pending"; // pending, fulfilled, or rejected，Promise/A+规定的三种态
+        this.value = undefined; // resolved value or rejection reason
+        this.callbacks = []; // 存储待处理的回调函数集
+
+        // resolve函数用于将Promise状态变为fulfilled
+        const resolve = (value) => {
+            if (this.state === "pending") {
+                this.state = "fulfilled";
+                this.value = value;
+                this.callbacks.forEach((callback) => {
+                    callback.onFulfilled(value);
+                });
+            }
+        };
+
+        // reject函数用于将Promise状态变为rejected
+        const reject = (reason) => {
+            if (this.state === "pending") {
+                this.state = "rejected";
+                this.value = reason;
+                this.callbacks.forEach((callback) => {
+                    callback.onRejected(reason);
+                });
+            }
+        };
+
+        // 执行executor并捕获异常
+        try {
+            executor(resolve, reject);
+        } catch (error) {
+            reject(error);
         }
-      };
-  
-      // reject函数用于将Promise状态变为rejected
-      const reject = (reason) => {
-        if (this.state === 'pending') {
-          this.state = 'rejected';
-          this.value = reason;
-          this.callbacks.forEach(callback => {
-            callback.onRejected(reason);
-          });
-        }
-      };
-  
-      // 执行executor并捕获异常
-      try {
-        executor(resolve, reject);
-      } catch (error) {
-        reject(error);
-      }
     }
-  
+
     // then方法用于注册fulfilled和rejected的回调
     then(onFulfilled, onRejected) {
-      // 默认回调函数，如果没有传递
-      onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value;
-      onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason; };
-  
-      // 返回一个新的Promise以支持链式调用
-      return new MyPromise((resolve, reject) => {
-        // 处理成功态
-        const handleFulfilled = (value) => {
-          try {
-            const result = onFulfilled(value);
-            if (result instanceof MyPromise) {
-              result.then(resolve, reject);
+        // 默认回调函数，如果没有传递
+        onFulfilled = typeof onFulfilled === "function" ? onFulfilled : (value) => value;
+        onRejected =
+            typeof onRejected === "function"
+                ? onRejected
+                : (reason) => {
+                      throw reason;
+                  };
+
+        // 返回一个新的Promise以支持链式调用
+        return new MyPromise((resolve, reject) => {
+            // 处理成功态
+            const handleFulfilled = (value) => {
+                try {
+                    const result = onFulfilled(value);
+                    if (result instanceof MyPromise) {
+                        result.then(resolve, reject);
+                    } else {
+                        resolve(result);
+                    }
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            // 处理失败态
+            const handleRejected = (reason) => {
+                try {
+                    const result = onRejected(reason);
+                    if (result instanceof MyPromise) {
+                        result.then(resolve, reject);
+                    } else {
+                        resolve(result);
+                    }
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            if (this.state === "fulfilled") {
+                // 异步执行以保持一致性
+                setTimeout(() => handleFulfilled(this.value), 0);
+            } else if (this.state === "rejected") {
+                setTimeout(() => handleRejected(this.value), 0);
             } else {
-              resolve(result);
+                // 如果pending则推入队列
+                this.callbacks.push({
+                    onFulfilled: handleFulfilled,
+                    onRejected: handleRejected,
+                });
             }
-          } catch (error) {
-            reject(error);
-          }
-        };
-  
-        // 处理失败态
-        const handleRejected = (reason) => {
-          try {
-            const result = onRejected(reason);
-            if (result instanceof MyPromise) {
-              result.then(resolve, reject);
-            } else {
-              resolve(result);
-            }
-          } catch (error) {
-            reject(error);
-          }
-        };
-  
-        if (this.state === 'fulfilled') {
-          // 异步执行以保持一致性
-          setTimeout(() => handleFulfilled(this.value), 0);
-        } else if (this.state === 'rejected') {
-          setTimeout(() => handleRejected(this.value), 0);
-        } else {
-          // 如果pending则推入队列
-          this.callbacks.push({
-            onFulfilled: handleFulfilled,
-            onRejected: handleRejected
-          });
-        }
-      });
+        });
     }
-  
+
     // catch方法只是then方法的语法糖
     catch(onRejected) {
-      return this.then(null, onRejected);
+        return this.then(null, onRejected);
     }
-  }
-  
-  // 用法示例
-  let promise = new MyPromise((resolve, reject) => {
+}
+
+// 用法示例
+let promise = new MyPromise((resolve, reject) => {
     setTimeout(() => resolve("Hello, World!"), 1000);
-  });
-  
-  promise
-    .then(result => {
-      console.log(result);
-      return result + " Chained.";
+});
+
+promise
+    .then((result) => {
+        console.log(result);
+        return result + " Chained.";
     })
-    .then(result => {
-      console.log(result);
+    .then((result) => {
+        console.log(result);
     })
-    .catch(error => {
-      console.error(error);
+    .catch((error) => {
+        console.error(error);
     });
 ```
 
-
-## 杰promise.race,实现 promise.all,promise.catch,promise.finally,promise.allSettled
+## 杰 promise.race,实现 promise.all,promise.catch,promise.finally,promise.allSettled
 
 这些方法接受一个数组作为参数，p1、p2、p3 都是 Promise 实例，如果不是，就会先调用下面讲到的 Promise.resolve 方法，将参数
 转为 Promise 实例，再进一步处理。
@@ -1725,7 +1889,7 @@ Promise.prototype.allSettled = (funcArr) => {
 }
 ```
 
-## 杰async/await
+## 杰 async/await
 
 Async await 如何通过同步实现异步， async 包住的函数实际上相当于一个 Generator 函数，通过 yield 和 next 实现暂停和继续向
 下调用
@@ -1776,8 +1940,7 @@ function run(gen) {
 }
 ```
 
-
-## 杰generator
+## 杰 generator
 
 原理是 yield 会将代码大概转换成下面三个步骤，用 switch 来执行不同步骤的函数，核心点在于每次运行后对上下文的保存，下次再
 使用时直接根据上下文执行下一步的函数，所以 yield 看起来想挂载了，其实并没有，只是保存了上下文从而知道该执行哪一块的函数
@@ -1864,39 +2027,33 @@ Object.observe、MutationObserver。
 
 Node.js 是单进程单线程应用程序，但是因为 V8 引擎提供的异步执行回调接口，通过这些接口可以处理大量的并发，所以性能非常高。
 
-Node.js和浏览器中的事件循环机制有很多相似之处，因为它们都遵循ECMAScript规范中的事件循环模型。然而，由于Node.js和浏览器的运行环境及其需求不同，它们在具体实现上也存在一些关键区别。以下是Node.js与浏览器事件循环机制的主要区别：
+Node.js 和浏览器中的事件循环机制有很多相似之处，因为它们都遵循 ECMAScript 规范中的事件循环模型。然而，由于 Node.js 和浏
+览器的运行环境及其需求不同，它们在具体实现上也存在一些关键区别。以下是 Node.js 与浏览器事件循环机制的主要区别：
 
-- 共同点
-单线程模型：JavaScript在Node.js和浏览器中都是单线程的，这意味着它们的事件循环都是围绕单个线程设计的。
-宏任务和微任务：在Node.js和浏览器中，任务分为宏任务（如setTimeout）和微任务（如Promise的回调）。微任务优先于宏任务执行。
+-   共同点单线程模型：JavaScript 在 Node.js 和浏览器中都是单线程的，这意味着它们的事件循环都是围绕单个线程设计的。宏任务
+    和微任务：在 Node.js 和浏览器中，任务分为宏任务（如 setTimeout）和微任务（如 Promise 的回调）。微任务优先于宏任务执
+    行。
 
-- 不同点
+-   不同点
 
-1. 在浏览器中，微任务会在每个宏任务后执行，UI渲染之前。
-在Node.js中，微任务会在每个事件循环阶段完成后执行，而不是在每个宏任务后。
+1. 在浏览器中，微任务会在每个宏任务后执行，UI 渲染之前。在 Node.js 中，微任务会在每个事件循环阶段完成后执行，而不是在每
+   个宏任务后。
 
-2. Node.js的环境：
+2. Node.js 的环境：
 
-Node.js没有UI渲染的概念，因此不需要处理浏览器中涉及的UI更新。
-Node.js的事件循环需要处理更多与文件系统、网络I/O相关的任务，这些任务在浏览器中通常由Web APIs处理。
-
+Node.js 没有 UI 渲染的概念，因此不需要处理浏览器中涉及的 UI 更新。 Node.js 的事件循环需要处理更多与文件系统、网络 I/O 相
+关的任务，这些任务在浏览器中通常由 Web APIs 处理。
 
 事件循环阶段：
 
-浏览器：事件循环在每个轮次中处理完微任务后，会检查UI渲染以及处理宏任务。
-Node.js：事件循环分为多个阶段，每个阶段处理特定类型的回调。常见的阶段包括：
+浏览器：事件循环在每个轮次中处理完微任务后，会检查 UI 渲染以及处理宏任务。 Node.js：事件循环分为多个阶段，每个阶段处理特
+定类型的回调。常见的阶段包括：
 
-Timers：执行setTimeout和setInterval的回调。
-I/O callbacks：处理一些之前的I/O操作的回调。
-Idle, prepare：系统内部使用。
-Poll：检索新的I/O事件；执行I/O回调。
-Check：执行setImmediate的回调。
-Close callbacks：执行一些关闭操作的回调，如socket.on('close', ...)。
-**setImmediate vs setTimeout**：
-在Node.js中，setImmediate是设计为在当前事件循环的check阶段执行的回调，因此通常会在当前循环结束后立即执行。
-setTimeout的回调是在事件循环的timers阶段被处理的，可能会有一些延迟，即使是setTimeout(..., 0)。
-微任务的执行时机：
-
+Timers：执行 setTimeout 和 setInterval 的回调。 I/O callbacks：处理一些之前的 I/O 操作的回调。 Idle, prepare：系统内部使
+用。 Poll：检索新的 I/O 事件；执行 I/O 回调。 Check：执行 setImmediate 的回调。 Close callbacks：执行一些关闭操作的回调
+，如 socket.on('close', ...)。 **setImmediate vs setTimeout**：在 Node.js 中，setImmediate 是设计为在当前事件循环的
+check 阶段执行的回调，因此通常会在当前循环结束后立即执行。 setTimeout 的回调是在事件循环的 timers 阶段被处理的，可能会有
+一些延迟，即使是 setTimeout(..., 0)。微任务的执行时机：
 
 -   浏览器的很简单，直接先执行同步代码，然后再去执行异步栈里面的任务，先微再宏，【一个代码块里先微再宏，setTimeout 的回
     调也算是一个代码块】
@@ -1908,7 +2065,7 @@ setTimeout的回调是在事件循环的timers阶段被处理的，可能会有�
 -   进入次轮循环，开始 timers --> IO 回调(普通的回调) --> poll 阶段（读取文件，网络操作等） --> check(执行
     setImmediate，其中 immediate 可能慢过 setTimeout()，因为 setTimeout 默认是 1ms 那样) --> 关闭回调
 
-1. 同步代码 — 任务 loop【上一轮的then回调函数】
+1. 同步代码 — 任务 loop【上一轮的 then 回调函数】
 2. Timers（执行到点的 setTimeout()、setInterval()的回调 ）
 3. I/O 回调
 4. poll 轮询阶段，会适当阻塞执行 I/O 事件以及事件回调，但如果等待超过了某个 timer 的极限等待时间，就会返回 timers 阶段去
@@ -1945,7 +2102,7 @@ new Promise(function (resolve) {
 console.log("script end");
 ```
 
-## 杰flatten，打平数组,数组扁平化
+## 杰 flatten，打平数组,数组扁平化
 
 -   普通实现
 
@@ -2352,7 +2509,7 @@ export function measure(target,name,descriptor){
 -   图片处理，用 canvas,drawImage，绘制水印，操作然后 toDataUrl 转为 base64，canvas.drawImage,然后 getImageData 可以获得
     一个二维矩阵，矩阵有四个数组，代表 RGBA 四个通道的数组，对像素点的通道进行处理, background-blend-mode
 
-## 杰webpack,webpack 原理
+## 杰 webpack,webpack 原理
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/webpack-study.png
 
@@ -2511,7 +2668,7 @@ xhr.onreadystatechange = function () {
 
 -   node 上传图片读取文件 buffer fs 构建 form-data form-data 上传文件 node-fetch
 
-## 杰优化，杰webpack优化，webpackto
+## 杰优化，杰 webpack 优化，webpackto
 
 -   babelrc 里面配置开发环境 dynamic-import-node 动态引入
 -   alias: 缓存目录，避免重复寻址；
@@ -2551,54 +2708,33 @@ xhr.onreadystatechange = function () {
     件的修改;
 -   5、最后，根据 Output 把文件内容一一写入到指定的文件夹中，完成整个过程；
 
-## 杰babel 插件 to，babelto
+## 杰 babel 插件 to，babelto
 
-Babel 是一个广泛使用的 JavaScript 编译器，它的主要功能是将现代 JavaScript 代码（比如 ECMAScript 6/7/8/9 等语法）转译成向后兼容的 JavaScript 代码，能够在老旧的浏览器或 JavaScript 环境中运行。Babel 还支持插件机制，可以扩展其功能。
+Babel 是一个广泛使用的 JavaScript 编译器，它的主要功能是将现代 JavaScript 代码（比如 ECMAScript 6/7/8/9 等语法）转译成向
+后兼容的 JavaScript 代码，能够在老旧的浏览器或 JavaScript 环境中运行。Babel 还支持插件机制，可以扩展其功能。
 
-开发 Babel 插件的步骤：
-安装 Babel 相关依赖： 首先，需要安装 Babel 的开发依赖（比如 @babel/core 和 @babel/preset-
+开发 Babel 插件的步骤：安装 Babel 相关依赖： 首先，需要安装 Babel 的开发依赖（比如 @babel/core 和 @babel/preset-
 
 创建插件文件： Babel 插件是一个 JavaScript 文件，通常是一个返回对象的函数。这个对象定义了插件的行为，最基本的结构如下：
 
-module.exports = function () {
-  return {
-    visitor: {
-      // 你可以在这里定义如何转换代码
-    }
-  };
-};
-编写插件逻辑： Babel 插件的核心是“访问者（visitor）”对象，visitor 对象中可以定义不同的钩子方法（如 enter、exit），每个钩子会在抽象语法树（AST）遍历过程中触发。你可以在这些钩子中定义如何修改节点。
+module.exports = function () { return { visitor: { // 你可以在这里定义如何转换代码 } }; }; 编写插件逻辑： Babel 插件的核
+心是“访问者（visitor）”对象，visitor 对象中可以定义不同的钩子方法（如 enter、exit），每个钩子会在抽象语法树（AST）遍历过
+程中触发。你可以在这些钩子中定义如何修改节点。
 
 例如，假设你想创建一个插件，把 console.log 调用转换成 alert：
 
-javascript
-module.exports = function () {
-  return {
-    visitor: {
-      CallExpression(path) {
-        if (path.node.callee.name === 'console' && path.node.arguments[0].value === 'log') {
-          path.node.callee.name = 'alert';
-        }
-      }
-    }
-  };
-};
-在上面的代码中，CallExpression 访问者会捕捉到所有函数调用的节点，然后判断是否是 console.log，如果是，就将其转换成 alert。
+javascript module.exports = function () { return { visitor: { CallExpression(path) { if (path.node.callee.name ===
+'console' && path.node.arguments[0].value === 'log') { path.node.callee.name = 'alert'; } } } }; }; 在上面的代码中
+，CallExpression 访问者会捕捉到所有函数调用的节点，然后判断是否是 console.log，如果是，就将其转换成 alert。
 
-配置 Babel 使用插件： 如果你在项目中使用 Babel，你可以通过配置文件 .babelrc 或者 babel.config.js 来指定你的插件。示例配置如下：
+配置 Babel 使用插件： 如果你在项目中使用 Babel，你可以通过配置文件 .babelrc 或者 babel.config.js 来指定你的插件。示例配
+置如下：
 
-json
-{
-  "plugins": ["./path/to/your/plugin.js"]
-}
-这样，当 Babel 编译代码时，它会加载并使用你创建的插件。
+json { "plugins": ["./path/to/your/plugin.js"] } 这样，当 Babel 编译代码时，它会加载并使用你创建的插件。
 
 运行 Babel 转译： 你可以通过命令行运行 Babel 来转译你的代码：
 
-bash
-npx babel src --out-dir lib
-这个命令会将 src 目录下的文件转译并输出到 lib 目录。
-
+bash npx babel src --out-dir lib 这个命令会将 src 目录下的文件转译并输出到 lib 目录。
 
 babelType：类似 lodash 那样的工具集，主要用来操作 AST 节点，比如创建、校验、转变等。举例：判断某个节点是不是标识符
 (identifier)。 path：AST 中有很多节点，每个节点可能有不同的属性，并且节点之间可能存在关联。path 是个对象，它代表了两个节
@@ -2772,15 +2908,16 @@ output: {
 ## viteto,esbuildto
 
 内核：esbuild
-- Go 语言编写：esbuild 使用 Go 语言开发，Go 的并发性能和编译速度优于 JavaScript，适合处理高并发任务。
 
-- 并行处理：esbuild 充分利用多核 CPU，将解析、转换、打包等任务并行化，大幅提升构建速度。
+-   Go 语言编写：esbuild 使用 Go 语言开发，Go 的并发性能和编译速度优于 JavaScript，适合处理高并发任务。
 
-- 最小化 AST 操作：esbuild 避免复杂的 AST 操作，直接生成代码，减少中间步骤，提升效率。
+-   并行处理：esbuild 充分利用多核 CPU，将解析、转换、打包等任务并行化，大幅提升构建速度。
 
-- 零运行时依赖：esbuild 不依赖第三方库，所有功能内置，减少加载和初始化开销。
+-   最小化 AST 操作：esbuild 避免复杂的 AST 操作，直接生成代码，减少中间步骤，提升效率。
 
-- 缓存机制：esbuild 通过缓存已处理文件，避免重复工作，加快后续构建速度。
+-   零运行时依赖：esbuild 不依赖第三方库，所有功能内置，减少加载和初始化开销。
+
+-   缓存机制：esbuild 通过缓存已处理文件，避免重复工作，加快后续构建速度。
 
 1. 生产环境下，还是需要打包才能运行的（因为 vue-cli 脚手架基于 webpack 的热更新，所以必须打包才能在生产环境上运行，而
    vite 基于缓存的热更新，立即编译当前修改文件，还会使用 http 缓存机制来加载内容）
@@ -2803,7 +2940,7 @@ output: {
 
 -   测试框架 mocha + 断言库 chai（expect-toBe) + sinon(mock 库) + karma（模拟运行环境）+ istanbul(覆盖率)
 
-## node处理高并发
+## node 处理高并发
 
 -   原理：java 多线程是每个请求开个线程连接，开关连接都需要开销，一个人干一件事，node 单线程，所有的请求都是在一条线程上
     发起，只不过 node 通过事件轮询机制，将异步操作放在一个单独的线程去轮询，且 V8 提供的接口可以很高效地同时处理多个异步
@@ -2815,115 +2952,116 @@ output: {
     衡，错误捕捉，崩溃重启,pm2）
 
 处理高并发：
-- 事件驱动架构：
+
+-   事件驱动架构：
 
 基于事件循环（Event Loop），非阻塞 I/O 操作，避免线程等待，高效处理大量请求。
 
-- 异步 I/O：
+-   异步 I/O：
 
 文件读写、网络请求等操作异步执行，不阻塞主线程，提升吞吐量。
 
-- 单线程 + Worker Threads：
+-   单线程 + Worker Threads：
 
 主线程处理 I/O 密集型任务，CPU 密集型任务通过 Worker Threads 分配到多线程执行，避免阻塞。
 
-- 集群模式（Cluster）：
+-   集群模式（Cluster）：
 
 利用多核 CPU，启动多个进程（通过 cluster 模块），共享端口，提升并发能力。
+
 ```js
-const cluster = require('cluster');
-const os = require('os');
-const http = require('http');
+const cluster = require("cluster");
+const os = require("os");
+const http = require("http");
 
 if (cluster.isMaster) {
-  // 主进程：根据 CPU 核心数创建子进程
-  const numCPUs = os.cpus().length;
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
+    // 主进程：根据 CPU 核心数创建子进程
+    const numCPUs = os.cpus().length;
+    for (let i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
 } else {
-  // 子进程：创建 HTTP 服务器
-  http.createServer((req, res) => {
-    res.end('Hello from worker ' + process.pid);
-  }).listen(3000);
+    // 子进程：创建 HTTP 服务器
+    http.createServer((req, res) => {
+        res.end("Hello from worker " + process.pid);
+    }).listen(3000);
 }
 
-cpu密集型任务
-const { Worker, isMainThread, parentPort } = require('worker_threads');
+cpu密集型任务;
+const { Worker, isMainThread, parentPort } = require("worker_threads");
 
 if (isMainThread) {
-  // 主线程：创建 Worker
-  const worker = new Worker(__filename);
-  worker.on('message', (result) => {
-    console.log('Worker result:', result);
-  });
-  worker.postMessage('start'); // 发送任务给 Worker
+    // 主线程：创建 Worker
+    const worker = new Worker(__filename);
+    worker.on("message", (result) => {
+        console.log("Worker result:", result);
+    });
+    worker.postMessage("start"); // 发送任务给 Worker
 } else {
-  // Worker 线程：处理 CPU 密集型任务
-  parentPort.on('message', (message) => {
-    if (message === 'start') {
-      let sum = 0;
-      for (let i = 0; i < 1e9; i++) sum += i; // 模拟 CPU 密集型任务
-      parentPort.postMessage(sum); // 返回结果
-    }
-  });
+    // Worker 线程：处理 CPU 密集型任务
+    parentPort.on("message", (message) => {
+        if (message === "start") {
+            let sum = 0;
+            for (let i = 0; i < 1e9; i++) sum += i; // 模拟 CPU 密集型任务
+            parentPort.postMessage(sum); // 返回结果
+        }
+    });
 }
 ```
 
-- 负载均衡：
+-   负载均衡：
 
 使用 Nginx 或 PM2 等工具分发请求，避免单点压力过大。
+
 ```js
 pm2 start app.js -i max
 ```
 
 核心优势：事件驱动 + 异步 I/O 是 Node.js 高并发的关键，适合 I/O 密集型场景。
 
-1. async.mapLimit(fetchUrlArr, 5,执行函数，回调函数)
- async.mapLimit
-作用：限制并发数，批量处理数组中的异步任务。
+1. async.mapLimit(fetchUrlArr, 5,执行函数，回调函数) async.mapLimit 作用：限制并发数，批量处理数组中的异步任务。
 
 适用场景：需要控制并发数量的批量任务（如批量请求 API）。
+
 ```js
-const async = require('async');
+const async = require("async");
 
 const data = [1, 2, 3, 4, 5]; // 数据数组
 const concurrency = 2; // 并发数
 
 // 异步任务函数
 const asyncTask = (item, callback) => {
-  setTimeout(() => {
-    console.log('Processing:', item);
-    callback(null, item * 2); // 返回处理结果
-  }, 1000);
+    setTimeout(() => {
+        console.log("Processing:", item);
+        callback(null, item * 2); // 返回处理结果
+    }, 1000);
 };
 
 // 使用 mapLimit 控制并发
 async.mapLimit(data, concurrency, asyncTask, (err, results) => {
-  if (err) console.error(err);
-  else console.log('Results:', results); // 输出所有结果
+    if (err) console.error(err);
+    else console.log("Results:", results); // 输出所有结果
 });
-
 ```
 
-2. async.queue
-作用：创建一个任务队列，按顺序处理异步任务，支持并发控制。
+2. async.queue 作用：创建一个任务队列，按顺序处理异步任务，支持并发控制。
 
 适用场景：需要按顺序处理任务，同时限制并发数（如文件上传、爬虫）。
+
 ```js
-const async = require('async');
+const async = require("async");
 
 // 创建队列，并发数为 2
 const queue = async.queue((task, callback) => {
-  console.log('Processing task:', task);
-  setTimeout(() => {
-    callback(); // 任务完成
-  }, 1000);
+    console.log("Processing task:", task);
+    setTimeout(() => {
+        callback(); // 任务完成
+    }, 1000);
 }, 2);
 
 // 监听队列空事件
 queue.drain(() => {
-  console.log('All tasks completed');
+    console.log("All tasks completed");
 });
 
 // 添加任务到队列
@@ -2931,7 +3069,6 @@ queue.push(1);
 queue.push(2);
 queue.push(3);
 queue.push(4);
-
 ```
 
 -   做中间层用 dubbo 远程进程共享，对数据进行进一层封装，解决跨域，处理高并发
@@ -2951,98 +3088,109 @@ stage: PIXI.Application({
 3. 调用 vue/runtime-core 的 h 函数进行绘制，其实就是 createElement，页面里面调用 vue3 的各种复合式 api， h, ref,
    defineComponent, watch，onMounted，onUnmounted，setup 进行开发
 
-## 杰domdiffto
+## 杰 domdiffto
+
 以下是 **React 18** 和 **Vue 3** 的 Diff 算法的详细对比，以 Markdown 文本格式呈现：
 
 ### **React 18 的 Diff 算法**
 
 #### **核心机制**
+
 1. **基于 Fiber 架构**：
-   - React 18 使用 Fiber 架构，将渲染任务拆分为多个小任务，支持可中断的异步渲染。
-   - Fiber 节点是一个链表结构，包含组件的类型、props、state 等信息。
+
+    - React 18 使用 Fiber 架构，将渲染任务拆分为多个小任务，支持可中断的异步渲染。
+    - Fiber 节点是一个链表结构，包含组件的类型、props、state 等信息。
 
 2. **双缓存机制**：
-   - React 维护两棵 Fiber 树：当前树（Current）和工作树（WorkInProgress）。
-   - Diff 算法在工作树上进行，完成后替换当前树，减少页面闪烁。
+
+    - React 维护两棵 Fiber 树：当前树（Current）和工作树（WorkInProgress）。
+    - Diff 算法在工作树上进行，完成后替换当前树，减少页面闪烁。
 
 3. **Diff 策略**：
-   - **同级比较**：只比较同一层级的节点。
-   - **类型不同直接替换**：如果节点类型不同，直接销毁旧节点，创建新节点。
-   - *类型相同则更换属性*
-   - **Key 值优化**：通过 `key` 标识节点，识别节点的移动、添加或删除。
+
+    - **同级比较**：只比较同一层级的节点。
+    - **类型不同直接替换**：如果节点类型不同，直接销毁旧节点，创建新节点。
+    - _类型相同则更换属性_
+    - **Key 值优化**：通过 `key` 标识节点，识别节点的移动、添加或删除。
 
 4. **批量更新**：
-   - React 将多次状态更新合并为一次，减少 DOM 操作。
+    - React 将多次状态更新合并为一次，减少 DOM 操作。
 
 ---
 
 ### **Vue 3 的 Diff 算法**
 
 #### **核心机制**
+
 1. **基于 Proxy 的响应式系统**：
-   - Vue 3 使用 Proxy 实现响应式，比 Vue 2 的 `Object.defineProperty` 更高效。
+
+    - Vue 3 使用 Proxy 实现响应式，比 Vue 2 的 `Object.defineProperty` 更高效。
 
 2. **静态标记（Patch Flag）**：
-   - Vue 3 在编译阶段对模板进行静态分析，标记动态节点（如 `class`、`style`、`props`）。
-   - Diff 时只比较动态部分，减少不必要的操作。
+
+    - Vue 3 在编译阶段对模板进行静态分析，标记动态节点（如 `class`、`style`、`props`）。
+    - Diff 时只比较动态部分，减少不必要的操作。
 
 3. **Diff 策略**：
-   - **双端比较**：从列表的头和尾同时开始比较，减少移动次数。
-   - **最长递增子序列（LIS）**：通过 LIS 算法找到最少的节点移动次数。
+
+    - **双端比较**：从列表的头和尾同时开始比较，减少移动次数。
+    - **最长递增子序列（LIS）**：通过 LIS 算法找到最少的节点移动次数。
 
 4. **Block Tree**：
-   - Vue 3 将模板划分为多个 Block，每个 Block 是一个独立的更新单元。
-   - Diff 时只更新变化的 Block，提升性能。
+    - Vue 3 将模板划分为多个 Block，每个 Block 是一个独立的更新单元。
+    - Diff 时只更新变化的 Block，提升性能。
 
 #### **示例**
+
 ```vue
 <template>
-  <ul>
-    <li v-for="item in items" :key="item">{{ item }}</li>
-  </ul>
-  <button @click="reverseItems">Reverse</button>
+    <ul>
+        <li v-for="item in items" :key="item">{{ item }}</li>
+    </ul>
+    <button @click="reverseItems">Reverse</button>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 export default {
-  setup() {
-    const items = ref([1, 2, 3]);
+    setup() {
+        const items = ref([1, 2, 3]);
 
-    const reverseItems = () => {
-      items.value = [...items.value].reverse();
-    };
+        const reverseItems = () => {
+            items.value = [...items.value].reverse();
+        };
 
-    return {
-      items,
-      reverseItems,
-    };
-  },
+        return {
+            items,
+            reverseItems,
+        };
+    },
 };
 </script>
 ```
-- **解释**：点击按钮后，Vue 通过 `key` 和双端比较算法，高效更新 DOM。
+
+-   **解释**：点击按钮后，Vue 通过 `key` 和双端比较算法，高效更新 DOM。
 
 ---
 
 ### **React 18 和 Vue 3 Diff 算法的对比**
 
-| **特性**               | **React 18**                          | **Vue 3**                          |
-|------------------------|---------------------------------------|-------------------------------------|
-| **架构**               | Fiber 架构，支持异步渲染              | 基于 Proxy 的响应式系统            |
-| **Diff 策略**           | 同级比较，类型不同直接替换            | 双端比较，最长递增子序列（LIS）    |
-| **优化手段**           | Key 值优化，批量更新                  | 静态标记（Patch Flag），Block Tree  |
-| **适用场景**           | 复杂应用，需要精细控制渲染            | 中小型应用，开发效率高             |
+| **特性**      | **React 18**               | **Vue 3**                          |
+| ------------- | -------------------------- | ---------------------------------- |
+| **架构**      | Fiber 架构，支持异步渲染   | 基于 Proxy 的响应式系统            |
+| **Diff 策略** | 同级比较，类型不同直接替换 | 双端比较，最长递增子序列（LIS）    |
+| **优化手段**  | Key 值优化，批量更新       | 静态标记（Patch Flag），Block Tree |
+| **适用场景**  | 复杂应用，需要精细控制渲染 | 中小型应用，开发效率高             |
 
 ---
 
 ### **总结**
-- **React 18**：通过 Fiber 架构和 Key 值优化，适合复杂应用，支持精细控制。
-- **Vue 3**：通过静态标记和双端比较，适合中小型应用，开发效率高。
+
+-   **React 18**：通过 Fiber 架构和 Key 值优化，适合复杂应用，支持精细控制。
+-   **Vue 3**：通过静态标记和双端比较，适合中小型应用，开发效率高。
 
 ---
-
 
 -   react15 https://blog.csdn.net/qq_36407875/article/details/84965311 游标，新旧两个数组，遍历新数组，默认游标是 0，如
     果发现有同样可以复用的元素则直接移动老元素到新的位置，并且将游标记录标志位老元素的索引，游标名为 LastIndex（结果数组
@@ -3147,6 +3295,15 @@ defineReactive(obj, key, val) {
 3. 由于 data 的某个 key 在⼀个视图中可能出现多次，所以每个 key 都需要⼀个管家 Dep 来管理多个 Watcher
 4. 将来 data 中数据⼀旦发⽣变化，会⾸先找到对应的 Dep，通知所有 Watcher 执⾏更新函数
 
+## 杰 fiber
+
+1. 非阻塞渲染
+2. 高效的中断与恢复机制
+3. 一致性保障双树结构确保用户永远看到的是一致的 UI 状态：
+
+即使渲染被中断多次用户也不会看到"半完成"的 UI 提交阶段是同步且不可中断的，确保 DOM 更新的原子性 4. 内存复用提升性能 5.
+支持并发模式 6. 更精确的调度控制 7. 更好的调试能力 8. 可回退能力
+
 ## Vue3to
 
 原理：实现三个函数： effect：将回调函数保存起来备用，立即执行一次回调函数触发它里面一些响应数据的 getter track：getter
@@ -3201,115 +3358,127 @@ function reactive(obj) {
 
 ### **React Hook 的原理**
 
-React Hook 是 React 16.8 引入的特性，允许在函数组件中使用状态（state）和其他 React 特性（如生命周期、上下文等）。以下是其核心原理：
+React Hook 是 React 16.8 引入的特性，允许在函数组件中使用状态（state）和其他 React 特性（如生命周期、上下文等）。以下是
+其核心原理：
 
 ---
 
 #### **1. Hook 的实现原理**
-- **链表结构**：
-  - React 使用链表来管理 Hook。每个 Hook 都有一个对应的节点，节点中存储了 Hook 的状态（如 `useState` 的值）和指向下一个 Hook 的指针。
-  - 例如：
-    ```javascript
-    const [state1, setState1] = useState(0); // Hook 节点 1
-    const [state2, setState2] = useState(1); // Hook 节点 2
-    ```
-    - React 会按照 Hook 的调用顺序，将这些节点连接成一个链表。
 
-- **当前 Hook 指针**：
-  - React 内部维护一个“当前 Hook 指针”，指向当前正在处理的 Hook 节点。
-  - 每次调用 Hook 时，React 会根据指针找到对应的节点，并更新指针。
+-   **链表结构**：
 
-- **状态存储**：
-  - Hook 的状态存储在 Fiber 节点中。Fiber 是 React 的渲染单元，每个组件对应一个 Fiber 节点。
+    -   React 使用链表来管理 Hook。每个 Hook 都有一个对应的节点，节点中存储了 Hook 的状态（如 `useState` 的值）和指向下
+        一个 Hook 的指针。
+    -   例如：
+        ```javascript
+        const [state1, setState1] = useState(0); // Hook 节点 1
+        const [state2, setState2] = useState(1); // Hook 节点 2
+        ```
+        -   React 会按照 Hook 的调用顺序，将这些节点连接成一个链表。
+
+-   **当前 Hook 指针**：
+
+    -   React 内部维护一个“当前 Hook 指针”，指向当前正在处理的 Hook 节点。
+    -   每次调用 Hook 时，React 会根据指针找到对应的节点，并更新指针。
+
+-   **状态存储**：
+    -   Hook 的状态存储在 Fiber 节点中。Fiber 是 React 的渲染单元，每个组件对应一个 Fiber 节点。
 
 ---
 
 #### **2. Hook 的工作流程**
+
 1. **首次渲染**：
-   - React 初始化 Hook 链表，并将状态存储在 Fiber 节点中。
+    - React 初始化 Hook 链表，并将状态存储在 Fiber 节点中。
 2. **更新渲染**：
-   - React 根据 Hook 的调用顺序，从 Fiber 节点中读取状态，并更新 Hook 链表。
+    - React 根据 Hook 的调用顺序，从 Fiber 节点中读取状态，并更新 Hook 链表。
 3. **提交阶段**：
-   - React 将更新后的状态应用到 DOM。
+    - React 将更新后的状态应用到 DOM。
 
 ---
 
 #### **3. 为什么 Hook 前面不能写逻辑？**
-- **Hook 的调用顺序必须一致**：
-  - React 依赖 Hook 的调用顺序来管理状态。如果在条件语句或循环中使用 Hook，可能会导致 Hook 的调用顺序不一致，从而引发错误。
-  - 例如：
-    ```javascript
-    if (condition) {
-      const [state1, setState1] = useState(0); // 可能不会每次都调用
-    }
-    const [state2, setState2] = useState(1); // 调用顺序可能被打乱
-    ```
-    - 如果 `condition` 为 `false`，`state1` 不会被调用，导致 `state2` 的 Hook 节点错位。
 
-- **React 的规则**：
-  - React 要求 Hook 必须在函数组件的顶层调用，不能在条件语句、循环或嵌套函数中使用。
-  - 这是为了确保每次渲染时，Hook 的调用顺序一致。
+-   **Hook 的调用顺序必须一致**：
+
+    -   React 依赖 Hook 的调用顺序来管理状态。如果在条件语句或循环中使用 Hook，可能会导致 Hook 的调用顺序不一致，从而引
+        发错误。
+    -   例如：
+        ```javascript
+        if (condition) {
+            const [state1, setState1] = useState(0); // 可能不会每次都调用
+        }
+        const [state2, setState2] = useState(1); // 调用顺序可能被打乱
+        ```
+        -   如果 `condition` 为 `false`，`state1` 不会被调用，导致 `state2` 的 Hook 节点错位。
+
+-   **React 的规则**：
+    -   React 要求 Hook 必须在函数组件的顶层调用，不能在条件语句、循环或嵌套函数中使用。
+    -   这是为了确保每次渲染时，Hook 的调用顺序一致。
 
 ---
 
 #### **4. 如何解决条件逻辑问题？**
-- **将条件逻辑移到 Hook 内部**：
-  ```javascript
-  const useCustomHook = (condition) => {
-    const [state1, setState1] = useState(0);
-    if (condition) {
-      // 条件逻辑
-    }
-    return state1;
-  };
-  ```
 
-- **使用 `useEffect` 处理副作用**：
-  ```javascript
-  useEffect(() => {
-    if (condition) {
-      // 条件逻辑
-    }
-  }, [condition]);
-  ```
+-   **将条件逻辑移到 Hook 内部**：
+
+    ```javascript
+    const useCustomHook = (condition) => {
+        const [state1, setState1] = useState(0);
+        if (condition) {
+            // 条件逻辑
+        }
+        return state1;
+    };
+    ```
+
+-   **使用 `useEffect` 处理副作用**：
+    ```javascript
+    useEffect(() => {
+        if (condition) {
+            // 条件逻辑
+        }
+    }, [condition]);
+    ```
 
 ---
 
 #### **5. 示例代码**
+
 ```javascript
 function App() {
-  const [count, setCount] = useState(0);
+    const [count, setCount] = useState(0);
 
-  // 错误示例：Hook 不能在条件语句中使用
-  // if (count > 0) {
-  //   const [state2, setState2] = useState(1);
-  // }
+    // 错误示例：Hook 不能在条件语句中使用
+    // if (count > 0) {
+    //   const [state2, setState2] = useState(1);
+    // }
 
-  // 正确示例：将条件逻辑移到 useEffect 中
-  useEffect(() => {
-    if (count > 0) {
-      console.log('Count is greater than 0');
-    }
-  }, [count]);
+    // 正确示例：将条件逻辑移到 useEffect 中
+    useEffect(() => {
+        if (count > 0) {
+            console.log("Count is greater than 0");
+        }
+    }, [count]);
 
-  return (
-    <div>
-      <p>{count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-    </div>
-  );
+    return (
+        <div>
+            <p>{count}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+    );
 }
 ```
 
 ---
 
 ### **总结**
-- **Hook 的原理**：基于链表结构管理状态，依赖调用顺序。
-- **Hook 的规则**：必须在函数组件的顶层调用，不能有条件逻辑。
-- **解决方法**：将条件逻辑移到 Hook 内部或使用 `useEffect`。
+
+-   **Hook 的原理**：基于链表结构管理状态，依赖调用顺序。
+-   **Hook 的规则**：必须在函数组件的顶层调用，不能有条件逻辑。
+-   **解决方法**：将条件逻辑移到 Hook 内部或使用 `useEffect`。
 
 ---
-
 
 ## 杰日志监控，前端日志监控，异常上报，性能监控,异常 to
 
@@ -3334,7 +3503,6 @@ window.onerror = function (message, source, lineno, colno, error) {
 };
 ```
 
-
 5. iframe 异常
 
 ```js
@@ -3355,100 +3523,111 @@ window.frames[0].onerror = function (message, source, lineno, colno, error) {
 8. 跨端脚本无法准确捕获异常解决方案：对 script 标签增加一个 crossorigin=”anonymous”，并且服务器添加
    Access-Control-Allow-Origin。 <script src="http://cdn.xxx.com/index.js" crossorigin="anonymous"></script>
 9. 开发环境下开启 source-map 可以定位错误文件
+
 ### **实现一个异常监控系统**
 
-异常监控系统用于捕获前端应用中的各种错误（如 JavaScript 错误、资源加载错误、Promise 异常等），并将错误信息上报到服务器。以下是实现步骤：
+异常监控系统用于捕获前端应用中的各种错误（如 JavaScript 错误、资源加载错误、Promise 异常等），并将错误信息上报到服务器。
+以下是实现步骤：
 
 ---
 
 #### **1. 捕获 JavaScript 错误**
+
 使用 `window.onerror` 和 `window.addEventListener('error')` 捕获全局 JavaScript 错误。
 
 ```javascript
 // 捕获同步错误
 window.onerror = function (message, source, lineno, colno, error) {
-  const errorInfo = {
-    type: 'JavaScript Error',
-    message,
-    source,
-    lineno,
-    colno,
-    stack: error?.stack,
-  };
-  reportError(errorInfo);
-  return true; // 阻止默认错误提示
+    const errorInfo = {
+        type: "JavaScript Error",
+        message,
+        source,
+        lineno,
+        colno,
+        stack: error?.stack,
+    };
+    reportError(errorInfo);
+    return true; // 阻止默认错误提示
 };
 
 // 捕获资源加载错误（如图片、脚本加载失败）
-window.addEventListener('error', (event) => {
-  if (event.target && (event.target.src || event.target.href)) {
-    const errorInfo = {
-      type: 'Resource Error',
-      message: `Failed to load resource: ${event.target.src || event.target.href}`,
-      source: event.target.src || event.target.href,
-    };
-    reportError(errorInfo);
-  }
-}, true); // 使用捕获模式
+window.addEventListener(
+    "error",
+    (event) => {
+        if (event.target && (event.target.src || event.target.href)) {
+            const errorInfo = {
+                type: "Resource Error",
+                message: `Failed to load resource: ${event.target.src || event.target.href}`,
+                source: event.target.src || event.target.href,
+            };
+            reportError(errorInfo);
+        }
+    },
+    true
+); // 使用捕获模式
 ```
 
 ---
 
 #### **2. 捕获 Promise 异常**
+
 使用 `window.onunhandledrejection` 捕获未处理的 Promise 异常。
 
 ```javascript
 window.onunhandledrejection = function (event) {
-  const errorInfo = {
-    type: 'Promise Error',
-    message: event.reason?.message || 'Unhandled Promise Rejection',
-    stack: event.reason?.stack,
-  };
-  reportError(errorInfo);
+    const errorInfo = {
+        type: "Promise Error",
+        message: event.reason?.message || "Unhandled Promise Rejection",
+        stack: event.reason?.stack,
+    };
+    reportError(errorInfo);
 };
 ```
 
 ---
 
 #### **3. 捕获 React 错误边界**
+
 在 React 中，使用 `Error Boundary` 捕获组件树中的错误。
 
 ```javascript
 class ErrorBoundary extends React.Component {
-  state = { hasError: false };
+    state = { hasError: false };
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    const errorData = {
-      type: 'React Error',
-      message: error.message,
-      stack: error.stack,
-      componentStack: errorInfo.componentStack,
-    };
-    reportError(errorData);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+    static getDerivedStateFromError(error) {
+        return { hasError: true };
     }
-    return this.props.children;
-  }
+
+    componentDidCatch(error, errorInfo) {
+        const errorData = {
+            type: "React Error",
+            message: error.message,
+            stack: error.stack,
+            componentStack: errorInfo.componentStack,
+        };
+        reportError(errorData);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return <h1>Something went wrong.</h1>;
+        }
+        return this.props.children;
+    }
 }
 
 // 使用 ErrorBoundary 包裹组件
 <ErrorBoundary>
-  <MyComponent />
-</ErrorBoundary>
+    <MyComponent />
+</ErrorBoundary>;
 ```
 
 ---
 
 #### **4. 捕获跨域脚本错误**
-跨域脚本错误无法通过 `window.onerror` 捕获完整信息，需要在脚本标签上添加 `crossorigin` 属性，并确保服务器返回正确的 CORS 头。
+
+跨域脚本错误无法通过 `window.onerror` 捕获完整信息，需要在脚本标签上添加 `crossorigin` 属性，并确保服务器返回正确的 CORS
+头。
 
 ```html
 <script src="https://example.com/script.js" crossorigin></script>
@@ -3457,178 +3636,182 @@ class ErrorBoundary extends React.Component {
 ---
 
 #### **5. 上报错误信息**
+
 将捕获的错误信息通过 HTTP 请求上报到服务器。
 
 ```javascript
 function reportError(errorInfo) {
-  const url = 'https://your-server.com/api/log-error';
-  const data = {
-    timestamp: new Date().toISOString(),
-    ...errorInfo,
-  };
+    const url = "https://your-server.com/api/log-error";
+    const data = {
+        timestamp: new Date().toISOString(),
+        ...errorInfo,
+    };
 
-  // 使用 fetch 上报
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  }).catch((err) => {
-    console.error('Failed to report error:', err);
-  });
+    // 使用 fetch 上报
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    }).catch((err) => {
+        console.error("Failed to report error:", err);
+    });
 
-  // 或者使用 navigator.sendBeacon（适合页面卸载时上报）
-  if (navigator.sendBeacon) {
-    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-    navigator.sendBeacon(url, blob);
-  }
+    // 或者使用 navigator.sendBeacon（适合页面卸载时上报）
+    if (navigator.sendBeacon) {
+        const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+        navigator.sendBeacon(url, blob);
+    }
 }
 ```
 
 ---
 
 #### **6. 捕获用户行为**
+
 为了辅助排查问题，可以记录用户的操作行为（如点击、输入等）。
 
 ```javascript
 function trackUserAction(event) {
-  const actionInfo = {
-    type: 'User Action',
-    eventType: event.type,
-    target: event.target?.tagName,
-    timestamp: new Date().toISOString(),
-  };
-  reportError(actionInfo);
+    const actionInfo = {
+        type: "User Action",
+        eventType: event.type,
+        target: event.target?.tagName,
+        timestamp: new Date().toISOString(),
+    };
+    reportError(actionInfo);
 }
 
-document.addEventListener('click', trackUserAction);
-document.addEventListener('input', trackUserAction);
+document.addEventListener("click", trackUserAction);
+document.addEventListener("input", trackUserAction);
 ```
 
 ---
 
 #### **7. 防止循环上报**
+
 如果上报逻辑本身出错，可能会导致循环上报。可以通过标记或限制上报频率来避免。
 
 ```javascript
 let isReporting = false;
 
 function reportError(errorInfo) {
-  if (isReporting) return;
-  isReporting = true;
+    if (isReporting) return;
+    isReporting = true;
 
-  const url = 'https://your-server.com/api/log-error';
-  const data = {
-    timestamp: new Date().toISOString(),
-    ...errorInfo,
-  };
+    const url = "https://your-server.com/api/log-error";
+    const data = {
+        timestamp: new Date().toISOString(),
+        ...errorInfo,
+    };
 
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-    .finally(() => {
-      isReporting = false;
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
     })
-    .catch((err) => {
-      console.error('Failed to report error:', err);
-    });
+        .finally(() => {
+            isReporting = false;
+        })
+        .catch((err) => {
+            console.error("Failed to report error:", err);
+        });
 }
 ```
 
 ---
 
 #### **8. 完整的异常监控系统**
+
 将以上代码整合到一个模块中：
 
 ```javascript
 class ErrorMonitor {
-  constructor() {
-    this.init();
-  }
-
-  init() {
-    // 捕获 JavaScript 错误
-    window.onerror = this.handleError.bind(this);
-    window.addEventListener('error', this.handleResourceError.bind(this), true);
-
-    // 捕获 Promise 异常
-    window.onunhandledrejection = this.handlePromiseError.bind(this);
-
-    // 捕获用户行为
-    document.addEventListener('click', this.trackUserAction.bind(this));
-    document.addEventListener('input', this.trackUserAction.bind(this));
-  }
-
-  handleError(message, source, lineno, colno, error) {
-    const errorInfo = {
-      type: 'JavaScript Error',
-      message,
-      source,
-      lineno,
-      colno,
-      stack: error?.stack,
-    };
-    this.reportError(errorInfo);
-    return true;
-  }
-
-  handleResourceError(event) {
-    if (event.target && (event.target.src || event.target.href)) {
-      const errorInfo = {
-        type: 'Resource Error',
-        message: `Failed to load resource: ${event.target.src || event.target.href}`,
-        source: event.target.src || event.target.href,
-      };
-      this.reportError(errorInfo);
+    constructor() {
+        this.init();
     }
-  }
 
-  handlePromiseError(event) {
-    const errorInfo = {
-      type: 'Promise Error',
-      message: event.reason?.message || 'Unhandled Promise Rejection',
-      stack: event.reason?.stack,
-    };
-    this.reportError(errorInfo);
-  }
+    init() {
+        // 捕获 JavaScript 错误
+        window.onerror = this.handleError.bind(this);
+        window.addEventListener("error", this.handleResourceError.bind(this), true);
 
-  trackUserAction(event) {
-    const actionInfo = {
-      type: 'User Action',
-      eventType: event.type,
-      target: event.target?.tagName,
-      timestamp: new Date().toISOString(),
-    };
-    this.reportError(actionInfo);
-  }
+        // 捕获 Promise 异常
+        window.onunhandledrejection = this.handlePromiseError.bind(this);
 
-  reportError(errorInfo) {
-    const url = 'https://your-server.com/api/log-error';
-    const data = {
-      timestamp: new Date().toISOString(),
-      ...errorInfo,
-    };
-
-    if (navigator.sendBeacon) {
-      const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-      navigator.sendBeacon(url, blob);
-    } else {
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      }).catch((err) => {
-        console.error('Failed to report error:', err);
-      });
+        // 捕获用户行为
+        document.addEventListener("click", this.trackUserAction.bind(this));
+        document.addEventListener("input", this.trackUserAction.bind(this));
     }
-  }
+
+    handleError(message, source, lineno, colno, error) {
+        const errorInfo = {
+            type: "JavaScript Error",
+            message,
+            source,
+            lineno,
+            colno,
+            stack: error?.stack,
+        };
+        this.reportError(errorInfo);
+        return true;
+    }
+
+    handleResourceError(event) {
+        if (event.target && (event.target.src || event.target.href)) {
+            const errorInfo = {
+                type: "Resource Error",
+                message: `Failed to load resource: ${event.target.src || event.target.href}`,
+                source: event.target.src || event.target.href,
+            };
+            this.reportError(errorInfo);
+        }
+    }
+
+    handlePromiseError(event) {
+        const errorInfo = {
+            type: "Promise Error",
+            message: event.reason?.message || "Unhandled Promise Rejection",
+            stack: event.reason?.stack,
+        };
+        this.reportError(errorInfo);
+    }
+
+    trackUserAction(event) {
+        const actionInfo = {
+            type: "User Action",
+            eventType: event.type,
+            target: event.target?.tagName,
+            timestamp: new Date().toISOString(),
+        };
+        this.reportError(actionInfo);
+    }
+
+    reportError(errorInfo) {
+        const url = "https://your-server.com/api/log-error";
+        const data = {
+            timestamp: new Date().toISOString(),
+            ...errorInfo,
+        };
+
+        if (navigator.sendBeacon) {
+            const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+            navigator.sendBeacon(url, blob);
+        } else {
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            }).catch((err) => {
+                console.error("Failed to report error:", err);
+            });
+        }
+    }
 }
 
 // 初始化异常监控
@@ -3638,8 +3821,9 @@ new ErrorMonitor();
 ---
 
 ### **总结**
-通过以上步骤，可以实现一个完整的异常监控系统，能够捕获 JavaScript 错误、资源加载错误、Promise 异常、React 错误以及用户行为，并将错误信息上报到服务器。
 
+通过以上步骤，可以实现一个完整的异常监控系统，能够捕获 JavaScript 错误、资源加载错误、Promise 异常、React 错误以及用户行
+为，并将错误信息上报到服务器。
 
 ## 性能监控
 
@@ -3986,75 +4170,85 @@ HTTP 是应用层协议，定义的是传输数据的内容的规范，
 
 ### **网络七层模型（OSI 模型）**
 
-OSI（Open Systems Interconnection）模型是一个标准化的网络通信框架，将网络通信过程分为七层。每一层都有特定的功能和协议。以下是七层的详细说明：
+OSI（Open Systems Interconnection）模型是一个标准化的网络通信框架，将网络通信过程分为七层。每一层都有特定的功能和协议。
+以下是七层的详细说明：
 
 ---
 
 #### **1. 物理层（Physical Layer）**
-- **功能**：负责在物理介质上传输原始比特流（0 和 1）。
-- **协议**：以太网、光纤、电缆等。
-- **设备**：网线、集线器（Hub）、中继器（Repeater）。
+
+-   **功能**：负责在物理介质上传输原始比特流（0 和 1）。
+-   **协议**：以太网、光纤、电缆等。
+-   **设备**：网线、集线器（Hub）、中继器（Repeater）。
 
 ---
 
 #### **2. 数据链路层（Data Link Layer）**
-- **功能**：将比特流组织成帧（Frame），并提供物理地址（MAC 地址）寻址和错误检测。
-- **协议**：以太网（Ethernet）、Wi-Fi（802.11）、PPP（点对点协议）。
-- **设备**：交换机（Switch）、网桥（Bridge）。
+
+-   **功能**：将比特流组织成帧（Frame），并提供物理地址（MAC 地址）寻址和错误检测。
+-   **协议**：以太网（Ethernet）、Wi-Fi（802.11）、PPP（点对点协议）。
+-   **设备**：交换机（Switch）、网桥（Bridge）。
 
 ---
 
 #### **3. 网络层（Network Layer）**
-- **功能**：负责数据包的路由和转发，实现不同网络之间的通信。
-- **协议**：IP（Internet Protocol）、ICMP（Internet Control Message Protocol）、ARP（Address Resolution Protocol）。
-- **设备**：路由器（Router）。
+
+-   **功能**：负责数据包的路由和转发，实现不同网络之间的通信。
+-   **协议**：IP（Internet Protocol）、ICMP（Internet Control Message Protocol）、ARP（Address Resolution Protocol）。
+-   **设备**：路由器（Router）。
 
 ---
 
 #### **4. 传输层（Transport Layer）**
-- **功能**：提供端到端的可靠数据传输，负责流量控制、错误恢复和数据分段。
-- **协议**：TCP（Transmission Control Protocol）、UDP（User Datagram Protocol）。
-- **设备**：无特定设备，由操作系统实现。
+
+-   **功能**：提供端到端的可靠数据传输，负责流量控制、错误恢复和数据分段。
+-   **协议**：TCP（Transmission Control Protocol）、UDP（User Datagram Protocol）。
+-   **设备**：无特定设备，由操作系统实现。
 
 ---
 
 #### **5. 会话层（Session Layer）**
-- **功能**：管理应用程序之间的会话（Session），负责建立、维护和终止会话。
-- **协议**：RPC（Remote Procedure Call）、NetBIOS。
-- **设备**：无特定设备，由应用程序实现。
+
+-   **功能**：管理应用程序之间的会话（Session），负责建立、维护和终止会话。
+-   **协议**：RPC（Remote Procedure Call）、NetBIOS。
+-   **设备**：无特定设备，由应用程序实现。
 
 ---
 
 #### **6. 表示层（Presentation Layer）**
-- **功能**：负责数据的格式化、加密、解密和压缩，确保数据能够被接收方正确解析。
-- **协议**：SSL/TLS（加密）、JPEG（图像压缩）、ASCII（字符编码）。
-- **设备**：无特定设备，由应用程序实现。
+
+-   **功能**：负责数据的格式化、加密、解密和压缩，确保数据能够被接收方正确解析。
+-   **协议**：SSL/TLS（加密）、JPEG（图像压缩）、ASCII（字符编码）。
+-   **设备**：无特定设备，由应用程序实现。
 
 ---
 
 #### **7. 应用层（Application Layer）**
-- **功能**：为应用程序提供网络服务接口，直接与用户交互。
-- **协议**：HTTP（Web）、FTP（文件传输）、SMTP（电子邮件）、DNS（域名解析）。
-- **设备**：无特定设备，由应用程序实现。
+
+-   **功能**：为应用程序提供网络服务接口，直接与用户交互。
+-   **协议**：HTTP（Web）、FTP（文件传输）、SMTP（电子邮件）、DNS（域名解析）。
+-   **设备**：无特定设备，由应用程序实现。
 
 ---
 
 ### **七层模型的总结**
 
-| **层数** | **名称**       | **功能**                                   | **协议示例**                     | **设备示例**         |
-|----------|----------------|--------------------------------------------|----------------------------------|----------------------|
-| 1        | 物理层         | 传输原始比特流                             | 以太网、光纤                     | 网线、集线器         |
-| 2        | 数据链路层     | 组织帧、MAC 地址寻址、错误检测             | 以太网、Wi-Fi、PPP               | 交换机、网桥         |
-| 3        | 网络层         | 数据包路由、转发                           | IP、ICMP、ARP                    | 路由器               |
-| 4        | 传输层         | 端到端可靠传输、流量控制、错误恢复         | TCP、UDP                         | 无                   |
-| 5        | 会话层         | 管理应用程序会话                           | RPC、NetBIOS                     | 无                   |
-| 6        | 表示层         | 数据格式化、加密、解密、压缩               | SSL/TLS、JPEG、ASCII             | 无                   |
-| 7        | 应用层         | 提供网络服务接口                           | HTTP、FTP、SMTP、DNS             | 无                   |
+| **层数** | **名称**   | **功能**                           | **协议示例**         | **设备示例** |
+| -------- | ---------- | ---------------------------------- | -------------------- | ------------ |
+| 1        | 物理层     | 传输原始比特流                     | 以太网、光纤         | 网线、集线器 |
+| 2        | 数据链路层 | 组织帧、MAC 地址寻址、错误检测     | 以太网、Wi-Fi、PPP   | 交换机、网桥 |
+| 3        | 网络层     | 数据包路由、转发                   | IP、ICMP、ARP        | 路由器       |
+| 4        | 传输层     | 端到端可靠传输、流量控制、错误恢复 | TCP、UDP             | 无           |
+| 5        | 会话层     | 管理应用程序会话                   | RPC、NetBIOS         | 无           |
+| 6        | 表示层     | 数据格式化、加密、解密、压缩       | SSL/TLS、JPEG、ASCII | 无           |
+| 7        | 应用层     | 提供网络服务接口                   | HTTP、FTP、SMTP、DNS | 无           |
 
 ---
 
 ### **实际应用中的简化模型（TCP/IP 模型）**
+
 在实际应用中，通常使用 TCP/IP 模型，它将 OSI 模型的七层简化为四层：
+
 1. **网络接口层**（对应 OSI 的物理层和数据链路层）。
 2. **网络层**（对应 OSI 的网络层）。
 3. **传输层**（对应 OSI 的传输层）。
@@ -4072,8 +4266,8 @@ https://blog.csdn.net/qq_39057033/article/details/91361464
 2. 【 你好，我小 B 收到了，你可以开始连接了，我把我的认证报文给你，里面有公钥 key-pub【公钥私钥是非对称算法】和证书】web
    服务器收到客户端请求后, 会将网站的证书(包含公钥)传送一份给客户端
 3. 【 好，我确认了证书了，没问题，我先用对称加密算法生成我的关键会话秘钥 key1，然后用你给我的公钥 key-pub 进行加密生成
-   hash 发给你】客户端收到网站证书后会使用公钥检查证书的颁发机构以及过期时间, 如果没有问题就随机产生一个秘钥，利用公钥将会话秘钥
-   加密, 并传送给服务端
+   hash 发给你】客户端收到网站证书后会使用公钥检查证书的颁发机构以及过期时间, 如果没有问题就随机产生一个秘钥，利用公钥将
+   会话秘钥加密, 并传送给服务端
 4. 【服务器用私钥解密那个发送过来的随机串，如果能解密成功就代表成功，之后用秘钥串 key1 通信】服务端利用自己的私钥解密出
    会话秘钥，之后服务器与客户端使用秘钥加密传输
 
@@ -4102,25 +4296,29 @@ https://blog.csdn.net/qq_39057033/article/details/91361464
 5. 服务端收到后，用 s 可以解出来，从而代表这个 key 是合法的，所以开启通道，用 key 进行通信
 6. 攻击者得逞，因为它拿到 key 了，可以为所欲为了
 
-## 杰http1,http1.1,http2,http1/2,http3，
+## 杰 http1,http1.1,http2,http1/2,http3，
+
 核心区别：
 
 HTTP 1.1:
-- 持久连接
-- 管道化请求
-- 队头阻塞问题
+
+-   持久连接
+-   管道化请求
+-   队头阻塞问题
 
 HTTP 2:
-- 二进制分帧
-- 多路复用
-- 服务器推送
-- Header压缩
+
+-   二进制分帧
+-   多路复用
+-   服务器推送
+-   Header 压缩
 
 HTTP 3:
-- 基于QUIC协议(UDP)
-- 0-RTT建连
-- 连接迁移
-- 更好的丢包恢复
+
+-   基于 QUIC 协议(UDP)
+-   0-RTT 建连
+-   连接迁移
+-   更好的丢包恢复
 
 TLS: 一种安全协议，TLS 保护的 http 通信叫做 https
 
@@ -4158,19 +4356,15 @@ HTTP 1.0 的性能问题。比如请求头增加 host 字段标志来源，这�
 > 大缩短连接建立时间改进的拥塞控制无线头阻塞的多路复用前向纠错连接迁移
 
 > SSL/TLS SSL:安全套接层(Secure Sockets Layer) TLS:传输层安全协议(Transport Layer Security) SSL 标准化后叫做 TLS 只是不
-> 同阶段的叫法，用来解决 http 明文传出问题 SSL 直接在传输控制协议 (TCP) 基础上高效运行 TLS 与 SSL 在传输层与应用层之间对网络连接进行加密
+> 同阶段的叫法，用来解决 http 明文传出问题 SSL 直接在传输控制协议 (TCP) 基础上高效运行 TLS 与 SSL 在传输层与应用层之间对
+> 网络连接进行加密
 
 ## 杰网络攻击，网络安全，网络攻击，网络防御
 
-DDoS 攻击	流量清洗、限流、高防服务器
-SQL 注入	参数化查询、输入验证、最小权限原则
-XSS 攻击	输入输出过滤、CSP、HttpOnly Cookie
-CSRF 攻击	CSRF Token、SameSite Cookie、验证 Referer
-中间人攻击	HTTPS、证书校验、HSTS
-钓鱼攻击	用户教育、域名验证、多因素认证
-暴力破解	强密码策略、登录限制、双因素认证
-零日漏洞攻击	及时更新、入侵检测系统、最小化攻击面
-社会工程学攻击	安全意识培训、验证身份、信息保护
+DDoS 攻击 流量清洗、限流、高防服务器 SQL 注入 参数化查询、输入验证、最小权限原则 XSS 攻击 输入输出过滤、CSP、HttpOnly
+Cookie CSRF 攻击 CSRF Token、SameSite Cookie、验证 Referer 中间人攻击 HTTPS、证书校验、HSTS 钓鱼攻击 用户教育、域名验证
+、多因素认证暴力破解 强密码策略、登录限制、双因素认证零日漏洞攻击 及时更新、入侵检测系统、最小化攻击面社会工程学攻击 安
+全意识培训、验证身份、信息保护
 
 1. xss 攻击
 
@@ -4231,26 +4425,30 @@ CSRF 攻击	CSRF Token、SameSite Cookie、验证 Referer
 
 核心防御手段：
 
-XSS防御:
-- 转义特殊字符
-- CSP内容安全策略
-- HttpOnly Cookie
+XSS 防御:
 
-CSRF防御:
-- CSRF Token
-- Same-site Cookie
-- 验证Origin/Referer
+-   转义特殊字符
+-   CSP 内容安全策略
+-   HttpOnly Cookie
+
+CSRF 防御:
+
+-   CSRF Token
+-   Same-site Cookie
+-   验证 Origin/Referer
 
 点击劫持:
-- X-Frame-Options
-- frame-ancestors
+
+-   X-Frame-Options
+-   frame-ancestors
 
 其他:
-- 输入验证
-- 限制请求频率
-- HTTPS
-- 密码加盐存储
-- 敏感信息加密传输
+
+-   输入验证
+-   限制请求频率
+-   HTTPS
+-   密码加盐存储
+-   敏感信息加密传输
 
 注：以上大部分需要配合后端实现
 
@@ -5065,7 +5263,7 @@ actions: {
 因为更改 state 的函数必须是纯函数，纯函数既是统一输入就会统一输出，没有任何副作用；如果是异步则会引入额外的副作用，导致
 更改后的 state 不可预测；
 
-## 杰JSONP
+## 杰 JSONP
 
 可以解决跨域，用 script src 去发请求，然后在 query 加上一个 callback 回调函数（也可以不叫 callback，只是约定），这样请求
 后端就会最后运行 callback 函数
@@ -5097,7 +5295,7 @@ function jsonp(url, params, callback) {
 }
 ```
 
-## 杰cmd，模块化发展 amd,cmd,commonjs,esmodule
+## 杰 cmd，模块化发展 amd,cmd,commonjs,esmodule
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-module.png
 
@@ -6043,7 +6241,7 @@ Script 类编译 js 后生成本地代码 -- Compile 类协调负责调用相应
 
 1. 局部变量当程序执行结束是，且没有引用的话就会随着一起消失
 
-## 杰v8优化
+## 杰 v8 优化
 
 -   优化回滚：因为 V8 是基于 AST 直接生成本地代码，没有经过中间表示层的优化，所以本地代码尚未经过很好的优化。于是，V8 引
     入了新的编译器-Crankshaft。它主要针对热点函数进行优化，它是基于 JS 源码分析的，预测这些代码比较稳定，变量类型不会发
@@ -6183,7 +6381,7 @@ new Plugin(options),
 
 ```
 
-## 杰webpack如何工作，工作流程
+## 杰 webpack 如何工作，工作流程
 
 工作流程 (加载 - 编译 - 输出)
 
@@ -6232,33 +6430,33 @@ config.plugin("copy").tap((args) => {
 
 ## 杰热更新
 
-Webpack的热更新机制：
+Webpack 的热更新机制：
 
-文件监控：Webpack-dev-server监控项目文件的变化。当检测到文件变化时，触发重新编译过程。
+文件监控：Webpack-dev-server 监控项目文件的变化。当检测到文件变化时，触发重新编译过程。
 
-WebSocket通信：Webpack-dev-server与浏览器之间建立WebSocket连接，实时通信。当编译完成后，服务器通过WebSocket向浏览器发送更新信号。
+WebSocket 通信：Webpack-dev-server 与浏览器之间建立 WebSocket 连接，实时通信。当编译完成后，服务器通过 WebSocket 向浏览
+器发送更新信号。
 
-模块替换：浏览器接收到更新信号后，执行热更新逻辑，通过Hot Module Replacement（HMR）机制加载新的模块，替换旧的模块。
+模块替换：浏览器接收到更新信号后，执行热更新逻辑，通过 Hot Module Replacement（HMR）机制加载新的模块，替换旧的模块。
 
-HMR实现：HMR允许在运行时替换、添加或删除模块。Webpack生成的代码中包含HMR runtime，用于处理模块的加载和替换。
+HMR 实现：HMR 允许在运行时替换、添加或删除模块。Webpack 生成的代码中包含 HMR runtime，用于处理模块的加载和替换。
 
-Vite的热更新机制：
+Vite 的热更新机制：
 
-文件监控：Vite的开发服务器监控项目文件的变化，当检测到文件变化时，触发更新。
+文件监控：Vite 的开发服务器监控项目文件的变化，当检测到文件变化时，触发更新。
 
-WebSocket通信：Vite通过WebSocket与浏览器保持通信。当文件变化后，服务器发送更新信号到浏览器。
+WebSocket 通信：Vite 通过 WebSocket 与浏览器保持通信。当文件变化后，服务器发送更新信号到浏览器。
 
-ES模块动态加载：Vite利用浏览器对ES模块的支持，动态导入新的模块。浏览器接收到更新信号后，加载变化的模块，并替换旧的模块。
+ES 模块动态加载：Vite 利用浏览器对 ES 模块的支持，动态导入新的模块。浏览器接收到更新信号后，加载变化的模块，并替换旧的模
+块。
 
-简化的更新过程：由于Vite基于ES模块，不需要像Webpack那样进行复杂的打包和HMR配置，更新过程更加简洁高效。
+简化的更新过程：由于 Vite 基于 ES 模块，不需要像 Webpack 那样进行复杂的打包和 HMR 配置，更新过程更加简洁高效。
 
 对比总结：
 
-共同点：Webpack和Vite都采用文件监控和WebSocket通信来实现热更新。
-不同点：
-模块系统：Vite基于ES模块，更新更高效；Webpack基于HMR，需要更多配置和runtime支持。
-打包过程：Vite无需打包，直接运行；Webpack需要打包过程，增加了复杂性。
-更新速度：Vite通常更快，因其基于ES模块的特性和简化的流程。
+共同点：Webpack 和 Vite 都采用文件监控和 WebSocket 通信来实现热更新。不同点：模块系统：Vite 基于 ES 模块，更新更高效
+；Webpack 基于 HMR，需要更多配置和 runtime 支持。打包过程：Vite 无需打包，直接运行；Webpack 需要打包过程，增加了复杂性。
+更新速度：Vite 通常更快，因其基于 ES 模块的特性和简化的流程。
 
 ## webpack 优化
 
@@ -6297,15 +6495,12 @@ module.exports = {
 7. 还有很多，具体看https://github.com/webpack/changelog-v5/blob/master/README.md7
  <!-- endwebpack -->
 
-## 杰treeshaking
-Webpack 和 Vite 的 Tree-Shaking 对比
-特性	        Webpack	                     Vite
-默认支持	生产模式下默认启用	                 生产模式下默认启用
-配置方式	通过 optimization.usedExports 配置	通过 build.rollupOptions 配置
-依赖模块语法	ES6 模块（import/export）   	ES6 模块（import/export）
-副作用处理	通过 sideEffects 属性标记	    通过 sideEffects 属性标记
-适用场景	适用于复杂项目，支持多种优化	    适用于现代项目，开发体验更佳
+## 杰 treeshaking
 
+Webpack 和 Vite 的 Tree-Shaking 对比特性 Webpack Vite 默认支持 生产模式下默认启用 生产模式下默认启用配置方式 通过
+optimization.usedExports 配置 通过 build.rollupOptions 配置依赖模块语法 ES6 模块（import/export） ES6 模块
+（import/export）副作用处理 通过 sideEffects 属性标记 通过 sideEffects 属性标记适用场景 适用于复杂项目，支持多种优化 适
+用于现代项目，开发体验更佳
 
 # Nodeto，
 
@@ -6320,35 +6515,39 @@ node 单线程特性：事件驱动（event loop）非阻塞 I/O Js 都是单线
 的，同时，也支持 cluster 多核多进程处理，但多进程处理的话有一个问题，每个进程都是相互独立的，这也就意味着 token 什么的不
 能放在内存中而应该在 redis 里面，因为每个进程相互独立，内存自然不能共享
 
-
-### 杰node性能优化
+### 杰 node 性能优化
 
 1. **代码层面**
-- 异步编程：使用async/await
-- 合理使用缓存：Redis/Memory Cache
-- 数据库优化：索引/连接池/SQL优化
-- Stream流处理大文件
+
+-   异步编程：使用 async/await
+-   合理使用缓存：Redis/Memory Cache
+-   数据库优化：索引/连接池/SQL 优化
+-   Stream 流处理大文件
 
 2. **进程管理**
-- PM2多进程管理
-- cluster模块开启多核
-- 合理使用子进程child_process
+
+-   PM2 多进程管理
+-   cluster 模块开启多核
+-   合理使用子进程 child_process
 
 3. **系统层面**
-- nginx反向代理/负载均衡
-- CDN加速静态资源
-- gzip压缩响应内容
-- 合理设置请求超时时间
+
+-   nginx 反向代理/负载均衡
+-   CDN 加速静态资源
+-   gzip 压缩响应内容
+-   合理设置请求超时时间
 
 4. **监控告警**
-- 错误日志收集
-- 性能监控APM
-- 内存泄漏检测
+
+-   错误日志收集
+-   性能监控 APM
+-   内存泄漏检测
 
 5. **架构层面**
-- 微服务拆分  按服务拆分模块
-- 消息队列削峰  kafka
-- 合理设置并发数
+
+-   微服务拆分 按服务拆分模块
+-   消息队列削峰 kafka
+-   合理设置并发数
 
 11. 处理 JSON，JSONStream 只读取部分 json 数据并直接以流形式传输
 12. 使用 fast-json-stringify 加速 JSON 序列化
@@ -6493,87 +6692,87 @@ process.on("SIGTERM", function () {
     process.exit(0);
 });
 ```
-### 错误日志收集
-- Winston/Log4js记录日志
-- ELK Stack存储分析
-- Sentry实时错误追踪
-- 按级别分类：error/warn/info
-- 记录关键信息：时间/接口/参数/堆栈
 
-### 性能监控APM
-- New Relic/Datadog商业方案
-- Prometheus + Grafana开源方案
-- 监控指标：
-  - CPU/内存使用率
-  - 请求响应时间
-  - 吞吐量QPS
-  - 错误率
-  - GC情况
+### 错误日志收集
+
+-   Winston/Log4js 记录日志
+-   ELK Stack 存储分析
+-   Sentry 实时错误追踪
+-   按级别分类：error/warn/info
+-   记录关键信息：时间/接口/参数/堆栈
+
+### 性能监控 APM
+
+-   New Relic/Datadog 商业方案
+-   Prometheus + Grafana 开源方案
+-   监控指标：
+    -   CPU/内存使用率
+    -   请求响应时间
+    -   吞吐量 QPS
+    -   错误率
+    -   GC 情况
 
 ### 内存泄漏检测
-- node-heapdump生成堆快照
-- Chrome DevTools分析
-- node --inspect调试
-- 常见泄漏：
-  - 全局变量未释放
-  - 闭包引用
-  - 事件监听未解绑
-  - 缓存无上限
+
+-   node-heapdump 生成堆快照
+-   Chrome DevTools 分析
+-   node --inspect 调试
+-   常见泄漏：
+    -   全局变量未释放
+    -   闭包引用
+    -   事件监听未解绑
+    -   缓存无上限
+
 ```js
 // 可以在低峰的时候结合监控系统，当内存使用超过阈值时生成快照
 // 生成快照会暂停 V8 引擎
 // 快照文件可能很大
 // 建议在低峰期进行
 // 及时清理旧的快照文件
-const schedule = require('node-schedule');
+const schedule = require("node-schedule");
 
-const monitor = require('your-monitor-system');
+const monitor = require("your-monitor-system");
 if (process.memoryUsage().heapUsed > threshold) {
-  heapdump.writeSnapshot();
-  monitor.alert('High memory usage detected');
+    heapdump.writeSnapshot();
+    monitor.alert("High memory usage detected");
 }
-
 ```
 
 ### 微服务拆分
-- 按业务域拆分
-- 服务独立部署/扩展
-- 服务间通信：
-  - RPC(gRPC) 也可以用dubbo
-  - REST API
-  - 消息队列
-- 服务治理：注册/发现/熔断
-在Node.js中，实现服务间的RPC（Remote Procedure Call）通信，我们可以使用`grpc`库，它是一个高性能、开源和通用的RPC框架，由Google主导开发。以下是一个简要的示例，展示了如何在Node.js中设置一个简单的客户端和服务端进行RPC通信。
-microservices-demo/
-├── user-service/
-│   ├── server.js
-│   └── package.json
-├── order-service/
-│   ├── server.js
-│   └── package.json
-└── README.md
+
+-   按业务域拆分
+-   服务独立部署/扩展
+-   服务间通信：
+    -   RPC(gRPC) 也可以用 dubbo
+    -   REST API
+    -   消息队列
+-   服务治理：注册/发现/熔断在 Node.js 中，实现服务间的 RPC（Remote Procedure Call）通信，我们可以使用`grpc`库，它是一个
+    高性能、开源和通用的 RPC 框架，由 Google 主导开发。以下是一个简要的示例，展示了如何在 Node.js 中设置一个简单的客户端
+    和服务端进行 RPC 通信。 microservices-demo/ ├── user-service/ │ ├── server.js │ └── package.json ├── order-service/
+    │ ├── server.js │ └── package.json └── README.md
 
 ### Node.js 服务间的 RPC 通信
 
 #### RPC 是什么？
-RPC（Remote Procedure Call，远程过程调用）是一种通信协议，允许一个程序调用另一个地址空间（通常是另一台机器上的服务）中的函数或方法，就像调用本地函数一样。
 
+RPC（Remote Procedure Call，远程过程调用）是一种通信协议，允许一个程序调用另一个地址空间（通常是另一台机器上的服务）中的
+函数或方法，就像调用本地函数一样。
 
 ### RPC 与 HTTP 通信的区别
 
-| 特性                | RPC 通信                          | HTTP 通信                        |
-|---------------------|-----------------------------------|----------------------------------|
-| **协议**            | 通常使用二进制协议（如 Protobuf） | 通常使用文本协议（如 JSON）      |
-| **性能**            | 高性能，传输数据小，速度快        | 性能较低，传输数据较大，速度较慢 |
-| **开发复杂度**      | 调用远程服务像调用本地函数        | 需要手动处理请求和响应           |
-| **强类型支持**      | 支持强类型接口定义                | 通常无强类型支持                 |
-| **跨语言支持**      | 支持多种编程语言                  | 依赖 RESTful API，跨语言支持较弱 |
-| **内置功能**        | 内置负载均衡、服务发现等功能      | 需要额外实现                     |
-| **适用场景**        | 高性能、低延迟的内部服务通信      | 对外暴露 API，适合外部调用       |
+| 特性           | RPC 通信                          | HTTP 通信                        |
+| -------------- | --------------------------------- | -------------------------------- |
+| **协议**       | 通常使用二进制协议（如 Protobuf） | 通常使用文本协议（如 JSON）      |
+| **性能**       | 高性能，传输数据小，速度快        | 性能较低，传输数据较大，速度较慢 |
+| **开发复杂度** | 调用远程服务像调用本地函数        | 需要手动处理请求和响应           |
+| **强类型支持** | 支持强类型接口定义                | 通常无强类型支持                 |
+| **跨语言支持** | 支持多种编程语言                  | 依赖 RESTful API，跨语言支持较弱 |
+| **内置功能**   | 内置负载均衡、服务发现等功能      | 需要额外实现                     |
+| **适用场景**   | 高性能、低延迟的内部服务通信      | 对外暴露 API，适合外部调用       |
 
 ---
 
-### 安装gRPC
+### 安装 gRPC
 
 首先，你需要安装`grpc`和`@grpc/proto-loader`。运行以下命令安装它们：
 
@@ -6614,23 +6813,23 @@ message HelloReply {
 
 ```javascript
 // server.js
-const grpc = require('grpc');
-const protoLoader = require('@grpc/proto-loader');
-const packageDefinition = protoLoader.loadSync('helloworld.proto');
+const grpc = require("grpc");
+const protoLoader = require("@grpc/proto-loader");
+const packageDefinition = protoLoader.loadSync("helloworld.proto");
 const helloProto = grpc.loadPackageDefinition(packageDefinition).helloworld;
 
 // 实现Greeter服务
 function sayHello(call, callback) {
-  callback(null, {message: 'Hello, ' + call.request.name});
+    callback(null, { message: "Hello, " + call.request.name });
 }
 
 // 主函数
 function main() {
-  const server = new grpc.Server();
-  server.addService(helloProto.Greeter.service, {sayHello: sayHello});
-  server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
-  console.log('Server running at http://0.0.0.0:50051');
-  server.start();
+    const server = new grpc.Server();
+    server.addService(helloProto.Greeter.service, { sayHello: sayHello });
+    server.bind("0.0.0.0:50051", grpc.ServerCredentials.createInsecure());
+    console.log("Server running at http://0.0.0.0:50051");
+    server.start();
 }
 
 main();
@@ -6642,16 +6841,16 @@ main();
 
 ```javascript
 // client.js
-const grpc = require('grpc');
-const protoLoader = require('@grpc/proto-loader');
-const packageDefinition = protoLoader.loadSync('helloworld.proto');
+const grpc = require("grpc");
+const protoLoader = require("@grpc/proto-loader");
+const packageDefinition = protoLoader.loadSync("helloworld.proto");
 const helloProto = grpc.loadPackageDefinition(packageDefinition).helloworld;
 
 function main() {
-  const client = new helloProto.Greeter('localhost:50051', grpc.credentials.createInsecure());
-  client.sayHello({name: 'World'}, function(err, response) {
-    console.log('Greeting:', response.message);
-  });
+    const client = new helloProto.Greeter("localhost:50051", grpc.credentials.createInsecure());
+    client.sayHello({ name: "World" }, function (err, response) {
+        console.log("Greeting:", response.message);
+    });
 }
 
 main();
@@ -6671,21 +6870,21 @@ node server.js
 node client.js
 ```
 
-客户端将发送一个`SayHello` RPC请求到服务端，服务端将响应一个消息，客户端接收到这个消息并打印出来。
+客户端将发送一个`SayHello` RPC 请求到服务端，服务端将响应一个消息，客户端接收到这个消息并打印出来。
 
-这个例子简要展示了在Node.js中如何使用gRPC进行服务间的RPC通信。你可以根据实际需要调整`.proto`文件和服务逻辑。
-
-
+这个例子简要展示了在 Node.js 中如何使用 gRPC 进行服务间的 RPC 通信。你可以根据实际需要调整`.proto`文件和服务逻辑。
 
 ### 消息队列削峰
-- RabbitMQ/Kafka
-- 应用场景：
-  - 异步处理
-  - 流量削峰
-  - 解耦服务
-  - 日志处理
-- 保证消息可靠性
-在Node.js服务中结合Kafka实现消息队列的削峰和数据流管理，主要涉及到与Kafka的交互，包括生产者（Producer）发送消息和消费者（Consumer）接收消息。这里以`kafkajs`这个库为例来展示如何在Node.js中实现Kafka的基本使用。`kafkajs`是一个广受欢迎的Node.js库，用于与Kafka交互。
+
+-   RabbitMQ/Kafka
+-   应用场景：
+    -   异步处理
+    -   流量削峰
+    -   解耦服务
+    -   日志处理
+-   保证消息可靠性在 Node.js 服务中结合 Kafka 实现消息队列的削峰和数据流管理，主要涉及到与 Kafka 的交互，包括生产者
+    （Producer）发送消息和消费者（Consumer）接收消息。这里以`kafkajs`这个库为例来展示如何在 Node.js 中实现 Kafka 的基本
+    使用。`kafkajs`是一个广受欢迎的 Node.js 库，用于与 Kafka 交互。
 
 ### 1. 安装 `kafkajs`
 
@@ -6695,123 +6894,129 @@ node client.js
 npm install kafkajs
 ```
 
-### 2. 创建Kafka生产者
+### 2. 创建 Kafka 生产者
 
-生产者负责发送消息到Kafka中。
+生产者负责发送消息到 Kafka 中。
 
 ```javascript
-const { Kafka } = require('kafkajs')
+const { Kafka } = require("kafkajs");
 
 const kafka = new Kafka({
-  clientId: 'my-app',
-  brokers: ['kafka1:9092', 'kafka2:9092']
-})
+    clientId: "my-app",
+    brokers: ["kafka1:9092", "kafka2:9092"],
+});
 
-const producer = kafka.producer()
+const producer = kafka.producer();
 
 const produce = async () => {
-  await producer.connect()
-  try {
-    await producer.send({
-      topic: 'test-topic',
-      messages: [
-        { value: 'Hello KafkaJS user!' },
-      ],
-    })
-    console.log("Message sent successfully");
-  } catch (err) {
-    console.error("Failed to send message", err);
-  } finally {
-    await producer.disconnect()
-  }
-}
+    await producer.connect();
+    try {
+        await producer.send({
+            topic: "test-topic",
+            messages: [{ value: "Hello KafkaJS user!" }],
+        });
+        console.log("Message sent successfully");
+    } catch (err) {
+        console.error("Failed to send message", err);
+    } finally {
+        await producer.disconnect();
+    }
+};
 
 produce();
 ```
 
-这段代码创建了一个生产者，连接到了Kafka集群，并向`test-topic`主题发送了一个消息。
+这段代码创建了一个生产者，连接到了 Kafka 集群，并向`test-topic`主题发送了一个消息。
 
-### 3. 创建Kafka消费者
+### 3. 创建 Kafka 消费者
 
-消费者负责从Kafka中接收消息。
+消费者负责从 Kafka 中接收消息。
 
 ```javascript
 const kafka = new Kafka({
-  clientId: 'my-app',
-  brokers: ['kafka1:9092', 'kafka2:9092']
-})
+    clientId: "my-app",
+    brokers: ["kafka1:9092", "kafka2:9092"],
+});
 
-const consumer = kafka.consumer({ groupId: 'test-group' })
+const consumer = kafka.consumer({ groupId: "test-group" });
 
 const consume = async () => {
-  await consumer.connect()
-  await consumer.subscribe({ topic: 'test-topic', fromBeginning: true })
+    await consumer.connect();
+    await consumer.subscribe({ topic: "test-topic", fromBeginning: true });
 
-  await consumer.run({
-    eachMessage: async ({ topic, partition, message }) => {
-      console.log({
-        value: message.value.toString(),
-      })
-    },
-  })
-}
+    await consumer.run({
+        eachMessage: async ({ topic, partition, message }) => {
+            console.log({
+                value: message.value.toString(),
+            });
+        },
+    });
+};
 
 consume();
 ```
 
-这段代码创建了一个消费者，它连接到Kafka集群，订阅了`test-topic`主题，并打印接收到的每条消息。
+这段代码创建了一个消费者，它连接到 Kafka 集群，订阅了`test-topic`主题，并打印接收到的每条消息。
 
 ### 注意事项
 
-- 确保你的Kafka集群运行正常，并且`brokers`数组中的地址和端口号与你的Kafka集群匹配。
-- 在生产环境中，可能需要根据Kafka集群的认证和加密方式配置更多的连接选项。
-- Kafka中的topic需要提前创建，或者配置Kafka允许自动创建topic。
+-   确保你的 Kafka 集群运行正常，并且`brokers`数组中的地址和端口号与你的 Kafka 集群匹配。
+-   在生产环境中，可能需要根据 Kafka 集群的认证和加密方式配置更多的连接选项。
+-   Kafka 中的 topic 需要提前创建，或者配置 Kafka 允许自动创建 topic。
 
-通过这种方式，Node.js服务可以利用Kafka进行消息的生产和消费，实现削峰、负载均衡等目的。
+通过这种方式，Node.js 服务可以利用 Kafka 进行消息的生产和消费，实现削峰、负载均衡等目的。
 
-### Kafka结合Node.js的具体应用场景
+### Kafka 结合 Node.js 的具体应用场景
 
 #### 1. **日志收集与分析**
-- **场景**：一个大型电商平台，每天产生大量用户行为日志（如点击、购买、浏览等）。
-- **解决方案**：Node.js服务将日志实时发送到Kafka，Kafka将这些日志存储并分发给不同的消费者（如日志分析服务、监控服务等）。
-- **解决的问题**：集中管理日志，实时分析用户行为，快速发现问题。
+
+-   **场景**：一个大型电商平台，每天产生大量用户行为日志（如点击、购买、浏览等）。
+-   **解决方案**：Node.js 服务将日志实时发送到 Kafka，Kafka 将这些日志存储并分发给不同的消费者（如日志分析服务、监控服务
+    等）。
+-   **解决的问题**：集中管理日志，实时分析用户行为，快速发现问题。
 
 #### 2. **实时推荐系统**
-- **场景**：一个视频网站需要根据用户的实时行为（如观看、点赞、评论）推荐相关视频。
-- **解决方案**：Node.js服务将用户行为数据发送到Kafka，推荐系统消费这些数据并实时生成推荐结果。
-- **解决的问题**：实现低延迟的个性化推荐，提升用户体验。
+
+-   **场景**：一个视频网站需要根据用户的实时行为（如观看、点赞、评论）推荐相关视频。
+-   **解决方案**：Node.js 服务将用户行为数据发送到 Kafka，推荐系统消费这些数据并实时生成推荐结果。
+-   **解决的问题**：实现低延迟的个性化推荐，提升用户体验。
 
 #### 3. **订单处理系统**
-- **场景**：一个外卖平台，高峰期订单量激增，需要保证订单处理的稳定性和及时性。
-- **解决方案**：Node.js服务将订单数据发送到Kafka，订单处理服务从Kafka消费订单并进行处理。
-- **解决的问题**：削峰填谷，避免系统过载，保证订单处理的稳定性。
+
+-   **场景**：一个外卖平台，高峰期订单量激增，需要保证订单处理的稳定性和及时性。
+-   **解决方案**：Node.js 服务将订单数据发送到 Kafka，订单处理服务从 Kafka 消费订单并进行处理。
+-   **解决的问题**：削峰填谷，避免系统过载，保证订单处理的稳定性。
 
 #### 4. **事件驱动架构**
-- **场景**：一个微服务架构的电商系统，多个服务需要协同工作（如订单服务、库存服务、支付服务）。
-- **解决方案**：通过Kafka作为事件总线，Node.js服务发布事件（如订单创建、库存更新），其他服务订阅并处理这些事件。
-- **解决的问题**：服务间解耦，提高系统的可扩展性和可维护性。
+
+-   **场景**：一个微服务架构的电商系统，多个服务需要协同工作（如订单服务、库存服务、支付服务）。
+-   **解决方案**：通过 Kafka 作为事件总线，Node.js 服务发布事件（如订单创建、库存更新），其他服务订阅并处理这些事件。
+-   **解决的问题**：服务间解耦，提高系统的可扩展性和可维护性。
 
 #### 5. **实时数据监控**
-- **场景**：一个在线游戏平台需要实时监控玩家的行为和系统状态。
-- **解决方案**：Node.js服务将玩家行为和系统状态数据发送到Kafka，监控服务消费这些数据并实时展示。
-- **解决的问题**：实时监控系统状态，快速响应异常情况。
+
+-   **场景**：一个在线游戏平台需要实时监控玩家的行为和系统状态。
+-   **解决方案**：Node.js 服务将玩家行为和系统状态数据发送到 Kafka，监控服务消费这些数据并实时展示。
+-   **解决的问题**：实时监控系统状态，快速响应异常情况。
 
 ### 核心部分
-- **Kafka**：作为消息中间件，负责高吞吐量的消息存储和分发。
-- **Node.js**：作为生产者或消费者，与Kafka交互，处理业务逻辑。
 
-通过这些具体场景，可以更好地理解Kafka结合Node.js在实际项目中的应用和解决的问题。
+-   **Kafka**：作为消息中间件，负责高吞吐量的消息存储和分发。
+-   **Node.js**：作为生产者或消费者，与 Kafka 交互，处理业务逻辑。
+
+通过这些具体场景，可以更好地理解 Kafka 结合 Node.js 在实际项目中的应用和解决的问题。
 
 ### 并发控制
-- 连接池管理
-- 队列任务处理
-- 限流策略：
-  - 令牌桶
-  - 漏桶算法
-  - 计数器
-- 根据服务器配置调整
 
-## 杰pm2to
+-   连接池管理
+-   队列任务处理
+-   限流策略：
+    -   令牌桶
+    -   漏桶算法
+    -   计数器
+-   根据服务器配置调整
+
+## 杰 pm2to
 
 **使用**
 
@@ -6916,34 +7121,37 @@ worker_process.on("message", function (msg) {
     package.json 或者出错，则找它的 index.js，index.node，index.json，如果还是没有找到就找下一个，到最后全部遍历完后没找
     到就抛错
 
-### Node.js的模块加载机制
+### Node.js 的模块加载机制
 
 #### 核心机制
+
 1. **模块类型**：
-   - **核心模块**：Node.js自带的模块，如`fs`、`http`等。
-   - **文件模块**：用户自定义的模块，通过路径引入。
-   - **第三方模块**：通过`npm`安装的模块，存放在`node_modules`目录下。
+
+    - **核心模块**：Node.js 自带的模块，如`fs`、`http`等。
+    - **文件模块**：用户自定义的模块，通过路径引入。
+    - **第三方模块**：通过`npm`安装的模块，存放在`node_modules`目录下。
 
 2. **加载顺序**：
-   - **缓存优先**：Node.js会缓存已加载的模块，再次加载时直接从缓存中读取。
-   - **核心模块**：优先加载核心模块。
-   - **文件模块**：根据路径加载文件模块。
-   - **第三方模块**：从`node_modules`目录中加载。
+
+    - **缓存优先**：Node.js 会缓存已加载的模块，再次加载时直接从缓存中读取。
+    - **核心模块**：优先加载核心模块。
+    - **文件模块**：根据路径加载文件模块。
+    - **第三方模块**：从`node_modules`目录中加载。
 
 3. **模块查找规则**：
-   - **核心模块**：直接加载，无需路径。
-   - **文件模块**：
-     - 如果是相对路径（如`./module`），从当前文件所在目录开始查找。
-     - 如果是绝对路径（如`/path/to/module`），从根目录开始查找。
-   - **第三方模块**：
-     - 从当前目录的`node_modules`开始查找，逐级向上查找直到根目录。
+
+    - **核心模块**：直接加载，无需路径。
+    - **文件模块**：
+        - 如果是相对路径（如`./module`），从当前文件所在目录开始查找。
+        - 如果是绝对路径（如`/path/to/module`），从根目录开始查找。
+    - **第三方模块**：
+        - 从当前目录的`node_modules`开始查找，逐级向上查找直到根目录。
 
 4. **模块加载过程**：
-   - **解析路径**：根据模块标识符解析出模块的绝对路径。
-   - **加载模块**：根据路径加载模块文件。
-   - **编译执行**：将模块文件编译成可执行代码并执行。
-   - **缓存模块**：将加载的模块缓存起来，以便下次快速加载。
-
+    - **解析路径**：根据模块标识符解析出模块的绝对路径。
+    - **加载模块**：根据路径加载模块文件。
+    - **编译执行**：将模块文件编译成可执行代码并执行。
+    - **缓存模块**：将加载的模块缓存起来，以便下次快速加载。
 
 ## node 调用 java,node 调用接口
 
@@ -7010,7 +7218,7 @@ koa.js 并没有内置 Request Body 的解析器，当我们需要解析请求�
 这个库，也可以直接使用 koa-body 或 koa-better-body Koa-views 支持模板引擎 Koa-session Koa-helmet 增加头盔 Koa-compress
 类 gzip 一样的压缩 koa-convert 用来兼容 koa2 以下版本的写法
 
-## 杰koa，compose,中间件 to
+## 杰 koa，compose,中间件 to
 
 将函数串联起来, [A,B,C] => A(B(C()))
 
@@ -7388,109 +7596,115 @@ vimbash mybin, ls, rm 脚手架，npm link 进行关联
 ---
 
 ### 1. **Session-Cookie 鉴权**
-- **原理**：
-  - 用户登录后，服务器生成一个 Session 并存储在服务器端（如内存、Redis）。
-  - 服务器返回一个 Session ID 给客户端，客户端通过 Cookie 存储该 Session ID。
-  - 后续请求中，客户端自动携带 Cookie，服务器通过 Session ID 验证用户身份。
-- **优点**：
-  - 简单易用，适合传统 Web 应用。
-- **缺点**：
-  - 服务器需要存储 Session，扩展性差。
-  - 不适合分布式系统，因为 Session 需要共享。
+
+-   **原理**：
+    -   用户登录后，服务器生成一个 Session 并存储在服务器端（如内存、Redis）。
+    -   服务器返回一个 Session ID 给客户端，客户端通过 Cookie 存储该 Session ID。
+    -   后续请求中，客户端自动携带 Cookie，服务器通过 Session ID 验证用户身份。
+-   **优点**：
+    -   简单易用，适合传统 Web 应用。
+-   **缺点**：
+    -   服务器需要存储 Session，扩展性差。
+    -   不适合分布式系统，因为 Session 需要共享。
 
 ---
 
 ### 2. **Token 鉴权（JWT）**
-- **原理**：
-  - 用户登录后，服务器生成一个 JWT（JSON Web Token）并返回给客户端。
-  - JWT 包含用户信息和签名，客户端存储 JWT（通常放在 LocalStorage 或 Cookie 中）。
-  - 后续请求中，客户端在请求头中携带 JWT，服务器验证签名并解析用户信息。
-- **优点**：
-  - 无状态，适合分布式系统。
-  - 不需要服务器存储 Session，扩展性好。
-- **缺点**：
-  - JWT 一旦签发，无法中途撤销（除非使用黑名单机制）。
-  - 数据存储在客户端，可能存在安全问题。
+
+-   **原理**：
+    -   用户登录后，服务器生成一个 JWT（JSON Web Token）并返回给客户端。
+    -   JWT 包含用户信息和签名，客户端存储 JWT（通常放在 LocalStorage 或 Cookie 中）。
+    -   后续请求中，客户端在请求头中携带 JWT，服务器验证签名并解析用户信息。
+-   **优点**：
+    -   无状态，适合分布式系统。
+    -   不需要服务器存储 Session，扩展性好。
+-   **缺点**：
+    -   JWT 一旦签发，无法中途撤销（除非使用黑名单机制）。
+    -   数据存储在客户端，可能存在安全问题。
 
 ---
 
 ### 3. **OAuth 2.0**
-- **原理**：
-  - 用户通过第三方平台（如 Google、GitHub）登录。
-  - 第三方平台返回一个授权码（Authorization Code），客户端用该授权码换取访问令牌（Access Token）。
-  - 客户端使用 Access Token 访问受保护资源。
-- **优点**：
-  - 支持第三方登录，用户体验好。
-  - 适合开放平台和跨系统授权。
-- **缺点**：
-  - 实现复杂，涉及多个角色（客户端、资源服务器、授权服务器）。
-  - 需要处理令牌刷新和权限管理。
+
+-   **原理**：
+    -   用户通过第三方平台（如 Google、GitHub）登录。
+    -   第三方平台返回一个授权码（Authorization Code），客户端用该授权码换取访问令牌（Access Token）。
+    -   客户端使用 Access Token 访问受保护资源。
+-   **优点**：
+    -   支持第三方登录，用户体验好。
+    -   适合开放平台和跨系统授权。
+-   **缺点**：
+    -   实现复杂，涉及多个角色（客户端、资源服务器、授权服务器）。
+    -   需要处理令牌刷新和权限管理。
 
 ---
 
 ### 4. **API Key 鉴权**
-- **原理**：
-  - 每个客户端分配一个唯一的 API Key。
-  - 客户端在请求头或参数中携带 API Key，服务器验证该 Key 是否有效。
-- **优点**：
-  - 简单易用，适合机器对机器（M2M）的通信。
-- **缺点**：
-  - API Key 容易被泄露，安全性较低。
-  - 不适合用户级别的鉴权。
+
+-   **原理**：
+    -   每个客户端分配一个唯一的 API Key。
+    -   客户端在请求头或参数中携带 API Key，服务器验证该 Key 是否有效。
+-   **优点**：
+    -   简单易用，适合机器对机器（M2M）的通信。
+-   **缺点**：
+    -   API Key 容易被泄露，安全性较低。
+    -   不适合用户级别的鉴权。
 
 ---
 
 ### 5. **HMAC 鉴权**
-- **原理**：
-  - 客户端和服务器共享一个 Secret Key。
-  - 客户端使用 Secret Key 对请求内容生成 HMAC 签名，并将签名放在请求头中。
-  - 服务器使用相同的 Secret Key 验证签名。
-- **优点**：
-  - 防止请求被篡改，安全性高。
-- **缺点**：
-  - 实现复杂，需要严格的时间同步。
-  - 不适合用户级别的鉴权。
+
+-   **原理**：
+    -   客户端和服务器共享一个 Secret Key。
+    -   客户端使用 Secret Key 对请求内容生成 HMAC 签名，并将签名放在请求头中。
+    -   服务器使用相同的 Secret Key 验证签名。
+-   **优点**：
+    -   防止请求被篡改，安全性高。
+-   **缺点**：
+    -   实现复杂，需要严格的时间同步。
+    -   不适合用户级别的鉴权。
 
 ---
 
 ### 6. **SSO（单点登录）**
-- **原理**：
-  - 用户在一个系统中登录后，可以访问其他关联系统而无需重新登录。
-  - 通常基于 OAuth 2.0 或 SAML 实现。
-- **优点**：
-  - 提升用户体验，减少重复登录。
-  - 适合企业内部的多系统集成。
-- **缺点**：
-  - 实现复杂，需要统一的认证中心。
+
+-   **原理**：
+    -   用户在一个系统中登录后，可以访问其他关联系统而无需重新登录。
+    -   通常基于 OAuth 2.0 或 SAML 实现。
+-   **优点**：
+    -   提升用户体验，减少重复登录。
+    -   适合企业内部的多系统集成。
+-   **缺点**：
+    -   实现复杂，需要统一的认证中心。
 
 ---
 
 ### 7. **SAML（安全断言标记语言）**
-- **原理**：
-  - 用户通过身份提供商（IdP）登录，IdP 生成一个 SAML 断言。
-  - 客户端将 SAML 断言发送给服务提供商（SP），SP 验证断言并允许访问。
-- **优点**：
-  - 适合企业级单点登录。
-  - 支持跨域身份验证。
-- **缺点**：
-  - 实现复杂，依赖 XML 协议。
+
+-   **原理**：
+    -   用户通过身份提供商（IdP）登录，IdP 生成一个 SAML 断言。
+    -   客户端将 SAML 断言发送给服务提供商（SP），SP 验证断言并允许访问。
+-   **优点**：
+    -   适合企业级单点登录。
+    -   支持跨域身份验证。
+-   **缺点**：
+    -   实现复杂，依赖 XML 协议。
 
 ---
 
 ### 总结
 
-| 鉴权方式       | 适用场景                          | 优点                          | 缺点                          |
-|----------------|-----------------------------------|-------------------------------|-------------------------------|
-| **Session**    | 传统 Web 应用                     | 简单易用                      | 扩展性差，不适合分布式系统    |
-| **JWT**        | 分布式系统、前后端分离            | 无状态，扩展性好              | 无法中途撤销，安全性较低      |
-| **OAuth 2.0**  | 第三方登录、开放平台              | 用户体验好，适合跨系统授权    | 实现复杂                      |
-| **API Key**    | 机器对机器（M2M）通信             | 简单易用                      | 安全性较低                    |
-| **HMAC**       | 高安全性要求的 API 通信           | 防止篡改，安全性高            | 实现复杂                      |
-| **SSO**        | 企业内部多系统集成                | 提升用户体验                  | 实现复杂                      |
-| **SAML**       | 企业级单点登录                    | 支持跨域身份验证              | 实现复杂，依赖 XML            |
+| 鉴权方式      | 适用场景                | 优点                       | 缺点                       |
+| ------------- | ----------------------- | -------------------------- | -------------------------- |
+| **Session**   | 传统 Web 应用           | 简单易用                   | 扩展性差，不适合分布式系统 |
+| **JWT**       | 分布式系统、前后端分离  | 无状态，扩展性好           | 无法中途撤销，安全性较低   |
+| **OAuth 2.0** | 第三方登录、开放平台    | 用户体验好，适合跨系统授权 | 实现复杂                   |
+| **API Key**   | 机器对机器（M2M）通信   | 简单易用                   | 安全性较低                 |
+| **HMAC**      | 高安全性要求的 API 通信 | 防止篡改，安全性高         | 实现复杂                   |
+| **SSO**       | 企业内部多系统集成      | 提升用户体验               | 实现复杂                   |
+| **SAML**      | 企业级单点登录          | 支持跨域身份验证           | 实现复杂，依赖 XML         |
 
 根据具体场景选择合适的鉴权方式，可以提升系统的安全性和用户体验！
-
 
 1. const jwt = require("jsonwebtoken"); 加密 jsonwebtoken.sign({ data: user, // 设置 token 过期时间 exp:
    Math.floor(Date.now() / 1000) + (60 \* 60), }, secret)
@@ -7708,7 +7922,7 @@ export default StateCop;
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/react-pure.png
 
-## 杰fiberto
+## 杰 fiberto
 
 [react 技术揭秘](https://react.iamkasong.com/process/fiber.html#fiber%E7%9A%84%E7%BB%93%E6%9E%84)
 
@@ -9620,101 +9834,112 @@ LeetCode: https://leetcode-cn.com/problemset/all/
 ## 杰算法复杂度，杰复杂度
 
 ![image](https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png):https://oola-web.oss-cn-shenzhen.aliyuncs.com/oolaimgs/oolam/repo/img-suanfa.png
+
 ### 常见排序算法的时间复杂度和空间复杂度对比
 
 以下是常见排序算法的时间复杂度（最好、平均、最坏）和空间复杂度的对比：
 
 ---
 
-| 排序算法       | 最好时间复杂度 | 平均时间复杂度 | 最坏时间复杂度 | 空间复杂度       | 是否稳定 |
-|----------------|----------------|----------------|----------------|------------------|----------|
-| **冒泡排序**   | O(n)           | O(n²)          | O(n²)          | O(1)             | 是       |
-| **选择排序**   | O(n²)          | O(n²)          | O(n²)          | O(1)             | 否       |
-| **插入排序**   | O(n)           | O(n²)          | O(n²)          | O(1)             | 是       |
-| **希尔排序**   | O(n log n)     | O(n log² n)    | O(n log² n)    | O(1)             | 否       |
-| **归并排序**   | O(n log n)     | O(n log n)     | O(n log n)     | O(n)             | 是       |
-| **快速排序**   | O(n log n)     | O(n log n)     | O(n²)          | O(log n) ~ O(n)  | 否       |
-| **堆排序**     | O(n log n)     | O(n log n)     | O(n log n)     | O(1)             | 否       |
-| **计数排序**   | O(n + k)       | O(n + k)       | O(n + k)       | O(k)             | 是       |
-| **桶排序**     | O(n + k)       | O(n + k)       | O(n²)          | O(n + k)         | 是       |
-| **基数排序**   | O(nk)          | O(nk)          | O(nk)          | O(n + k)         | 是       |
+| 排序算法     | 最好时间复杂度 | 平均时间复杂度 | 最坏时间复杂度 | 空间复杂度      | 是否稳定 |
+| ------------ | -------------- | -------------- | -------------- | --------------- | -------- |
+| **冒泡排序** | O(n)           | O(n²)          | O(n²)          | O(1)            | 是       |
+| **选择排序** | O(n²)          | O(n²)          | O(n²)          | O(1)            | 否       |
+| **插入排序** | O(n)           | O(n²)          | O(n²)          | O(1)            | 是       |
+| **希尔排序** | O(n log n)     | O(n log² n)    | O(n log² n)    | O(1)            | 否       |
+| **归并排序** | O(n log n)     | O(n log n)     | O(n log n)     | O(n)            | 是       |
+| **快速排序** | O(n log n)     | O(n log n)     | O(n²)          | O(log n) ~ O(n) | 否       |
+| **堆排序**   | O(n log n)     | O(n log n)     | O(n log n)     | O(1)            | 否       |
+| **计数排序** | O(n + k)       | O(n + k)       | O(n + k)       | O(k)            | 是       |
+| **桶排序**   | O(n + k)       | O(n + k)       | O(n²)          | O(n + k)        | 是       |
+| **基数排序** | O(nk)          | O(nk)          | O(nk)          | O(n + k)        | 是       |
 
 ---
 
 ### 详细说明
 
 #### 1. **冒泡排序（Bubble Sort）**
-- **原理**：重复遍历数组，比较相邻元素并交换。
-- **特点**：
-  - 简单但效率低。
-  - 稳定排序。
+
+-   **原理**：重复遍历数组，比较相邻元素并交换。
+-   **特点**：
+    -   简单但效率低。
+    -   稳定排序。
 
 #### 2. **选择排序（Selection Sort）**
-- **原理**：每次从未排序部分选择最小元素，放到已排序部分的末尾。
-- **特点**：
-  - 不稳定排序。
-  - 时间复杂度固定为 O(n²)。
+
+-   **原理**：每次从未排序部分选择最小元素，放到已排序部分的末尾。
+-   **特点**：
+    -   不稳定排序。
+    -   时间复杂度固定为 O(n²)。
 
 #### 3. **插入排序（Insertion Sort）**
-- **原理**：将未排序部分的元素插入到已排序部分的正确位置。
-- **特点**：
-  - 对小规模数据或基本有序数据效率高。
-  - 稳定排序。
+
+-   **原理**：将未排序部分的元素插入到已排序部分的正确位置。
+-   **特点**：
+    -   对小规模数据或基本有序数据效率高。
+    -   稳定排序。
 
 #### 4. **希尔排序（Shell Sort）**
-- **原理**：改进的插入排序，通过分组插入排序逐步缩小间隔。
-- **特点**：
-  - 不稳定排序。
-  - 时间复杂度取决于间隔序列。
+
+-   **原理**：改进的插入排序，通过分组插入排序逐步缩小间隔。
+-   **特点**：
+    -   不稳定排序。
+    -   时间复杂度取决于间隔序列。
 
 #### 5. **归并排序（Merge Sort）**
-- **原理**：分治法，将数组分成两半，分别排序后合并。
-- **特点**：
-  - 稳定排序。
-  - 需要额外空间。
+
+-   **原理**：分治法，将数组分成两半，分别排序后合并。
+-   **特点**：
+    -   稳定排序。
+    -   需要额外空间。
 
 #### 6. **快速排序（Quick Sort）**
-- **原理**：分治法，选择一个基准元素，将数组分为两部分并递归排序。
-- **特点**：
-  - 不稳定排序。
-  - 平均性能优秀，但最坏情况下退化为 O(n²)。
+
+-   **原理**：分治法，选择一个基准元素，将数组分为两部分并递归排序。
+-   **特点**：
+    -   不稳定排序。
+    -   平均性能优秀，但最坏情况下退化为 O(n²)。
 
 #### 7. **堆排序（Heap Sort）**
-- **原理**：将数组构建为堆，依次取出堆顶元素。
-- **特点**：
-  - 不稳定排序。
-  - 时间复杂度稳定为 O(n log n)。
+
+-   **原理**：将数组构建为堆，依次取出堆顶元素。
+-   **特点**：
+    -   不稳定排序。
+    -   时间复杂度稳定为 O(n log n)。
 
 #### 8. **计数排序（Counting Sort）**
-- **原理**：统计每个元素的出现次数，按顺序输出。
-- **特点**：
-  - 稳定排序。
-  - 适用于整数排序，范围较小的情况。
+
+-   **原理**：统计每个元素的出现次数，按顺序输出。
+-   **特点**：
+    -   稳定排序。
+    -   适用于整数排序，范围较小的情况。
 
 #### 9. **桶排序（Bucket Sort）**
-- **原理**：将元素分配到多个桶中，分别排序后合并。
-- **特点**：
-  - 稳定排序。
-  - 适用于数据分布均匀的情况。
+
+-   **原理**：将元素分配到多个桶中，分别排序后合并。
+-   **特点**：
+    -   稳定排序。
+    -   适用于数据分布均匀的情况。
 
 #### 10. **基数排序（Radix Sort）**
-- **原理**：按位排序，从最低位到最高位依次排序。
-- **特点**：
-  - 稳定排序。
-  - 适用于整数或字符串排序。
+
+-   **原理**：按位排序，从最低位到最高位依次排序。
+-   **特点**：
+    -   稳定排序。
+    -   适用于整数或字符串排序。
 
 ---
 
 ### 总结
 
-- **时间复杂度**：
-  - 平均性能最好的是 **快速排序**、**归并排序** 和 **堆排序**（O(n log n)）。
-  - **计数排序**、**桶排序** 和 **基数排序** 在特定条件下可以达到 O(n)。
-- **空间复杂度**：
-  - **归并排序** 和 **计数排序** 需要额外空间。
-  - **快速排序** 的空间复杂度取决于递归深度。
-- **稳定性**：
-  - **冒泡排序**、**插入排序**、**归并排序**、**计数排序**、**桶排序** 和 **基数排序** 是稳定的。
+-   **时间复杂度**：
+    -   平均性能最好的是 **快速排序**、**归并排序** 和 **堆排序**（O(n log n)）。
+    -   **计数排序**、**桶排序** 和 **基数排序** 在特定条件下可以达到 O(n)。
+-   **空间复杂度**：
+    -   **归并排序** 和 **计数排序** 需要额外空间。
+    -   **快速排序** 的空间复杂度取决于递归深度。
+-   **稳定性**：
+    -   **冒泡排序**、**插入排序**、**归并排序**、**计数排序**、**桶排序** 和 **基数排序** 是稳定的。
 
 根据数据规模、分布和需求选择合适的排序算法！
 
@@ -9773,7 +9998,7 @@ function quick_sort(arr) {
             right.push(arr[i]);
         }
     }
-    return [quick_sort(left), pivot, quick_sort(right)];
+    return [...quick_sort(left), pivot, ...quick_sort(right)];
 }
 ```
 
@@ -9859,7 +10084,7 @@ function selectionSort(arr) {
 }
 ```
 
-## 冒泡排序
+## 杰冒泡排序
 
 就是每一趟循环都相邻两两比对可以堆后一个这次循环理最大的数，一个一个冒出来，直到全都冒泡完了
 
@@ -10535,7 +10760,7 @@ function convert(data = "a_b_c") {
 convert();
 ```
 
-## 杰eventListener,实现 emitter,实现 eventEmitter
+## 杰 eventListener,实现 emitter,实现 eventEmitter
 
 触发名为 type 的事件
 
@@ -13712,64 +13937,75 @@ convert();
 ```
 
 ## 亮点
-- 流式渲染 ， createCacheStream， renderToNodeStream
-- 懒加载，视图内加载 IntersectionObserver
-- oclif开发脚手架
-- 开发UI库以及babel按需加载插件
+
+-   流式渲染 ， createCacheStream， renderToNodeStream
+-   懒加载，视图内加载 IntersectionObserver
+-   oclif 开发脚手架
+-   开发 UI 库以及 babel 按需加载插件
 
 ## 杰在线文档编辑器
 
 ### 架构方案设计
 
 #### 1. 技术栈选择
+
 ```
-Vue3 + TypeScript + Vite + Pinia + Tiptap/Yjs + IndexedDB + 
+Vue3 + TypeScript + Vite + Pinia + Tiptap/Yjs + IndexedDB +
 ```
 
 #### 2. 核心架构模块
+
 ```markdown
 ### 架构图
-前端
-├── 编辑器核心 (Tiptap/ProseMirror)
-├── 实时协作层 (Yjs/WebSocket)
-├── 状态管理 (Pinia)
-├── 数据持久化 (CRDT + IndexedDB)
-└── 用户系统 (Firebase Auth/Auth0)
+
+前端 ├── 编辑器核心 (Tiptap/ProseMirror) ├── 实时协作层 (Yjs/WebSocket) ├── 状态管理 (Pinia) ├── 数据持久化 (CRDT +
+IndexedDB) └── 用户系统 (Firebase Auth/Auth0)
 ```
 
 ### 具体实现方案
 
 #### 3. 模块分解
-```markdown
+
+````markdown
 ### 3.1 编辑器核心
+
 使用 **Tiptap**（基于 ProseMirror 的 Vue 封装）：
-- 支持 Markdown 快捷输入
-- 多光标协作
-- 版本历史（类似 Notion）
+
+-   支持 Markdown 快捷输入
+-   多光标协作
+-   版本历史（类似 Notion）
 
 ### 3.2 实时协作
+
 采用 **Yjs CRDT** 协议栈：
-- `y-websocket` 实现实时同步
-- `y-indexeddb` 离线缓存
-- 与 Tiptap 集成：`@tiptap/extension-collaboration`
+
+-   `y-websocket` 实现实时同步
+-   `y-indexeddb` 离线缓存
+-   与 Tiptap 集成：`@tiptap/extension-collaboration`
 
 ### 3.3 状态管理
+
 Pinia 模块划分：
+
 ```js
 // store/document.js
-export const useDocumentStore = defineStore('document', {
-  state: () => ({
-    content: {},
-    collaborators: new Map(), // 实时协作用户
-    revisionHistory: []
-  }),
-  actions: {
-    async loadFromIndexedDB() { /*...*/ }
-  }
-})
+export const useDocumentStore = defineStore("document", {
+    state: () => ({
+        content: {},
+        collaborators: new Map(), // 实时协作用户
+        revisionHistory: [],
+    }),
+    actions: {
+        async loadFromIndexedDB() {
+            /*...*/
+        },
+    },
+});
 ```
+````
 
 #### 4. 数据流设计
+
 ```mermaid
 graph TD
   A[用户操作] --> B(Tiptap Editor)
@@ -13782,67 +14018,68 @@ graph TD
 ### 代码实现示例
 
 #### 简洁版初始化代码
+
 ```vue
 <script setup>
 // 编辑器初始化
-import { Editor } from '@tiptap/vue-3'
-import { Collaboration } from '@tiptap/extension-collaboration'
-import { WebsocketProvider } from 'y-websocket'
+import { Editor } from "@tiptap/vue-3";
+import { Collaboration } from "@tiptap/extension-collaboration";
+import { WebsocketProvider } from "y-websocket";
 
-const provider = new WebsocketProvider('wss://your-websocket-server', 'room1', ydoc)
+const provider = new WebsocketProvider("wss://your-websocket-server", "room1", ydoc);
 const editor = new Editor({
-  extensions: [
-    Collaboration.configure({ document: ydoc })
-  ]
-})
+    extensions: [Collaboration.configure({ document: ydoc })],
+});
 </script>
 
 <template>
-  <editor-content :editor="editor" />
+    <editor-content :editor="editor" />
 </template>
 ```
 
 #### 注释详解版
+
 ```vue
 <script setup>
 // 1. 引入依赖
-import { Editor } from '@tiptap/vue-3'
-import StarterKit from '@tiptap/starter-kit'
-import { Collaboration } from '@tiptap/extension-collaboration'
-import { WebsocketProvider } from 'y-websocket'
-import * as Y from 'yjs'
+import { Editor } from "@tiptap/vue-3";
+import StarterKit from "@tiptap/starter-kit";
+import { Collaboration } from "@tiptap/extension-collaboration";
+import { WebsocketProvider } from "y-websocket";
+import * as Y from "yjs";
 
 // 2. 创建共享文档实例
-const ydoc = new Y.Doc()
+const ydoc = new Y.Doc();
 
 // 3. 建立WebSocket连接（生产环境需加密处理）
 const provider = new WebsocketProvider(
-  'wss://doc.yourdomain.com', // WebSocket服务器地址
-  'document-room-123',         // 文档唯一房间ID
-  ydoc                        // Yjs文档实例
-)
+    "wss://doc.yourdomain.com", // WebSocket服务器地址
+    "document-room-123", // 文档唯一房间ID
+    ydoc // Yjs文档实例
+);
 
 // 4. 初始化编辑器
 const editor = new Editor({
-  extensions: [
-    StarterKit,
-    Collaboration.configure({
-      document: ydoc,        // 绑定共享文档
-      field: 'content'       // 文档存储字段名
-    })
-  ],
-  content: '<p>Start editing...</p>'
-})
+    extensions: [
+        StarterKit,
+        Collaboration.configure({
+            document: ydoc, // 绑定共享文档
+            field: "content", // 文档存储字段名
+        }),
+    ],
+    content: "<p>Start editing...</p>",
+});
 
 // 5. 清理资源
 onBeforeUnmount(() => {
-  editor.destroy()
-  provider.destroy()
-})
+    editor.destroy();
+    provider.destroy();
+});
 </script>
 ```
 
 #### 性能优化方案
+
 ```markdown
 1. **增量更新**：Yjs 的 CRDT 算法实现 O(1) 复杂度变更传播
 2. **节流策略**：本地操作立即响应，网络同步设置 200ms 缓冲
@@ -13851,6 +14088,7 @@ onBeforeUnmount(() => {
 ```
 
 #### 扩展建议
+
 ```markdown
 1. **插件系统**：参考 Monaco Editor 的插件机制
 2. **移动端优化**：添加 touch 事件处理和虚拟滚动
@@ -13859,194 +14097,210 @@ onBeforeUnmount(() => {
 ```
 
 ### 推荐技术栈版本
+
 ```json
 {
-  "vue": "^3.3.4",
-  "pinia": "^2.1.7",
-  "yjs": "^13.6.4",
-  "tiptap": "^2.0.0-beta.200",
-  "idb": "^8.0.0"
+    "vue": "^3.3.4",
+    "pinia": "^2.1.7",
+    "yjs": "^13.6.4",
+    "tiptap": "^2.0.0-beta.200",
+    "idb": "^8.0.0"
 }
 ```
 
 此方案已在开源项目 [HedgeDoc](https://hedgedoc.org/) 和 [Lotion](https://lotionjs.com/) 中验证，建议开发时：
+
 1. 优先实现 CRDT 数据同步层
 2. 使用 Yjs 的 UndoManager 实现历史版本
 3. 通过 CSS Containment 优化大文档渲染性能
 
+### IndexedDB 核心作用
 
-### IndexedDB核心作用
-IndexedDB是浏览器内置的NoSQL数据库，用于：
+IndexedDB 是浏览器内置的 NoSQL 数据库，用于：
+
 1. **离线存储**：断网时继续编辑（自动同步上线后）
-2. **大容量存储**：支持GB级文档数据（相比localStorage的5MB限制）
+2. **大容量存储**：支持 GB 级文档数据（相比 localStorage 的 5MB 限制）
 3. **事务支持**：保证协作编辑的原子性操作
 4. **二进制存储**：直接保存文档版本差异数据
 
 ### 在文档编辑器中的具体应用
 
 #### 1. 基础使用模式
+
 ```js
 // 简洁版（配合Yjs）
-import { IndexeddbPersistence } from 'y-indexeddb'
+import { IndexeddbPersistence } from "y-indexeddb";
 
-const ydoc = new Y.Doc()
-const provider = new IndexeddbPersistence('my-document', ydoc)
+const ydoc = new Y.Doc();
+const provider = new IndexeddbPersistence("my-document", ydoc);
 
-provider.on('synced', () => {
-  console.log('数据已加载到内存')
-})
+provider.on("synced", () => {
+    console.log("数据已加载到内存");
+});
 ```
 
 #### 2. 核心操作详解
+
 ```javascript
 // 注释详解版
 // 1. 打开数据库连接
 const openDB = () => {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open('DocDB', 3) // 数据库名 + 版本号
-    
-    request.onsuccess = (e) => {
-      const db = e.target.result
-      resolve(db)
-    }
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open("DocDB", 3); // 数据库名 + 版本号
 
-    request.onupgradeneeded = (e) => {
-      const db = e.target.result
-      if (!db.objectStoreNames.contains('documents')) {
-        // 创建文档存储空间
-        const store = db.createObjectStore('documents', {
-          keyPath: 'id',
-          autoIncrement: false
-        })
-        // 创建索引便于搜索
-        store.createIndex('lastModified', 'lastModified', { unique: false })
-      }
-    }
-  })
-}
+        request.onsuccess = (e) => {
+            const db = e.target.result;
+            resolve(db);
+        };
+
+        request.onupgradeneeded = (e) => {
+            const db = e.target.result;
+            if (!db.objectStoreNames.contains("documents")) {
+                // 创建文档存储空间
+                const store = db.createObjectStore("documents", {
+                    keyPath: "id",
+                    autoIncrement: false,
+                });
+                // 创建索引便于搜索
+                store.createIndex("lastModified", "lastModified", { unique: false });
+            }
+        };
+    });
+};
 
 // 2. 保存文档变更
 const saveDocument = async (docId, content) => {
-  const db = await openDB()
-  const tx = db.transaction('documents', 'readwrite')
-  const store = tx.objectStore('documents')
-  
-  store.put({
-    id: docId,
-    content: content,
-    lastModified: Date.now()
-  })
+    const db = await openDB();
+    const tx = db.transaction("documents", "readwrite");
+    const store = tx.objectStore("documents");
 
-  return new Promise(resolve => {
-    tx.oncomplete = () => resolve()
-  })
-}
+    store.put({
+        id: docId,
+        content: content,
+        lastModified: Date.now(),
+    });
+
+    return new Promise((resolve) => {
+        tx.oncomplete = () => resolve();
+    });
+};
 
 // 3. 与Yjs集成（自动同步）
-const ydoc = new Y.Doc()
-new IndexeddbPersistence('document-123', ydoc).on('synced', () => {
-  console.log('离线数据已加载完毕')
-})
+const ydoc = new Y.Doc();
+new IndexeddbPersistence("document-123", ydoc).on("synced", () => {
+    console.log("离线数据已加载完毕");
+});
 ```
 
 ### 性能优化技巧
+
 ```markdown
-1. **批量写入**：累积10次操作后批量提交（减少IO次数）
-2. **二进制编码**：将CRDT数据转为Uint8Array存储（体积减少40%）
-3. **LRU缓存**：最近使用的文档保持在内存中
-4. **增量快照**：每5分钟保存完整副本，期间只存差异
+1. **批量写入**：累积 10 次操作后批量提交（减少 IO 次数）
+2. **二进制编码**：将 CRDT 数据转为 Uint8Array 存储（体积减少 40%）
+3. **LRU 缓存**：最近使用的文档保持在内存中
+4. **增量快照**：每 5 分钟保存完整副本，期间只存差异
 ```
 
 ### 对比其他存储方案
-| 方案          | 容量上限   | 数据类型       | 同步延迟 | 适用场景           |
-|---------------|------------|----------------|----------|--------------------|
-| IndexedDB     | 50%磁盘空间| 结构化/二进制  | 异步     | 文档核心数据       |
-| localStorage  | 5MB        | 字符串         | 同步     | 用户设置           |
-| SessionStorage| 5MB        | 字符串         | 同步     | 临时编辑缓存       |
-| ServiceWorker | 动态       | 请求/响应      | 异步     | 静态资源缓存       |
+
+| 方案           | 容量上限    | 数据类型      | 同步延迟 | 适用场景     |
+| -------------- | ----------- | ------------- | -------- | ------------ |
+| IndexedDB      | 50%磁盘空间 | 结构化/二进制 | 异步     | 文档核心数据 |
+| localStorage   | 5MB         | 字符串        | 同步     | 用户设置     |
+| SessionStorage | 5MB         | 字符串        | 同步     | 临时编辑缓存 |
+| ServiceWorker  | 动态        | 请求/响应     | 异步     | 静态资源缓存 |
 
 ### 实际应用场景示例
+
 ```javascript
 // 在Vue组件中的典型用法
 export default {
-  async mounted() {
-    // 加载离线数据
-    const cached = await this.getDocumentFromDB(this.docId)
-    if (cached) {
-      this.editor.commands.setContent(cached.content)
-    }
-    
-    // 自动保存逻辑
-    this.editor.on('update', ({ transaction }) => {
-      debounceSave(() => {
-        this.saveToDB(this.docId, this.editor.getJSON())
-      }, 500)
-    })
-  },
-  methods: {
-    async getDocumentFromDB(id) {
-      const db = await openDB()
-      return new Promise(resolve => {
-        const tx = db.transaction('documents')
-        const store = tx.objectStore('documents')
-        const request = store.get(id)
-        request.onsuccess = () => resolve(request.result)
-      })
-    }
-  }
-}
+    async mounted() {
+        // 加载离线数据
+        const cached = await this.getDocumentFromDB(this.docId);
+        if (cached) {
+            this.editor.commands.setContent(cached.content);
+        }
+
+        // 自动保存逻辑
+        this.editor.on("update", ({ transaction }) => {
+            debounceSave(() => {
+                this.saveToDB(this.docId, this.editor.getJSON());
+            }, 500);
+        });
+    },
+    methods: {
+        async getDocumentFromDB(id) {
+            const db = await openDB();
+            return new Promise((resolve) => {
+                const tx = db.transaction("documents");
+                const store = tx.objectStore("documents");
+                const request = store.get(id);
+                request.onsuccess = () => resolve(request.result);
+            });
+        },
+    },
+};
 ```
 
 ### 注意事项
+
 1. **版本迁移**：修改数据库结构时需在`onupgradeneeded`处理旧数据
 2. **内存泄漏**：页面关闭时需要手动关闭数据库连接
 3. **加密存储**：敏感内容需用`crypto.subtle`加密后存储
-4. **容量限制**：Safari移动版限制为50MB，需做容量检测
+4. **容量限制**：Safari 移动版限制为 50MB，需做容量检测
+
 ```javascript
 // 容量检测示例
-navigator.storage.estimate().then(estimate => {
-  console.log(`可用空间：${estimate.quota - estimate.usage} bytes`)
-})
+navigator.storage.estimate().then((estimate) => {
+    console.log(`可用空间：${estimate.quota - estimate.usage} bytes`);
+});
 ```
 
-## 杰在线文档编辑器react
+## 杰在线文档编辑器 react
+
 ### 在线文档编辑器开发思路与架构设计
 
 ---
 
 #### **一、核心功能参考（对标成功项目）**
-- **Google Docs**: 实时协作、版本历史、评论系统
-- **Notion**: 块级编辑、多模态内容（表格/代码/嵌入）、模板系统
-- **Quip**: 轻量化协作、移动端优化
-- **Figma**: 实时光标同步、高性能渲染
+
+-   **Google Docs**: 实时协作、版本历史、评论系统
+-   **Notion**: 块级编辑、多模态内容（表格/代码/嵌入）、模板系统
+-   **Quip**: 轻量化协作、移动端优化
+-   **Figma**: 实时光标同步、高性能渲染
 
 ---
 
 ### **二、技术选型与第三方库推荐**
+
 以下为经过验证的高质量开源方案，可大幅降低开发成本：
 
 #### **1. 核心编辑器**
-| 模块              | 推荐方案                                                                 | 优势                                                                 |
-|--------------------|--------------------------------------------------------------------------|----------------------------------------------------------------------|
-| **富文本引擎**     | [ProseMirror](https://prosemirror.net/) 或 [Slate.js](https://docs.slatejs.org/) | 支持复杂文档结构、插件化扩展、OT协同兼容                             |
-| **公式编辑**       | [MathLive](https://mathlive.io/)                                         | 支持LaTeX实时渲染、语音输入、无障碍访问                              |
-| **表格系统**       | [Handsontable](https://handsontable.com/)                                | Excel级表格功能、大数据量优化                                        |
-| **代码块**         | [Monaco Editor](https://microsoft.github.io/monaco-editor/)              | VS Code同款引擎，支持100+语言高亮                                    |
+
+| 模块           | 推荐方案                                                                         | 优势                                      |
+| -------------- | -------------------------------------------------------------------------------- | ----------------------------------------- |
+| **富文本引擎** | [ProseMirror](https://prosemirror.net/) 或 [Slate.js](https://docs.slatejs.org/) | 支持复杂文档结构、插件化扩展、OT 协同兼容 |
+| **公式编辑**   | [MathLive](https://mathlive.io/)                                                 | 支持 LaTeX 实时渲染、语音输入、无障碍访问 |
+| **表格系统**   | [Handsontable](https://handsontable.com/)                                        | Excel 级表格功能、大数据量优化            |
+| **代码块**     | [Monaco Editor](https://microsoft.github.io/monaco-editor/)                      | VS Code 同款引擎，支持 100+语言高亮       |
 
 #### **2. 实时协作**
-| 模块              | 推荐方案                                                                 |
-|--------------------|--------------------------------------------------------------------------|
-| **协同算法**       | [ShareDB](https://github.com/share/sharedb) (OT算法) 或 [Yjs](https://docs.yjs.dev/) (CRDT算法) |
-| **实时通信**       | [Socket.IO](https://socket.io/) 或 [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) |
-| **冲突解决**       | 自动合并 + 用户操作历史回溯                                              |
+
+| 模块         | 推荐方案                                                                                                   |
+| ------------ | ---------------------------------------------------------------------------------------------------------- |
+| **协同算法** | [ShareDB](https://github.com/share/sharedb) (OT 算法) 或 [Yjs](https://docs.yjs.dev/) (CRDT 算法)          |
+| **实时通信** | [Socket.IO](https://socket.io/) 或 [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) |
+| **冲突解决** | 自动合并 + 用户操作历史回溯                                                                                |
 
 #### **3. 辅助系统**
-| 模块              | 推荐方案                                                                 |
-|--------------------|--------------------------------------------------------------------------|
-| **版本控制**       | GitLab式分支管理 或 [Differential Synchronization](https://neil.fraser.name/writing/sync/) |
-| **评论系统**       | 锚点评论 + @提醒功能                                                     |
-| **导出系统**       | [Pandoc](https://pandoc.org/) (支持Markdown/PDF/Word等格式转换)          |
-| **OCR识别**        | [Tesseract.js](https://tesseract.projectnaptha.com/)                     |
+
+| 模块         | 推荐方案                                                                                    |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| **版本控制** | GitLab 式分支管理 或 [Differential Synchronization](https://neil.fraser.name/writing/sync/) |
+| **评论系统** | 锚点评论 + @提醒功能                                                                        |
+| **导出系统** | [Pandoc](https://pandoc.org/) (支持 Markdown/PDF/Word 等格式转换)                           |
+| **OCR 识别** | [Tesseract.js](https://tesseract.projectnaptha.com/)                                        |
 
 ---
 
@@ -14082,6 +14336,7 @@ graph TD
 ### **四、关键开发步骤**
 
 #### **1. 基础编辑器搭建**
+
 ```javascript
 // 使用ProseMirror构建核心编辑器
 import { EditorState } from "prosemirror-state";
@@ -14092,25 +14347,23 @@ const state = EditorState.create({ schema });
 const view = new EditorView(document.querySelector("#editor"), { state });
 ```
 
-#### **2. 实现实时协作（Yjs示例）**
+#### **2. 实现实时协作（Yjs 示例）**
+
 ```javascript
 // 前端协同逻辑
-import * as Y from 'yjs';
-import { WebsocketProvider } from 'y-websocket';
+import * as Y from "yjs";
+import { WebsocketProvider } from "y-websocket";
 
 const doc = new Y.Doc();
-const provider = new WebsocketProvider(
-  'wss://your-collab-server.com',
-  'room-name',
-  doc
-);
+const provider = new WebsocketProvider("wss://your-collab-server.com", "room-name", doc);
 
 // 绑定ProseMirror与Yjs
-const yXmlFragment = doc.getXmlFragment('prosemirror');
+const yXmlFragment = doc.getXmlFragment("prosemirror");
 const binding = new ProsemirrorBinding(yXmlFragment, view);
 ```
 
 #### **3. 版本控制系统设计**
+
 ```python
 # 后端版本存储设计（示例伪代码）
 class DocumentVersion:
@@ -14126,64 +14379,71 @@ class DocumentVersion:
 ```
 
 #### **4. 性能优化策略**
-- **文档分块加载**：将大文档拆分为Chunk，按需加载
-- **操作压缩**：合并高频细粒度操作（如连续输入字符）
-- **前端缓存**：使用IndexedDB存储最近访问文档
-- **Web Worker**：复杂计算（如语法检查）放入后台线程
+
+-   **文档分块加载**：将大文档拆分为 Chunk，按需加载
+-   **操作压缩**：合并高频细粒度操作（如连续输入字符）
+-   **前端缓存**：使用 IndexedDB 存储最近访问文档
+-   **Web Worker**：复杂计算（如语法检查）放入后台线程
 
 ---
 
 ### **五、安全与权限设计**
+
 1. **权限粒度控制**：
-   ```javascript
-   // 基于RBAC的权限验证
-   enum Permission {
-     READ = 1 << 0,
-     WRITE = 1 << 1,
-     COMMENT = 1 << 2,
-     MANAGE = 1 << 3
-   }
-   ```
+    ```javascript
+    // 基于RBAC的权限验证
+    enum Permission {
+      READ = 1 << 0,
+      WRITE = 1 << 1,
+      COMMENT = 1 << 2,
+      MANAGE = 1 << 3
+    }
+    ```
 2. **数据安全**：
-   - 文档内容加密存储（AES-256）
-   - 传输层使用WSS+SSL/TLS 1.3
-   - 敏感操作二次验证
+
+    - 文档内容加密存储（AES-256）
+    - 传输层使用 WSS+SSL/TLS 1.3
+    - 敏感操作二次验证
 
 3. **防攻击措施**：
-   - 操作频率限制（如每分钟最大1000次编辑）
-   - XSS过滤（DOMPurify集成）
-   - 内容沙箱（隔离第三方嵌入内容）
+    - 操作频率限制（如每分钟最大 1000 次编辑）
+    - XSS 过滤（DOMPurify 集成）
+    - 内容沙箱（隔离第三方嵌入内容）
 
 ---
 
 ### **六、推荐扩展方向**
-1. **AI集成**：
-   - GPT-3自动续写
-   - 智能语法纠错
-   - 文档摘要生成
+
+1. **AI 集成**：
+
+    - GPT-3 自动续写
+    - 智能语法纠错
+    - 文档摘要生成
 
 2. **企业级功能**：
-   - 水印系统
-   - 审计日志
-   - 合规性检查
+
+    - 水印系统
+    - 审计日志
+    - 合规性检查
 
 3. **开发者生态**：
-   - 插件市场
-   - API开放平台
-   - Webhook支持
+    - 插件市场
+    - API 开放平台
+    - Webhook 支持
 
 ---
 
 ### **七、基础设施建议**
-| 服务类型       | 推荐方案                           |
-|----------------|------------------------------------|
-| **部署架构**   | Kubernetes + Docker 微服务化部署  |
-| **数据库**     | PostgreSQL (关系型) + MongoDB (文档型) |
-| **存储**       | AWS S3/MinIO 对象存储             |
-| **监控**       | Prometheus + Grafana              |
-| **CI/CD**      | GitHub Actions + ArgoCD           |
+
+| 服务类型     | 推荐方案                               |
+| ------------ | -------------------------------------- |
+| **部署架构** | Kubernetes + Docker 微服务化部署       |
+| **数据库**   | PostgreSQL (关系型) + MongoDB (文档型) |
+| **存储**     | AWS S3/MinIO 对象存储                  |
+| **监控**     | Prometheus + Grafana                   |
+| **CI/CD**    | GitHub Actions + ArgoCD                |
 
 ---
 
-通过以上架构和选型方案，可快速搭建一个高性能、易扩展的现代在线文档编辑器。建议优先实现核心编辑与协同功能，再逐步迭代高级特性。
-
+通过以上架构和选型方案，可快速搭建一个高性能、易扩展的现代在线文档编辑器。建议优先实现核心编辑与协同功能，再逐步迭代高级
+特性。

@@ -1,16 +1,42 @@
-var foo = { bar: 1 };
-var arr1 = [1, 2, foo];
-var arr2 = arr1.slice(1);
-1;
-arr2[0]++;
-arr2[1].bar++;
-foo.bar++;
-arr1[2].bar++;
-console.log(`TCL: hejiearr2`, arr1, arr2);
-console.log(`TCL: hejie11`, arr1[1] === arr2[0]);
-console.log(`TCL: hejie12`, arr1[2] === arr2[1]);
-console.log(`TCL: hejie333`, foo.bar);
+// var foo = { bar: 1 };
+// var arr1 = [1, 2, foo];
+// var arr2 = arr1.slice(1);
+// 1;
+// arr2[0]++;
+// arr2[1].bar++;
+// foo.bar++;
+// arr1[2].bar++;
+// console.log(`TCL: hejiearr2`, arr1, arr2);
+// console.log(`TCL: hejie11`, arr1[1] === arr2[0]);
+// console.log(`TCL: hejie12`, arr1[2] === arr2[1]);
+// console.log(`TCL: hejie333`, foo.bar);
 
+function quickSort(arr) {
+    const stack = [];
+    stack.push([0, arr.length - 1]);
+    while (stack.length > 0) {
+        const [start, end] = stack.pop();
+        if (start >= end) continue;
+        const pivotIndex = partition(arr, start, end);
+        stack.push([start, pivotIndex - 1]);
+        stack.push([pivotIndex + 1, end]);
+    }
+    return arr;
+}
+function partition(arr, start, end) {
+    const pivot = arr[end];
+    let i = start - 1;
+    for (let j = start; j < end; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+    [arr[i + 1], arr[end]] = [arr[end], arr[i + 1]];
+    return i + 1;
+}
+
+console.log(`TCL: hejie`, quickSort([1, 2, 3, 2, 10, 7, 29, 3, 4]));
 // async function async1() {
 //     console.log("async1 start");
 //     await async2();
@@ -47,48 +73,48 @@ console.log(`TCL: hejie333`, foo.bar);
  * @param  {...Function} tasks 任务列表，每个任务无参，异步
  * @returns
  */
-function processTasks(...tasks) {
-    let index = 0;
-    let isPaused = false;
-    const results = [];
-    const executeTask = () => {
-        if (index < tasks.length && !isPaused) {
-            tasks[index]().then((result) => {
-                results.push(result);
-                index++;
-                executeTask();
-            });
-        }
-    };
-    const start = () => {
-        executeTask();
-    };
-    const pause = () => {
-        isPaused = true;
-    };
-    return { start, pause };
-}
+// function processTasks(...tasks) {
+//     let index = 0;
+//     let isPaused = false;
+//     const results = [];
+//     const executeTask = () => {
+//         if (index < tasks.length && !isPaused) {
+//             tasks[index]().then((result) => {
+//                 results.push(result);
+//                 index++;
+//                 executeTask();
+//             });
+//         }
+//     };
+//     const start = () => {
+//         executeTask();
+//     };
+//     const pause = () => {
+//         isPaused = true;
+//     };
+//     return { start, pause };
+// }
 
-const tasks = [];
-for (let i = 0; i < 10; i++) {
-    tasks.push(() => {
-        console.log(`任务${i + 1}开始`);
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(i);
-                console.log(`任务${i + 1}结束`);
-            }, 2000);
-        });
-    });
-}
-const hejie = processTasks(...tasks);
-hejie.start();
-setTimeout(() => {
-    hejie.pause();
-}, 2000);
-setTimeout(() => {
-    hejie.start();
-}, 5000);
+// const tasks = [];
+// for (let i = 0; i < 10; i++) {
+//     tasks.push(() => {
+//         console.log(`任务${i + 1}开始`);
+//         return new Promise((resolve, reject) => {
+//             setTimeout(() => {
+//                 resolve(i);
+//                 console.log(`任务${i + 1}结束`);
+//             }, 2000);
+//         });
+//     });
+// }
+// const hejie = processTasks(...tasks);
+// hejie.start();
+// setTimeout(() => {
+//     hejie.pause();
+// }, 2000);
+// setTimeout(() => {
+//     hejie.start();
+// }, 5000);
 
 // output: ==>
 // script start
